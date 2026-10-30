@@ -19,7 +19,9 @@ DIST = os.path.join(HERE, 'dist-web')
 OUT = os.path.abspath(sys.argv[1] if len(sys.argv) > 1 else os.path.join(ROOT, 'repo'))
 
 def splat(p):
-    return p[:-2] + '/:path*' if p.endswith('/*') else p
+    # O Vercel compara barras de forma rígida e, com trailingSlash, a barra final chega antes das regras.
+    # '/x/*' vira '/x', '/x/' e qualquer coisa abaixo de '/x/' (com ou sem barra no fim).
+    return p[:-2] + '(/.*)?' if p.endswith('/*') else p
 
 def redirects():
     out = []
@@ -42,10 +44,10 @@ def assets_host():
     has = [{'type': 'host', 'value': ASSETS_HOST}]
     www = 'https://www.hypeapp.com.br'
     regras = [
-        ('/politica-de-privacidade', '/privacidade/'), ('/politica-de-privacidade/:path*', '/privacidade/'),
-        ('/privacidade', '/privacidade/'), ('/privacy', '/privacidade/'), ('/privacy-policy', '/privacidade/'),
-        ('/termos-de-uso', '/termos/'), ('/termos-de-uso/:path*', '/termos/'), ('/termos', '/termos/'), ('/terms', '/termos/'),
-        ('/:path*', '/:path*'),
+        ('/politica-de-privacidade(/.*)?', '/privacidade/'), ('/privacidade(/.*)?', '/privacidade/'),
+        ('/privacy(/.*)?', '/privacidade/'), ('/privacy-policy(/.*)?', '/privacidade/'),
+        ('/termos-de-uso(/.*)?', '/termos/'), ('/termos(/.*)?', '/termos/'), ('/terms(/.*)?', '/termos/'),
+        ('/(.*)', '/$1'),
     ]
     return [{'source': s, 'has': has, 'destination': www + d, 'permanent': True} for s, d in regras]
 

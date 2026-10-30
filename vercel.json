@@ -8,7 +8,7 @@
   "rewrites": [],
   "redirects": [
     {
-      "source": "/politica-de-privacidade",
+      "source": "/politica-de-privacidade(/.*)?",
       "has": [
         {
           "type": "host",
@@ -19,7 +19,7 @@
       "permanent": true
     },
     {
-      "source": "/politica-de-privacidade/:path*",
+      "source": "/privacidade(/.*)?",
       "has": [
         {
           "type": "host",
@@ -30,7 +30,7 @@
       "permanent": true
     },
     {
-      "source": "/privacidade",
+      "source": "/privacy(/.*)?",
       "has": [
         {
           "type": "host",
@@ -41,7 +41,7 @@
       "permanent": true
     },
     {
-      "source": "/privacy",
+      "source": "/privacy-policy(/.*)?",
       "has": [
         {
           "type": "host",
@@ -52,18 +52,7 @@
       "permanent": true
     },
     {
-      "source": "/privacy-policy",
-      "has": [
-        {
-          "type": "host",
-          "value": "assets.hypeapp.com.br"
-        }
-      ],
-      "destination": "https://www.hypeapp.com.br/privacidade/",
-      "permanent": true
-    },
-    {
-      "source": "/termos-de-uso",
+      "source": "/termos-de-uso(/.*)?",
       "has": [
         {
           "type": "host",
@@ -74,7 +63,7 @@
       "permanent": true
     },
     {
-      "source": "/termos-de-uso/:path*",
+      "source": "/termos(/.*)?",
       "has": [
         {
           "type": "host",
@@ -85,7 +74,7 @@
       "permanent": true
     },
     {
-      "source": "/termos",
+      "source": "/terms(/.*)?",
       "has": [
         {
           "type": "host",
@@ -96,49 +85,38 @@
       "permanent": true
     },
     {
-      "source": "/terms",
+      "source": "/(.*)",
       "has": [
         {
           "type": "host",
           "value": "assets.hypeapp.com.br"
         }
       ],
-      "destination": "https://www.hypeapp.com.br/termos/",
+      "destination": "https://www.hypeapp.com.br/$1",
       "permanent": true
     },
     {
-      "source": "/:path*",
-      "has": [
-        {
-          "type": "host",
-          "value": "assets.hypeapp.com.br"
-        }
-      ],
-      "destination": "https://www.hypeapp.com.br/:path*",
-      "permanent": true
-    },
-    {
-      "source": "/interesse/criadores/:path*",
+      "source": "/interesse/criadores(/.*)?",
       "destination": "/baixar/",
       "permanent": false
     },
     {
-      "source": "/interesse/marcas/:path*",
+      "source": "/interesse/marcas(/.*)?",
       "destination": "/contato/marcas/",
       "permanent": false
     },
     {
-      "source": "/interesse/:path*",
+      "source": "/interesse(/.*)?",
       "destination": "/",
       "permanent": false
     },
     {
-      "source": "/pre-cadastro/:path*",
+      "source": "/pre-cadastro(/.*)?",
       "destination": "/",
       "permanent": false
     },
     {
-      "source": "/ajuda/:path*",
+      "source": "/ajuda(/.*)?",
       "destination": "/perguntas-frequentes/",
       "permanent": false
     },
@@ -158,7 +136,7 @@
       "permanent": false
     },
     {
-      "source": "/direitos-sobre-dados/:path*",
+      "source": "/direitos-sobre-dados(/.*)?",
       "destination": "/privacidade/#direitos",
       "permanent": false
     },
@@ -168,62 +146,62 @@
       "permanent": false
     },
     {
-      "source": "/criador/:path*",
+      "source": "/criador(/.*)?",
       "destination": "/criadores/",
       "permanent": true
     },
     {
-      "source": "/creators/:path*",
+      "source": "/creators(/.*)?",
       "destination": "/criadores/",
       "permanent": true
     },
     {
-      "source": "/marca/:path*",
+      "source": "/marca(/.*)?",
       "destination": "/marcas/",
       "permanent": true
     },
     {
-      "source": "/agencias/:path*",
+      "source": "/agencias(/.*)?",
       "destination": "/marcas/#agencias",
       "permanent": true
     },
     {
-      "source": "/download/:path*",
+      "source": "/download(/.*)?",
       "destination": "/baixar/",
       "permanent": true
     },
     {
-      "source": "/login/:path*",
+      "source": "/login(/.*)?",
       "destination": "/entrar/",
       "permanent": true
     },
     {
-      "source": "/faq/:path*",
+      "source": "/faq(/.*)?",
       "destination": "/perguntas-frequentes/",
       "permanent": true
     },
     {
-      "source": "/politica-de-privacidade/:path*",
+      "source": "/politica-de-privacidade(/.*)?",
       "destination": "/privacidade/",
       "permanent": true
     },
     {
-      "source": "/termos-de-uso/:path*",
+      "source": "/termos-de-uso(/.*)?",
       "destination": "/termos/",
       "permanent": true
     },
     {
-      "source": "/excluir-conta/:path*",
+      "source": "/excluir-conta(/.*)?",
       "destination": "/exclusao-de-conta/",
       "permanent": true
     },
     {
-      "source": "/murais-campanhas/:path*",
+      "source": "/murais-campanhas(/.*)?",
       "destination": "/criadores/",
       "permanent": true
     },
     {
-      "source": "/influenciadores/:path*",
+      "source": "/influenciadores(/.*)?",
       "destination": "/criadores/",
       "permanent": true
     }
