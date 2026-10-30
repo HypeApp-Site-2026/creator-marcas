@@ -85,6 +85,17 @@
       "permanent": true
     },
     {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "assets.hypeapp.com.br"
+        }
+      ],
+      "destination": "https://www.hypeapp.com.br/legal/",
+      "permanent": true
+    },
+    {
       "source": "/(.*)",
       "has": [
         {

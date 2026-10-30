@@ -1195,6 +1195,18 @@ def p_legal(url):
 <div class="doc-layout"><nav class="toc" aria-label="Nesta página">{toc}</nav><article class="prose card">{body}{extra}</article></div>'''
     return f
 
+def p_legal_hub(L, A):
+    docs = [('Política de privacidade', 'Como tratamos dados pessoais no site, no app e no painel, e os seus direitos.', L('/privacidade/')),
+            ('Termos de uso', 'Regras para usar o site, o app e o painel do HypeApp.', L('/termos/')),
+            ('Política de cookies', 'Quais tecnologias o site usa e como mudar suas preferências.', L('/cookies/')),
+            ('Encarregado de dados', 'Quem responde por dados pessoais e como falar com ele.', L('/privacidade/', '#encarregado')),
+            ('Exclusão de conta', 'Como excluir sua conta e o que acontece com os seus dados.', L('/exclusao-de-conta/'))]
+    cards = ''.join(f'<a class="help-card" href="{u}"><b>{t}</b><span class="small muted">{s}</span></a>' for t, s, u in docs)
+    return f'''
+<section class="page-hero" aria-labelledby="lgh-h"><h1 id="lgh-h" class="display" style="font-size:clamp(36px,5vw,56px)">Documentos legais</h1>
+  <p class="lead">Privacidade, termos e seus direitos sobre dados no HypeApp. Dúvidas: contato@vocenohype.com.br.</p></section>
+<div class="legal-hub">{cards}</div>'''
+
 def p_404(L, A):
     return f'''
 <section class="band-white stack" style="align-items:flex-start;gap:20px" aria-labelledby="nf-h">
@@ -1249,6 +1261,7 @@ PAGES = [
     ('/app', p_app, 'mid'),
     ('/privacidade/', p_legal_file('/privacidade/'), 'mid'), ('/termos/', p_legal_file('/termos/'), 'mid'),
     ('/cookies/', p_legal('/cookies/'), 'mid'), ('/exclusao-de-conta/', p_legal_file('/exclusao-de-conta/'), 'mid'),
+    ('/legal/', p_legal_hub, 'mid'),
     ('/404', p_404, 'mid'),
 ]
 if BLOG_ON:

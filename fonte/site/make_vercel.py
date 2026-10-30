@@ -47,6 +47,7 @@ def assets_host():
         ('/politica-de-privacidade(/.*)?', '/privacidade/'), ('/privacidade(/.*)?', '/privacidade/'),
         ('/privacy(/.*)?', '/privacidade/'), ('/privacy-policy(/.*)?', '/privacidade/'),
         ('/termos-de-uso(/.*)?', '/termos/'), ('/termos(/.*)?', '/termos/'), ('/terms(/.*)?', '/termos/'),
+        ('/', '/legal/'),
         ('/(.*)', '/$1'),
     ]
     return [{'source': s, 'has': has, 'destination': www + d, 'permanent': True} for s, d in regras]

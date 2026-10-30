@@ -292,6 +292,10 @@ for url, nome, title, desc, h1 in [
      "Conduta esperada no HypeApp, como denunciar e o que acontece em caso de violação.", "Regras da comunidade")]:
     add(url, nome, "Todos", "Confiança e privacidade", "P0", "G", JUR, IDX, "Sim", title, desc, h1,
         obs="Bloqueia o lançamento: o site não coleta dados nos formulários sem estas páginas no ar.")
+add("/legal/", "Documentos legais", "Todos", "Confiança e privacidade", "P0", "", "Sim", IDX, "Sim",
+    "Documentos legais | HypeApp",
+    "Política de privacidade, termos de uso, cookies, encarregado de dados e exclusão de conta do HypeApp em um só lugar.",
+    "Documentos legais")
 add("/direitos-sobre-dados/confirmacao/", "Solicitação recebida", "Todos", "Confiança e privacidade", "P0", "G", JUR, NOI, "Não",
     "Solicitação recebida | HypeApp", "Sua solicitação sobre dados pessoais foi recebida.", "Solicitação recebida")
 
