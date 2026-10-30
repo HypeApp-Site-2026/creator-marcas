@@ -1357,7 +1357,9 @@ http://hypeapp.com.br/*         https://www.hypeapp.com.br/:splat   301!
 /termos-de-uso/*    /termos/                   301
 /excluir-conta/*    /exclusao-de-conta/        301
 
-# [Endereços do site antigo: incluir aqui com 301 quando o inventário chegar]
+# Endereços do site antigo (omnes-tech/hype-site): política e termos acima; demais páginas
+/murais-campanhas/*  /criadores/              301
+/influenciadores/*   /criadores/              301
 '''
 
 HEADERS = '''/*
@@ -1365,7 +1367,7 @@ HEADERS = '''/*
   X-Frame-Options: DENY
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=(), interest-cohort=()
-  Content-Security-Policy: default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self'; font-src 'self'; connect-src 'self'; form-action 'self'; frame-ancestors 'none'; base-uri 'self'; object-src 'none'
+  Content-Security-Policy: default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' https://static.cloudflareinsights.com; font-src 'self'; connect-src 'self' https://cloudflareinsights.com; form-action 'self'; frame-ancestors 'none'; base-uri 'self'; object-src 'none'
 
 /assets/fonts/*
   Cache-Control: public, max-age=31536000, immutable

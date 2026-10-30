@@ -35,6 +35,20 @@ def redirects():
         out.append({'source': splat(src), 'destination': dst, 'permanent': code == '301'})
     return out
 
+# assets.hypeapp.com.br era um endereço do site antigo (privacidade e termos usados pelo app e pelas lojas).
+# Quando ele chega neste projeto, leva direto à página nova no www.
+ASSETS_HOST = 'assets.hypeapp.com.br'
+def assets_host():
+    has = [{'type': 'host', 'value': ASSETS_HOST}]
+    www = 'https://www.hypeapp.com.br'
+    regras = [
+        ('/politica-de-privacidade', '/privacidade/'), ('/politica-de-privacidade/:path*', '/privacidade/'),
+        ('/privacidade', '/privacidade/'), ('/privacy', '/privacidade/'), ('/privacy-policy', '/privacidade/'),
+        ('/termos-de-uso', '/termos/'), ('/termos-de-uso/:path*', '/termos/'), ('/termos', '/termos/'), ('/terms', '/termos/'),
+        ('/:path*', '/:path*'),
+    ]
+    return [{'source': s, 'has': has, 'destination': www + d, 'permanent': True} for s, d in regras]
+
 def headers():
     out, cur = [], None
     for line in open(os.path.join(DIST, '_headers'), encoding='utf-8'):
@@ -80,7 +94,7 @@ def main():
         'framework': None, 'buildCommand': '', 'installCommand': '', 'outputDirectory': '.',
         'trailingSlash': True,
         'rewrites': rewrites,
-        'redirects': redirects(),
+        'redirects': assets_host() + redirects(),
         'headers': headers(),
     }
     json.dump(cfg, open(os.path.join(OUT, 'vercel.json'), 'w', encoding='utf-8'), ensure_ascii=False, indent=2)

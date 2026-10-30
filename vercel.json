@@ -8,6 +8,116 @@
   "rewrites": [],
   "redirects": [
     {
+      "source": "/politica-de-privacidade",
+      "has": [
+        {
+          "type": "host",
+          "value": "assets.hypeapp.com.br"
+        }
+      ],
+      "destination": "https://www.hypeapp.com.br/privacidade/",
+      "permanent": true
+    },
+    {
+      "source": "/politica-de-privacidade/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "assets.hypeapp.com.br"
+        }
+      ],
+      "destination": "https://www.hypeapp.com.br/privacidade/",
+      "permanent": true
+    },
+    {
+      "source": "/privacidade",
+      "has": [
+        {
+          "type": "host",
+          "value": "assets.hypeapp.com.br"
+        }
+      ],
+      "destination": "https://www.hypeapp.com.br/privacidade/",
+      "permanent": true
+    },
+    {
+      "source": "/privacy",
+      "has": [
+        {
+          "type": "host",
+          "value": "assets.hypeapp.com.br"
+        }
+      ],
+      "destination": "https://www.hypeapp.com.br/privacidade/",
+      "permanent": true
+    },
+    {
+      "source": "/privacy-policy",
+      "has": [
+        {
+          "type": "host",
+          "value": "assets.hypeapp.com.br"
+        }
+      ],
+      "destination": "https://www.hypeapp.com.br/privacidade/",
+      "permanent": true
+    },
+    {
+      "source": "/termos-de-uso",
+      "has": [
+        {
+          "type": "host",
+          "value": "assets.hypeapp.com.br"
+        }
+      ],
+      "destination": "https://www.hypeapp.com.br/termos/",
+      "permanent": true
+    },
+    {
+      "source": "/termos-de-uso/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "assets.hypeapp.com.br"
+        }
+      ],
+      "destination": "https://www.hypeapp.com.br/termos/",
+      "permanent": true
+    },
+    {
+      "source": "/termos",
+      "has": [
+        {
+          "type": "host",
+          "value": "assets.hypeapp.com.br"
+        }
+      ],
+      "destination": "https://www.hypeapp.com.br/termos/",
+      "permanent": true
+    },
+    {
+      "source": "/terms",
+      "has": [
+        {
+          "type": "host",
+          "value": "assets.hypeapp.com.br"
+        }
+      ],
+      "destination": "https://www.hypeapp.com.br/termos/",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "assets.hypeapp.com.br"
+        }
+      ],
+      "destination": "https://www.hypeapp.com.br/:path*",
+      "permanent": true
+    },
+    {
       "source": "/interesse/criadores/:path*",
       "destination": "/baixar/",
       "permanent": false
@@ -106,6 +216,16 @@
       "source": "/excluir-conta/:path*",
       "destination": "/exclusao-de-conta/",
       "permanent": true
+    },
+    {
+      "source": "/murais-campanhas/:path*",
+      "destination": "/criadores/",
+      "permanent": true
+    },
+    {
+      "source": "/influenciadores/:path*",
+      "destination": "/criadores/",
+      "permanent": true
     }
   ],
   "headers": [
@@ -130,7 +250,7 @@
         },
         {
           "key": "Content-Security-Policy",
-          "value": "default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self'; font-src 'self'; connect-src 'self'; form-action 'self'; frame-ancestors 'none'; base-uri 'self'; object-src 'none'"
+          "value": "default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' https://static.cloudflareinsights.com; font-src 'self'; connect-src 'self' https://cloudflareinsights.com; form-action 'self'; frame-ancestors 'none'; base-uri 'self'; object-src 'none'"
         }
       ]
     },
