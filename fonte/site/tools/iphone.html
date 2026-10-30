@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Simulador iPhone · HypeApp</title>
+<style>@font-face { font-family: Inter; font-weight: 100 900; font-display: swap; src: url("../assets/fonts/inter-latin-wght-normal.woff2") format("woff2"); }</style>
+<style>
+/* Simulador de iPhone da prévia: o site roda num iframe com a largura e a altura reais do Safari no aparelho.
+   Página de trabalho, com visual escuro fixo para o aparelho se destacar. */
+:root { --bg: #16161A; --panel: #212127; --line: #34343C; --tx: #F2F2F4; --mut: #A0A0AA; --pur: #9E2CFA; --frame: #0B0B0E; color-scheme: dark; }
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; }
+body { background: var(--bg); color: var(--tx); font-family: Inter, system-ui, -apple-system, "Segoe UI", sans-serif; display: grid; grid-template-columns: 300px minmax(0, 1fr); }
+aside { background: var(--panel); border-right: 1px solid var(--line); padding: 24px 20px; display: flex; flex-direction: column; gap: 22px; overflow-y: auto;
+  padding-left: max(20px, env(safe-area-inset-left, 0px)); }
+h1 { margin: 0; font-size: 20px; font-weight: 700; letter-spacing: -0.02em; }
+.sub { margin: 6px 0 0; font-size: 13px; color: var(--mut); line-height: 1.45; }
+.grp { display: flex; flex-direction: column; gap: 8px; }
+.grp > span { font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--mut); }
+.seg { display: flex; flex-direction: column; gap: 6px; }
+.seg button, .pg { text-align: left; font: inherit; font-size: 14px; color: var(--tx); background: transparent; border: 1px solid var(--line); border-radius: 12px; padding: 9px 12px; cursor: pointer; }
+.seg button small { display: block; color: var(--mut); font-size: 12px; margin-top: 2px; }
+.seg button[aria-pressed="true"], .pg[aria-current="page"] { background: var(--pur); border-color: var(--pur); }
+.seg button[aria-pressed="true"] small { color: #EBDDFF; }
+.pages { display: grid; grid-template-columns: 1fr; gap: 4px; }
+.pg { padding: 7px 12px; border-radius: 10px; border-color: transparent; }
+.pg:hover { background: #2C2C34; }
+.row { display: flex; gap: 8px; flex-wrap: wrap; }
+.tool { font: inherit; font-size: 13px; color: var(--tx); background: #2C2C34; border: 0; border-radius: 999px; padding: 8px 14px; cursor: pointer; text-decoration: none; }
+label.chk { display: flex; align-items: center; gap: 8px; font-size: 14px; cursor: pointer; }
+button:focus-visible, a:focus-visible, input:focus-visible { outline: 3px solid var(--pur); outline-offset: 2px; }
+main { position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; padding: 24px; }
+.stage { transform-origin: center center; }
+/* aparelho */
+.dev { position: relative; border-radius: var(--r); padding: var(--b); background: var(--frame); box-shadow: 0 0 0 2px #3A3A42, 0 40px 80px -30px rgba(0,0,0,.8); }
+.dev::before, .dev::after { content: ""; position: absolute; width: 4px; border-radius: 2px; background: #2A2A30; left: -6px; }
+.dev::before { top: 150px; height: 60px; } .dev::after { top: 225px; height: 60px; }
+.scr { position: relative; width: var(--w); height: var(--h); border-radius: calc(var(--r) - var(--b)); overflow: hidden; background: #fff; display: flex; flex-direction: column; }
+.status { flex: none; height: var(--sb); display: flex; align-items: center; justify-content: space-between; padding: 0 32px 0 38px; font-size: 16px; font-weight: 600; color: #050505; background: #EFEFEF; position: relative; z-index: 2; }
+.status .ic { display: flex; gap: 6px; align-items: center; }
+.island { position: absolute; top: 11px; left: 50%; transform: translateX(-50%); width: 124px; height: 36px; border-radius: 20px; background: #000; z-index: 3; }
+.notch { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 0; height: 0; }
+iframe { flex: 1; width: 100%; border: 0; display: block; background: #EFEFEF; }
+.safari { flex: none; height: 86px; background: rgba(246,246,246,.96); border-top: 1px solid #DADADA; display: flex; flex-direction: column; align-items: center; gap: 8px; padding-top: 8px; }
+.url { width: calc(100% - 28px); height: 40px; border-radius: 12px; background: #E3E3E8; display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 15px; color: #050505; }
+.url svg { flex: none; }
+.home-ind { width: 134px; height: 5px; border-radius: 3px; background: #050505; margin-top: auto; margin-bottom: 8px; }
+.dev.no-safari .safari { display: none; }
+.dev.no-safari .scr::after { content: ""; position: absolute; left: 50%; bottom: 8px; transform: translateX(-50%); width: 134px; height: 5px; border-radius: 3px; background: rgba(5,5,5,.85); z-index: 3; pointer-events: none; }
+.dev.se .island { display: none; }
+.dev.se .home-ind { display: none; } .dev.se .safari { height: 64px; } .dev.se .scr { border-radius: 4px; }
+.dev.se .home-btn { display: block; }
+.home-btn { display: none; position: absolute; left: 50%; bottom: 12px; transform: translateX(-50%); width: 54px; height: 54px; border-radius: 50%; border: 3px solid #2A2A30; }
+.dims { position: absolute; left: 24px; bottom: 18px; font-size: 12px; color: var(--mut); }
+@media (max-width: 820px) {
+  body { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto minmax(0, 1fr); }
+  aside { border-right: 0; border-bottom: 1px solid var(--line); max-height: 44vh; padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+  main { min-height: 70vh; padding: 16px; }
+}
+</style>
+</head>
+<body>
+<aside>
+  <div><h1>Simulador iPhone</h1><p class="sub">O site roda aqui dentro com a largura e a altura reais da tela, como no Safari. Dá para rolar, tocar nos links e preencher os formulários.</p></div>
+  <div class="grp"><span>Modelo</span><div class="seg" id="models"></div></div>
+  <div class="grp"><span>Opções</span>
+    <label class="chk"><input type="checkbox" id="safari" checked> Barra do Safari</label>
+    <label class="chk"><input type="checkbox" id="fit" checked> Ajustar à janela</label>
+    <div class="row"><button type="button" class="tool" id="reload">Recarregar</button><a class="tool" id="open" href="../index.html" target="_blank" rel="noopener">Abrir a página</a></div>
+  </div>
+  <div class="grp"><span>Página</span><div class="pages" id="pages"></div></div>
+</aside>
+<main>
+  <div class="stage" id="stage">
+    <div class="dev" id="dev">
+      <div class="scr" id="scr">
+        <div class="island" aria-hidden="true"></div>
+        <div class="status" aria-hidden="true"><span>9:41</span><span class="ic">
+          <svg width="18" height="12" viewBox="0 0 18 12"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="5" width="3" height="7" rx="1"/><rect x="10" y="2.5" width="3" height="9.5" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg>
+          <svg width="16" height="12" viewBox="0 0 16 12"><path d="M8 11.5 5.6 8.9a3.4 3.4 0 0 1 4.8 0zM3.4 6.7a6.5 6.5 0 0 1 9.2 0l-1.1 1.1a5 5 0 0 0-7 0zM1 4.3a9.9 9.9 0 0 1 14 0l-1.1 1.1a8.3 8.3 0 0 0-11.8 0z"/></svg>
+          <svg width="27" height="13" viewBox="0 0 27 13"><rect x=".5" y=".5" width="22" height="12" rx="3.5" fill="none" stroke="#050505" opacity=".4"/><rect x="2" y="2" width="19" height="9" rx="2"/><rect x="24" y="4.5" width="2" height="4" rx="1" opacity=".4"/></svg></span></div>
+        <iframe id="site" name="iphone-sim" title="Site do HypeApp no iPhone" src="../index.html"></iframe>
+        <div class="safari" aria-hidden="true"><div class="url"><svg width="12" height="14" viewBox="0 0 12 14"><rect x="1" y="6" width="10" height="7.5" rx="1.5"/><path d="M3.5 6V4.2a2.5 2.5 0 0 1 5 0V6" fill="none" stroke="#050505" stroke-width="1.6"/></svg><span id="url">hypeapp.com.br</span></div><div class="home-ind"></div></div>
+      </div>
+      <span class="home-btn" aria-hidden="true"></span>
+    </div>
+  </div>
+  <span class="dims" id="dims"></span>
+</main>
+<script>
+(function () {
+  var PAGES = {{PAGES_JSON}};
+  /* tamanhos da área útil em pontos (CSS px), raio da tela e altura da barra de status */
+  var MODELS = [
+    { id: 'se', name: 'iPhone SE', note: '375 × 667', w: 375, h: 667, r: 40, b: 14, sb: 20, safari: 74 },
+    { id: '16', name: 'iPhone 16', note: '393 × 852', w: 393, h: 852, r: 62, b: 12, sb: 54, safari: 86 },
+    { id: '16pm', name: 'iPhone 16 Pro Max', note: '440 × 956', w: 440, h: 956, r: 68, b: 12, sb: 62, safari: 86 }
+  ];
+  var $ = function (s) { return document.querySelector(s); };
+  var dev = $('#dev'), scr = $('#scr'), stage = $('#stage'), frame = $('#site'), urlEl = $('#url');
+  var cur = MODELS[1];
+  var store = function (k, v) { try { if (v === undefined) return localStorage.getItem('sim-' + k); localStorage.setItem('sim-' + k, v); } catch (e) { return null; } };
+  var apply = function () {
+    var safari = $('#safari').checked;
+    dev.style.setProperty('--w', cur.w + 'px'); dev.style.setProperty('--h', cur.h + 'px');
+    dev.style.setProperty('--r', cur.r + 'px'); dev.style.setProperty('--b', cur.b + 'px'); dev.style.setProperty('--sb', cur.sb + 'px');
+    dev.classList.toggle('se', cur.id === 'se'); dev.classList.toggle('no-safari', !safari);
+    $('.status').style.padding = cur.id === 'se' ? '0 12px' : '';
+    if (cur.id === 'se') { dev.style.paddingBottom = '80px'; dev.style.paddingTop = '70px'; } else { dev.style.paddingBottom = ''; dev.style.paddingTop = ''; }
+    fit();
+    requestAnimationFrame(function () { $('#dims').textContent = cur.name + ' · área do site ' + frame.clientWidth + ' × ' + frame.clientHeight + ' px'; });
+  };
+  var fit = function () {
+    var m = $('main'), k = 1;
+    if ($('#fit').checked) {
+      var r = dev.getBoundingClientRect(), s = parseFloat(stage.style.getPropertyValue('--k') || 1) || 1;
+      var w = r.width / s, h = r.height / s;
+      k = Math.min(1, (m.clientWidth - 48) / w, (m.clientHeight - 64) / h);
+    }
+    stage.style.setProperty('--k', k); stage.style.transform = 'scale(' + k + ')';
+  };
+  MODELS.forEach(function (md) {
+    var b = document.createElement('button'); b.type = 'button';
+    b.innerHTML = md.name + '<small>' + md.note + ' pt</small>';
+    b.setAttribute('aria-pressed', String(md === cur));
+    b.addEventListener('click', function () {
+      cur = md; store('model', md.id);
+      [].forEach.call($('#models').children, function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+      apply();
+    });
+    $('#models').appendChild(b);
+  });
+  PAGES.forEach(function (p) {
+    var b = document.createElement('button'); b.type = 'button'; b.className = 'pg'; b.textContent = p.name; b.setAttribute('data-src', p.src);
+    b.addEventListener('click', function () { frame.src = p.src; });
+    $('#pages').appendChild(b);
+  });
+  var mark = function () {
+    var path = '';
+    try { path = frame.contentWindow.location.pathname; } catch (e) {}
+    var clean = path.replace(/^.*?\/(index\.html)?$/, '/').replace(/index\.html$/, '');
+    var match = null;
+    PAGES.forEach(function (p) { var tail = p.src.replace(/^\.\.\//, '').replace(/index\.html$/, ''); if (tail && path.indexOf('/' + tail) !== -1 && (!match || tail.length > match.t.length)) match = { p: p, t: tail }; });
+    var slug = match ? '/' + match.t : '/';
+    urlEl.textContent = 'hypeapp.com.br' + (slug === '/' ? '' : slug.replace(/\/$/, ''));
+    [].forEach.call($('#pages').children, function (x) { if (match ? x.getAttribute('data-src') === match.p.src : x.getAttribute('data-src') === '../index.html') x.setAttribute('aria-current', 'page'); else x.removeAttribute('aria-current'); });
+    $('#open').href = match ? match.p.src : '../index.html';
+  };
+  frame.addEventListener('load', mark);
+  $('#reload').addEventListener('click', function () { try { frame.contentWindow.location.reload(); } catch (e) { frame.src = frame.src; } });
+  $('#safari').addEventListener('change', function () { store('safari', this.checked ? '1' : '0'); apply(); });
+  $('#fit').addEventListener('change', fit);
+  window.addEventListener('resize', fit);
+  var sm = store('model'); MODELS.forEach(function (md, i) { if (md.id === sm) { cur = md; [].forEach.call($('#models').children, function (x, j) { x.setAttribute('aria-pressed', String(j === i)); }); } });
+  if (store('safari') === '0') $('#safari').checked = false;
+  apply();
+})();
+</script>
+</body>
+</html>

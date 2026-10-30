@@ -1,0 +1,5 @@
+.vercel
+fonte/site/dist/
+fonte/site/dist-web/
+__pycache__/
+.DS_Store

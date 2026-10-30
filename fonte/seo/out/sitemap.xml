@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- sitemap.xml do lançamento · www.hypeapp.com.br · gerado em 26/10/2026 a partir da matriz de metadados.
+     Só URLs canônicas, publicadas e com resposta 200. O CMS deve acrescentar <lastmod> quando o conteúdo mudar de verdade.
+     Lançamento enxuto: só URLs essenciais. As demais entram conforme a necessidade, sempre a partir da matriz.
+     Páginas marcadas "Depois" na matriz entram aqui quando forem publicadas. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Páginas principais -->
+  <url><loc>https://www.hypeapp.com.br/</loc></url>
+  <url><loc>https://www.hypeapp.com.br/criadores/</loc></url>
+  <url><loc>https://www.hypeapp.com.br/marcas/</loc></url>
+  <url><loc>https://www.hypeapp.com.br/sobre/</loc></url>
+  <url><loc>https://www.hypeapp.com.br/contato/</loc></url>
+  <url><loc>https://www.hypeapp.com.br/perguntas-frequentes/</loc></url>
+  <!-- App e acesso -->
+  <url><loc>https://www.hypeapp.com.br/baixar/</loc></url>
+  <!-- Ajuda e suporte -->
+  <url><loc>https://www.hypeapp.com.br/suporte/</loc></url>
+  <!-- Confiança e privacidade -->
+  <url><loc>https://www.hypeapp.com.br/privacidade/</loc></url>
+  <url><loc>https://www.hypeapp.com.br/termos/</loc></url>
+  <url><loc>https://www.hypeapp.com.br/cookies/</loc></url>
+  <url><loc>https://www.hypeapp.com.br/exclusao-de-conta/</loc></url>
+</urlset>

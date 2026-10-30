@@ -1,0 +1,40 @@
+# HypeApp
+
+> O HypeApp é a plataforma da Você no Hype que conecta creators e marcas em campanhas de marketing de influência, do convite ao pagamento. Creators usam o app no celular (iPhone e Android); marcas e agências usam o painel na web.
+
+Informações oficiais:
+
+- Nome do produto: HypeApp.
+- Desenvolvido e operado por: Você no Hype Marketing e Entretenimento LTDA.
+- Site oficial: https://www.hypeapp.com.br/
+- App para iPhone: https://apps.apple.com/br/app/hype-app-influenciadores/id6778357608
+- App para Android: https://play.google.com/store/apps/details?id=br.com.hypeapp.v2
+- Instagram: https://www.instagram.com/hypeappbrasil/
+- YouTube: https://www.youtube.com/@hypeappbrasil
+- LinkedIn: https://www.linkedin.com/company/hypeappbrasil/
+- Para marcas e agências, os valores são sob consulta com o comercial.
+- Creators baixam o app e criam a conta por ele. Ter conta não garante participação em campanhas.
+- Cada campanha tem critérios próprios; a seleção é feita pela marca ou pela curadoria.
+
+## Sobre o HypeApp
+
+- [Início](https://www.hypeapp.com.br/): o que é o HypeApp e para quem é.
+- [Sobre](https://www.hypeapp.com.br/sobre/): quem opera o produto, relação com a Você no Hype e canais oficiais.
+- [Perguntas frequentes](https://www.hypeapp.com.br/perguntas-frequentes/): respostas curtas sobre cadastro, campanhas, pagamentos, valores para marcas e segurança.
+
+## Para creators
+
+- [Para criadores](https://www.hypeapp.com.br/criadores/): como criadores e influenciadores participam de campanhas com marcas pelo app.
+- [Baixar o app](https://www.hypeapp.com.br/baixar/): links oficiais da App Store e do Google Play e orientação para quem já tem conta.
+
+## Para marcas e agências
+
+- [Para marcas e agências](https://www.hypeapp.com.br/marcas/): como marcas, empresas e agências encontram creators e acompanham campanhas no painel; formas de trabalhar self-service e gerenciada.
+- [Contato](https://www.hypeapp.com.br/contato/): formulário de interesse para marcas e agências, parcerias e privacidade.
+
+## Ajuda e confiança
+
+- [Suporte](https://www.hypeapp.com.br/suporte/): como abrir um chamado.
+- [Política de privacidade](https://www.hypeapp.com.br/privacidade/): tratamento de dados, encarregado e direitos dos titulares.
+- [Termos de uso](https://www.hypeapp.com.br/termos/)
+- [Exclusão de conta](https://www.hypeapp.com.br/exclusao-de-conta/): como excluir a conta do app.

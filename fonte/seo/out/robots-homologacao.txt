@@ -1,0 +1,4 @@
+# robots.txt · ambientes de prévia e homologação do site HypeApp
+# Use este arquivo SOMENTE fora de produção. Estes ambientes também precisam de login.
+User-agent: *
+Disallow: /

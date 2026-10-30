@@ -1,0 +1,32 @@
+# robots.txt · https://www.hypeapp.com.br
+# Versão 1 · 26/10/2026
+#
+# Regra do site: nada é bloqueado em produção.
+# Páginas de formulário, confirmação e busca usam a meta tag noindex
+# e precisam continuar liberadas para que os buscadores leiam essa tag.
+# Prévia e homologação ficam em outros endereços, com login e robots.txt próprio.
+
+User-agent: *
+Allow: /
+
+# Buscadores e assistentes de IA (busca e respostas) estão liberados pela regra acima,
+# entre eles Googlebot, Bingbot, OAI-SearchBot, ChatGPT-User, Claude-SearchBot,
+# Claude-User e PerplexityBot.
+#
+# Treinamento de modelos: também liberado pela regra acima.
+# Para não permitir treinamento, retire o "#" das linhas abaixo.
+# Isso não afeta a presença nas buscas e respostas de IA.
+#
+# User-agent: GPTBot
+# Disallow: /
+#
+# User-agent: ClaudeBot
+# Disallow: /
+#
+# User-agent: Google-Extended
+# Disallow: /
+#
+# User-agent: CCBot
+# Disallow: /
+
+Sitemap: https://www.hypeapp.com.br/sitemap.xml
