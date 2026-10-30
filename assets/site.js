@@ -223,19 +223,31 @@
     $$('input, select, textarea', f).forEach(function (el) {
       el.addEventListener('blur', function () { if (el.type !== 'radio' && !el.hasAttribute('data-group')) setErr(el, check(el)); });
       el.addEventListener('change', function () { setErr(el, check(el)); });
+      el.addEventListener('input', function () {
+        var box = el.closest('.field') || el.closest('fieldset');
+        if (box && box.classList.contains('invalid')) setErr(el, check(el));
+      });
     });
+    var nomeDo = function (el) {
+      var box = el.closest('.field') || el.closest('fieldset');
+      var t = box && $('label:not(.choice):not(.check), legend', box);
+      if (el.type === 'checkbox' && !el.hasAttribute('data-group')) return 'Autoriza\u00e7\u00e3o de contato';
+      return t ? t.textContent.replace(/\(.*?\)/g, '').replace(/[?:]\s*$/, '').trim() : el.name;
+    };
     f.addEventListener('submit', function (ev) {
       ev.preventDefault();
-      var firstBad = null, seen = {};
+      var firstBad = null, seen = {}, nomes = [];
       $$('input, select, textarea', f).forEach(function (el) {
+        if (el.type === 'hidden' || el.name === 'bot-field') return;
         if (el.type === 'radio' || el.hasAttribute('data-group')) { if (seen[el.name]) return; seen[el.name] = 1; }
         var m = check(el); setErr(el, m);
-        if (m && !firstBad) firstBad = el;
+        if (m) { if (!firstBad) firstBad = el; nomes.push(nomeDo(el)); }
       });
       var summary = $('.form-erros', f);
       if (firstBad) {
-        if (summary) { summary.hidden = false; summary.textContent = 'Revise os campos marcados antes de enviar.'; }
-        firstBad.focus();
+        if (summary) { summary.hidden = false; summary.textContent = (nomes.length === 1 ? 'Falta ajustar: ' : 'Faltam ' + nomes.length + ' campos: ') + nomes.join(', ') + '.'; }
+        try { firstBad.focus({ preventScroll: true }); } catch (e) {}
+        (firstBad.closest('.field') || firstBad).scrollIntoView({ block: 'center' });
         return;
       }
       if (summary) summary.hidden = true;
@@ -259,7 +271,12 @@
       fetch(f.getAttribute('action'), { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded', 'Accept': 'application/json' }, body: body })
         .then(function (r) {
           if (r.ok) { location.href = next; return; }
-          return r.json().catch(function () { return {}; }).then(function (j) { throw new Error((j && j.erro) || falha); });
+          return r.json().catch(function () { return {}; }).then(function (j) {
+            var cs = (j && j.campos) || [], ns = [];
+            cs.forEach(function (c) { var el = f.elements[c]; el = el && el.length && !el.tagName ? el[0] : el; if (el) { setErr(el, 'Confira este campo.'); ns.push(nomeDo(el)); } });
+            if (ns.length) { var e1 = f.elements[cs[0]]; e1 = e1 && e1.length && !e1.tagName ? e1[0] : e1; if (e1) (e1.closest('.field') || e1).scrollIntoView({ block: 'center' }); }
+            throw new Error(ns.length ? 'Confira: ' + ns.join(', ') + '.' : ((j && j.erro) || falha));
+          });
         })
         .catch(function (e) {
           f.removeAttribute('data-sending');

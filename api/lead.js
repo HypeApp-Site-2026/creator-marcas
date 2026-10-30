@@ -73,9 +73,9 @@ const rotulo = (campo, v) => {
   return (m && m[v]) || v;
 };
 
-function responder(req, res, status, ok, erro) {
+function responder(req, res, status, ok, erro, campos) {
   const querJson = (req.headers.accept || '').includes('application/json');
-  if (querJson) return res.status(status).json(ok ? { ok: true } : { ok: false, erro });
+  if (querJson) return res.status(status).json(ok ? { ok: true } : campos ? { ok: false, erro, campos } : { ok: false, erro });
   if (ok) { res.setHeader('Location', PROXIMA); return res.status(303).end(); }
   res.setHeader('Content-Type', 'text/html; charset=utf-8');
   return res.status(status).send(`<!doctype html><meta charset="utf-8"><title>Não foi possível enviar</title>
@@ -147,19 +147,25 @@ async function handler(req, res) {
   const d = normaliza(lerCorpo(req));
   if (d['bot-field']) return responder(req, res, 200, true); // robô: finge que deu certo, não chama o webhook
 
-  // Validação no servidor (espelha a do formulário) e limite de tamanho por campo
+  // Validação no servidor (espelha a do formulário) e limite de tamanho por campo.
+  // Devolve só os nomes dos campos do próprio formulário, nunca detalhes do webhook.
   const vazio = (v) => (Array.isArray(v) ? v.length === 0 : !v);
-  if (OBRIGATORIOS.some((k) => vazio(d[k]))) return responder(req, res, 400, false, MSG.invalido);
-  if (!d.nome || (!d.email && !d.whatsapp)) return responder(req, res, 400, false, MSG.invalido);
-  if (d.email && !emailOk(d.email)) return responder(req, res, 400, false, MSG.invalido);
+  const ruins = new Set(OBRIGATORIOS.filter((k) => vazio(d[k])));
+  if (!d.nome) ruins.add('nome');
+  if (!d.email && !d.whatsapp) { ruins.add('email'); ruins.add('whatsapp'); }
+  if (d.email && !emailOk(d.email)) ruins.add('email');
   for (const [k, v] of Object.entries(d)) {
     const lim = LIMITES[k] || LIMITE_PADRAO;
     const partes = Array.isArray(v) ? v : [v];
-    if (partes.length > 20 || partes.some((x) => x.length > lim)) return responder(req, res, 400, false, MSG.invalido);
+    if (partes.length > 20 || partes.some((x) => x.length > lim)) ruins.add(k);
   }
   for (const campo of Object.keys(OPCOES)) {
     const partes = Array.isArray(d[campo]) ? d[campo] : d[campo] ? [d[campo]] : [];
-    if (partes.some((x) => !(x in OPCOES[campo]))) return responder(req, res, 400, false, MSG.invalido);
+    if (partes.some((x) => !(x in OPCOES[campo]))) ruins.add(campo);
+  }
+  if (ruins.size) {
+    console.error('[lead] formulário recusado na validação do site, campos:', [...ruins].join(', '));
+    return responder(req, res, 400, false, MSG.invalido, [...ruins]);
   }
 
   const segredo = process.env.PLATAFORMA_WEBHOOK_SECRET;

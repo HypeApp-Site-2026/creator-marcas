@@ -1043,7 +1043,7 @@ def p_contato_marcas(L, A):
                'Posso pedir a exclusão a qualquer momento em contato@vocenohype.com.br.</span></label><p class="err" hidden></p></div>')
     return f'''
 <section class="split" style="align-items:flex-start" aria-labelledby="cm-h">
-  <div class="stack" style="gap:20px;flex:1 1 360px;position:sticky;top:24px">
+  <div class="stack form-side" style="gap:20px;flex:1 1 360px">
     <span class="tag ink">Para marcas e agências</span>
     <h1 id="cm-h" class="display" style="font-size:clamp(38px,5vw,56px)">Fale com nosso time</h1>
     <p class="lead">Conte um pouco sobre a sua empresa e como vocês trabalham com influenciadores. Nosso time retorna com uma proposta. Leva cerca de 3 minutos.</p>
