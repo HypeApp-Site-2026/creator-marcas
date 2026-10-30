@@ -1017,6 +1017,10 @@ def etapa(n, titulo, corpo):
 # Faixas de verba mensal (sugestão de 30/10, ajustar com o comercial). "alta" entra na fila prioritária.
 VERBAS = [('ate-5k', 'Até R$ 5 mil'), ('5-20k', 'R$ 5 mil a R$ 20 mil'), ('20-50k', 'R$ 20 mil a R$ 50 mil'), ('50k-mais', 'Acima de R$ 50 mil'), ('nao-sei', 'Ainda não sei')]
 
+# Versão dos arquivos de estilo e script (muda a cada alteração: força o navegador a baixar de novo)
+import hashlib as _hl
+VER = {n: _hl.md5(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'assets', n), 'rb').read()).hexdigest()[:8] for n in ('site.css', 'site.js')}
+
 def p_contato_marcas(L, A):
     s1 = ('<div class="cols-2">' + field('empresa', 'Nome da empresa', extra=' autocomplete="organization" maxlength="200"')
           + field('site', 'Site ou Instagram da marca', extra=' maxlength="300"', ph='www.marca.com.br ou @marca', hint='Ajuda a conhecer a marca antes da conversa.') + '</div>'
@@ -1307,11 +1311,11 @@ def build_page(url, fn, kind):
 <link rel="icon" href="{A('favicon.svg')}" type="image/svg+xml">
 <link rel="apple-touch-icon" href="{A('apple-touch-icon.png')}">
 <link rel="manifest" href="{A('site.webmanifest')}">
-<link rel="stylesheet" href="{A('assets/site.css')}">
+<link rel="stylesheet" href="{A('assets/site.css')}?v={VER['site.css']}">
 {ld}'''
     if url == '/app' and WEB:
         pass
-    inner = f'<a class="sr-only" href="#conteudo">Pular para o conteúdo</a>\n{bar}\n{body}\n<script src="{A("assets/site.js")}" defer></script>'
+    inner = f'<a class="sr-only" href="#conteudo">Pular para o conteúdo</a>\n{bar}\n{body}\n<script src="{A("assets/site.js")}?v={VER['site.js']}" defer></script>'
     is_root = url == '/'
     if is_root and not WEB:
         # A página principal da prévia é publicada sem esqueleto (a publicação acrescenta doctype, head e body).
