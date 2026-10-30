@@ -58,7 +58,7 @@ def blog_section(L, A, posts, ico):
     head = ('<div class="bl-head"><h2 id="bl-t" class="bl-h">Ideias para sua próxima fase.</h2>'
             '<p class="bl-sub">Conteúdo para criar, se conectar e crescer.</p>')
     if not posts:
-        return f'<section class="bl" aria-labelledby="bl-t">{head}<p class="bl-empty">Novos conteúdos em breve.</p></div></section>'
+        return ''  # sem artigo publicado, a seção não aparece (evita cara de site inacabado)
     vis = posts[:6]
     cards = ''.join(post_card(L, A, p) for p in vis)
     n = len(vis)

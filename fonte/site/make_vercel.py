@@ -71,6 +71,16 @@ def headers():
 
 def main():
     assert os.path.exists(os.path.join(DIST, 'index.html')), 'rode antes: python3 build.py --web'
+    # Nunca publica com texto pendente entre colchetes (placeholder) ou aviso de rascunho
+    pend = []
+    for raiz, _, fs in os.walk(DIST):
+        for f in fs:
+            if f.endswith('.html'):
+                t = open(os.path.join(raiz, f), encoding='utf-8').read()
+                if 'class="ph"' in t or 'Rascunho para revisão' in t:
+                    pend.append(os.path.relpath(os.path.join(raiz, f), DIST))
+    if pend:
+        sys.exit('PARADO: textos pendentes entre colchetes em ' + ', '.join(pend))
     if os.path.exists(OUT):
         for f in os.listdir(OUT):
             if f == '.git':

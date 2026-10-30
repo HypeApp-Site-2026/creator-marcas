@@ -715,7 +715,7 @@ def p_criadores(L, A):
     recs = ''.join(f'<div class="feat"><span class="h4">{t}</span><span style="font-size:15px">{d}</span></div>' for t, d in rec)
     faq = [('Quem pode participar?', 'Qualquer pessoa com 18 anos ou mais, ou emancipada, sem mínimo de seguidores. Cada campanha tem critérios próprios.'),
            ('O cadastro garante campanhas?', 'Não. Cada campanha tem critérios próprios e a seleção é feita pela marca ou pela curadoria.'),
-           ('Como recebo o pagamento?', 'O valor aparece na carteira do app e pode ser sacado quando for liberado. [Prazos aprovados pela operação.]'),
+           ('Como recebo o pagamento?', 'O valor aparece na carteira do app e pode ser sacado quando for liberado.'),
            ('Preciso emitir nota fiscal?', 'Depende da campanha e do seu cadastro como pessoa física ou jurídica. O app informa o que é exigido antes do pagamento.'),
            ('Quanto custa para creators?', 'Nada. O HypeApp é gratuito para creators: não há mensalidade nem taxa sobre o valor que você recebe das campanhas.'),
            ('Recebidos e permuta: o produto fica comigo?', 'Depende da campanha. O mural de cada campanha informa se o produto é seu ou se precisa ser devolvido.'),
@@ -785,10 +785,9 @@ def p_marcas(L, A):
     li = ''.join(f'<li><span class="step-n">{i + 1}</span><span class="t">{t}</span><span class="d">{d}</span></li>' for i, (t, d) in enumerate(steps))
     faq = [('Qual a diferença entre self-service e gerenciada?', 'No self-service sua equipe opera tudo no painel. Na gerenciada, a Você no Hype cuida da estratégia, da curadoria e da operação.'),
            ('Quanto custa uma campanha?', 'Os valores são sob consulta e dependem do escopo, do volume e da forma de trabalho.'),
-           ('Como os creators são selecionados?', '[Critérios de curadoria aprovados.]'),
-           ('Quais métricas eu acompanho?', 'As métricas vêm direto das redes sociais dos creators, conectadas ao app. [Lista final de indicadores conforme a homologação.]'),
+           ('Quais métricas eu acompanho?', 'As métricas vêm direto das redes sociais dos creators, conectadas ao app.'),
            ('E se o creator não entregar?', 'O valor reservado para aquela participação volta ao saldo da campanha.'),
-           ('Agências podem gerir várias marcas?', 'Sim. Cada marca tem seu espaço no painel, e a equipe da agência alterna entre elas. [Regras de acesso por marca aprovadas.]')]
+           ('Agências podem gerir várias marcas?', 'Sim. Cada marca tem seu espaço no painel, e a equipe da agência alterna entre elas.')]
     return f'''
 <section class="hero-center" aria-labelledby="hero-m">
   <div class="stack">
@@ -843,7 +842,7 @@ def p_marcas(L, A):
   <ol class="steps">{li}</ol>
 </section>
 
-{showcase(A, 'agencias', 'web', 'Para agências', 'Várias marcas, um painel', 'Agências gerenciam as campanhas de cada cliente em espaços separados, com equipe, aprovações e relatórios por marca. [Regras de acesso por marca aprovadas.]', [
+{showcase(A, 'agencias', 'web', 'Para agências', 'Várias marcas, um painel', 'Agências gerenciam as campanhas de cada cliente em espaços separados, com equipe, aprovações e relatórios por marca.', [
   ('bo-I1', 'Equipe e permissões', 'Marca, empresa, equipe e quem pode fazer o quê.'),
   ('bo-B3', 'Uma marca por espaço', 'Nome, nicho e descrição de cada cliente.'),
   ('bo-B5', 'Primeiros passos', 'Atalhos para criar a primeira campanha e convidar a equipe.')], flip=True)}
@@ -866,7 +865,7 @@ def p_baixar(L, A):
     <p class="lead">Campanhas, entregas e carteira no seu celular. Grátis para iPhone e Android.</p>
     <div class="row">{stores(L)}</div>
     <p class="small">Crie sua conta pelo app. Para maiores de 18 anos, sem mínimo de seguidores.</p>
-    <dl class="req"><div><dt>iPhone</dt><dd>iOS 15.1 ou superior</dd></div><div><dt>Android</dt><dd>[Versão mínima]</dd></div></dl>
+    <dl class="req"><div><dt>iPhone</dt><dd>iOS 15.1 ou superior</dd></div><div><dt>Android</dt><dd>Veja a compatibilidade na Google Play</dd></div></dl>
   </div>
   <div class="stack" style="flex:0 1 360px;align-items:center;gap:16px;background:var(--ground);border-radius:32px;padding:32px;text-align:center">
     <div class="qr" style="width:220px;height:220px">{QR}</div>
@@ -893,21 +892,20 @@ FAQ_GROUPS = [
         ('Como eu começo?', 'Baixe o HypeApp na App Store ou no Google Play, crie sua conta e conecte suas redes. Não há mínimo de seguidores.'),
         ('O cadastro garante participação em campanhas?', 'Não. Cada campanha tem critérios próprios e a marca ou a curadoria seleciona quem participa.'),
         ('Quanto custa para creators?', 'Nada. O HypeApp é gratuito para creators: não há mensalidade nem taxa sobre o valor que você recebe das campanhas.'),
-        ('Como recebo o pagamento?', 'O valor aparece na carteira do app e pode ser sacado via PIX quando for liberado. [Prazos aprovados pela operação.]'),
+        ('Como recebo o pagamento?', 'O valor aparece na carteira do app e pode ser sacado via PIX quando for liberado.'),
         ('Preciso emitir nota fiscal?', 'Depende da campanha e do seu cadastro como pessoa física ou jurídica. O app informa o que é exigido antes do pagamento.'),
         ('Recebidos e permuta: o produto fica comigo?', 'Depende da campanha. O mural de cada campanha informa se o produto é seu ou se precisa ser devolvido.'),
         ('A marca pode usar meu conteúdo depois?', 'Depende do contrato da campanha, firmado entre você e a marca. Confira as condições de uso de imagem antes de aceitar o convite.'),
-        ('Como funciona a comunidade?', 'Feed, grupos e lives com outros creators dentro do app, com regras de participação. [Regras da comunidade aprovadas.]'),
+        ('Como funciona a comunidade?', 'Feed, grupos e lives com outros creators dentro do app, com regras de participação.'),
     ]),
     ('marcas', 'Para marcas e agências', [
         ('Como marcas e agências começam?', 'Pelo formulário Falar com nosso time. O comercial entende a campanha, envia uma proposta e libera o acesso ao painel.'),
         ('Como os creators chegam à minha campanha?', 'Você monta o mural da campanha no painel e os creators se inscrevem por ele. Também dá para buscar creators e enviar convites.'),
         ('Quanto custa uma campanha?', 'Os valores são sob consulta e dependem do escopo, do volume e da forma de trabalho.'),
         ('Qual a diferença entre self-service e gerenciada?', 'No self-service sua equipe opera tudo no painel. Na gerenciada, a Você no Hype cuida da estratégia, da curadoria e da operação.'),
-        ('Como os creators são selecionados?', '[Critérios de curadoria aprovados.]'),
-        ('Quais métricas eu acompanho?', 'As métricas vêm direto das redes sociais dos creators, conectadas ao app. [Lista final de indicadores conforme a homologação.]'),
+        ('Quais métricas eu acompanho?', 'As métricas vêm direto das redes sociais dos creators, conectadas ao app.'),
         ('E se o creator não entregar?', 'O valor reservado para aquela participação volta ao saldo da campanha.'),
-        ('Agências podem gerir várias marcas?', 'Sim. Cada marca tem seu espaço no painel. [Regras de acesso por marca aprovadas.]'),
+        ('Agências podem gerir várias marcas?', 'Sim. Cada marca tem seu espaço no painel.'),
     ]),
     ('conta', 'Conta, acesso e segurança', [
         ('Baixei o app e não consigo entrar. O que faço?', 'Confira se o app está atualizado na loja e entre com o e-mail e a senha do cadastro. Se esqueceu a senha, use Esqueci a senha na tela de entrada. Se o erro continuar, abra um chamado no suporte.'),
@@ -1123,7 +1121,7 @@ def p_sup_enviado(L, A):
 <section class="band-white stack" style="align-items:flex-start;gap:20px;max-width:820px" aria-labelledby="ok-h">
   <span class="tag ink">Chamado aberto</span>
   <h1 id="ok-h" class="display" style="font-size:clamp(36px,5vw,56px)">Seu chamado foi aberto</h1>
-  <p class="lead">Protocolo: [número gerado pelo atendimento]. A primeira resposta chega em até 2 dias úteis, de segunda a sexta, das 10h às 18h.</p>
+  <p class="lead">A primeira resposta chega em até 2 dias úteis, de segunda a sexta, das 10h às 18h.</p>
   <p class="small">A confirmação automática não é a resposta da equipe. Se precisar complementar, responda ao e-mail do chamado.</p>
   <div class="row"><a class="btn btn-ink" href="{L('/')}">Voltar ao início</a><a class="btn btn-grey" href="{L('/perguntas-frequentes/')}">Perguntas frequentes</a></div>
 </section>'''
@@ -1170,10 +1168,10 @@ LEGAL = {
         ('campanhas', 'Campanhas e pagamentos', '[Regras de participação, aprovação e pagamento.]'),
         ('fiscal', 'Obrigações fiscais', '[Cláusula fiscal, minuta seção 6.]'),
         ('alteracoes', 'Alterações', 'Versão [número], de [data].')]),
-    '/cookies/': ('Política de cookies', 'Quais tecnologias o site usa e como mudar suas preferências.', [
-        ('necessarios', 'Cookies necessários', 'Hoje o site usa apenas o que é necessário para funcionar. [Inventário real: fornecedor, finalidade, duração e transferência.]'),
-        ('opcionais', 'Cookies opcionais', 'Nenhuma ferramenta de análise ou publicidade está ativa. Se alguma for adicionada, o site vai pedir sua escolha antes de carregá-la.'),
-        ('preferencias', 'Como mudar suas preferências', '[Aparece quando houver categorias opcionais.]')]),
+    '/cookies/': ('Política de cookies', 'Quais tecnologias o site usa e para quê.', [
+        ('necessarios', 'Cookies necessários', 'O site não usa cookies de publicidade nem de rastreamento. Usa apenas o necessário para funcionar.'),
+        ('medicao', 'Medição de visitas', 'Usamos o Cloudflare Web Analytics para contar visitas de forma agregada. Ele não usa cookies e não identifica quem visita.'),
+        ('opcionais', 'Cookies opcionais', 'Se alguma ferramenta de publicidade ou de análise com cookies for adicionada, o site vai pedir sua escolha antes de carregá-la.')]),
     '/exclusao-de-conta/': ('Exclusão de conta', 'Como pedir a exclusão da sua conta do HypeApp e dos dados associados.', [
         ('app', 'Pelo app', '[Caminho no app a confirmar, por exemplo: Perfil, Configurações, Excluir conta.]'),
         ('site', 'Pelo site', 'Abra um chamado no suporte com o assunto Excluir minha conta, usando o e-mail da conta.'),
@@ -1191,7 +1189,7 @@ def p_legal(url):
             extra = f'<p><a class="btn btn-ink" href="{L("/suporte/")}">Abrir pedido de exclusão</a></p>'
         return f'''
 <section class="page-hero" aria-labelledby="lg-h"><h1 id="lg-h" class="display" style="font-size:clamp(36px,5vw,56px)">{t}</h1><p class="lead">{d}</p>
-  <p class="small muted">Rascunho para revisão. O texto final depende da aprovação do jurídico.</p></section>
+  {'<p class="small muted">Rascunho para revisão. O texto final depende da aprovação do jurídico.</p>' if not WEB else ''}</section>
 <div class="doc-layout"><nav class="toc" aria-label="Nesta página">{toc}</nav><article class="prose card">{body}{extra}</article></div>'''
     return f
 
