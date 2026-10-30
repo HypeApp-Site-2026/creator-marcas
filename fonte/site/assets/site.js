@@ -198,6 +198,10 @@
       var name = el.name, set = $$('input[name="' + name + '"]', el.form);
       return el.required && !set.some(function (r) { return r.checked; }) ? 'Escolha uma op\u00e7\u00e3o.' : '';
     }
+    if (el.type === 'checkbox' && el.hasAttribute('data-group')) {
+      var grp = $$('input[name="' + el.name + '"]', el.form);
+      return el.required && !grp.some(function (c) { return c.checked; }) ? 'Marque pelo menos uma op\u00e7\u00e3o.' : '';
+    }
     if (el.type === 'checkbox') return el.required && !el.checked ? 'Marque para continuar.' : '';
     var v = el.value.trim();
     if (el.required && !v) return el.getAttribute('data-msg') || 'Preencha este campo.';
@@ -217,14 +221,14 @@
     };
     f.addEventListener('change', sync); f.addEventListener('input', sync); sync();
     $$('input, select, textarea', f).forEach(function (el) {
-      el.addEventListener('blur', function () { if (el.type !== 'radio') setErr(el, check(el)); });
+      el.addEventListener('blur', function () { if (el.type !== 'radio' && !el.hasAttribute('data-group')) setErr(el, check(el)); });
       el.addEventListener('change', function () { setErr(el, check(el)); });
     });
     f.addEventListener('submit', function (ev) {
       ev.preventDefault();
       var firstBad = null, seen = {};
       $$('input, select, textarea', f).forEach(function (el) {
-        if (el.type === 'radio') { if (seen[el.name]) return; seen[el.name] = 1; }
+        if (el.type === 'radio' || el.hasAttribute('data-group')) { if (seen[el.name]) return; seen[el.name] = 1; }
         var m = check(el); setErr(el, m);
         if (m && !firstBad) firstBad = el;
       });

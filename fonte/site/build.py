@@ -1005,44 +1005,63 @@ HONEYPOT = '<p class="hp" hidden><label>Não preencha este campo <input name="bo
 def preview_note():
     return '<p class="form-note" role="note">Prévia: o envio é simulado e nada é gravado. Em produção, os dados vão para [ferramenta do comercial] antes da confirmação.</p>' if CFG['preview'] else ''
 
+def multi(name, legend, opts, req=True, hint=''):
+    """Grupo de múltipla escolha (checkbox). Com req, exige pelo menos uma opção."""
+    o = ''.join(f'<label class="choice"><input type="checkbox" name="{name}" value="{v}"{" data-group required" if req else " data-group"}><span>{t}</span></label>' for v, t in opts)
+    h = f'<p class="hint">{hint}</p>' if hint else ''
+    return f'<fieldset class="field"><legend>{legend} <span class="opt">(marque quantas quiser)</span></legend><div class="choices">{o}</div>{h}<p class="err" hidden></p></fieldset>'
+
+def etapa(n, titulo, corpo):
+    return f'<fieldset class="form-step"><legend class="form-step-h"><span>{n}</span>{titulo}</legend><div class="form-step-b">{corpo}</div></fieldset>'
+
+# Faixas de verba mensal (sugestão de 30/10, ajustar com o comercial). "alta" entra na fila prioritária.
+VERBAS = [('ate-5k', 'Até R$ 5 mil'), ('5-20k', 'R$ 5 mil a R$ 20 mil'), ('20-50k', 'R$ 20 mil a R$ 50 mil'), ('50k-mais', 'Acima de R$ 50 mil'), ('nao-sei', 'Ainda não sei')]
+
 def p_contato_marcas(L, A):
+    s1 = ('<div class="cols-2">' + field('empresa', 'Nome da empresa', extra=' autocomplete="organization"')
+          + field('site', 'Site ou Instagram da marca', ph='www.marca.com.br ou @marca', hint='Ajuda a conhecer a marca antes da conversa.') + '</div>'
+          + '<div class="cols-2">' + select('segmento', 'Segmento', [('moda', 'Moda'), ('beleza', 'Beleza'), ('alimentos', 'Alimentos'), ('tecnologia', 'Tecnologia'), ('servicos', 'Serviços'), ('outro', 'Outro')])
+          + field('cidade', 'Cidade e estado', extra=' autocomplete="address-level2"', ph='São Paulo, SP') + '</div>')
+    s2 = ('<div class="cols-2">' + field('nome', 'Nome completo', extra=' autocomplete="name"')
+          + field('cargo', 'Cargo ou função', extra=' autocomplete="organization-title"', ph='Marketing, sócio, agência…') + '</div>'
+          + '<div class="cols-2">' + field('email', 'E-mail corporativo', 'email', extra=' autocomplete="email"', ph='nome@empresa.com.br')
+          + field('whatsapp', 'WhatsApp com DDD', 'tel', extra=' autocomplete="tel" data-kind="tel" inputmode="tel"', ph='(11) 90000-0000') + '</div>')
+    s3 = (choices('experiencia', 'Já trabalha com influenciadores?', [('nunca', 'Nunca'), ('ocasional', 'Ocasionalmente'), ('frequente', 'Com frequência')])
+          + choices('campanhas_mes', 'Quantas campanhas pretende fazer por mês?', [('1-2', '1 a 2'), ('3-10', '3 a 10'), ('10-mais', 'Mais de 10')])
+          + select('verba', 'Verba mensal aproximada para influenciadores', VERBAS)
+          + multi('redes', 'Que redes importam', [('instagram', 'Instagram'), ('tiktok', 'TikTok'), ('youtube', 'YouTube'), ('kwai', 'Kwai')]))
+    s4 = (choices('objetivo', 'Qual o principal objetivo?', [('lancamento', 'Lançar produto'), ('alcance', 'Ganhar alcance'), ('vendas', 'Gerar vendas'), ('recorrencia', 'Recorrência'), ('outro', 'Outro')])
+          + multi('interesses', 'O que mais interessa no painel', [('criadores', 'Encontrar creators'), ('aprovacoes', 'Aprovar roteiros e conteúdos'), ('pagamentos', 'Pagamentos'), ('lives', 'Lives'), ('metricas', 'Métricas')])
+          + choices('gestao_hoje', 'Como gerencia isso hoje?', [('planilha', 'Planilha'), ('agencia', 'Agência'), ('plataforma', 'Outra plataforma'), ('nada', 'Ainda não gerencio')]))
+    s5 = (choices('usuarios', 'Quantas pessoas da equipe usariam o painel?', [('1', '1'), ('2-5', '2 a 5'), ('6-mais', '6 ou mais')])
+          + choices('agencia', 'É uma agência que atende várias marcas?', [('sim', 'Sim'), ('nao', 'Não')])
+          + '<p class="form-note" data-show-when="agencia=sim" hidden>Agências usam um espaço separado para cada marca no painel, e isso muda o plano. Vamos considerar na proposta.</p>'
+          + choices('inicio', 'Para quando precisa começar?', [('agora', 'Agora'), ('30-dias', 'Em até 30 dias'), ('pesquisando', 'Só pesquisando')])
+          + field('mensagem', 'Quer contar algo mais?', 'textarea', req=False, ph='Produto, público, datas importantes ou o que mais ajudar'))
+    consent = ('<div class="field"><label class="check"><input type="checkbox" id="aceite" name="aceite" required><span>Autorizo a Você no Hype a usar estes dados para responder a este pedido '
+               f'e entrar em contato por e-mail e WhatsApp sobre o HypeApp, conforme a <a href="{L("/privacidade/")}">política de privacidade</a>. '
+               'Posso pedir a exclusão a qualquer momento em contato@vocenohype.com.br.</span></label><p class="err" hidden></p></div>')
     return f'''
 <section class="split" style="align-items:flex-start" aria-labelledby="cm-h">
-  <div class="stack" style="gap:20px;flex:1 1 380px;position:sticky;top:24px">
+  <div class="stack" style="gap:20px;flex:1 1 360px;position:sticky;top:24px">
     <span class="tag ink">Para marcas e agências</span>
-    <h1 id="cm-h" class="display" style="font-size:clamp(38px,5vw,56px)">Fale com o comercial</h1>
-    <p class="lead">Conte sua campanha e o comercial do HypeApp responde com uma proposta. Leva cerca de 2 minutos.</p>
-    <ul class="body" style="padding-left:20px;margin:0;display:flex;flex-direction:column;gap:6px"><li>Valores sob consulta, conforme escopo e volume</li><li>Self-service no painel ou campanha gerenciada pela Você no Hype</li><li>Resposta em até 1 dia útil</li></ul>
+    <h1 id="cm-h" class="display" style="font-size:clamp(38px,5vw,56px)">Fale com nosso time</h1>
+    <p class="lead">Conte um pouco sobre a sua empresa e como vocês trabalham com influenciadores. Nosso time retorna com uma proposta. Leva cerca de 3 minutos.</p>
+    <ul class="body" style="padding-left:20px;margin:0;display:flex;flex-direction:column;gap:6px"><li>Valores sob consulta, conforme escopo e volume</li><li>Painel para operar sozinho ou campanha gerenciada pela Você no Hype</li><li>Retornamos em até 2 dias úteis</li></ul>
     <p class="small muted">É creator? <a href="{L('/baixar/')}">Baixe o app</a>. Já usa o HypeApp? <a href="{L('/suporte/')}">Fale com o suporte</a>.</p>
   </div>
-  <form class="card form" style="flex:1 1 520px" data-form name="comercial" method="POST" action="{'/api/contato' if WEB else L('/contato/enviado/')}" data-next="{L('/contato/enviado/')}"{FORM_LIVE} novalidate>
+  <form class="card form form-steps" style="flex:1 1 560px" data-form name="comercial" method="POST" action="{'/api/contato' if WEB else L('/contato/enviado/')}" data-next="{L('/contato/enviado/')}"{FORM_LIVE} novalidate>
     <input type="hidden" name="form-name" value="comercial">
     {HONEYPOT}
-    {choices('perfil', 'Você é', [('marca', 'Marca'), ('agencia', 'Agência')])}
-    {choices('modalidade', 'Como prefere trabalhar', [('self', 'Eu opero no painel'), ('gerenciada', 'Quero que a Você no Hype opere'), ('nao-sei', 'Ainda não sei')])}
-    <div class="compare" data-show-when="modalidade=nao-sei" hidden>
-      <div><b>Self-service</b>Sua equipe monta o mural da campanha, seleciona creators e aprova conteúdos no painel.</div>
-      <div><b>Gerenciada</b>A Você no Hype cuida da estratégia, da curadoria, dos contratos e do relatório.</div>
-    </div>
-    {select('objetivo', 'Objetivo principal', [('lancamento', 'Lançamento'), ('vendas', 'Vendas'), ('ugc', 'Conteúdo UGC'), ('recebidos', 'Recebidos'), ('presenca', 'Presença de marca')])}
-    {choices('inicio', 'Quando quer começar', [('mes', 'Este mês'), ('1-3', 'De 1 a 3 meses'), ('pesquisando', 'Só pesquisando')])}
-    <div class="cols-2">
-      {select('investimento', 'Investimento por campanha', [('faixa-1', '[Faixa 1]'), ('faixa-2', '[Faixa 2]'), ('faixa-3', '[Faixa 3]'), ('nao-dizer', 'Prefiro não dizer')])}
-      {select('segmento', 'Segmento', [('beleza', 'Beleza e cuidados'), ('moda', 'Moda'), ('alimentos', 'Alimentos e bebidas'), ('tecnologia', 'Tecnologia'), ('servicos', 'Serviços'), ('governo', 'Governo e instituições'), ('outro', 'Outro')])}
-    </div>
-    {choices('experiencia', 'Já trabalhou com creators?', [('sim', 'Sim'), ('nao', 'Não')])}
-    <div class="cols-2">
-      {field('nome', 'Nome', extra=' autocomplete="name"')}
-      {field('email', 'E-mail de trabalho', 'email', extra=' autocomplete="email"', ph='nome@empresa.com.br')}
-      {field('empresa', 'Empresa', extra=' autocomplete="organization"')}
-      {field('site', 'Site ou @ da marca', ph='www.marca.com.br ou @marca')}
-    </div>
-    {field('telefone', 'Telefone ou WhatsApp', 'tel', req=False, extra=' autocomplete="tel" data-kind="tel" inputmode="tel"', hint='Usado só para o comercial falar sobre esta proposta.', ph='(11) 90000-0000')}
-    {field('mensagem', 'Conte um pouco da campanha', 'textarea', req=False, ph='Produto, público, formatos ou datas importantes')}
-    {privacy_check(L, 'aceite')}
+    {etapa(1, 'Quem é a empresa', s1)}
+    {etapa(2, 'Quem está falando', s2)}
+    {etapa(3, 'Como a empresa usa influenciadores hoje', s3)}
+    {etapa(4, 'O que a empresa quer do painel', s4)}
+    {etapa(5, 'Operacional', s5)}
+    {consent}
     <p class="err form-erros" role="alert" hidden></p>
     {preview_note()}
-    <button class="btn btn-cta btn-lg" type="submit" style="align-self:flex-start">Pedir proposta</button>
+    <button class="btn btn-cta btn-lg" type="submit" style="align-self:flex-start">Enviar para nosso time</button>
   </form>
 </section>'''
 
@@ -1051,7 +1070,7 @@ def p_enviado(L, A):
 <section class="band-white stack" style="align-items:flex-start;gap:20px;max-width:820px" aria-labelledby="ok-h">
   <span class="tag">Recebido</span>
   <h1 id="ok-h" class="display" style="font-size:clamp(36px,5vw,56px)">Recebemos sua mensagem</h1>
-  <p class="lead">O comercial do HypeApp vai responder no e-mail informado em até 1 dia útil.</p>
+  <p class="lead">Obrigado! Nosso time retorna em até 2 dias úteis, pelo e-mail ou WhatsApp informados.</p>
   <div class="row"><a class="btn btn-ink" href="{L('/marcas/')}">Voltar para Para marcas</a><a class="btn btn-grey" href="{L('/perguntas-frequentes/', '#marcas')}">Ver dúvidas de marcas</a></div>
 </section>'''
 

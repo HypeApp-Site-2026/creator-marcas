@@ -10,13 +10,16 @@ const REMETENTE = process.env.FORM_FROM || 'Site HypeApp <onboarding@resend.dev>
 
 const FORMS = {
   comercial: {
-    titulo: 'Falar com nosso time (marcas)',
+    titulo: 'Falar com nosso time (marcas e agências)',
     proxima: '/contato/enviado/',
-    obrigatorios: ['perfil', 'modalidade', 'objetivo', 'inicio', 'investimento', 'segmento', 'experiencia', 'nome', 'email', 'empresa', 'site', 'aceite'],
+    obrigatorios: ['empresa', 'site', 'segmento', 'cidade', 'nome', 'cargo', 'email', 'whatsapp', 'experiencia', 'campanhas_mes', 'verba',
+      'redes', 'objetivo', 'interesses', 'gestao_hoje', 'usuarios', 'agencia', 'inicio', 'aceite'],
     rotulos: {
-      perfil: 'Você é', modalidade: 'Como prefere trabalhar', objetivo: 'Objetivo', inicio: 'Quando quer começar',
-      investimento: 'Investimento por campanha', segmento: 'Segmento', experiencia: 'Já trabalhou com creators',
-      nome: 'Nome', email: 'E-mail', empresa: 'Empresa', site: 'Site ou @', telefone: 'Telefone', mensagem: 'Mensagem',
+      prioridade: 'Fila', empresa: 'Empresa', site: 'Site ou Instagram', segmento: 'Segmento', cidade: 'Cidade e estado',
+      nome: 'Nome', cargo: 'Cargo', email: 'E-mail', whatsapp: 'WhatsApp',
+      experiencia: 'Já trabalha com influenciadores', campanhas_mes: 'Campanhas por mês', verba: 'Verba mensal', redes: 'Redes',
+      objetivo: 'Objetivo', interesses: 'Interesses no painel', gestao_hoje: 'Como gerencia hoje',
+      usuarios: 'Pessoas que usariam o painel', agencia: 'É agência', inicio: 'Quando começar', mensagem: 'Algo mais',
     },
   },
   suporte: {
@@ -52,7 +55,8 @@ function responder(req, res, status, ok, proxima, erro) {
 
 module.exports = async (req, res) => {
   if (req.method !== 'POST') { res.setHeader('Allow', 'POST'); return res.status(405).end(); }
-  const d = lerCorpo(req);
+  const bruto = lerCorpo(req);
+  const d = Object.fromEntries(Object.entries(bruto).map(([k, v]) => [k, Array.isArray(v) ? v.join(', ') : v]));
   const form = FORMS[d['form-name']];
   if (!form) return responder(req, res, 400, false, '/', 'formulário desconhecido');
   if (d['bot-field']) return responder(req, res, 200, true, form.proxima); // robô: finge que deu certo
@@ -67,13 +71,22 @@ module.exports = async (req, res) => {
     return responder(req, res, 503, false, form.proxima, 'o envio ainda não está configurado');
   }
 
+  // Fila prioritária: agência, verba alta (a partir de R$ 20 mil/mês) ou começar agora
+  if (form === FORMS.comercial) {
+    const motivos = [];
+    if (d.agencia === 'sim') motivos.push('agência');
+    if (['20-50k', '50k-mais'].includes(d.verba)) motivos.push('verba alta');
+    if (d.inicio === 'agora') motivos.push('começar agora');
+    d.prioridade = motivos.length ? `PRIORITÁRIA (${motivos.join(', ')})` : 'normal';
+  }
+
   const linhas = Object.entries(form.rotulos)
     .filter(([k]) => String(d[k] || '').trim())
     .map(([k, r]) => `<tr><td style="padding:6px 12px 6px 0;color:#666;vertical-align:top">${esc(r)}</td><td style="padding:6px 0">${esc(d[k]).replace(/\n/g, '<br>')}</td></tr>`)
     .join('');
   const texto = Object.entries(form.rotulos).filter(([k]) => String(d[k] || '').trim()).map(([k, r]) => `${r}: ${d[k]}`).join('\n');
   const assunto = form === FORMS.comercial
-    ? `[Site] Marca: ${d.empresa} (${d.nome})`
+    ? `[Site]${d.prioridade && d.prioridade !== 'normal' ? ' [PRIORIDADE]' : ''} Marca: ${d.empresa} (${d.nome})`
     : `[Site] Suporte: ${d.assunto} (${d.nome})`;
 
   try {
