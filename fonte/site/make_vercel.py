@@ -42,6 +42,8 @@ def headers():
         if not line.startswith(' '):
             src = line.strip()
             src = src[:-1] + '(.*)' if src.endswith('*') else src
+            if src == '/(.*)':
+                src = '/((?!backoffice).*)'   # o painel tem os próprios cabeçalhos
             cur = {'source': src, 'headers': []}
             out.append(cur)
         else:
@@ -64,10 +66,19 @@ def main():
         s = os.path.join(DIST, f)
         (shutil.copytree if os.path.isdir(s) else shutil.copy)(s, os.path.join(OUT, f))
     shutil.copytree(os.path.join(ROOT, 'vercel', 'api'), os.path.join(OUT, 'api'))
+    # /backoffice continua no projeto do painel (mesma conta do Vercel): repassa para o endereço dele.
+    # Preencha vercel/backoffice_origem.txt com o endereço do projeto do backoffice, ex.: https://hypeapp-backoffice.vercel.app
+    origem_f = os.path.join(ROOT, 'vercel', 'backoffice_origem.txt')
+    origem = open(origem_f).read().strip().rstrip('/') if os.path.exists(origem_f) else ''
+    rewrites = [{'source': '/backoffice', 'destination': origem + '/backoffice'},
+                {'source': '/backoffice/:path*', 'destination': origem + '/backoffice/:path*'}] if origem else []
+    if not origem:
+        print('ATENÇÃO: sem vercel/backoffice_origem.txt. Não ligue o domínio neste projeto antes de preencher: /backoffice daria 404.')
     cfg = {
         '$schema': 'https://openapi.vercel.sh/vercel.json',
         'framework': None, 'buildCommand': '', 'installCommand': '', 'outputDirectory': '.',
         'trailingSlash': True,
+        'rewrites': rewrites,
         'redirects': redirects(),
         'headers': headers(),
     }

@@ -5,6 +5,7 @@
   "installCommand": "",
   "outputDirectory": ".",
   "trailingSlash": true,
+  "rewrites": [],
   "redirects": [
     {
       "source": "/interesse/criadores/:path*",
@@ -109,7 +110,7 @@
   ],
   "headers": [
     {
-      "source": "/(.*)",
+      "source": "/((?!backoffice).*)",
       "headers": [
         {
           "key": "X-Content-Type-Options",
