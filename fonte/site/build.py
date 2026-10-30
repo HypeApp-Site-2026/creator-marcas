@@ -18,11 +18,11 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 CFG = {
     'ios': 'https://apps.apple.com/br/app/hype-app-influenciadores/id6778357608',
     'android': 'https://play.google.com/store/apps/details?id=br.com.hypeapp.v2',
-    'painel': None,          # endereço do painel das marcas: None até o Vinicius confirmar (proposta: https://painel.hypeapp.com.br)
+    'painel': 'https://www.hypeapp.com.br/backoffice/sign-up',   # backoffice das marcas (decisão de 30/10)
     'preview': not WEB,      # faixa "Prévia" + noindex
 }
 META = {r['url']: r for r in R}
-PAINEL_URL = f"<span>{CFG['painel'].replace('https://', '')}</span>" if CFG['painel'] else ''
+PAINEL_URL = f"<span>{CFG['painel'].replace('https://', '').split('/sign-up')[0]}</span>" if CFG['painel'] else ''
 
 # ---------- Utilidades ----------
 def depth_of(url):
@@ -172,7 +172,7 @@ def header(cur, L, A):
                    f'<div class="mega-card"><span class="mega-label">{label}</span><ul>{lis}</ul></div>{art}</div>')
     painel = CFG['painel']
     marca_href = painel if painel else L('/entrar/', '#marcas')
-    marca_sub = painel.replace('https://', '') if painel else 'Painel das marcas'
+    marca_sub = 'Painel das marcas · ' + painel.replace('https://www.', '').split('/sign-up')[0] if painel else 'Painel das marcas'
     menu = f'''
 <div class="entrar-menu" id="entrar-menu" role="menu" aria-label="Entrar como" hidden>
   <a role="menuitem" class="entrar-item" href="{L('/entrar/', '#creators')}">
@@ -224,7 +224,7 @@ def header(cur, L, A):
 def footer(L, A):
     cols = [
         ('Para creators', [('Como funciona', L('/criadores/')), ('Baixar o app', L('/baixar/')), ('Entrar no app', L('/entrar/', '#creators'))]),
-        ('Para marcas', [('Para marcas e agências', L('/marcas/')), ('Falar com nosso time', L('/contato/marcas/')), ('Entrar no painel', L('/entrar/', '#marcas'))]),
+        ('Para marcas', [('Para marcas e agências', L('/marcas/')), ('Falar com nosso time', L('/contato/marcas/')), ('Entrar no painel', CFG['painel'] or L('/entrar/', '#marcas'))]),
         ('Ajuda', [('Perguntas frequentes', L('/perguntas-frequentes/')), ('Suporte', L('/suporte/'))]),
         ('Empresa', [('Sobre o HypeApp', L('/sobre/'))] + ([('Blog', L('/blog/'))] if BLOG_ON else []) + [('Contato', L('/contato/'))]),
         ('Legal', [('Privacidade', L('/privacidade/')), ('Encarregado de dados', L('/privacidade/', '#encarregado')), ('Termos de uso', L('/termos/')), ('Cookies', L('/cookies/')), ('Exclusão de conta', L('/exclusao-de-conta/'))]),
