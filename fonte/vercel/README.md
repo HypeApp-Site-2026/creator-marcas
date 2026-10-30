@@ -7,6 +7,7 @@ Site estático publicado no Vercel. A raiz do repositório é o site pronto. O c
 1. Vercel → **Add New → Project → Import** este repositório.
 2. Em **Framework Preset**, escolha **Other**. Deixe Build Command e Output Directory vazios: o `vercel.json` já define tudo.
 3. **Environment Variables** (Production):
+   - `PLATAFORMA_WEBHOOK_SECRET` (**obrigatória**): segredo do webhook do CRM Comercial da plataforma Você no Hype. Sem ela, o formulário "Fale com nosso time" não cria leads e o visitante vê "Não foi possível enviar agora".
    - `RESEND_API_KEY`: chave do Resend, para os formulários enviarem e-mail.
    - `FORM_TO` (opcional): destino. O padrão é contato@vocenohype.com.br.
    - `FORM_FROM` (opcional): remetente, depois de verificar o domínio no Resend. Por exemplo, `Site HypeApp <site@hypeapp.com.br>`.
@@ -37,6 +38,38 @@ Depois faça commit e push. O Vercel publica sozinho.
 
 ## Formulários
 
-`api/contato.js` recebe os formulários "Falar com nosso time" e "Suporte" e envia para contato@vocenohype.com.br pelo Resend:
-- valida os campos e o filtro de robôs;
-- se a chave não estiver configurada, o site mostra "Não foi possível enviar" com o e-mail de contato.
+### "Fale com nosso time" (marcas e agências) → CRM Comercial
+
+`api/lead.js` recebe o formulário de `/contato/marcas/` e cria um lead no CRM Comercial da plataforma Você no Hype:
+- chama `POST https://plataforma.vocenohype.com.br/api/public/leads` só pelo servidor, com o cabeçalho `X-Webhook-Secret`;
+- o navegador recebe só "ok" ou uma mensagem genérica de erro.
+
+**Variável obrigatória: `PLATAFORMA_WEBHOOK_SECRET`.** Cadastre em Vercel → projeto `hype-site` → **Settings → Environment Variables**:
+- marque como **Sensitive** e o ambiente **Production**;
+- depois faça **Redeploy** para valer.
+
+Regras:
+- nunca coloque o valor no código, no git, em `.env` commitado ou em mensagens. `.env` e `.env.*` estão no `.gitignore`;
+- se a variável faltar, o log da função mostra `[lead] PLATAFORMA_WEBHOOK_SECRET não configurada` e o visitante vê uma mensagem genérica;
+- campo escondido anti-robô preenchido: responde "ok" e não chama o webhook;
+- sem nome, ou sem e-mail e sem telefone: não chama o webhook;
+- timeout de 10 s;
+- nunca reenvia sozinho após erro, porque o webhook não deduplica.
+
+Mapeamento:
+- **Campos diretos:** nome → `name`, e-mail → `email`, WhatsApp → `phone`, empresa → `company`, cargo → `role`, segmento → `industry`, verba → `monthly_budget`, "para quando precisa começar" → `urgency`, "já trabalha com influenciadores" → `agency_experience`.
+- **Em `notes`, no formato "Pergunta: resposta", uma por linha:**
+  - o restante das respostas;
+  - a fila (prioritária quando é agência, tem verba a partir de R$ 20 mil ou quer começar agora);
+  - a página de origem, a primeira página da visita e o referrer;
+  - as UTMs, o gclid/fbclid e a data/hora ISO.
+- **`source`:**
+  - gclid → `google-ads`;
+  - fbclid → `meta-ads`;
+  - senão `utm_source`;
+  - senão `site`.
+- **`source_form`:** sempre `Site-HypeApp`.
+
+### Suporte
+
+`api/contato.js` recebe o formulário de `/suporte/` e envia para contato@vocenohype.com.br pelo Resend (`RESEND_API_KEY`). Se a chave não estiver configurada, o site mostra "Não foi possível enviar" com o e-mail de contato.

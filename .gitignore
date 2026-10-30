@@ -1,4 +1,6 @@
 .vercel
+.env
+.env.*
 fonte/site/dist/
 fonte/site/dist-web/
 __pycache__/

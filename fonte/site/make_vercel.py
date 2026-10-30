@@ -6,7 +6,8 @@ Uso (da pasta site/):
 
 Resultado em ../repo:
   index.html, criadores/, ...   site estático (o Vercel serve a raiz do repositório)
-  api/contato.js                função que envia os formulários por e-mail (Resend)
+  api/lead.js                   envia o formulário de marcas ao CRM Comercial (webhook)
+  api/contato.js                formulário de suporte por e-mail (Resend)
   vercel.json                   redirecionamentos e cabeçalhos (convertidos de _redirects/_headers)
   fonte/                        código-fonte para gerar o site de novo (não vai ao ar: .vercelignore)
 """
@@ -84,7 +85,7 @@ def main():
     }
     json.dump(cfg, open(os.path.join(OUT, 'vercel.json'), 'w', encoding='utf-8'), ensure_ascii=False, indent=2)
     open(os.path.join(OUT, '.vercelignore'), 'w').write('fonte\nREADME.md\n')
-    open(os.path.join(OUT, '.gitignore'), 'w').write('.vercel\nfonte/site/dist/\nfonte/site/dist-web/\n__pycache__/\n.DS_Store\n')
+    open(os.path.join(OUT, '.gitignore'), 'w').write('.vercel\n.env\n.env.*\nfonte/site/dist/\nfonte/site/dist-web/\n__pycache__/\n.DS_Store\n')
     # código-fonte
     fonte = os.path.join(OUT, 'fonte')
     ign = shutil.ignore_patterns('dist', 'dist-web', '__pycache__', '*.pyc')

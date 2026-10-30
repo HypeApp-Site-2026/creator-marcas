@@ -239,6 +239,7 @@
         return;
       }
       if (summary) summary.hidden = true;
+      if (f.getAttribute('data-sending')) return;
       var btn = $('button[type="submit"]', f);
       if (btn) { btn.setAttribute('data-label', btn.textContent); btn.disabled = true; btn.textContent = 'Enviando\u2026'; }
       var next = f.getAttribute('data-next');
@@ -247,22 +248,47 @@
         setTimeout(function () { location.href = next; }, 500);
         return;
       }
-      // Producao (funcao do Vercel em /api/contato): envia e so segue se o servidor aceitar.
-      var body = new URLSearchParams(new FormData(f)).toString();
-      fetch('/api/contato', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded', 'Accept': 'application/json' }, body: body })
+      // Producao (funcao do Vercel indicada em action): envia e so segue se o servidor aceitar.
+      // Nunca reenvia sozinho: so um novo clique em Enviar tenta de novo.
+      f.setAttribute('data-sending', '1');
+      var fd = new FormData(f), at = attr();
+      fd.set('pagina', location.href.slice(0, 500));
+      Object.keys(at).forEach(function (k) { if (at[k]) fd.set(k, String(at[k]).slice(0, 500)); });
+      var body = new URLSearchParams(fd).toString();
+      var falha = 'N\u00e3o foi poss\u00edvel enviar agora, tente novamente em instantes.';
+      fetch(f.getAttribute('action'), { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded', 'Accept': 'application/json' }, body: body })
         .then(function (r) {
-          if (!r.ok) throw new Error('HTTP ' + r.status);
-          location.href = next;
+          if (r.ok) { location.href = next; return; }
+          return r.json().catch(function () { return {}; }).then(function (j) { throw new Error((j && j.erro) || falha); });
         })
-        .catch(function () {
+        .catch(function (e) {
+          f.removeAttribute('data-sending');
           if (btn) { btn.disabled = false; btn.textContent = btn.getAttribute('data-label') || 'Enviar'; }
           if (summary) {
             summary.hidden = false;
-            summary.textContent = 'N\u00e3o foi poss\u00edvel enviar agora. Tente de novo em alguns minutos ou escreva para contato@vocenohype.com.br.';
+            summary.textContent = (e && e.message && e.message.indexOf('HTTP') !== 0 && e.message !== 'Failed to fetch') ? e.message : falha;
           }
         });
     });
   });
+
+  /* ---------- Origem da visita (UTM, gclid, fbclid), guardada so nesta aba ---------- */
+  function attr() {
+    try { return JSON.parse(sessionStorage.getItem('hh_origem') || '{}') || {}; } catch (e) { return {}; }
+  }
+  (function () {
+    var q = new URLSearchParams(location.search), novo = {}, tem = false;
+    ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'gclid', 'fbclid'].forEach(function (k) {
+      var v = q.get(k); if (v) { novo[k] = v.slice(0, 300); tem = true; }
+    });
+    var atual = attr();
+    if (!tem && atual.landing) return;
+    var ref = document.referrer || '';
+    try { if (ref && new URL(ref).host === location.host) ref = atual.referrer || ''; } catch (e) { ref = ''; }
+    novo.landing = (location.origin + location.pathname + location.search).slice(0, 500);
+    novo.referrer = ref.slice(0, 500);
+    try { sessionStorage.setItem('hh_origem', JSON.stringify(novo)); } catch (e) {}
+  })();
 
   /* ---------- /app: leva \u00e0 loja certa ---------- */
   var appBox = $('[data-app-redirect]');

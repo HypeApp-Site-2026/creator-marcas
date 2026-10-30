@@ -1003,7 +1003,7 @@ FORM_LIVE = ' data-live' if WEB else ''
 HONEYPOT = '<p class="hp" hidden><label>Não preencha este campo <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>'
 
 def preview_note():
-    return '<p class="form-note" role="note">Prévia: o envio é simulado e nada é gravado. Em produção, os dados vão para [ferramenta do comercial] antes da confirmação.</p>' if CFG['preview'] else ''
+    return '<p class="form-note" role="note">Prévia: o envio é simulado e nada é gravado. Em produção, o pedido vira um lead no CRM Comercial da plataforma Você no Hype antes da confirmação.</p>' if CFG['preview'] else ''
 
 def multi(name, legend, opts, req=True, hint=''):
     """Grupo de múltipla escolha (checkbox). Com req, exige pelo menos uma opção."""
@@ -1018,14 +1018,14 @@ def etapa(n, titulo, corpo):
 VERBAS = [('ate-5k', 'Até R$ 5 mil'), ('5-20k', 'R$ 5 mil a R$ 20 mil'), ('20-50k', 'R$ 20 mil a R$ 50 mil'), ('50k-mais', 'Acima de R$ 50 mil'), ('nao-sei', 'Ainda não sei')]
 
 def p_contato_marcas(L, A):
-    s1 = ('<div class="cols-2">' + field('empresa', 'Nome da empresa', extra=' autocomplete="organization"')
-          + field('site', 'Site ou Instagram da marca', ph='www.marca.com.br ou @marca', hint='Ajuda a conhecer a marca antes da conversa.') + '</div>'
+    s1 = ('<div class="cols-2">' + field('empresa', 'Nome da empresa', extra=' autocomplete="organization" maxlength="200"')
+          + field('site', 'Site ou Instagram da marca', extra=' maxlength="300"', ph='www.marca.com.br ou @marca', hint='Ajuda a conhecer a marca antes da conversa.') + '</div>'
           + '<div class="cols-2">' + select('segmento', 'Segmento', [('moda', 'Moda'), ('beleza', 'Beleza'), ('alimentos', 'Alimentos'), ('tecnologia', 'Tecnologia'), ('servicos', 'Serviços'), ('outro', 'Outro')])
-          + field('cidade', 'Cidade e estado', extra=' autocomplete="address-level2"', ph='São Paulo, SP') + '</div>')
-    s2 = ('<div class="cols-2">' + field('nome', 'Nome completo', extra=' autocomplete="name"')
-          + field('cargo', 'Cargo ou função', extra=' autocomplete="organization-title"', ph='Marketing, sócio, agência…') + '</div>'
-          + '<div class="cols-2">' + field('email', 'E-mail corporativo', 'email', extra=' autocomplete="email"', ph='nome@empresa.com.br')
-          + field('whatsapp', 'WhatsApp com DDD', 'tel', extra=' autocomplete="tel" data-kind="tel" inputmode="tel"', ph='(11) 90000-0000') + '</div>')
+          + field('cidade', 'Cidade e estado', extra=' autocomplete="address-level2" maxlength="120"', ph='São Paulo, SP') + '</div>')
+    s2 = ('<div class="cols-2">' + field('nome', 'Nome completo', extra=' autocomplete="name" maxlength="200"')
+          + field('cargo', 'Cargo ou função', extra=' autocomplete="organization-title" maxlength="120"', ph='Marketing, sócio, agência…') + '</div>'
+          + '<div class="cols-2">' + field('email', 'E-mail corporativo', 'email', extra=' autocomplete="email" maxlength="200"', ph='nome@empresa.com.br')
+          + field('whatsapp', 'WhatsApp com DDD', 'tel', extra=' autocomplete="tel" data-kind="tel" inputmode="tel" maxlength="60"', ph='(11) 90000-0000') + '</div>')
     s3 = (choices('experiencia', 'Já trabalha com influenciadores?', [('nunca', 'Nunca'), ('ocasional', 'Ocasionalmente'), ('frequente', 'Com frequência')])
           + choices('campanhas_mes', 'Quantas campanhas pretende fazer por mês?', [('1-2', '1 a 2'), ('3-10', '3 a 10'), ('10-mais', 'Mais de 10')])
           + select('verba', 'Verba mensal aproximada para influenciadores', VERBAS)
@@ -1037,7 +1037,7 @@ def p_contato_marcas(L, A):
           + choices('agencia', 'É uma agência que atende várias marcas?', [('sim', 'Sim'), ('nao', 'Não')])
           + '<p class="form-note" data-show-when="agencia=sim" hidden>Agências usam um espaço separado para cada marca no painel, e isso muda o plano. Vamos considerar na proposta.</p>'
           + choices('inicio', 'Para quando precisa começar?', [('agora', 'Agora'), ('30-dias', 'Em até 30 dias'), ('pesquisando', 'Só pesquisando')])
-          + field('mensagem', 'Quer contar algo mais?', 'textarea', req=False, ph='Produto, público, datas importantes ou o que mais ajudar'))
+          + field('mensagem', 'Quer contar algo mais?', 'textarea', req=False, extra=' maxlength="3000"', ph='Produto, público, datas importantes ou o que mais ajudar'))
     consent = ('<div class="field"><label class="check"><input type="checkbox" id="aceite" name="aceite" required><span>Autorizo a Você no Hype a usar estes dados para responder a este pedido '
                f'e entrar em contato por e-mail e WhatsApp sobre o HypeApp, conforme a <a href="{L("/privacidade/")}">política de privacidade</a>. '
                'Posso pedir a exclusão a qualquer momento em contato@vocenohype.com.br.</span></label><p class="err" hidden></p></div>')
@@ -1050,7 +1050,7 @@ def p_contato_marcas(L, A):
     <ul class="body" style="padding-left:20px;margin:0;display:flex;flex-direction:column;gap:6px"><li>Valores sob consulta, conforme escopo e volume</li><li>Painel para operar sozinho ou campanha gerenciada pela Você no Hype</li><li>Retornamos em até 2 dias úteis</li></ul>
     <p class="small muted">É creator? <a href="{L('/baixar/')}">Baixe o app</a>. Já usa o HypeApp? <a href="{L('/suporte/')}">Fale com o suporte</a>.</p>
   </div>
-  <form class="card form form-steps" style="flex:1 1 560px" data-form name="comercial" method="POST" action="{'/api/contato' if WEB else L('/contato/enviado/')}" data-next="{L('/contato/enviado/')}"{FORM_LIVE} novalidate>
+  <form class="card form form-steps" style="flex:1 1 560px" data-form name="comercial" method="POST" action="{'/api/lead' if WEB else L('/contato/enviado/')}" data-next="{L('/contato/enviado/')}"{FORM_LIVE} novalidate>
     <input type="hidden" name="form-name" value="comercial">
     {HONEYPOT}
     {etapa(1, 'Quem é a empresa', s1)}
