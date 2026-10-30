@@ -79,9 +79,9 @@ add("/interesse/confirmado/", "Interesse confirmado", "Creators", "Captação e 
     "Seu interesse no HypeApp foi registrado.",
     "Recebemos seu interesse", obs="Suspenso junto com /interesse/ (ordem de 26/10).")
 add("/contato/marcas/", "Falar com o comercial", "Marcas", "Captação e contato", "P0", "", SIM_LANC, NOI, "Não",
-    "Falar com o comercial | HypeApp",
-    "Conte sua campanha e o comercial do HypeApp responde com uma proposta.",
-    "Fale com o comercial", obs="Formulário de interesse para marcas, com perguntas de qualificação. Mantido como CTA principal de /marcas/ (ordem de 26/10).")
+    "Fale com nosso time | HypeApp",
+    "Conte sobre sua marca ou agência e receba uma proposta para campanhas com creators no HypeApp. Nosso time retorna em até 2 dias úteis.",
+    "Fale com nosso time", obs="Formulário de interesse para marcas, com perguntas de qualificação. Mantido como CTA principal de /marcas/ (ordem de 26/10).")
 add("/contato/parcerias/", "Parcerias e imprensa", "Todos", "Captação e contato", "P0", "", SIM_LANC, NOI, "Não",
     "Parcerias e imprensa | HypeApp",
     "Propostas de parceria, imprensa e eventos com o HypeApp.",
@@ -281,9 +281,9 @@ for url, nome, title, desc, h1 in [
     ("/privacidade/", "Privacidade", "Política de privacidade | HypeApp",
      "Como a Você no Hype trata dados pessoais no site e no app do HypeApp, os direitos dos titulares e o contato do encarregado.", "Política de privacidade"),
     ("/termos/", "Termos", "Termos de uso | HypeApp",
-     "Regras de uso do site e do app do HypeApp para creators, marcas e agências.", "Termos de uso"),
+     "Regras para usar o site e o app do HypeApp: cadastro, responsabilidades, propriedade intelectual e direitos de creators, marcas e agências.", "Termos de uso"),
     ("/cookies/", "Cookies", "Política de cookies | HypeApp",
-     "Quais cookies e tecnologias o site do HypeApp usa, para quê e como mudar suas preferências.", "Política de cookies"),
+     "Como o site do HypeApp usa cookies: só o necessário para funcionar e a medição agregada de visitas, sem cookies de publicidade ou rastreamento.", "Política de cookies"),
     ("/direitos-sobre-dados/", "Direitos sobre dados", "Direitos sobre seus dados | HypeApp",
      "Peça acesso, correção, exclusão ou outras informações sobre seus dados pessoais no HypeApp.", "Direitos sobre seus dados"),
     ("/exclusao-de-conta/", "Exclusão de conta", "Como excluir sua conta | HypeApp",

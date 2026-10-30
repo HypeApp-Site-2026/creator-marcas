@@ -38,3 +38,7 @@ Informações oficiais:
 - [Política de privacidade](https://www.hypeapp.com.br/privacidade/): tratamento de dados, encarregado e direitos dos titulares.
 - [Termos de uso](https://www.hypeapp.com.br/termos/)
 - [Exclusão de conta](https://www.hypeapp.com.br/exclusao-de-conta/): como excluir a conta do app.
+
+## Texto completo
+
+- [llms-full.txt](https://www.hypeapp.com.br/llms-full.txt): o texto de todas as páginas públicas em um só arquivo.

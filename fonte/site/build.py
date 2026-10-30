@@ -165,8 +165,8 @@ def header(cur, L, A):
         links += (f'<a href="{L(p)}" class="nav-trigger" data-mega="{pid}" aria-haspopup="true" aria-expanded="false" aria-controls="{pid}"{cur_attr}>'
                   f'{t}{ico(I_DOWN, 14)}</a>')
         lis = ''.join(f'<li><a href="{h}"><b>{n}</b><span>{d}</span></a></li>' for n, d, h in items)
-        art = (f'<img class="mega-art mega-monitor" src="{A("assets/menu/monitor-painel.webp")}" alt="" width="480" height="424" loading="lazy">' if img == 'monitor' else
-               f'<img class="mega-art" src="{tela(A, img)}" alt="" width="{600 if img.startswith("app") else 1400}" height="{1298 if img.startswith("app") else 875}" loading="lazy">'
+        art = (f'<img class="mega-art mega-monitor" src="{A("assets/menu/monitor-painel.webp")}" alt="Monitor com o painel das marcas do HypeApp" width="480" height="424" loading="lazy">' if img == 'monitor' else
+               f'<img class="mega-art" src="{tela(A, img)}" alt="{TELA_ALT.get(img, "Tela do HypeApp")}" width="{600 if img.startswith("app") else 1400}" height="{1298 if img.startswith("app") else 875}" loading="lazy">'
                if img else '<span class="mega-art mega-bubble" aria-hidden="true">?</span>')
         panels += (f'<div class="mega{" mega-web" if img and (img.startswith("bo") or img == "monitor") else ""}" id="{pid}" role="region" aria-label="{label}" hidden>'
                    f'<div class="mega-card"><span class="mega-label">{label}</span><ul>{lis}</ul></div>{art}</div>')
@@ -433,21 +433,30 @@ HERO_PH = [(1018.3, 433.7), (1250.2, 413.7), (1237.3, 927.5), (994.0, 920.2)]
 # Contorno do celular por cima do monitor (para o celular continuar na frente)
 HERO_PH_CLIP = [(1300, 380), (1220, 403), (1180, 406), (1160, 408), (1100, 414), (1061, 417), (1041, 419), (1027, 425), (1014, 440),
                 (1008, 455), (1005, 470), (1004, 500), (1003, 515), (1001, 545), (999, 590), (997, 635), (995, 680), (993, 725), (990, 1000), (1300, 1000)]
+# Texto alternativo das telas usadas fora das vitrines (hero e menu)
+TELA_ALT = {
+    'bo-C1': 'Tela do painel das marcas: dashboard com pendências e métricas',
+    'bo-C2': 'Tela do painel das marcas: lista de campanhas',
+    'bo-E1': 'Tela do painel das marcas: catálogo de creators',
+    'app-D1': 'Tela do app para creators: descobrir campanhas',
+    'app-E4': 'Tela do app para creators: campanha em andamento com ganho, data de publicação e entregas',
+    'app-G2': 'Tela do app para creators: carteira com saldo',
+}
 HERO_MON_TELAS = ['bo-C2', 'bo-E1', 'bo-C1']
 HERO_PH_TELAS = ['app-D1', 'app-E4', 'app-G2']
 
 def hero_scene(A):
     """Ilustração animada da hero. Arquivos: assets/hero/hero-base.webp e hero-textos.webp; estilos no fim do site.css.
     Ciclo de 15,5 s: a ilustração com os textos animados e, depois, três telas reais no monitor e no celular."""
-    mon = ''.join(f'<img src="{tela(A, c)}" alt="" width="1400" height="875" loading="lazy" decoding="async">' for c in HERO_MON_TELAS)
-    ph = ''.join(f'<img src="{tela(A, c)}" alt="" width="600" height="1298" loading="lazy" decoding="async">' for c in HERO_PH_TELAS)
+    mon = ''.join(f'<img src="{tela(A, c)}" alt="{TELA_ALT[c]}" width="1400" height="875" loading="lazy" decoding="async">' for c in HERO_MON_TELAS)
+    ph = ''.join(f'<img src="{tela(A, c)}" alt="{TELA_ALT[c]}" width="600" height="1298" loading="lazy" decoding="async">' for c in HERO_PH_TELAS)
     clip = 'polygon(' + ','.join(f'{x}px {y}px' for x, y in HERO_PH_CLIP) + ')'
     return f'''<div class="hero-art">
 <div class="hh" role="img" aria-label="HypeApp: painel de campanhas no computador para marcas e app no celular para creators" data-hh>
-  <img src="{A('assets/hero/hero-base.webp')}" width="1536" height="1024" alt="" fetchpriority="high" decoding="async">
+  <img src="{A('assets/hero/hero-base.webp')}" width="1536" height="1024" alt="Ilustração: computador com o painel de campanhas das marcas e celular com o app dos creators" fetchpriority="high" decoding="async">
   <div class="hh-scr" aria-hidden="true"><div class="hh-stage">
     <div class="hh-mon" style="transform:{homography_css(1120, 760, HERO_MON)}">{mon}</div>
-    <img class="hh-front" src="{A('assets/hero/hero-base.webp')}" alt="" width="1536" height="1024" style="clip-path:{clip}">
+    <img class="hh-front" src="{A('assets/hero/hero-base.webp')}" alt="Ilustração: celular com o app do HypeApp" width="1536" height="1024" style="clip-path:{clip}">
     <div class="hh-ph" style="transform:{homography_css(600, 1298, HERO_PH)}">{ph}<i class="hh-notch"></i></div>
   </div></div>
   <div aria-hidden="true">
@@ -586,7 +595,7 @@ def gestao_carreira(L, A):
   </div>
   <figure class="gc-fig">
     <div class="mz" data-mz aria-hidden="true">
-      <div class="mz-b mz-phone" style="{pos('phone')}"><img class="mz-fill" src="{A('assets/carreira/celular-inicio.webp')}" alt="" width="902" height="1218" loading="lazy" decoding="async"></div>
+      <div class="mz-b mz-phone" style="{pos('phone')}"><img class="mz-fill" src="{A('assets/carreira/celular-inicio.webp')}" alt="Tela inicial do app HypeApp no celular, com campanhas e próximos passos do creator" width="902" height="1218" loading="lazy" decoding="async"></div>
       <div class="mz-b mz-receb" style="{pos('receb')}"><div class="mz-in">
         <div class="mz-rh"><b>Recebimentos</b>{wallet}</div>
         <div class="mz-row"><i class="mz-dot"></i><span>Em campanha</span><i class="mz-bar"><i style="width:76%"></i></i><i class="mz-dash"></i></div>
@@ -595,7 +604,7 @@ def gestao_carreira(L, A):
       <div class="mz-b mz-entrega" style="{pos('entrega')}"><div class="mz-in">
         <span class="mz-cal">{cal}</span><b class="mz-et">Próxima entrega</b><span class="mz-es">Envio de roteiro</span><span class="mz-pill"><i></i>Em andamento</span>
       </div></div>
-      <div class="mz-b mz-char" style="{pos('char')}"><img class="mz-fill" src="{A('assets/carreira/creator-celular.webp')}" alt="" width="993" height="1094" loading="lazy" decoding="async"></div>
+      <div class="mz-b mz-char" style="{pos('char')}"><img class="mz-fill" src="{A('assets/carreira/creator-celular.webp')}" alt="Ilustração: creator usando o HypeApp no celular" width="993" height="1094" loading="lazy" decoding="async"></div>
     </div>
     <figcaption class="gc-cap">Interface e dados ilustrativos.</figcaption>
   </figure>
@@ -1281,10 +1290,85 @@ def crumbs(url):
         items.append({'@type': 'ListItem', 'position': len(items) + 1, 'name': names.get(acc, seg), 'item': BASE + acc})
     return {'@context': 'https://schema.org', '@type': 'BreadcrumbList', 'itemListElement': items}
 
-ORG = {'@context': 'https://schema.org', '@type': 'Organization', 'name': 'HypeApp', 'url': BASE + '/',
-       'parentOrganization': {'@type': 'Organization', 'name': 'Você no Hype Marketing e Entretenimento LTDA'},
-       'logo': BASE + '/assets/logo-hypeapp.svg',
-       'sameAs': [u for _, u, _, _ in SOCIAL] + [CFG['ios'], CFG['android']]}
+# ---------- Dados estruturados (JSON-LD) ----------
+EMPRESA = 'Você no Hype Marketing e Entretenimento LTDA'
+CNPJ = '43.442.408/0001-26'
+EMAIL = 'contato@vocenohype.com.br'
+FONE = '+55 11 3834-5221'
+ENDERECO = {'@type': 'PostalAddress', 'streetAddress': 'Av. Cardeal Motta, 1057, City América', 'addressLocality': 'São Paulo',
+            'addressRegion': 'SP', 'postalCode': '02452-001', 'addressCountry': 'BR'}
+ORG_ID, SITE_ID, APP_ID = BASE + '/#organizacao', BASE + '/#site', BASE + '/#app'
+ORG = {'@context': 'https://schema.org', '@type': 'Organization', '@id': ORG_ID, 'name': 'HypeApp',
+       'legalName': EMPRESA, 'taxID': CNPJ, 'url': BASE + '/', 'logo': BASE + '/assets/logo-hypeapp.svg',
+       'email': EMAIL, 'telephone': FONE, 'address': ENDERECO,
+       'contactPoint': [
+           {'@type': 'ContactPoint', 'contactType': 'customer support', 'email': EMAIL, 'telephone': FONE, 'url': BASE + '/suporte/',
+            'areaServed': 'BR', 'availableLanguage': 'pt-BR',
+            'hoursAvailable': {'@type': 'OpeningHoursSpecification', 'dayOfWeek': ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], 'opens': '10:00', 'closes': '18:00'}},
+           {'@type': 'ContactPoint', 'contactType': 'sales', 'email': EMAIL, 'url': BASE + '/contato/marcas/', 'areaServed': 'BR', 'availableLanguage': 'pt-BR'},
+           {'@type': 'ContactPoint', 'contactType': 'encarregado de dados pessoais (LGPD)', 'email': EMAIL, 'url': BASE + '/privacidade/#encarregado', 'availableLanguage': 'pt-BR'}],
+       'sameAs': [u for _, u, _, _ in SOCIAL]}
+WEBSITE = {'@context': 'https://schema.org', '@type': 'WebSite', '@id': SITE_ID, 'name': 'HypeApp', 'url': BASE + '/',
+           'inLanguage': 'pt-BR', 'publisher': {'@id': ORG_ID}}
+APP = {'@context': 'https://schema.org', '@type': 'MobileApplication', '@id': APP_ID, 'name': 'HypeApp',
+       'description': 'App para creators participarem de campanhas com marcas: inscrição, entregas, chat com a marca e pagamentos na carteira.',
+       'operatingSystem': 'iOS 15.1 ou superior, Android', 'applicationCategory': 'BusinessApplication', 'inLanguage': 'pt-BR',
+       'offers': {'@type': 'Offer', 'price': '0', 'priceCurrency': 'BRL'},
+       'downloadUrl': [CFG['ios'], CFG['android']], 'installUrl': CFG['android'], 'sameAs': [CFG['ios'], CFG['android']],
+       'publisher': {'@id': ORG_ID}}
+SERVICOS = [{'@context': 'https://schema.org', '@type': 'Service', 'name': nome, 'serviceType': 'Campanhas de marketing de influência com creators',
+             'description': desc, 'provider': {'@id': ORG_ID}, 'areaServed': {'@type': 'Country', 'name': 'Brasil'},
+             'audience': {'@type': 'BusinessAudience', 'audienceType': 'Marcas e agências'}, 'url': BASE + '/marcas/'}
+            for nome, desc in [
+                ('Campanhas self-service no painel', 'Sua equipe opera tudo no painel: cria a campanha, encontra e convida creators, aprova conteúdos, acompanha métricas e faz os pagamentos.'),
+                ('Campanhas gerenciadas', 'A Você no Hype cuida da estratégia, da curadoria de creators e da operação da campanha.')]]
+TIPO_PAGINA = {'/perguntas-frequentes/': 'FAQPage', '/sobre/': 'AboutPage', '/contato/': 'ContactPage', '/contato/marcas/': 'ContactPage', '/suporte/': 'ContactPage'}
+
+def faq_entities():
+    limpa = lambda s: ' '.join(html.unescape(re.sub(r'<[^>]+>', ' ', s)).split())
+    return [{'@type': 'Question', 'name': limpa(q), 'acceptedAnswer': {'@type': 'Answer', 'text': limpa(a)}}
+            for _, _, items in FAQ_GROUPS for q, a in items]
+
+# Datas de publicação e de alteração: mudam só quando o conteúdo da página muda (registro em datas.json)
+from datetime import datetime as _dt
+from zoneinfo import ZoneInfo as _Z
+HOJE = _dt.now(_Z('America/Sao_Paulo')).date().isoformat()
+DATAS_F = os.path.join(HERE, 'datas.json')
+DATAS = json.load(open(DATAS_F, encoding='utf-8')) if os.path.exists(DATAS_F) else {}
+
+def datas_da(url, conteudo):
+    h = _hl.md5(conteudo.encode('utf-8')).hexdigest()
+    d = DATAS.get(url)
+    if not d:
+        d = {'publicado': HOJE, 'alterado': HOJE, 'hash': h}
+    elif d['hash'] != h:
+        d = dict(d, alterado=HOJE, hash=h)
+    if WEB:
+        DATAS[url] = d
+    return d
+
+def jsonld(url, title, desc, d):
+    if url in ('/404', '/app'):
+        return []
+    pag = {'@context': 'https://schema.org', '@type': TIPO_PAGINA.get(url, 'WebPage'), '@id': BASE + url + '#pagina', 'url': BASE + url,
+           'name': title, 'description': desc, 'inLanguage': 'pt-BR', 'isPartOf': {'@id': SITE_ID}, 'publisher': {'@id': ORG_ID},
+           'datePublished': d['publicado'], 'dateModified': d['alterado']}
+    if url == '/perguntas-frequentes/':
+        pag['mainEntity'] = faq_entities()
+    if url in ('/criadores/', '/baixar/'):
+        pag['about'] = {'@id': APP_ID}
+    out = [pag]
+    if url == '/':
+        out = [ORG, WEBSITE, APP, pag]
+    else:
+        out.append(crumbs(url))
+    if url in ('/criadores/', '/baixar/'):
+        out.append(APP)
+    if url == '/marcas/':
+        out += SERVICOS
+    if url in POST_META:
+        out.append(POST_META[url]['ld'])
+    return out
 
 def build_page(url, fn, kind):
     L, A = make_link(url)
@@ -1298,9 +1382,13 @@ def build_page(url, fn, kind):
     body = mark_ph(body)
     for p, _ in [('/criadores/', 0), ('/marcas/', 0), ('/perguntas-frequentes/', 0)]:
         pass
-    jl = [ORG] if url == '/' else ([crumbs(url)] if url not in ('/404', '/app') else [])
-    if url in POST_META:
-        jl.append(POST_META[url]['ld'])
+    d = datas_da(url, title + desc + main)
+    mdoc = re.search(r'[ÚU]ltima atualiza[çc][ãa]o:\s*(\d{1,2}) de (\w+) de (\d{4})', main)
+    if mdoc:  # documentos legais: vale a data escrita no próprio texto
+        mes = ['janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro'].index(mdoc.group(2).lower()) + 1
+        doc = f'{mdoc.group(3)}-{mes:02d}-{int(mdoc.group(1)):02d}'
+        d = dict(d, publicado=min(d['publicado'], doc), alterado=doc)
+    jl = jsonld(url, title, desc, d)
     ld = ''.join(f'<script type="application/ld+json">{json.dumps(j, ensure_ascii=False)}</script>' for j in jl)
     bar = (f'<div class="preview-bar"><strong>Prévia do site</strong> · conteúdo em revisão. Textos entre colchetes aguardam aprovação. Envios de formulário são simulados. <a href="{A("iphone/index.html")}">Ver no iPhone</a></div>' if CFG['preview'] else '')
     head = f'''<title>{html.escape(title)}</title>
@@ -1322,6 +1410,7 @@ def build_page(url, fn, kind):
 <link rel="icon" href="{A('favicon.svg')}" type="image/svg+xml">
 <link rel="apple-touch-icon" href="{A('apple-touch-icon.png')}">
 <link rel="manifest" href="{A('site.webmanifest')}">
+{f'<link rel="alternate" type="application/rss+xml" title="Blog HypeApp" href="{BASE}/blog/feed.xml">' if WEB and BLOG_ON and any(_p['status'] != 'exemplo' for _p in POSTS) else ''}
 <link rel="stylesheet" href="{A('assets/site.css')}?v={VER['site.css']}">
 {ld}'''
     if url == '/app' and WEB:
@@ -1331,7 +1420,8 @@ def build_page(url, fn, kind):
     if is_root and not WEB:
         # A página principal da prévia é publicada sem esqueleto (a publicação acrescenta doctype, head e body).
         return head + '\n' + inner
-    return f'<!doctype html>\n<html lang="pt-BR">\n<head>\n<meta charset="utf-8">\n<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n{head}\n</head>\n<body>\n{inner}\n</body>\n</html>\n'
+    # email_off: impede o Cloudflare de esconder os e-mails (crawlers e IAs precisam ler o endereço no HTML)
+    return f'<!doctype html>\n<html lang="pt-BR">\n<!--email_off-->\n<head>\n<meta charset="utf-8">\n<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n{head}\n</head>\n<body>\n{inner}\n</body>\n<!--/email_off-->\n</html>\n'
 
 # ---------- Netlify: redirecionamentos e cabeçalhos (só na versão --web) ----------
 # 301 = definitivo · 302 = temporário (rota suspensa ou que ainda vai existir).
@@ -1397,6 +1487,108 @@ def out_path(url):
         return '404.html'
     return url.strip('/') + '/index.html'
 
+# ---------- Arquivos técnicos (só na versão --web) ----------
+from html.parser import HTMLParser as _HP
+
+class _Texto(_HP):
+    """Converte o <main> de uma página em texto de leitura com títulos em Markdown (para o llms-full.txt).
+    Ignora ilustrações e telas de demonstração (role=img, aria-hidden, hidden), formulários e botões."""
+    BLOCO = {'p', 'li', 'h1', 'h2', 'h3', 'h4', 'summary', 'dt', 'dd', 'figcaption', 'blockquote', 'th', 'td'}
+    PULA = {'script', 'style', 'svg', 'form', 'button', 'template', 'nav', 'select', 'textarea'}
+    VAZIAS = {'img', 'input', 'br', 'hr', 'meta', 'link', 'source', 'wbr', 'col', 'area', 'base', 'embed', 'track'}
+    def __init__(self):
+        super().__init__(); self.dentro = False; self.pilha = []; self.pula = 0
+        self.linhas = []; self.atual = ''; self.tag = ''
+    def handle_starttag(self, t, a):
+        if t in self.VAZIAS: return
+        a = dict(a)
+        pular = t in self.PULA or a.get('role') == 'img' or a.get('aria-hidden') == 'true' or 'hidden' in a \
+            or 'browser-bar' in (a.get('class') or '') or 'sample' in (a.get('class') or '')
+        self.pilha.append((t, pular))
+        if pular: self.pula += 1
+        if t == 'main': self.dentro = True
+        if self.dentro and not self.pula and t in self.BLOCO: self.fecha(); self.tag = t
+    def handle_endtag(self, t):
+        if t in self.VAZIAS: return
+        while self.pilha:
+            tt, pular = self.pilha.pop()
+            if pular: self.pula -= 1
+            if tt == t: break
+        if self.dentro and not self.pula and t in self.BLOCO: self.fecha()
+        if t == 'main': self.fecha(); self.dentro = False
+    def handle_data(self, d):
+        if self.dentro and not self.pula and self.tag: self.atual += d
+    def fecha(self):
+        t = ' '.join(self.atual.split())
+        if t and t not in ('Dados de exemplo.', 'Dados de exemplo'):
+            pre = {'h1': '# ', 'h2': '## ', 'h3': '### ', 'h4': '#### ', 'summary': '**P:** ', 'li': '- ', 'dt': '- '}.get(self.tag, '')
+            if not self.linhas or self.linhas[-1] != pre + t:
+                self.linhas.append(pre + t)
+        self.atual = ''; self.tag = ''
+
+def _texto_da_pagina(html_txt):
+    p = _Texto(); p.feed(html_txt); p.fecha()
+    return '\n\n'.join(p.linhas)
+
+def arquivos_tecnicos(OUT):
+    # 1. Datas: grava o registro e acrescenta <lastmod> ao sitemap (só quando o conteúdo muda de verdade)
+    json.dump(dict(sorted(DATAS.items())), open(DATAS_F, 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
+    sm = os.path.join(OUT, 'sitemap.xml'); x = open(sm, encoding='utf-8').read()
+    if f'<loc>{BASE}/legal/</loc>' not in x:
+        x = x.replace('</urlset>', f'  <url><loc>{BASE}/legal/</loc></url>\n</urlset>')
+    x = re.sub(r'\s*<lastmod>[^<]*</lastmod>', '', x)
+    x = x.replace('O CMS deve acrescentar <lastmod> quando o conteúdo mudar de verdade.', '<lastmod> = última mudança real do conteúdo (datas.json).')
+    def _lm(m):
+        u = m.group(1)[len(BASE):]
+        return m.group(0) + (f'<lastmod>{DATAS[u]["alterado"]}</lastmod>' if u in DATAS else '')
+    x = re.sub(r'<loc>([^<]+)</loc>', _lm, x)
+    open(sm, 'w', encoding='utf-8').write(x)
+    urls = re.findall(r'<loc>([^<]+)</loc>', x)
+
+    # 2. llms-full.txt: o texto completo das páginas públicas, na ordem do sitemap
+    partes = [open(os.path.join(OUT, 'llms.txt'), encoding='utf-8').read().split('\n## ')[0].strip(), '']
+    for full in urls:
+        u = full[len(BASE):]
+        f = os.path.join(OUT, out_path(u))
+        if not os.path.exists(f):
+            continue
+        t = open(f, encoding='utf-8').read()
+        titulo = html.unescape(re.search(r'<title>(.*?)</title>', t).group(1))
+        partes.append(f'---\n\nFonte: {full}\nTítulo: {titulo}\nAtualizado em: {DATAS.get(u, {}).get("alterado", HOJE)}\n\n{_texto_da_pagina(t)}\n')
+    open(os.path.join(OUT, 'llms-full.txt'), 'w', encoding='utf-8').write('\n'.join(partes))
+    llms = os.path.join(OUT, 'llms.txt'); lt = open(llms, encoding='utf-8').read()
+    if 'llms-full.txt' not in lt:
+        lt = lt.rstrip() + f'\n\n## Texto completo\n\n- [llms-full.txt]({BASE}/llms-full.txt): o texto de todas as páginas públicas em um só arquivo.\n'
+        open(llms, 'w', encoding='utf-8').write(lt)
+
+    # 3. security.txt (RFC 9116), válido por um ano a partir da publicação
+    exp = _dt.now(_Z('America/Sao_Paulo')).replace(microsecond=0)
+    exp = exp.replace(year=exp.year + 1).isoformat()
+    os.makedirs(os.path.join(OUT, '.well-known'), exist_ok=True)
+    sec = (f'Contact: mailto:{EMAIL}\nExpires: {exp}\nPreferred-Languages: pt, en\n'
+           f'Canonical: {BASE}/.well-known/security.txt\n')
+    open(os.path.join(OUT, '.well-known', 'security.txt'), 'w', encoding='utf-8').write(sec)
+
+    # 4. IndexNow: arquivo de chave na raiz (o envio é feito pelo GitHub Actions, ver README)
+    chave = open(os.path.join(HERE, 'indexnow.key')).read().strip()
+    open(os.path.join(OUT, chave + '.txt'), 'w').write(chave)
+
+    # 5. RSS do blog, só com artigo publicado
+    if BLOG_ON:
+        from email.utils import format_datetime as _fd
+        itens = ''
+        for p in POSTS:
+            if p['status'] == 'exemplo':
+                continue
+            u = f"{BASE}/blog/{p['slug']}/"
+            data = f"<pubDate>{_fd(_dt.combine(p['data'], _dt.min.time(), tzinfo=_Z('America/Sao_Paulo')))}</pubDate>" if p['data'] else ''
+            itens += f"<item><title>{html.escape(p['titulo'])}</title><link>{u}</link><guid>{u}</guid>{data}<description>{html.escape(p['resumo'])}</description></item>"
+        if itens:
+            os.makedirs(os.path.join(OUT, 'blog'), exist_ok=True)
+            open(os.path.join(OUT, 'blog', 'feed.xml'), 'w', encoding='utf-8').write(
+                f'<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel><title>Blog HypeApp</title><link>{BASE}/blog/</link>'
+                f'<description>Conteúdo para creators, marcas e agências.</description><language>pt-BR</language>{itens}</channel></rss>')
+
 def main():
     if os.path.exists(OUT):
         shutil.rmtree(OUT)
@@ -1440,6 +1632,7 @@ def main():
             urls = ['/blog/'] + ['/blog/' + _p['slug'] + '/' for _p in POSTS]
             x = x.replace('</urlset>', ''.join(f'  <url><loc>{BASE}{u}</loc></url>\n' for u in urls) + '</urlset>')
             open(sm, 'w', encoding='utf-8').write(x)
+        arquivos_tecnicos(OUT)
         open(os.path.join(OUT, '_redirects'), 'w').write(REDIRECTS)
         open(os.path.join(OUT, '_headers'), 'w').write(HEADERS)
     if not WEB:  # simulador de iPhone (só na prévia)

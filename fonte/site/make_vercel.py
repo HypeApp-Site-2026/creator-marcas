@@ -69,6 +69,24 @@ def headers():
             cur['headers'].append({'key': k.strip(), 'value': v.strip()})
     return out
 
+INDEXNOW_YML = r"""name: Avisar buscadores (IndexNow)
+# Envia as URLs do sitemap ao IndexNow (Bing, Yandex, Seznam, Naver e outros).
+# Rode manualmente depois de publicar mudanças: Actions > Avisar buscadores (IndexNow) > Run workflow.
+on:
+  workflow_dispatch:
+jobs:
+  indexnow:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Enviar URLs do sitemap
+        run: |
+          KEY=$(ls | grep -E '^[0-9a-f]{32}\.txt$' | head -1 | sed 's/\.txt$//')
+          URLS=$(grep -o '<loc>[^<]*</loc>' sitemap.xml | sed -e 's#<loc>##' -e 's#</loc>##' | python3 -c "import sys,json;print(json.dumps([l.strip() for l in sys.stdin if l.strip()]))")
+          BODY="{\"host\":\"www.hypeapp.com.br\",\"key\":\"$KEY\",\"keyLocation\":\"https://www.hypeapp.com.br/$KEY.txt\",\"urlList\":$URLS}"
+          curl -sS -X POST https://api.indexnow.org/indexnow -H 'Content-Type: application/json; charset=utf-8' -d "$BODY" -w '\nHTTP %{http_code}\n'
+"""
+
 def main():
     assert os.path.exists(os.path.join(DIST, 'index.html')), 'rode antes: python3 build.py --web'
     # Nunca publica com texto pendente entre colchetes (placeholder) ou aviso de rascunho
@@ -111,7 +129,10 @@ def main():
         'headers': headers(),
     }
     json.dump(cfg, open(os.path.join(OUT, 'vercel.json'), 'w', encoding='utf-8'), ensure_ascii=False, indent=2)
-    open(os.path.join(OUT, '.vercelignore'), 'w').write('fonte\nREADME.md\n')
+    open(os.path.join(OUT, '.vercelignore'), 'w').write('fonte\nREADME.md\n.github\n')
+    # IndexNow: envio manual pelo GitHub (Actions → Avisar buscadores → Run workflow), depois que o site estiver no ar
+    wf = os.path.join(OUT, '.github', 'workflows'); os.makedirs(wf, exist_ok=True)
+    open(os.path.join(wf, 'indexnow.yml'), 'w', encoding='utf-8').write(INDEXNOW_YML)
     open(os.path.join(OUT, '.gitignore'), 'w').write('.vercel\n.env\n.env.*\nfonte/site/dist/\nfonte/site/dist-web/\n__pycache__/\n.DS_Store\n')
     # código-fonte
     fonte = os.path.join(OUT, 'fonte')

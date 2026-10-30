@@ -1,0 +1,4 @@
+Contact: mailto:contato@vocenohype.com.br
+Expires: 2027-10-30T18:44:23-03:00
+Preferred-Languages: pt, en
+Canonical: https://www.hypeapp.com.br/.well-known/security.txt

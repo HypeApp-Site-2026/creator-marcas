@@ -73,3 +73,24 @@ Mapeamento:
 ### Suporte
 
 `api/contato.js` recebe o formulário de `/suporte/` e envia para contato@vocenohype.com.br pelo Resend (`RESEND_API_KEY`). Se a chave não estiver configurada, o site mostra "Não foi possível enviar" com o e-mail de contato.
+
+## SEO, IAs e buscadores
+
+Gerados a cada `build.py --web`:
+- **`sitemap.xml`:** com `<lastmod>`. A data muda só quando o conteúdo da página muda, conforme o registro em `fonte/site/datas.json`.
+- **`llms.txt` e `llms-full.txt`:** o texto completo das páginas públicas, sem as telas de demonstração.
+- **`/.well-known/security.txt`:** contato para avisos de segurança. Vale por um ano a partir de cada publicação.
+- **Dados estruturados (JSON-LD):**
+  - Organization com razão social, CNPJ, endereço e contatos;
+  - WebSite;
+  - MobileApplication com os links das lojas;
+  - Service (self-service e gerenciada) em /marcas/;
+  - FAQPage em /perguntas-frequentes/;
+  - datePublished e dateModified em todas as páginas. Nos documentos legais vale a data escrita no próprio texto.
+- **E-mails:** as páginas saem com `<!--email_off-->`, para o Cloudflare não esconder os endereços.
+- **IndexNow:**
+  - a chave fica na raiz, em `<chave>.txt`;
+  - para avisar os buscadores, vá no GitHub em **Actions → Avisar buscadores (IndexNow) → Run workflow**;
+  - rode só com o site novo no ar.
+- **Blog:** o feed RSS (`/blog/feed.xml`) aparece quando houver artigo publicado.
+- **Trava de publicação:** `make_vercel.py` se recusa a montar a versão de produção se houver texto entre colchetes ou aviso de rascunho.
