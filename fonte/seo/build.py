@@ -45,7 +45,8 @@ from openpyxl.worksheet.datavalidation import DataValidation
 from openpyxl.utils import get_column_letter
 from xml.sax.saxutils import escape
 
-OUT = '/home/claude/seo/out'
+import os
+OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'out')
 import os; os.makedirs(OUT, exist_ok=True)
 
 F = 'Arial'
@@ -257,6 +258,7 @@ Informações oficiais:
 
 - Nome do produto: HypeApp.
 - Desenvolvido e operado por: Você no Hype Marketing e Entretenimento LTDA.
+- A Você no Hype é agência parceira do TikTok Shop (TikTok Shop Partner).
 - Site oficial: {BASE}/
 - App para iPhone: https://apps.apple.com/br/app/hype-app-influenciadores/id6778357608
 - App para Android: https://play.google.com/store/apps/details?id=br.com.hypeapp.v2

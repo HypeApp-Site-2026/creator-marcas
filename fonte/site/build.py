@@ -123,6 +123,9 @@ CURSOR_HOT = {
     'bo-E1': (36, 62.6), 'bo-E2': (47.9, 92.9), 'bo-I3': (45.7, 92.9),
     'bo-F1': (79.7, 15), 'bo-G1': (27.1, 57.5), 'bo-G2': (86.9, 53.9),
     'bo-I1': (88.9, 83.3), 'bo-B3': (61.1, 84), 'bo-B5': (45.7, 52.3),
+    # telas do painel de novembro/2026 (pacote hypeapp-backoffice-marcas)
+    'bo-n01': (45.1, 79.9), 'bo-n02': (33.9, 51), 'bo-n03a': (32.1, 35.9), 'bo-n03b': (30.7, 88),
+    'bo-n04': (58.2, 46.8), 'bo-n05': (67.6, 94), 'bo-n06': (57, 50.8), 'bo-n07': (20.9, 58.3),
 }
 CURSOR_SVG = ('<svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path d="M5 3l14 8.2-6.1 1.4-2.9 5.9z" '
               'fill="#050505" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/></svg>')
@@ -134,7 +137,7 @@ def showcase(A, sid, kind, tag, title, lead, items, flip=False, note='Dados de e
         on = i == 0
         btns += (f'<li><button type="button" class="sc-item" data-i="{i}" aria-pressed="{"true" if on else "false"}" aria-controls="{sid}-tela">'
                  f'<span class="sc-bar" aria-hidden="true"><i></i></span><b>{t}</b><span>{d}</span></button></li>')
-        w, h = (600, 1298) if kind == 'phone' else (1400, 875)
+        w, h = (600, 1298) if kind == 'phone' else (1600, 771)
         hp = CURSOR_HOT.get(code) if kind == 'web' else None
         imgs += (f'<img src="{tela(A, code)}" alt="Tela do {"app" if kind == "phone" else "painel"}: {t}" width="{w}" height="{h}" data-i="{i}"'
                  + (f' data-hot="{hp[0]},{hp[1]}"' if hp else '') + ''
@@ -355,17 +358,26 @@ def motion_stack(L, third='comunidade'):
   <div class="stk-stage"><div class="stk-deck">{cards}</div></div>
 </section>'''
 
-def motion_painel():
+def motion_painel(A):
     I = {'camp': 'M3 11v2a1 1 0 0 0 1 1h2l5 4V6L6 10H4a1 1 0 0 0-1 1zM15 9a4 4 0 0 1 0 6',
          'cre': 'M16 20v-1a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v1M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8M22 20v-1a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8',
          'apr': 'M20 6 9 17l-5-5', 'res': 'M4 20V10M10 20V4M16 20v-8M22 20H2', 'fin': 'M3 7h18v12H3zM3 11h18M7 15h3',
-         'eq': 'M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8M4 21v-1a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v1'}
-    side_items = [('camp', 'Campanhas', None), ('cre', 'Creators', 0), ('apr', 'Aprovações', 1), ('res', 'Resultados', 2), ('fin', 'Financeiro', 3), ('eq', 'Equipe', None)]
-    side = ''.join(f'<button type="button" class="bo-nav"{" data-scene=\"%d\"" % s if s is not None else " disabled"} tabindex="-1">{ico(I[k], 18, 1.8)}{n}</button>' for k, n, s in side_items)
-    crs = [('SK', 'Skincare', '@bianca.alves', '84,2 mil seguidores · Instagram', ''), ('BE', 'Beleza', '@dudalima', '31,4 mil seguidores · Instagram', 'alt'),
-           ('SK', 'Skincare', '@rafacosta', '22,1 mil seguidores · TikTok', ''), ('BE', 'Beleza', '@ninarocha', '58 mil seguidores · Instagram', 'alt')]
-    cr = ''.join(f'<div class="bo-cr r{i + 1}"><div class="ph-img {a}"><em>{n}</em>{ini}</div><div class="info"><b>{h}</b><i>{inf}</i></div><span class="add">Adicionar à lista</span></div>' for i, (ini, n, h, inf, a) in enumerate(crs))
-    kp = [('Alcance', 'alc', '1,2 mi', 'dark'), ('Visualizações', 'vis', '482.000', ''), ('Engajamento', 'eng', '4,8%', ''), ('Publicações', 'pub', '18', '')]
+         'eq': 'M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8M4 21v-1a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v1',
+         'ini': 'M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z', 'live': 'M3 7h12v10H3zM15 10l6-3v10l-6-3'}
+    # Menu do painel de novembro/2026: seções Workspace, Gestão de campanhas e Financeiro (sem Holds e sem Administração)
+    side_items = [('Workspace', [('ini', 'Início', 2, '')]),
+                  ('Gestão de campanhas', [('camp', 'Campanhas', 1, '1'), ('cre', 'Criadores', 0, ''), ('live', 'Lives', None, '')]),
+                  ('Financeiro', [('fin', 'Financeiro', 3, '')])]
+    side = ''.join(f'<span class="bo-sec">{sec}</span>' + ''.join(
+        f'<button type="button" class="bo-nav"{" data-scene=\"%d\"" % s if s is not None else " disabled"} tabindex="-1">{ico(I[k], 16, 1.8)}{n}{f"<em>{badge}</em>" if badge else ""}</button>'
+        for k, n, s, badge in its) for sec, its in side_items)
+    crs = [('BA', 'Skincare', '@bianca.alves', 'Instagram|84,2 mil|4,1% eng.', ''), ('DL', 'Beleza', '@dudalima', 'Instagram|31,4 mil|3,6% eng.', 'alt'),
+           ('RC', 'Skincare', '@rafacosta', 'TikTok|22,1 mil|6,8% eng.', ''), ('NR', 'Beleza', '@ninarocha', 'Instagram|58 mil|2,9% eng.', 'alt')]
+    cr = ''.join(f'<div class="bo-cr r{i + 1}"><div class="hd"><span class="av {a}">{ini}</span><span class="nm"><b>{h}</b><i>1 rede social</i></span></div>'
+                 f'<span class="tg">{n}</span><div class="net"><span><b>{inf.split("|")[0]}</b><i>{h}</i></span><span class="nu"><b>{inf.split("|")[1]}</b><i>{inf.split("|")[2]}</i></span></div>'
+                 f'<div class="ac"><span class="vp">Ver perfil</span><span class="add">Convidar</span><span class="fav">{ico("M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z", 14, 1.8)}</span></div></div>'
+                 for i, (ini, n, h, inf, a) in enumerate(crs))
+    kp = [('Alcance estimado', 'alc', '1,2 mi', 'dark'), ('Influenciadores ativos', 'vis', '12', ''), ('Engajamento médio', 'eng', '4,8%', ''), ('Conteúdos publicados', 'pub', '18', '')]
     kps = ''.join(f'<div class="bo-kpi {c} r{i + 1}"><span style="font-size:14px">{l}</span><b data-kpi="{k}">{v}</b></div>' for i, (l, k, v, c) in enumerate(kp))
     vals = [96, 128, 140, 162, 188, 176, 214, 240]
     bars = ''.join(f'<div>{v}<i class="bar{" hi" if i == 7 else ""}" style="height:{round(v / 240 * 180)}px;animation-delay:{0.3 + i * 0.06:.2f}s"></i></div>' for i, v in enumerate(vals))
@@ -380,16 +392,16 @@ def motion_painel():
  <div class="bo-win">
   <div class="bo-bar"><i></i><i></i><i></i>{PAINEL_URL.replace("<span>", "<span class=\"bo-url\">")}</div>
   <div class="bo-body">
-   <aside class="bo-side"><span class="lg"><span>h</span>hypeapp</span>{side}<span class="bo-ws"><span class="av">CL</span><span style="display:flex;flex-direction:column"><b style="font-size:14px">Casa Lume</b><span style="font-size:12.5px">Workspace</span></span></span></aside>
+   <aside class="bo-side"><img class="lg" src="{A('assets/logo-hypeapp-branco.svg')}" alt="" width="92" height="50"><span class="bo-wsel"><span class="av">CL</span><span class="tx"><b>Casa Lume</b><i>Membro</i></span>{ico(I_DOWN, 14)}</span>{side}<span class="bo-ws"><span class="av">AS</span><span class="tx"><b>Ana Souza</b><i>Membro</i></span>{ico('M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4M10 17l5-5-5-5M15 12H3', 14, 1.8)}</span></aside>
    <section class="bo-main">
     <div class="bo-scene">
-      <div class="bo-top"><span class="bo-h">Encontrar creators</span><span class="bo-pill">Lista: Verão Glow · <span id="bo-count">9 creators</span></span></div>
+      <div class="bo-top"><span class="bo-h">Criadores</span><span class="bo-pill">Convidados para Verão Glow · <span id="bo-count">9 creators</span></span></div>
       <div style="display:flex;gap:8px"><span class="bo-search">{ico(I_SEARCH, 18)}<span id="bo-typed">skincare</span><span class="bo-caret"></span></span><span class="bo-round">{ico('M3 5h18l-7 8v6l-4 2v-8z', 20)}</span></div>
       <div class="bo-chips"><span class="on">Instagram</span><span>TikTok</span><span class="on">Beleza</span><span>10 mil a 100 mil</span></div>
       <div class="bo-grid4">{cr}</div>
     </div>
     <div class="bo-scene" hidden>
-      <div class="bo-top"><span class="bo-h">Aprovações</span><div class="bo-seg"><span class="on">Conteúdos</span><span>Roteiros</span></div></div>
+      <div class="bo-top"><span class="bo-h">Gerenciamento · Verão Glow</span><div class="bo-seg"><span class="on">Conteúdos</span><span>Roteiros</span></div></div>
       <div style="display:flex;gap:18px">
         <div class="bo-video r1"><div><span>{ico('M8 5v14l11-7z', 24, fill=True)}</span></div></div>
         <div class="bo-panel r2">
@@ -401,14 +413,14 @@ def motion_painel():
       </div>
     </div>
     <div class="bo-scene" hidden>
-      <div class="bo-top"><span class="bo-h">Resultados · Verão Glow</span><span class="bo-pill" style="height:40px">Últimos 30 dias</span></div>
+      <div class="bo-top"><span class="bo-h">Métricas no workspace</span><span class="bo-pill" style="height:40px">Campanhas</span></div>
       <div class="bo-grid4">{kps}</div>
       <div class="bo-chart r3"><span style="display:flex;justify-content:space-between;font-size:16px;font-weight:600"><span>Alcance por semana</span><span style="font-size:14px;font-weight:500">mil pessoas</span></span><div class="bo-bars">{bars}</div><div class="bo-lbls">{lbls}</div></div>
     </div>
     <div class="bo-scene" hidden>
       <span class="bo-h">Financeiro</span>
       <div style="display:flex;gap:14px">
-        <div class="bo-fin dark r1"><span style="font-size:14px">Saldo da campanha</span><b id="bo-saldo">R$ 10.400</b><span style="font-size:14px;padding-top:6px">Reservado para pagamentos de creators</span></div>
+        <div class="bo-fin dark r1"><span style="font-size:14px">Saldo disponível</span><b id="bo-saldo">R$ 10.400</b><span style="font-size:14px;padding-top:6px">Reservado para pagamentos de creators</span></div>
         <div class="bo-fin r2"><span style="font-size:14px">Pagamentos liberados</span><b id="bo-pagos">R$ 2.000</b><span style="font-size:14px;padding-top:6px">de 12 creators</span></div>
       </div>
       <div class="bo-pays r3">{py}</div>
@@ -452,11 +464,14 @@ TELA_ALT = {
     'bo-C1': 'Tela do painel das marcas: dashboard com pendências e métricas',
     'bo-C2': 'Tela do painel das marcas: lista de campanhas',
     'bo-E1': 'Tela do painel das marcas: catálogo de creators',
+    'bo-n01': 'Tela do painel das marcas: início com tarefas e aprovações por campanha e métricas do workspace',
+    'bo-n02': 'Tela do painel das marcas: lista de campanhas com progresso de publicação',
+    'bo-n04': 'Tela do painel das marcas: catálogo de creators com as redes de cada um',
     'app-D1': 'Tela do app para creators: descobrir campanhas',
     'app-E4': 'Tela do app para creators: campanha em andamento com ganho, data de publicação e entregas',
     'app-G2': 'Tela do app para creators: carteira com saldo',
 }
-HERO_MON_TELAS = ['bo-C2', 'bo-E1', 'bo-C1']
+HERO_MON_TELAS = ['bo-n02', 'bo-n04', 'bo-n01']
 HERO_PH_TELAS = ['app-D1', 'app-E4', 'app-G2']
 
 HERO_SRCSET = lambda A: ', '.join(f"{A('assets/hero/' + f)} {w}w" for f, w in (('hero-base-768.webp', 768), ('hero-base-1024.webp', 1024), ('hero-base.webp', 1536)))
@@ -465,7 +480,7 @@ HERO_SIZES = '(max-width: 900px) calc(100vw - 32px), 50vw'
 def hero_scene(A):
     """Ilustração animada da hero. Arquivos: assets/hero/hero-base.webp e hero-textos.webp; estilos no fim do site.css.
     Ciclo de 15,5 s: a ilustração com os textos animados e, depois, três telas reais no monitor e no celular."""
-    mon = ''.join(f'<img src="{tela(A, c)}" alt="{TELA_ALT[c]}" width="1400" height="875" loading="lazy" decoding="async">' for c in HERO_MON_TELAS)
+    mon = ''.join(f'<img src="{tela(A, c)}" alt="{TELA_ALT[c]}" width="1600" height="771" loading="lazy" decoding="async">' for c in HERO_MON_TELAS)
     ph = ''.join(f'<img src="{tela(A, c)}" alt="{TELA_ALT[c]}" width="600" height="1298" loading="lazy" decoding="async">' for c in HERO_PH_TELAS)
     clip = 'polygon(' + ','.join(f'{x}px {y}px' for x, y in HERO_PH_CLIP) + ')'
     return f'''<div class="hero-art">
@@ -627,6 +642,18 @@ def gestao_carreira(L, A):
   </figure>
 </section>'''
 
+def tiktok_shop(L, A, onde):
+    """Selo de agência parceira do TikTok Shop (logo oficial, sem alteração, sempre sobre fundo branco)."""
+    textos = {
+        'home': ('Agência parceira do TikTok Shop', 'A Você no Hype, que desenvolve o HypeApp, é agência parceira do TikTok Shop. Se a sua marca vende ou quer vender no TikTok Shop, fale com nosso time.'),
+        'marcas': ('Vende no TikTok Shop?', 'A Você no Hype é agência parceira do TikTok Shop. Conte para o nosso time como a sua marca usa a plataforma e montamos a proposta com creators.'),
+        'sobre': ('Parcerias', 'A Você no Hype, que desenvolve e opera o HypeApp, é agência parceira do TikTok Shop.'),
+    }
+    t, d = textos[onde]
+    cta = '' if onde == 'sobre' else f'<a class="btn btn-ink" href="{L("/contato/marcas/")}">Falar com nosso time</a>'
+    return (f'<section class="tts" aria-labelledby="tts-{onde}"><img src="{A("assets/parceiros/tiktok-shop-partner.webp")}" alt="TikTok Shop Partner" width="280" height="79" loading="lazy" decoding="async">'
+            f'<div class="stack" style="gap:6px;flex:1 1 320px"><h2 id="tts-{onde}" class="h4">{t}</h2><p style="margin:0;font-size:16px">{d}</p></div>{cta}</section>')
+
 def p_home(L, A):
     steps_c = [('Crie sua conta no app', 'Baixe o HypeApp, crie seu perfil e conecte Instagram, TikTok ou YouTube.'),
                ('Inscreva-se pelo mural', 'Encontre no mural as campanhas do seu nicho e se inscreva, ou responda aos convites das marcas.'),
@@ -655,6 +682,8 @@ def p_home(L, A):
   </div>
   {hero_scene(A)}
 </section>
+
+{tiktok_shop(L, A, 'home')}
 
 <section class="stack-lg cf-sec" aria-labelledby="como-t" data-tabs>
   <div class="cf-head">
@@ -824,31 +853,22 @@ def p_marcas(L, A):
     <div class="row" style="justify-content:center"><a class="btn btn-cta" href="{L('/contato/marcas/')}">Falar com nosso time</a><a class="btn btn-soft" href="#modalidades">Ver as duas formas de trabalhar</a></div>
     <span class="small">Valores sob consulta, conforme escopo e volume.</span>
   </div>
-  {motion_painel()}
+  {motion_painel(A)}
 </section>
 
 <div class="sc-intro stack" id="funcionalidades" style="gap:10px"><h2 class="h2">Funcionalidades do painel</h2><p class="body" style="max-width:620px">Da criação da campanha ao pagamento dos creators. Clique em cada item para ver a tela.</p></div>
-{showcase(A, 'sc-painel', 'web', 'Painel', 'Tudo o que pede atenção, logo na entrada', 'Pendências do dia, métricas do workspace e o resumo de cada campanha.', [
-  ('bo-C1', 'Dashboard', 'Tarefas e aprovações pendentes, alcance e engajamento.'),
-  ('bo-C2', 'Campanhas', 'Todas as campanhas em cartões, com filtros por situação.')])}
-{showcase(A, 'sc-criar', 'web', 'Nova campanha', 'Crie uma campanha em quatro passos', 'Um assistente guia o briefing, os creators, o pagamento e as fases, com prévia ao vivo de como o creator vai ver.', [
-  ('bo-C3', '1. Campanha', 'Briefing, materiais e prévia ao vivo no app.'),
-  ('bo-C4', '2. Creators', 'Quantos creators e com quais critérios.'),
-  ('bo-C5', '3. Pagamento', 'Formato de remuneração e valores.'),
-  ('bo-C6', '4. Fases', 'Entregas, datas e regras de cada fase.')], flip=True)}
-{showcase(A, 'sc-acompanhar', 'web', 'Acompanhamento', 'Cada etapa da campanha à vista', 'Progresso, quadro por etapa, contratos e resultados de cada campanha publicada.', [
-  ('bo-D1', 'Visão geral', 'Progresso, etapas e o que precisa da sua ação.'),
-  ('bo-D2', 'Gerenciamento', 'Quadro por etapa, com chat e revisão de conteúdo.'),
-  ('bo-D4', 'Contratos', 'Envio e acompanhamento das assinaturas.'),
-  ('bo-D6', 'Métricas e conteúdos', 'Alcance, desempenho e conteúdos publicados.')])}
-{showcase(A, 'sc-criadores', 'web', 'Creators', 'Encontre e convide os creators certos', 'Catálogo com filtros, perfil público com métricas por rede e uma página de convite para o creator responder.', [
-  ('bo-E1', 'Catálogo de creators', 'Filtros por rede, nicho, estado e seguidores.'),
-  ('bo-E2', 'Perfil do creator', 'Métricas por rede e botão para convidar.'),
-  ('bo-I3', 'Convite da campanha', 'A página que o creator recebe para aceitar ou recusar.')], flip=True)}
-{showcase(A, 'sc-financeiro', 'web', 'Lives e financeiro', 'Lives e pagamentos no mesmo painel', 'Agende transmissões e acompanhe o saldo, as reservas e o extrato de cada campanha.', [
-  ('bo-F1', 'Lives', 'Agendar, transmitir e ver as gravações.'),
-  ('bo-G1', 'Financeiro', 'Saldo, reservas, extrato e consumo por campanha.'),
-  ('bo-G2', 'Reservas de pagamento', 'Valor reservado para cada participação até a liberação.')])}
+{showcase(A, 'sc-painel', 'web', 'Painel', 'Tudo o que pede atenção, logo na entrada', 'Pendências agrupadas por campanha, métricas do workspace e a lista de campanhas.', [
+  ('bo-n01', 'Início', 'Tarefas e aprovações de cada campanha, com o botão Revisar, e as métricas do workspace.'),
+  ('bo-n02', 'Campanhas', 'Cartões com capa, status, progresso de publicação, alcance e pendências.')])}
+{showcase(A, 'sc-acompanhar', 'web', 'Acompanhamento', 'Cada etapa da campanha à vista', 'Progresso da seleção ao pagamento, indicadores e o que precisa da sua ação.', [
+  ('bo-n03a', 'Visão geral', 'Arte da campanha, progresso geral, etapas e o botão Verificar publicações.'),
+  ('bo-n03b', 'Precisa da sua ação', 'Inscrições novas para triar e tudo o que aguarda a sua decisão.')], flip=True)}
+{showcase(A, 'sc-criadores', 'web', 'Creators', 'Encontre e convide os creators certos', 'Catálogo com as redes de cada creator e um perfil completo antes de convidar.', [
+  ('bo-n04', 'Catálogo de creators', 'Cada rede com @, seguidores e engajamento. Ver perfil, Convidar e Favoritar.'),
+  ('bo-n05', 'Perfil do creator', 'Redes, nichos, bio, campanhas no HypeApp e índice de confiança.')])}
+{showcase(A, 'sc-financeiro', 'web', 'Lives e financeiro', 'Lives e pagamentos no mesmo painel', 'Transmita ao vivo e acompanhe o saldo, o valor reservado e as movimentações.', [
+  ('bo-n06', 'Lives', 'Ao vivo, agendadas, anteriores e canceladas. Agende ou transmita agora.'),
+  ('bo-n07', 'Financeiro', 'Saldo disponível, valor reservado, depósitos e pagamentos aos creators.')], flip=True)}
 
 <section id="modalidades" class="stack-lg" aria-labelledby="mod-t">
   <h2 id="mod-t" class="h2">Duas formas de trabalhar</h2>
@@ -864,15 +884,19 @@ def p_marcas(L, A):
   </div>
 </section>
 
+{tiktok_shop(L, A, 'marcas')}
+
 <section class="stack-lg" aria-labelledby="proc-t">
   <h2 id="proc-t" class="h2">Do briefing ao resultado</h2>
   <ol class="steps">{li}</ol>
 </section>
 
-{showcase(A, 'agencias', 'web', 'Para agências', 'Várias marcas, um painel', 'Agências gerenciam as campanhas de cada cliente em espaços separados, com equipe, aprovações e relatórios por marca.', [
-  ('bo-I1', 'Equipe e permissões', 'Marca, empresa, equipe e quem pode fazer o quê.'),
-  ('bo-B3', 'Uma marca por espaço', 'Nome, nicho e descrição de cada cliente.'),
-  ('bo-B5', 'Primeiros passos', 'Atalhos para criar a primeira campanha e convidar a equipe.')], flip=True)}
+<section id="agencias" class="card-mid between" style="align-items:center" aria-labelledby="ag-t">
+  <div class="stack" style="gap:10px;flex:1 1 420px"><span class="tag ink" style="align-self:flex-start">Para agências</span>
+    <h2 id="ag-t" class="h3">Várias marcas, um painel</h2>
+    <p style="font-size:16px;margin:0;max-width:640px">{rev('Agências gerenciam as campanhas de cada cliente em espaços separados. Cada marca tem configurações próprias (marca, empresa e equipe), e a equipe alterna entre as marcas pelo seletor no topo do menu.')}</p></div>
+  <a class="btn btn-cta" href="{L('/contato/marcas/')}">Falar com nosso time</a>
+</section>
 
 <section class="faq-block" aria-labelledby="faq-m">
   <div class="stack"><h2 id="faq-m" class="h2">Dúvidas de marcas</h2><a class="link-strong" href="{L('/perguntas-frequentes/', '#marcas')}">Ver todas as dúvidas de marcas</a></div>
@@ -978,6 +1002,7 @@ def p_sobre(L, A):
   <div class="card stack"><span class="h4">Para marcas e agências</span><p class="small" style="font-size:15px">Um painel na web para encontrar creators, aprovar conteúdos e acompanhar resultados.</p><a class="link-strong" href="{L('/marcas/')}">Para marcas</a></div>
   <div class="card stack" style="background:var(--ink);color:var(--purple-ink)"><span class="h4">Quem opera</span><p class="small" style="font-size:15px">Desenvolvido e operado pela Você no Hype Marketing e Entretenimento LTDA, CNPJ 43.442.408/0001-26. R. Joaquim Floriano, 243, cj. 71, Itaim Bibi, São Paulo/SP, CEP 04534-010.</p></div>
 </section>
+{tiktok_shop(L, A, 'sobre')}
 <section class="band-white split" id="canais" aria-labelledby="canais-t">
   <div class="stack"><h2 id="canais-t" class="h2">Canais oficiais</h2><p class="body">Use só estes endereços. O HypeApp nunca pede senha, código de verificação ou chave PIX por mensagem.</p></div>
   <dl class="req" style="grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr))">
@@ -1659,7 +1684,7 @@ def main():
     if os.path.exists(OUT):
         shutil.rmtree(OUT)
     os.makedirs(os.path.join(OUT, 'assets'))
-    for f in ('site.css', 'site.js', 'logo-hypeapp.svg'):
+    for f in ('site.css', 'site.js', 'logo-hypeapp.svg', 'logo-hypeapp-branco.svg'):
         shutil.copy(os.path.join(HERE, 'assets', f), os.path.join(OUT, 'assets', f))
     if WEB:  # produção: CSS e JS minificados (pip install rcssmin rjsmin; sem eles, copia como está)
         try:
@@ -1674,6 +1699,7 @@ def main():
     shutil.copytree(os.path.join(HERE, 'assets', 'como-funciona'), os.path.join(OUT, 'assets', 'como-funciona'))
     shutil.copytree(os.path.join(HERE, 'assets', 'carreira'), os.path.join(OUT, 'assets', 'carreira'))
     shutil.copytree(os.path.join(HERE, 'assets', 'menu'), os.path.join(OUT, 'assets', 'menu'))
+    shutil.copytree(os.path.join(HERE, 'assets', 'parceiros'), os.path.join(OUT, 'assets', 'parceiros'))
     os.makedirs(os.path.join(OUT, 'assets', 'blog'))
     for _p in POSTS:
         shutil.copy(os.path.join(HERE, 'assets', 'blog', _p['capa']), os.path.join(OUT, 'assets', 'blog', _p['capa']))

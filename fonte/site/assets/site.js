@@ -801,12 +801,12 @@
       typedEl.textContent = s === 0 ? q.slice(0, Math.min(q.length, Math.floor(k / 4))) : q;
       var added = s === 0 ? [46, 62, 78].filter(function (a) { return k >= a; }).length : 0;
       listEl.textContent = (9 + added) + ' creators';
-      adds.forEach(function (a, i) { var on = i < added; a.classList.toggle('on', on); a.textContent = on ? 'Na lista' : 'Adicionar \u00e0 lista'; });
+      adds.forEach(function (a, i) { var on = i < added; a.classList.toggle('on', on); a.textContent = on ? 'Convidado' : 'Convidar'; });
       var pk = s === 2 ? easeOut((k - 8) / 40) : 1;
       kpiEls.forEach(function (e) {
         var kind = e.getAttribute('data-kpi');
         if (kind === 'alc') e.textContent = (1.2 * pk).toFixed(1).replace('.', ',') + ' mi';
-        if (kind === 'vis') e.textContent = fmtInt(482000 * pk);
+        if (kind === 'vis') e.textContent = String(Math.round(12 * pk));
         if (kind === 'eng') e.textContent = (4.8 * pk).toFixed(1).replace('.', ',') + '%';
         if (kind === 'pub') e.textContent = String(Math.round(18 * pk));
       });

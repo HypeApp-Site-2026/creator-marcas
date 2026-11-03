@@ -6,6 +6,7 @@ Informações oficiais:
 
 - Nome do produto: HypeApp.
 - Desenvolvido e operado por: Você no Hype Marketing e Entretenimento LTDA.
+- A Você no Hype é agência parceira do TikTok Shop (TikTok Shop Partner).
 - Site oficial: https://www.hypeapp.com.br/
 - App para iPhone: https://apps.apple.com/br/app/hype-app-influenciadores/id6778357608
 - App para Android: https://play.google.com/store/apps/details?id=br.com.hypeapp.v2
@@ -25,6 +26,10 @@ Atualizado em: 2026-11-03
 # O app de quem cria conteúdo. O painel de quem contrata.
 
 O app de gestão de carreira para creators e a plataforma de gestão de campanhas para marcas.
+
+## Agência parceira do TikTok Shop
+
+A Você no Hype, que desenvolve o HypeApp, é agência parceira do TikTok Shop. Se a sua marca vende ou quer vender no TikTok Shop, fale com nosso time.
 
 ## Como funciona
 
@@ -230,23 +235,19 @@ Da criação da campanha ao pagamento dos creators. Clique em cada item para ver
 
 ## Tudo o que pede atenção, logo na entrada
 
-Pendências do dia, métricas do workspace e o resumo de cada campanha.
-
-## Crie uma campanha em quatro passos
-
-Um assistente guia o briefing, os creators, o pagamento e as fases, com prévia ao vivo de como o creator vai ver.
+Pendências agrupadas por campanha, métricas do workspace e a lista de campanhas.
 
 ## Cada etapa da campanha à vista
 
-Progresso, quadro por etapa, contratos e resultados de cada campanha publicada.
+Progresso da seleção ao pagamento, indicadores e o que precisa da sua ação.
 
 ## Encontre e convide os creators certos
 
-Catálogo com filtros, perfil público com métricas por rede e uma página de convite para o creator responder.
+Catálogo com as redes de cada creator e um perfil completo antes de convidar.
 
 ## Lives e pagamentos no mesmo painel
 
-Agende transmissões e acompanhe o saldo, as reservas e o extrato de cada campanha.
+Transmita ao vivo e acompanhe o saldo, o valor reservado e as movimentações.
 
 ## Duas formas de trabalhar
 
@@ -266,6 +267,10 @@ Agende transmissões e acompanhe o saldo, as reservas e o extrato de cada campan
 
 - Relatório de resultados
 
+## Vende no TikTok Shop?
+
+A Você no Hype é agência parceira do TikTok Shop. Conte para o nosso time como a sua marca usa a plataforma e montamos a proposta com creators.
+
 ## Do briefing ao resultado
 
 - 1Mural da campanhaObjetivo, público, formatos, prazos e remuneração, publicados no painel.
@@ -278,7 +283,7 @@ Agende transmissões e acompanhe o saldo, as reservas e o extrato de cada campan
 
 ## Várias marcas, um painel
 
-Agências gerenciam as campanhas de cada cliente em espaços separados, com equipe, aprovações e relatórios por marca.
+Agências gerenciam as campanhas de cada cliente em espaços separados. Cada marca tem configurações próprias (marca, empresa e equipe), e a equipe alterna entre as marcas pelo seletor no topo do menu.
 
 ## Dúvidas de marcas
 
@@ -323,6 +328,10 @@ Um app para iPhone e Android com campanhas, convites, entregas, comunidade e car
 Um painel na web para encontrar creators, aprovar conteúdos e acompanhar resultados.
 
 Desenvolvido e operado pela Você no Hype Marketing e Entretenimento LTDA, CNPJ 43.442.408/0001-26. R. Joaquim Floriano, 243, cj. 71, Itaim Bibi, São Paulo/SP, CEP 04534-010.
+
+## Parcerias
+
+A Você no Hype, que desenvolve e opera o HypeApp, é agência parceira do TikTok Shop.
 
 ## Canais oficiais
 
