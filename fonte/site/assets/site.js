@@ -289,6 +289,15 @@
     });
   });
 
+  /* ---------- Ambiente de teste: faixa de aviso (so em teste.hypeapp.com.br) ---------- */
+  if (/^teste\./.test(location.hostname)) {
+    var tb = document.createElement('div');
+    tb.setAttribute('role', 'note');
+    tb.style.cssText = 'background:#FFD84D;color:#050505;font:600 13px/1.4 system-ui,sans-serif;text-align:center;padding:8px 16px';
+    tb.textContent = 'Ambiente de teste. Envios de formul\u00e1rio chegam ao CRM marcados como TESTE. O site oficial \u00e9 www.hypeapp.com.br.';
+    document.body.insertBefore(tb, document.body.firstChild);
+  }
+
   /* ---------- Origem da visita (UTM, gclid, fbclid), guardada so nesta aba ---------- */
   function attr() {
     try { return JSON.parse(sessionStorage.getItem('hh_origem') || '{}') || {}; } catch (e) { return {}; }

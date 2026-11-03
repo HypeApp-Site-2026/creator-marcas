@@ -39,6 +39,8 @@ def redirects():
 # assets.hypeapp.com.br era um endereço do site antigo (privacidade e termos usados pelo app e pelas lojas).
 # Quando ele chega neste projeto, leva direto à página nova no www.
 ASSETS_HOST = 'assets.hypeapp.com.br'
+# Endereço de teste para a equipe (ramo melhorias-seo): nunca indexado pelos buscadores
+TESTE_HOST = 'teste.hypeapp.com.br'
 def assets_host():
     has = [{'type': 'host', 'value': ASSETS_HOST}]
     www = 'https://www.hypeapp.com.br'
@@ -125,7 +127,8 @@ def main():
         'trailingSlash': True,
         'rewrites': rewrites,
         'redirects': assets_host() + redirects(),
-        'headers': headers(),
+        'headers': headers() + [{'source': '/(.*)', 'has': [{'type': 'host', 'value': TESTE_HOST}],
+                                 'headers': [{'key': 'X-Robots-Tag', 'value': 'noindex, nofollow'}]}],
     }
     json.dump(cfg, open(os.path.join(OUT, 'vercel.json'), 'w', encoding='utf-8'), ensure_ascii=False, indent=2)
     open(os.path.join(OUT, '.vercelignore'), 'w').write('fonte\nREADME.md\n.github\n')

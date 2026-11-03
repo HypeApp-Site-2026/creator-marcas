@@ -220,7 +220,14 @@ async function handler(req, res) {
     return resp(503, false, MSG.temporario);
   }
 
-  const corpo = montaLead(d, new Date(), tipo);
+  const teste = /^teste\./.test(String(req.headers['x-forwarded-host'] || req.headers.host || ''));
+  let corpo = montaLead(d, new Date(), tipo);
+  if (teste) { // enviado pelo endereço de teste da equipe: marca nome e notas
+    const lead = JSON.parse(corpo);
+    lead.name = ('[TESTE] ' + lead.name).slice(0, 200);
+    lead.notes = ('AMBIENTE DE TESTE (teste.hypeapp.com.br): não é um contato real.\n' + lead.notes).slice(0, 5000);
+    corpo = JSON.stringify(lead);
+  }
   const ctrl = new AbortController();
   const timer = setTimeout(() => ctrl.abort(), TIMEOUT_MS);
   let r;
