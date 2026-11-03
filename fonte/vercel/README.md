@@ -93,3 +93,19 @@ Gerados a cada `build.py --web`:
   - rode só com o site novo no ar.
 - **Blog:** o feed RSS (`/blog/feed.xml`) aparece quando houver artigo publicado.
 - **Trava de publicação:** `make_vercel.py` se recusa a montar a versão de produção se houver texto entre colchetes ou aviso de rascunho.
+
+## Validar a indexação antes de publicar
+
+```
+npm i --no-save @vercel/routing-utils
+node fonte/site/tools/valida_indexacao.js .
+```
+
+O script confere, simulando as regras do `vercel.json`:
+- canonical de cada página indexável igual à própria URL;
+- sitemap só com páginas indexáveis, existentes e sem redirecionamento, e nenhuma indexável fora dele;
+- links internos sem quebra e sem passar por redirecionamento;
+- robots.txt com a linha do sitemap e sem bloquear páginas indexáveis;
+- redirecionamentos do domínio, da barra final, de `index.html`, dos endereços antigos, do `assets` e do endereço de teste.
+
+O resultado esperado é "PROBLEMAS (0)".

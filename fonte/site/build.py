@@ -1443,7 +1443,7 @@ def build_page(url, fn, kind):
     m = META.get(url) or POST_META.get(url)
     title, desc = (m['title'], m['desc']) if m else FALLBACK[url]
     robots = 'noindex, nofollow' if CFG['preview'] else (m['robots'] if m else 'noindex, follow')
-    canon = BASE + url if url != '/404' else ''
+    canon = BASE + url if url not in ('/404', '/app') else ''  # /app é página de passagem, sem índice
     main = fn(L, A)
     cls = 'wrap' + (' tight' if kind == 'tight' else '')
     body = header(url, L, A) + f'\n<main class="{cls}" id="conteudo">{main}</main>\n' + footer(L, A)
@@ -1635,6 +1635,7 @@ def arquivos_tecnicos(OUT):
             x = x.replace('</urlset>', f'  <url><loc>{BASE}{_u}</loc></url>\n</urlset>')
     x = re.sub(r'\s*<lastmod>[^<]*</lastmod>', '', x)
     x = x.replace('O CMS deve acrescentar <lastmod> quando o conteúdo mudar de verdade.', '<lastmod> = última mudança real do conteúdo (datas.json).')
+    x = re.sub(r'gerado em \d{2}/\d{2}/\d{4} a partir da matriz de metadados', 'gerado a cada publicação a partir da matriz de metadados', x)
     def _lm(m):
         u = m.group(1)[len(BASE):]
         return m.group(0) + (f'<lastmod>{DATAS[u]["alterado"]}</lastmod>' if u in DATAS else '')
@@ -1731,7 +1732,7 @@ def main():
         shutil.copy(os.path.join(HERE, 'assets', 'telas', f), os.path.join(OUT, 'assets', 'telas', f))
     if WEB:
         seo = os.path.join(HERE, '..', 'seo', 'out')
-        for f in ('robots.txt', 'sitemap.xml', 'llms.txt'):
+        for f in ('robots.txt', 'robots-homologacao.txt', 'sitemap.xml', 'llms.txt'):
             shutil.copy(os.path.join(seo, f), os.path.join(OUT, f))
         if BLOG_ON:  # o blog entra no sitemap só com artigo publicado
             sm = os.path.join(OUT, 'sitemap.xml'); x = open(sm, encoding='utf-8').read()

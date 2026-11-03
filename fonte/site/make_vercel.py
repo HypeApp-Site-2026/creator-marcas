@@ -53,6 +53,15 @@ def assets_host():
     ]
     return [{'source': s, 'has': has, 'destination': www + d, 'permanent': True} for s, d in regras]
 
+def teste_host():
+    # no endereço de teste, robots.txt bloqueia tudo (além do cabeçalho noindex)
+    return [{'source': '/robots.txt', 'has': [{'type': 'host', 'value': TESTE_HOST}], 'destination': '/robots-homologacao.txt', 'permanent': False}]
+
+def sem_index_html():
+    # /marcas/index.html e /index.html abrem a mesma página: leva ao endereço limpo
+    return [{'source': '/index.html', 'destination': '/', 'permanent': True},
+            {'source': '/:path*/index.html', 'destination': '/:path*/', 'permanent': True}]
+
 def headers():
     out, cur = [], None
     for line in open(os.path.join(DIST, '_headers'), encoding='utf-8'):
@@ -126,7 +135,7 @@ def main():
         'framework': None, 'buildCommand': '', 'installCommand': '', 'outputDirectory': '.',
         'trailingSlash': True,
         'rewrites': rewrites,
-        'redirects': assets_host() + redirects(),
+        'redirects': assets_host() + teste_host() + sem_index_html() + redirects(),
         'headers': headers() + [{'source': '/(.*)', 'has': [{'type': 'host', 'value': TESTE_HOST}],
                                  'headers': [{'key': 'X-Robots-Tag', 'value': 'noindex, nofollow'}]}],
     }
