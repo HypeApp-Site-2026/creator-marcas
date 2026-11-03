@@ -508,31 +508,51 @@ Pedidos sobre seus dados pessoais seguem pela política de privacidade. Marcas n
 
 Fonte: https://www.hypeapp.com.br/privacidade/
 Título: Política de privacidade | HypeApp
-Atualizado em: 2026-10-30
+Atualizado em: 2026-11-03
 
 # Política de Privacidade
 
 Quais dados pessoais o HypeApp coleta, como usa, com quem compartilha e como você exerce seus direitos.
 
-Esta política explica quais dados pessoais o HypeApp coleta, como os utilizamos, com quem os compartilhamos e como você pode exercer seus direitos, em conformidade com a LGPD (Lei nº 13.709/2018) e com as diretrizes das lojas de aplicativos.
+Esta política explica quais dados pessoais o HypeApp coleta no app, no painel das marcas e no site, como os usamos, com quem os compartilhamos e como você exerce seus direitos, em conformidade com a Lei Geral de Proteção de Dados Pessoais (LGPD, Lei nº 13.709/2018) e com as regras das lojas de aplicativos e das plataformas conectadas.
 
-Última atualização: 2 de setembro de 2026.
+Versão 2.0 · Última atualização: 3 de novembro de 2026.
 
 ## Resumo rápido
 
-- O HypeApp conecta criadores de conteúdo e influenciadores a marcas e campanhas.
+- O HypeApp conecta creators a marcas e agências em campanhas de marketing de influência. É desenvolvido e operado pela Você no Hype Marketing e Entretenimento LTDA.
 
-- Coletamos apenas os dados necessários para criar sua conta, exibir campanhas compatíveis e processar pagamentos.
+- Coletamos apenas os dados necessários para criar sua conta, exibir campanhas compatíveis, operar as entregas e processar pagamentos.
 
-- Não vendemos seus dados pessoais.
+- As conexões com Instagram, TikTok e YouTube são opcionais e somente de leitura: o HypeApp nunca publica, altera ou exclui nada nas suas redes. Veja Redes sociais conectadas.
 
-- Você pode excluir sua conta e seus dados a qualquer momento — veja a seção 8.
+- Não vendemos nem alugamos seus dados pessoais.
+
+- Você pode excluir sua conta e seus dados a qualquer momento. Veja Seus direitos e exclusão de conta.
 
 ## 1. Quem é o controlador
 
-O HypeApp é o controlador dos seus dados pessoais. Para qualquer assunto relacionado a privacidade, fale com o nosso Encarregado de Proteção de Dados (DPO) pelo e-mail contato@vocenohype.com.br.
+O controlador dos seus dados pessoais é a Você no Hype Marketing e Entretenimento LTDA, que desenvolve e opera o HypeApp.
 
-## 2. Dados que coletamos
+- CNPJ: 43.442.408/0001-26
+
+- Endereço: R. Joaquim Floriano, 243, cj. 71, Itaim Bibi, São Paulo, SP, CEP 04534-010
+
+- E-mail: contato@vocenohype.com.br
+
+## 2. Encarregado de dados (DPO)
+
+Nosso Encarregado pelo Tratamento de Dados Pessoais é Rodrigo César da Silva. Ele atende titulares de dados e a Autoridade Nacional de Proteção de Dados (ANPD) pelo e-mail contato@vocenohype.com.br. Assunto sugerido: "LGPD - Exercício de direitos - seu nome".
+
+## 3. A quem esta política se aplica
+
+- Creators que usam o app HypeApp (iPhone e Android).
+
+- Marcas, agências e suas equipes que usam o painel das marcas na web.
+
+- Visitantes do site www.hypeapp.com.br, incluindo quem envia os formulários de contato com o time comercial ou com o suporte.
+
+## 4. Dados que coletamos
 
 Categoria
 
@@ -540,375 +560,559 @@ Exemplos
 
 Finalidade
 
-Cadastro
+Cadastro do creator
 
-Nome, e-mail, telefone, foto, banner, gênero, data de nascimento, documento (CPF/CNPJ), endereço
+Nome, e-mail, telefone, foto, banner, gênero, data de nascimento, documento (CPF ou CNPJ), endereço, nicho e valores por tipo de conteúdo
 
-Criar e administrar sua conta; verificar identidade; emitir pagamentos e obrigações fiscais
+Criar e administrar sua conta, verificar identidade, indicar campanhas compatíveis e cumprir obrigações fiscais dos pagamentos
 
-Login social
+Login com Google ou Apple
 
-Identificador e e-mail do Google ou Apple (Sign in with Apple)
+Identificador da conta, nome, e-mail e foto de perfil, quando esse tipo de login estiver disponível e você escolher usá-lo
 
-Autenticar você com segurança, sem armazenar sua senha desses provedores
+Autenticar você sem armazenar a senha desses provedores
 
 Redes sociais
 
-Identificadores, dados do canal, vídeos e métricas de Instagram, TikTok e YouTube que você conectar
+Dados de perfil, estatísticas e publicações de Instagram, TikTok e YouTube que você conectar. O detalhe por plataforma está em Redes sociais conectadas.
 
-Exibir seu alcance/engajamento e indicar campanhas compatíveis com seu perfil
+Exibir seu alcance e engajamento, comprovar resultados das campanhas e indicar campanhas compatíveis
 
-Conteúdo
+Campanhas e conteúdo
 
-Fotos, vídeos e textos que você envia para campanhas; itens da câmera/galeria que você escolher
+Inscrições, roteiros, fotos, vídeos e legendas enviados para aprovação, links das publicações, avaliações recebidas e mensagens no chat com a marca
 
-Submeter conteúdo de campanha para aprovação das marcas
+Operar a campanha, permitir a aprovação pela marca e medir os resultados
+
+Carteira e pagamentos
+
+Saldo, reservas de pagamento por participação, histórico de liberações e saques, chave PIX e dados fiscais informados por você
+
+Reservar, liberar e pagar os valores das campanhas e cumprir obrigações legais e fiscais
+
+Indicações e Hype Points
+
+Convite usado no cadastro, quem indicou quem, saldo e histórico de Hype Points e nível
+
+Creditar pontos por indicação e controlar a entrada em grupos. Veja Hype Points.
+
+Comunidade e lives
+
+Publicações, comentários, participação em grupos, mensagens no chat das lives e interações
+
+Operar a comunidade, as lives e os grupos e moderar o conteúdo
 
 Localização
 
-Localização aproximada (apenas quando o app está em uso e mediante sua permissão)
+Localização aproximada, só com o app em uso e mediante sua permissão
 
-Mostrar campanhas próximas a você. É opcional e pode ser negada.
+Mostrar campanhas próximas. É opcional e pode ser negada.
 
 Uso e dispositivo
 
-Modelo do aparelho, sistema, identificadores de instalação, registros de uso, token de notificação push
+Modelo do aparelho, sistema, identificadores de instalação, registros de uso, relatórios de falhas e token de notificação
 
-Enviar notificações, garantir segurança, corrigir falhas e melhorar o app
+Enviar notificações, garantir a segurança, corrigir falhas e melhorar o app
 
-Identificadores para rastreamento
+Identificador de publicidade
 
-Identificador de publicidade (IDFA), apenas se você autorizar na solicitação do iOS (ATT)
+IDFA, apenas se você autorizar na solicitação do iOS (App Tracking Transparency)
 
-Atribuição de campanhas de parceiros (ex.: TikTok). Veja a seção 5.
+Atribuição de campanhas de parceiros. Veja Rastreamento e cookies.
 
-## 3. Como usamos os dados
+Painel das marcas
 
-- Operar o app: criar conta, conectar redes, exibir e gerenciar campanhas.
+Nome, e-mail, cargo e permissões de cada pessoa da equipe; dados da empresa, das campanhas, dos aportes e dos pagamentos
 
-- Conectar você a marcas e processar pagamentos e recompensas (Hype Points, saques).
+Dar acesso ao painel, operar as campanhas, controlar permissões e cumprir o contrato
 
-- Enviar notificações sobre novas campanhas, aprovações e atualizações de conta.
+Formulário "Fale com nosso time"
 
-- Garantir segurança, prevenir fraudes e cumprir obrigações legais e fiscais.
+Nome, cargo, e-mail corporativo, WhatsApp, empresa, site ou Instagram, segmento, cidade, uso de influenciadores, verba estimada, objetivos e as demais respostas do formulário, além da página de origem e dos parâmetros de campanha (UTM)
 
-- Melhorar o desempenho e a experiência do app por meio de análises agregadas.
+Responder ao pedido, preparar uma proposta e entrar em contato por e-mail ou WhatsApp
 
-Bases legais (LGPD, art. 7º): execução de contrato, consentimento (localização, redes sociais e rastreamento), cumprimento de obrigação legal e legítimo interesse para segurança e melhoria do serviço.
+Formulário de suporte
 
-## 4. Com quem compartilhamos
+Nome, e-mail, assunto, descrição do problema e as informações que você escolher enviar
 
-- Marcas e anunciantes: ao se candidatar a uma campanha, compartilhamos com a marca os dados do seu perfil e o conteúdo enviado necessários àquela campanha.
+Atender o chamado
 
-- Provedores de tecnologia: Google e Apple (login e serviços), Firebase/Google (notificações, análise e relatórios de falhas) e provedores de infraestrutura em nuvem que hospedam o serviço.
+Navegação no site
 
-- Plataformas conectadas por você: Instagram, TikTok e YouTube, conforme as integrações que você ativar.
+Endereço IP e dados técnicos da conexão nos registros do servidor; contagem agregada de visitas, sem cookies
 
-- Autoridades: quando exigido por lei ou ordem judicial.
+Segurança, prevenção de abuso e medição agregada de audiência
 
-Não vendemos nem alugamos seus dados pessoais a terceiros.
+## 5. Como usamos os dados e bases legais
 
-## 5. Dados das APIs do Google e YouTube
+Finalidade
 
-Quando você escolhe entrar com o Google, recebemos somente os dados básicos de autenticação autorizados por você: identificador da conta, nome, e-mail e foto de perfil. Não recebemos nem armazenamos a senha da sua Conta do Google.
+Base legal (LGPD, art. 7º)
 
-A conexão do YouTube é opcional e solicitada separadamente. Com sua autorização, o HypeApp acessa, em modo somente leitura, dados do canal, vídeos, estatísticas e relatórios do YouTube Analytics para exibir métricas do seu perfil, comprovar alcance e apoiar a participação em campanhas. O HypeApp não publica, altera ou exclui conteúdo do seu canal e não usa esses dados para publicidade personalizada.
+Criar e manter sua conta, operar campanhas, entregas, carteira e pagamentos
 
-Tokens de acesso e renovação são mantidos em ambiente com controles de acesso e usados apenas para operar a integração solicitada. Não vendemos dados obtidos das APIs do Google e não os transferimos a terceiros, exceto aos provedores de infraestrutura estritamente necessários para operar o serviço ou quando houver obrigação legal. Nosso uso e transferência dessas informações obedecem à Política de Dados do Usuário dos Serviços de API do Google, inclusive aos requisitos de Uso Limitado.
+Execução de contrato (inciso V)
 
-Você pode revogar o acesso desconectando o YouTube no HypeApp, excluindo sua conta ou removendo o HypeApp em Conexões de terceiros da Conta do Google. Após a revogação ou exclusão, os tokens deixam de ser utilizados e são removidos, ressalvados somente os registros que precisem ser mantidos por obrigação legal.
+Conectar redes sociais, usar localização e, no iOS, o identificador de publicidade
 
-## 6. Rastreamento e transparência (App Tracking Transparency)
+Consentimento (inciso I), que você pode revogar a qualquer momento
 
-No iOS, antes de qualquer rastreamento entre apps e sites de outras empresas, exibimos a solicitação de permissão do sistema (ATT). O rastreamento é usado apenas para atribuição de campanhas de parceiros, como a integração com o TikTok. Se você não autorizar, o app continua funcionando normalmente — apenas não realizamos essa atribuição.
+Responder ao formulário "Fale com nosso time" e preparar uma proposta
 
-## 7. Por quanto tempo guardamos
+Procedimentos preliminares a contrato, a pedido do titular (inciso V), e consentimento para o contato por e-mail e WhatsApp (inciso I)
 
-Mantemos seus dados enquanto sua conta estiver ativa e pelo período necessário para cumprir as finalidades desta política. Após a exclusão da conta, dados pessoais identificáveis são apagados ou anonimizados, preservando-se apenas os registros exigidos por obrigação legal/fiscal (art. 16 da LGPD).
+Enviar comunicações sobre campanhas, novidades e serviços
 
-## 8. Segurança
+Legítimo interesse (inciso IX). Você pode cancelar o recebimento quando quiser.
 
-Adotamos medidas técnicas e organizacionais para proteger seus dados, incluindo criptografia em trânsito (HTTPS/TLS), armazenamento seguro de credenciais no dispositivo e controle de acesso por perfil. Nenhum sistema é 100% imune, mas trabalhamos continuamente para reduzir riscos.
+Segurança, prevenção a fraudes, moderação e melhoria do serviço com dados agregados
 
-## 9. Seus direitos e exclusão de conta
+Legítimo interesse (inciso IX)
 
-Você pode solicitar acesso, correção, portabilidade, anonimização, revogação de consentimento e exclusão dos seus dados. A exclusão da conta pode ser feita diretamente no app (Perfil › Configurações › Excluir conta) ou pela página dedicada:
+Cumprir obrigações legais, fiscais e regulatórias e atender ordens de autoridades
+
+Cumprimento de obrigação legal ou regulatória (inciso II)
+
+Exercer direitos em processos judiciais, administrativos ou arbitrais
+
+Exercício regular de direitos (inciso VI)
+
+## 6. Hype Points
+
+Hype Points são pontos de participação na comunidade do HypeApp. Você ganha 200 pontos quando uma pessoa se cadastra com o seu convite e 500 pontos quando essa pessoa conclui a primeira campanha. Os pontos servem para entrar em grupos da comunidade que pedem pontos ou um nível mínimo.
+
+Hype Points não são dinheiro: não podem ser comprados, vendidos, transferidos nem trocados por dinheiro, e não se misturam com o saldo da carteira. Para creditar os pontos, registramos o convite usado no cadastro, quem convidou quem e o histórico de pontos de cada conta.
+
+## 7. Redes sociais conectadas
+
+Conectar redes sociais é opcional, mas algumas campanhas exigem redes específicas. Em todas as conexões, o acesso é somente de leitura: o HypeApp não publica, não altera e não exclui nada nas suas redes, e não usa esses dados para publicidade personalizada. Você pode desconectar qualquer rede no app, em Perfil › Redes sociais conectadas › Desconectar.
+
+### 7.1 Instagram
+
+- Como conecta: a conexão não usa o login da Meta e não pede sua senha nem acesso à sua conta. Você informa o seu @ e comprova que o perfil é seu colando na bio um código temporário gerado pelo app (válido por 30 minutos). Depois da verificação, o código pode ser apagado da bio.
+
+- Dados usados: informações públicas do perfil (nome de usuário, nome, foto e número de seguidores) e as publicações públicas feitas para as campanhas, com as métricas públicas delas.
+
+- Somente leitura: o HypeApp não tem nenhum acesso de escrita à sua conta do Instagram.
+
+- Como revogar: desconecte o Instagram no app. Os dados do perfil deixam de ser atualizados e são removidos, ressalvados os registros de campanhas concluídas que precisem ser mantidos por obrigação legal ou contratual.
+
+### 7.2 TikTok
+
+- Como conecta: pelo login do próprio TikTok, em uma janela segura, onde você vê e autoriza as permissões pedidas. O HypeApp não recebe sua senha.
+
+- Dados acessados: informações básicas do perfil (identificador, nome de exibição e foto), estatísticas do perfil (seguidores, curtidas e quantidade de vídeos) e a lista dos seus vídeos públicos com as métricas deles (visualizações, curtidas, comentários e compartilhamentos).
+
+- Somente leitura: o HypeApp não publica nem altera vídeos ou informações da sua conta.
+
+- Como revogar: desconecte o TikTok no app ou, no TikTok, vá em Perfil › Menu › Configurações e privacidade › Segurança e permissões › Permissões de apps e serviços e remova o HypeApp. Os tokens de acesso deixam de ser usados e são removidos.
+
+Os dados do TikTok também seguem a Política de Privacidade do TikTok.
+
+### 7.3 YouTube e Google
+
+A conexão do YouTube é opcional e solicitada separadamente. Com sua autorização, o HypeApp acessa, em modo somente leitura, dados do canal, vídeos, estatísticas e relatórios do YouTube Analytics para exibir as métricas do seu perfil, comprovar alcance e apoiar a participação em campanhas. O HypeApp não publica, altera ou exclui conteúdo do seu canal e não usa esses dados para publicidade personalizada.
+
+Quando o login com o Google estiver disponível e você escolher usá-lo, recebemos somente os dados básicos de autenticação autorizados por você: identificador da conta, nome, e-mail e foto de perfil. Não recebemos nem armazenamos a senha da sua Conta do Google.
+
+Tokens de acesso e de renovação são mantidos em ambiente com controle de acesso e usados apenas para operar a integração que você pediu. Não vendemos dados obtidos das APIs do Google e não os transferimos a terceiros, exceto aos provedores de infraestrutura estritamente necessários para operar o serviço ou quando houver obrigação legal. O uso e a transferência dessas informações seguem a Política de Dados do Usuário dos Serviços de API do Google, inclusive os requisitos de Uso Limitado.
+
+Ao conectar o YouTube, você também concorda com os Termos de Serviço do YouTube, e o tratamento desses dados pelo Google segue a Política de Privacidade do Google.
+
+Você pode revogar o acesso desconectando o YouTube no HypeApp, excluindo sua conta ou removendo o HypeApp em Conexões de terceiros da Conta do Google. Após a revogação ou a exclusão, os tokens deixam de ser usados e são removidos, ressalvados os registros que precisem ser mantidos por obrigação legal.
+
+## 8. Com quem compartilhamos
+
+- Marcas e agências: quando você se inscreve em uma campanha, a marca vê os dados do seu perfil, das suas redes e o conteúdo enviado, na medida necessária para aquela campanha.
+
+- Creators: quando uma marca publica uma campanha, os creators veem as informações da campanha e da marca exibidas no mural.
+
+- Fornecedores de tecnologia: hospedagem e infraestrutura em nuvem, rede de distribuição e segurança do site, Firebase/Google (notificações, análise e relatórios de falhas), Google e Apple (login e lojas), e instituições de pagamento que processam os PIX. Todos com obrigações contratuais de proteção de dados.
+
+- Plataformas conectadas por você: Instagram, TikTok e YouTube, conforme as conexões que você ativar.
+
+- Autoridades: quando exigido por lei, regulamentação ou ordem judicial.
+
+- Reorganização societária: em caso de fusão, aquisição ou reestruturação da Você no Hype, com aviso prévio aos titulares.
+
+Não vendemos, não alugamos e não cedemos seus dados pessoais para fins comerciais de terceiros.
+
+## 9. Transferência internacional
+
+Alguns fornecedores de tecnologia, como provedores de nuvem, de notificações e de análise, armazenam ou processam dados fora do Brasil. Nesses casos, adotamos as salvaguardas previstas na LGPD, como cláusulas contratuais específicas ou a verificação de nível adequado de proteção do país de destino.
+
+## 10. Rastreamento e cookies
+
+No iOS, antes de qualquer rastreamento entre apps e sites de outras empresas, o app exibe a solicitação de permissão do sistema (App Tracking Transparency). O rastreamento é usado apenas para atribuição de campanhas de parceiros, como a integração com o TikTok. Se você não autorizar, o app continua funcionando normalmente; só não fazemos essa atribuição.
+
+No site, usamos apenas o necessário para funcionar e uma medição agregada de visitas que não usa cookies. Os detalhes estão na Política de cookies.
+
+## 11. Por quanto tempo guardamos
+
+- Conta no app ou no painel: enquanto a conta estiver ativa. Após a exclusão, os dados pessoais identificáveis são apagados ou anonimizados.
+
+- Pagamentos e dados fiscais: pelo prazo exigido pela legislação tributária e fiscal, em geral 5 anos.
+
+- Contatos do formulário comercial que não viraram clientes: até 24 meses após o último contato.
+
+- Clientes (marcas e agências): durante o contrato e por até 5 anos após o encerramento, conforme obrigações legais.
+
+- Registros de acesso: pelo prazo mínimo exigido pelo Marco Civil da Internet (6 meses) e no máximo 12 meses, salvo ordem judicial.
+
+Ao fim de cada prazo, os dados são excluídos de forma segura ou anonimizados (art. 16 da LGPD).
+
+## 12. Segurança
+
+Adotamos medidas técnicas e organizacionais para proteger seus dados, como criptografia em trânsito (HTTPS/TLS), armazenamento seguro de credenciais no dispositivo, controle de acesso por perfil e permissões, e contratos de confidencialidade com fornecedores e colaboradores. Nenhum sistema é totalmente imune, mas trabalhamos continuamente para reduzir riscos. Em caso de incidente de segurança que possa causar risco ou dano relevante, comunicaremos a ANPD e os titulares afetados no prazo legal.
+
+## 13. Seus direitos e exclusão de conta
+
+Pela LGPD, você pode pedir:
+
+- confirmação de que tratamos seus dados e acesso a eles;
+
+- correção de dados incompletos, inexatos ou desatualizados;
+
+- anonimização, bloqueio ou eliminação de dados desnecessários, excessivos ou tratados em desconformidade com a lei;
+
+- portabilidade dos dados;
+
+- eliminação dos dados tratados com base no seu consentimento;
+
+- informação sobre com quem compartilhamos seus dados;
+
+- informação sobre a possibilidade de não consentir e as consequências disso;
+
+- revogação do consentimento;
+
+- oposição a tratamento feito com base em legítimo interesse;
+
+- revisão de decisões tomadas apenas com base em tratamento automatizado.
+
+A exclusão da conta pode ser feita no app (Perfil › Configurações › Excluir conta) ou pela página dedicada:
 
 Excluir conta e dados contato@vocenohype.com.br
 
-Responderemos às solicitações em até 15 dias úteis, conforme a LGPD.
+Para os demais pedidos, escreva para contato@vocenohype.com.br. Respondemos em até 15 dias úteis. Se a resposta não for satisfatória, você pode recorrer à Autoridade Nacional de Proteção de Dados (ANPD).
 
-## 10. Crianças e adolescentes
+## 14. Crianças e adolescentes
 
-O HypeApp não se destina a menores de 18 anos. Não coletamos intencionalmente dados de menores. Se identificarmos uma conta nessas condições, ela será removida.
+O HypeApp é destinado a pessoas com 18 anos ou mais, ou emancipadas, e a pessoas jurídicas. Não coletamos intencionalmente dados de menores. Se identificarmos uma conta nessas condições, ela será removida e os dados, excluídos.
 
-## 11. Alterações nesta política
+## 15. Alterações nesta política
 
-Podemos atualizar esta política periodicamente. Mudanças relevantes serão comunicadas no app ou por e-mail. A data da última atualização aparece no topo desta página.
+Podemos atualizar esta política para refletir mudanças no HypeApp, nas nossas práticas ou na legislação. A versão e a data da última atualização aparecem no topo da página. Mudanças relevantes serão avisadas no app ou por e-mail.
 
-© 2026 HypeApp. Esta é a Política de Privacidade oficial referenciada nas lojas de aplicativos. Dúvidas: contato@vocenohype.com.br.
+© 2026 Você no Hype Marketing e Entretenimento LTDA · CNPJ 43.442.408/0001-26. Esta é a Política de Privacidade oficial do HypeApp referenciada nas lojas de aplicativos. Dúvidas: contato@vocenohype.com.br.
 
 ---
 
 Fonte: https://www.hypeapp.com.br/termos/
 Título: Termos de uso | HypeApp
-Atualizado em: 2026-10-30
+Atualizado em: 2026-11-03
 
 # Termos de Uso
 
-Termos e condições gerais de uso do aplicativo HypeApp.
+Termos e condições gerais de uso do HypeApp para creators, marcas e agências.
 
-Termos e condições gerais de uso do aplicativo "Hype App"
+Termos e condições gerais de uso do HypeApp
 
-Seja bem-vindo(a) ao Hype App
+Versão 2.0 · Última atualização: 3 de novembro de 2026.
 
-Apresentamos os Termos de Uso do Aplicativo "HYPE APP", que traz, em um único lugar, inovação e tecnologia, facilitando a interação entre anunciantes e influenciadores. Este documento, e todo o conteúdo do Aplicativo, é oferecido pela pessoa jurídica de direito privado Você no Hype Marketing e Entretenimento LTDA, com sede na cidade de São Paulo/Capital, Brasil, na Av. Cardeal Motta, 1057, Bairro: City América, Cep: 02452-001, inscrita no CNPJ sob o n. 43.442.408/0001-26, que regulamenta todos os direitos e obrigações com todos que acessam o Aplicativo "HYPE APP", denominados como "USUÁRIOS" resguardando todos os direitos previstos na legislação.
+Seja bem-vindo(a) ao HypeApp.
+
+Estes Termos de Uso regulam o uso do HypeApp, plataforma que conecta creators a marcas e agências em campanhas de marketing de influência, do convite ao pagamento. O HypeApp é oferecido pela pessoa jurídica de direito privado Você no Hype Marketing e Entretenimento LTDA, inscrita no CNPJ sob o nº 43.442.408/0001-26, com sede na R. Joaquim Floriano, 243, cj. 71, Itaim Bibi, São Paulo, SP, CEP 04534-010, e se aplicam a todas as pessoas que acessam ou usam o app, o painel ou o site, denominadas "Usuários".
 
 ## 1. Definições
 
-Para os fins destes Termos e Condições de Uso, as designações abaixo terão os seguintes significados:
+Para os fins destes Termos, as designações abaixo têm os seguintes significados:
 
-- "Nós","Nosso","Nossos","Nossa":
+- "Nós", "Nosso", "Nossa":
 
-Se refere a "Você no Hype Marketing e Entretenimento LTDA (Você no Hype), pessoa jurídica que mantém e é responsável pelo Aplicativo.
+Você no Hype Marketing e Entretenimento LTDA ("Você no Hype"), que mantém e é responsável pelo HypeApp.
+
+- "HypeApp" ou "Plataforma":
+
+O conjunto formado pelo Aplicativo, pelo Painel e pelo site www.hypeapp.com.br, com todos os seus recursos.
 
 - "Aplicativo":
 
-É o Aplicativo "Hype App", incluindo todas as suas páginas e recursos.
+O app HypeApp para iPhone (iOS) e Android, usado pelos Creators.
+
+- "Painel":
+
+A área web usada pelas Marcas e Agências para criar e gerenciar campanhas.
+
+- "Creator":
+
+A pessoa física, ou a pessoa jurídica que a representa, que cria conteúdo nas redes sociais e usa o Aplicativo para participar de campanhas.
+
+- "Marca" ou "Agência":
+
+A empresa que contrata campanhas no HypeApp, diretamente ou por meio de uma agência que gerencia uma ou mais marcas.
+
+- "Campanha":
+
+A ação de marketing de influência criada por uma Marca, com briefing, requisitos, entregas, prazos e valores definidos no mural da campanha.
+
+- "Carteira":
+
+A área do Aplicativo onde o Creator acompanha os valores reservados, liberados e sacados das campanhas.
+
+- "Reserva":
+
+O valor separado do saldo da Campanha para pagar a participação de um Creator, liberado conforme as regras da Campanha.
+
+- "Hype Points":
+
+Pontos de participação na comunidade, sem valor em dinheiro, regulados na seção 8.
 
 - "Conteúdo de terceiros":
 
-É toda e qualquer informação, ou dado publicado, ou disponibilizado no Aplicativo por terceiros, Usuários ou Não, incluindo, dentre outros possíveis, textos, imagens, vídeos, áudios e links.
+Toda informação ou dado publicado ou disponibilizado na Plataforma por Usuários ou terceiros, incluindo textos, imagens, vídeos, áudios e links.
 
 - "Nosso conteúdo":
 
-Se refere a todo e qualquer informação, ou dado publicado, disponibilizado diretamente por Nós no Aplicativo.
-
-- "Influenciadores":
-
-Refere-se aquela pessoa capaz de influenciar comportamentos, criar tendências e servir como fonte de informação.
-
-- "Anunciantes":
-
-Refere-se aquele que patrocina anúncios em qualquer meio de comunicação.
-
-- "Android":
-
-É um sistema operacional para dispositivos móveis, liderado pelo Google.
-
-- "iOS":
-
-É um sistema operacional da Apple.
-
-- "Crawler/Spider":
-
-Programa desenvolvidos para atuar ou obter informações de modo automatizado.
+Toda informação ou dado publicado ou disponibilizado diretamente por Nós na Plataforma.
 
 - "Dados Pessoais":
 
-Informação relacionada a pessoa natural, identificada ou identificável.
+Informação relacionada a pessoa natural identificada ou identificável.
 
-- "Link":
+- "Crawler" ou "Spider":
 
-Terminologia para endereço de internet.
-
-- "Download":
-
-Transferência de um arquivo de um determinado servidor para computador, tablet, celulares, etc. dos Usuários.
+Programa desenvolvido para obter informações de modo automatizado.
 
 - "Usuário(s)":
 
-É a pessoa que navega, ou que de qualquer outra forma utilizar Nosso Aplicativo.
+Toda pessoa que navega ou de qualquer forma usa a Plataforma, seja Creator, Marca, Agência, integrante de equipe ou visitante.
 
-## 2. Finalidade do aplicativo
+## 2. Finalidade da plataforma
 
-O Aplicativo Hyppe App, foi criado e desenvolvido, com a proposta de facilitar, que anunciantes, encontrem e negociem publicidade, com perfis de influenciadores, no qual, poderão usufruir, pessoas jurídicas e pessoas físicas, que possuem uma rede social, respeitando a idade mínima destes Termos, e que tenham interesse e capital para marketing, independentemente de sua grandeza, número de seguidores ou valor, disponibilizando, através deste, soluções tecnológicas e inovadoras, onde, os perfis de influenciadores poderão cadastrar as suas redes sociais, ficando assim, disponíveis em Nosso catálogo (hypeapp.com.br), para que possam interagir e negociar.
+2.1 O HypeApp foi criado para organizar, em um só lugar, todo o ciclo de uma campanha de marketing de influência: a Marca cria a Campanha no Painel; o Creator encontra a Campanha no Aplicativo e se inscreve; a Marca, ou a curadoria da Você no Hype, seleciona os participantes; o Creator envia roteiros e conteúdos para aprovação, publica nas suas redes sociais; e o pagamento é feito pela Carteira.
 
-O Aplicativo atua de forma intermediária entre influenciadores e anunciantes, e foi criado, visando resolver a necessidade de centralizar em um único lugar, os perfis de influenciadores, para que, os anunciantes possam, de forma descomplicada, realizar suas divulgações, trazendo para essa relação, uma comunicação mais assertiva e abrangente, com agilidade, dinamismo e interação.
+2.2 As Marcas podem operar as campanhas por conta própria no Painel (self-service) ou contratar a operação da Você no Hype (campanha gerenciada), conforme proposta comercial.
 
-## 3. Da adesão e aceite dos termos
+2.3 Ter conta no HypeApp não garante participação em campanhas. Cada Campanha tem critérios próprios, definidos pela Marca.
 
-3.1 O Aplicativo, é compatível com os sistemas operacionais ANDROID e IOS.
+## 3. Adesão e aceite dos termos
 
-3.2 Para obtenção da totalidade dos benefícios e recursos proporcionados pelo Aplicativo, o Usuário deverá efetuar o seu cadastro, fornecendo seus dados pessoais.
+3.1 O Aplicativo é compatível com os sistemas operacionais Android e iOS. O Painel é acessado pelo navegador.
 
-3.3 Para a realização do cadastro, é obrigatória a leitura, compreensão e aceite dos presentes Termos de Uso, pelo Usuário.
+3.2 Para usar todos os recursos, o Usuário precisa fazer seu cadastro e fornecer os dados solicitados.
 
-3.4 Estes Termos de Uso específica, e exige que todo Usuário ao fazer uso do Aplicativo, leia e compreenda todas as cláusulas do mesmo, visto que ele estabelece entre o Usuário e o Aplicativo, direitos e obrigações entre ambas as partes, aceitos expressamente pelo Usuário.
+3.3 O cadastro exige a leitura, a compreensão e o aceite destes Termos e da Política de Privacidade.
 
-3.5 Ao permanecer no Aplicativo, o aceite dos Termos de Uso, irá implicar no reconhecimento, pelo Usuário, de que leu, entendeu e aceitou incondicionalmente todas as disposições constantes deste documento.
+3.4 Estes Termos estabelecem direitos e obrigações entre o Usuário e Nós. Ao continuar usando a Plataforma, o Usuário declara que leu, entendeu e aceitou todas as suas disposições.
 
-## 4. Do cadastro do usuário e sua manutenção
+## 4. Cadastro e conta
 
-4.1 O cadastro no Nosso Aplicativo é gratuito, tanto para que o USUÁRIO possa baixar o Aplicativo, quanto, para as atualizações, no entanto, para usufruir de todos os benefícios disponibilizados, o Usuário deverá, estar apto, e em conformidade com esses Termos de Uso, fornecendo todas as informações e dados requeridos.
+4.1 O cadastro e o uso do Aplicativo são gratuitos para Creators: não há mensalidade nem taxa sobre o valor que o Creator recebe das campanhas.
 
-4.2 O cadastro no Aplicativo deverá ser necessariamente feito por pessoas maiores de 18 (dezoito) anos, ou regularmente emancipada.
+4.2 O acesso das Marcas e Agências ao Painel é liberado pelo nosso time comercial, conforme proposta e contrato. Os valores são sob consulta.
 
-4.3 Ao se cadastrar, o Usuário deverá fornecer um endereço de e-mail válido, através do qual, todos os meios de contato serão realizados, sendo assim, todas as comunicações enviadas ao referido endereço serão consideradas lidas pelo Usuário, se comprometendo a consultar regularmente as mensagens recebidas, respondendo em tempo considerado razoável.
+4.3 O cadastro deve ser feito por pessoas com 18 (dezoito) anos ou mais, ou regularmente emancipadas.
 
-4.4 Assim que confirmar o seu cadastro, o Usuário possuirá um login e uma senha, que serão considerados pessoais.
+4.4 O Usuário deve informar um e-mail válido, que será o canal das comunicações. As mensagens enviadas a esse endereço serão consideradas recebidas, e o Usuário se compromete a consultá-lo regularmente.
 
-4.5 A conta do Usuário é pessoal e intransferível, sendo proibido vender, ceder, alugar ou transferir.
+4.5 O login e a senha são pessoais. A conta é pessoal e intransferível, sendo proibido vendê-la, cedê-la, alugá-la ou transferi-la. Nas contas de Marcas e Agências, cada integrante da equipe deve ter acesso próprio, com as permissões definidas pela empresa.
 
-4.6 O Usuário assume a responsabilidade de fornecer informações exatas e verdadeiras, assumindo o compromisso de atualizar seus dados pessoais, sempre que necessário ou quando requerido, assumindo assim a responsabilidade pelas informações fornecidas ao Aplicativo.
+4.6 O Usuário é responsável por fornecer informações exatas e verdadeiras e por mantê-las atualizadas.
 
-4.7 Ao identificarmos que quaisquer informações cadastradas não são verdadeiras, teremos o direito de suspender, ou excluir a conta do Usuário, bem como, podemos, Nos recusar a prover quaisquer de Nossos recursos, no entanto, o Usuário será notificado para se justificar.
+4.7 Se identificarmos informações falsas, poderemos suspender ou excluir a conta e recusar o acesso aos recursos, após notificar o Usuário para que se justifique.
 
-4.7.1 Nós, não nos responsabilizamos pela veracidade dos dados inseridos no cadastro, no qual, a criação de perfis falsos, poderá ser considerada crime de falsa identidade, falsidade ideológica ou estelionato.
+4.7.1 Não nos responsabilizamos pela veracidade dos dados informados pelos Usuários. A criação de perfis falsos pode configurar crime de falsa identidade, falsidade ideológica ou estelionato.
 
-4.7.2 Caso seja identificado a existência de atividade suspeita, poderemos a qualquer tempo e a Nosso exclusivo critério, confirmar a identidade e os dados pessoais do Usuário, podendo, assim, solicitar documentos pessoais e outras formas de comprovação, por algum meio hábil.
+4.7.2 Em caso de atividade suspeita, poderemos confirmar a identidade e os dados do Usuário, solicitando documentos e outras comprovações por meio hábil.
 
-4.8 Cada Usuário poderá manter apenas uma conta junto ao Aplicativo, contas duplicadas, quando forem identificadas, serão automaticamente desativadas por Nós.
+4.8 Cada Creator pode manter apenas uma conta. Contas duplicadas serão desativadas.
 
-4.9 Sem prejuízo de outras medidas, Nós poderemos, advertir, moderar, suspender ou cancelar o cadastro dos Usuários, negando a prestar os recursos descritos nestes Termos, caso o Usuário:
+4.9 Sem prejuízo de outras medidas, poderemos advertir, moderar, suspender ou cancelar o cadastro do Usuário que:
 
-a) Pratique atos fraudulentos;
+a) praticar atos fraudulentos;
 
-b) Cause qualquer tipo de dano ou prejuízos a terceiros, no uso do Aplicativo;
+b) causar dano ou prejuízo a terceiros no uso da Plataforma;
 
-c) Descumpra qualquer disposição destes Termos.
+c) descumprir qualquer disposição destes Termos.
 
-4.10 O Usuário poderá, a qualquer tempo e sem necessidade de justificação, solicitar o cancelamento de seu cadastro junto ao Aplicativo, sendo o seu descadastramento realizado o mais rápido possível.
+4.10 O Usuário pode, a qualquer tempo e sem justificativa, excluir sua conta pelo Aplicativo ou pela página Exclusão de conta. A exclusão segue o disposto na Política de Privacidade, incluindo os registros que precisam ser mantidos por obrigação legal.
 
-## 5. Da navegação no aplicativo
+## 5. Campanhas, entregas e aprovação
 
-5.1 O Aplicativo funciona normalmente 24 (vinte e quatro) horas por dia, no entanto, pode ocorrer algumas interrupções de forma temporária para ajustes, manutenção, mudança de servidores, falhas técnicas ou por ordem de força maior, que podem deixá-lo indisponível por tempo limitado.
+5.1 A Marca define no mural de cada Campanha o briefing, os requisitos, as redes, as entregas, os prazos, o valor da participação e as condições de uso do conteúdo.
 
-5.2 Nós, não nos responsabilizamos por nenhuma perda de oportunidade ou prejuízos, que esta indisponibilidade temporária possa gerar aos Usuários.
+5.2 O Creator só deve se inscrever em campanhas cujas condições aceite. Ao ser selecionado e confirmar a participação, o Creator se compromete a cumprir o briefing, os prazos e as entregas combinadas.
 
-5.3 Caso seja necessário um tempo maior para manutenção, nós iremos informar previamente os Usuários, bem como a previsão para restabelecer os recursos do Aplicativo.
+5.3 Roteiros e conteúdos passam pela aprovação da Marca no Painel antes da publicação. A Marca pode pedir ajustes dentro do que foi definido no briefing.
 
-## 6. Administração do aplicativo
+5.4 O Creator é responsável pelo conteúdo que cria e publica, inclusive por identificar a publicidade de forma clara, conforme o Código de Defesa do Consumidor e as normas do CONAR, e por respeitar as regras de cada rede social.
 
-6.1 O Aplicativo é administrado por Nós, e para que haja uma gestão baseada no princípio da boa fé, Nós poderemos a qualquer a momento:
+5.5 Os direitos de uso do conteúdo pela Marca (prazo, canais e formatos) são os definidos nas condições da Campanha, aceitas pelo Creator antes da participação. O Creator nos autoriza a armazenar e exibir o conteúdo enviado na Plataforma, na medida necessária para operar a Campanha.
 
-a) Suspender, interromper ou limitar o acesso ao todo ou em parte, a uma categoria específica ou a todos os Usuários;
+5.6 Recebidos e permutas seguem as condições informadas no mural de cada Campanha, inclusive quanto à eventual devolução do produto.
 
-b) Suspender o Aplicativo, a fim de realizar atualizações e modificações.
+## 6. Carteira, reservas e pagamentos via PIX
 
-c) Remover toda informação que possa perturbar o funcionamento do Aplicativo, ou que esteja em conflito com normas de Direito brasileiro ou de Direito internacional;
+6.1 Os valores das campanhas são movimentados pela Plataforma. A Marca aporta o saldo da Campanha e, quando o Creator confirma a participação, o valor correspondente fica reservado para ele.
 
-## 7. Violações
+6.2 O valor reservado é liberado na Carteira do Creator depois da conclusão das entregas, conforme as regras e os prazos exibidos na Campanha e no Aplicativo.
 
-7.1 O Usuário não poderá praticar as seguintes ações em razão ou por meio da utilização do Aplicativo:
+6.3 Se o Creator não fizer as entregas combinadas, o valor reservado para aquela participação volta ao saldo da Campanha.
 
-a) Quaisquer atos ilícitos e/ou violação da legislação vigente;
+6.4 O Creator pode sacar o valor liberado por PIX, para uma chave de sua titularidade, conforme os limites e as regras de saque exibidos no Aplicativo.
 
-b) Atos contrários à moral e os bons costumes;
+6.5 O Creator é responsável pelos tributos incidentes sobre os valores recebidos e, quando exigido, pela emissão de nota fiscal, conforme seu enquadramento como pessoa física ou jurídica. O Aplicativo informa o que é exigido antes do pagamento.
 
-c) Transmissão de qualquer conteúdo que promova ou incite o preconceito (inclusive de origem, raça, sexo, cor, orientação sexual e idade) ou qualquer forma de discriminação, bem como o ódio ou atividades ilegais;
+6.6 Podemos reter ou bloquear valores em caso de suspeita de fraude, de descumprimento destes Termos, de contestação pela Marca ou de ordem judicial, até a conclusão da análise.
 
-d) Ameaça, coação, constrangimento físico ou moral aos demais Usuários;
+## 7. Redes sociais conectadas
 
-e) Violação de direitos de terceiros;
+7.1 O Creator pode conectar suas contas de Instagram, TikTok e YouTube para exibir métricas e participar de campanhas. A conexão é somente de leitura: o HypeApp não publica, altera ou exclui conteúdo nas redes do Creator.
 
-f) Violação dos direitos de sigilo e privacidade alheios;
+7.2 Ao conectar uma rede, o Creator continua sujeito aos termos e políticas dela, como os Termos de Uso do Instagram e os Termos de Serviço do TikTok.
 
-## 8. Uso do aplicativo
+7.3 O HypeApp usa os Serviços de API do YouTube. Ao conectar o YouTube, o Creator concorda com os Termos de Serviço do YouTube, e os dados obtidos são tratados também conforme a Política de Privacidade do Google.
 
-8.1 O Usuário deverá limitar-se a utilizar o Aplicativo, para a finalidade que ele foi desenvolvido, de maneira ética e adequada aos propósitos estabelecidos nestes Termos, atendendo ao disposto nas Leis brasileiras.
+7.4 O Creator pode desconectar qualquer rede a qualquer momento no Aplicativo. Os dados acessados, o modo de acesso e a forma de revogar cada conexão estão descritos na Política de Privacidade.
 
-8.2 O Usuário é responsável por todos e quaisquer atos ou omissões por ele realizados a partir de seu acesso ao Aplicativo.
+## 8. Hype Points
 
-8.3 Não poderá o Usuário, utilizar-se de meios como, crawlers, robôs, ou quaisquer programas de computador, metodologias automatizadas, para acessar, copiar, monitorar, navegar, preencher formulários ou publicar conteúdos no Aplicativo.
+8.1 O Creator ganha Hype Points quando uma pessoa se cadastra com o seu convite e quando essa pessoa conclui a primeira campanha, nas quantidades informadas no Aplicativo.
 
-8.4 Fica o Usuário responsável por todo e qualquer conteúdo por ele carregado, e enviado ao Aplicativo;
+8.2 Hype Points servem para entrar em grupos da comunidade que exigem pontos ou nível mínimo. Eles não têm valor em dinheiro, não podem ser comprados, vendidos, transferidos ou resgatados em dinheiro e não se confundem com o saldo da Carteira.
 
-8.5 O Usuário não poderá, testar, sobrecarregar, violar as vulnerabilidades de mecanismos de segurança do Aplicativo, ou da infraestrutura da tecnologia que usamos.
+8.3 Podemos alterar as regras de ganho e de uso dos Hype Points, com aviso no Aplicativo, e cancelar pontos obtidos por fraude, contas duplicadas ou convites falsos.
 
-8.6 O Usuário não poderá reproduzir qualquer conteúdo do Aplicativo sem autorização expressa, podendo responder civil e criminalmente.
+## 9. Comunidade, grupos, lives e chat
 
-8.7 O Usuário não poderá esconder a sua identidade, nem a origem de sua conexão, e não poderá se passar por outra pessoa, também não poderá usar-se de ferramentas ou mecanismos para manipular o acesso ao Aplicativo.
+9.1 O Aplicativo oferece feed, grupos, lives e chat com as Marcas. O Usuário deve tratar os demais com respeito e seguir estes Termos e as regras de participação de cada grupo.
 
-8.8 O Usuário é o único responsável pelo uso adequado de sua conta, bem como pelo uso que for feito dela, tendo o dever de zelar por ela, e suas credenciais (login e senha) para que não sejam compartilhadas com terceiros.
+9.2 Podemos moderar, ocultar ou remover publicações, mensagens e transmissões que violem estes Termos ou a lei, e suspender os responsáveis.
 
-8.9 O Usuário é proibido de utilizar-se de Aplicativos Spider ou de mineração de dados, de qualquer natureza.
+## 10. Disponibilidade da plataforma
 
-## 9. Limitação de responsabilidade
+10.1 A Plataforma funciona normalmente 24 (vinte e quatro) horas por dia, mas pode ter interrupções temporárias para ajustes, manutenção, mudança de servidores, falhas técnicas ou por motivo de força maior.
 
-9.1 Fica expressamente estabelecido que NÓS, não temos a obrigação de controlar todas as ações executadas pelos Usuários, no uso do Aplicativo, sendo assim, Nós não poderemos ser responsabilizados pelos atos dos Usuários, cabendo a estes, responderem pessoal e exclusivamente por eventuais demandas judiciais.
+10.2 Não nos responsabilizamos por perda de oportunidades ou prejuízos decorrentes de indisponibilidade temporária.
 
-9.2 Na medida máxima permitida pela legislação aplicável, nem a pessoa jurídica Você no Hype Marketing e entretenimento LTDA ("Você no Hype"), nem seu Ceo e funcionários, serão responsáveis por qualquer dano, perda, ou despesas de qualquer tipo resultantes das relações negociais entre anunciantes e influenciadores.
+10.3 Se uma manutenção exigir mais tempo, avisaremos os Usuários com antecedência, junto com a previsão de retorno.
 
-9.3 Apesar de estarmos trabalhando constantemente para o aperfeiçoamento do Aplicativo, para que este funcione plenamente, Nós nos responsabilizamos por eventuais defeitos ou vícios, eventualmente encontrados no programa de computador que compõe Nosso Aplicativo, desde que tenha sido causado por Nós e que tenha sido comprovado o dano.
+## 11. Administração da plataforma
 
-9.4 Nós, não nos responsabilizamos, pelas negociações de publicidade, nem sobre as transações financeiras, ou qualquer tipo de relações comerciais e contratuais feitas entre anunciantes e influenciadores, bem como, nos eximimos de qualquer obrigação contratual, estabelecida entre os mesmos.
+11.1 Administramos a Plataforma com base na boa-fé e poderemos, a qualquer momento:
 
-9.5 Nós, não nos responsabilizamos, por eventuais prejuízos que influenciadores e anunciantes possam ter, decorrentes das negociações realizadas entre eles, não seremos responsáveis, por qualquer dano material, moral, ou lucros cessantes, que decorrerem dessas negociações.
+a) suspender, interromper ou limitar o acesso, no todo ou em parte, a uma categoria específica ou a todos os Usuários;
 
-9.6 Nós, realizamos apenas a intermediação entre anunciantes e perfis de influenciadores, sendo assim, o Hype App, os anunciantes e os influenciadores, declaram ser independentes entre si, sem nenhuma relação societária ou comercial além da pactuada nestes Termos.
+b) suspender a Plataforma para atualizações e modificações;
 
-9.7 Nós, nos responsabilizamos, nos limites e nos termos da lei, pelo Nosso conteúdo, no entanto, não nos responsabilizamos por conteúdo de terceiros.
+c) remover informações que prejudiquem o funcionamento da Plataforma ou que estejam em conflito com a legislação brasileira ou internacional.
 
-9.8 Nós, não nos responsabilizamos, pelo uso que os Usuários, possam eventualmente fazer de Nosso Aplicativo, cabendo a eles responderem exclusivamente por suas ações.
+## 12. Violações
 
-9.9 Nós, não nos responsabilizamos por eventuais danos decorrentes de caso fortuito, força maior.
+12.1 O Usuário não pode, por meio da Plataforma:
 
-## 10. Propriedade intelectual
+a) praticar atos ilícitos ou que violem a legislação vigente;
 
-10.1 O Usuário não adquire, por meio do presente Termos de Uso, nenhum direito de propriedade intelectual ou outros direitos exclusivos, incluindo, desenhos, marcas, direitos autorais, modelo de negócio, direito sobre informações confidenciais, ou segredos de negócio, sobre, ou relacionados ao Aplicativo, como a base de dados compostas por dados de Usuários, aos quais são de Nossa propriedade.
+b) praticar atos contrários à moral e aos bons costumes;
 
-10.2 O uso comercial da expressão "HYPE APP", ou suas derivações em relação a marca, nome empresarial, nome de domínio, bem como seu conteúdo, seus recursos tecnológicos, modelo de negócio, banco de dados, arquivos que permitem ao Usuário acessar a sua conta, são de Nossa titularidade, e estão protegidos pelas leis e tratados internacionais de direito autoral. O uso indevido e a reprodução total ou parcial dos referidos conteúdos são proibidos, salvo, com a Nossa prévia e expressa autorização por escrito.
+c) transmitir conteúdo que promova ou incite preconceito (inclusive de origem, raça, sexo, cor, orientação sexual e idade), discriminação, ódio ou atividades ilegais;
 
-10.3 Qualquer conteúdo e recurso disponibilizado no Aplicativo, bem como toda e qualquer base de dados constituída por Nós, pertencem exclusivamente a Nós, e são protegidos pela lei brasileira, especialmente no que se refere à propriedade intelectual e direitos autorais.
+d) ameaçar, coagir ou constranger física ou moralmente outros Usuários;
 
-## 11. Da proteção de dados pessoais
+e) violar direitos de terceiros, inclusive de propriedade intelectual e de imagem;
 
-11.1 O tratamento de dados pessoais dos Usuários está em conformidade com a Lei Federal n.13.709/2018 (Lei Geral de Proteção de Dados) e demais normas correlatas, que constam em documento próprio, denominado "Política de Privacidade" que regula o tratamento dado às informações e dados pessoais coletados através do Aplicativo.
+f) violar o sigilo e a privacidade alheios;
 
-11.2 A Política de Privacidade é parte integrante e inseparável dos Termos de Uso, e pode ser acessada a partir do link: Política de Privacidade.
+g) manipular métricas, usar seguidores ou interações falsas ou enganar a Marca sobre resultados.
 
-11.2.1 Na Política de Privacidade, identificamos os dados pessoais que tratamos e prestamos informações, sobre como, por qual motivo e com qual fundamento legal o fazemos.
+## 13. Uso da plataforma
 
-11.2.2 Caso alguma disposição da "Política de Privacidade" conflitar com qualquer outra do presente documento, deverá prevalecer o descrito na norma mais específica.
+13.1 O Usuário deve usar a Plataforma apenas para a finalidade descrita nestes Termos, de maneira ética e conforme as leis brasileiras.
 
-## 12. Proteção de registros, informações e comunicações privadas
+13.2 O Usuário é responsável por todos os atos ou omissões realizados a partir de seu acesso.
 
-12.1 Nós, somente seremos obrigados a disponibilizar registros de acesso, informações pessoais ou comunicações privadas armazenadas no Aplicativo mediante ordem judicial ou a requisição de autoridade policial ou administrativa competente.
+13.3 É proibido usar crawlers, robôs ou outros programas e métodos automatizados para acessar, copiar, monitorar, navegar, preencher formulários ou publicar conteúdos na Plataforma.
 
-12.2 Em todos os casos, Nós comunicaremos os Usuários da existência do pedido de revelação, ficando desde já autorizado a responder a requisição recebida.
+13.4 O Usuário é responsável por todo conteúdo que carregar ou enviar à Plataforma.
 
-## 13. Links externos
+13.5 É proibido testar, sobrecarregar ou explorar vulnerabilidades da Plataforma ou da infraestrutura que usamos. Falhas de segurança podem ser comunicadas pelo e-mail contato@vocenohype.com.br.
 
-13.1 Nosso Aplicativo pode conter links externos, nos quais direciona o Usuário para outras páginas da internet, nos quais não exercemos controle, apesar de todas as medidas e esforços de prévias e regulares verificações, sendo assim, nos isentamos de qualquer responsabilidade sobre qualquer conteúdo encontrado nas páginas, que possam ser acessados a partir desses links.
+13.6 É proibido reproduzir conteúdo da Plataforma sem autorização expressa, sob pena de responsabilidade civil e criminal.
 
-13.2 O Usuário está ciente e concorda com a existência desses links externos.
+13.7 O Usuário não pode esconder sua identidade ou a origem da conexão, se passar por outra pessoa ou usar ferramentas para manipular o acesso à Plataforma.
 
-## 14. Das alterações e modificações do aplicativo
+13.8 O Usuário deve zelar por suas credenciais (login e senha) e não compartilhá-las com terceiros.
 
-14.1 Nós, nos reservamos o direito de a qualquer momento modificar o Aplicativo, bem como os serviços, os recursos e normas, para adaptá-las de acordo com a evolução do Aplicativo, seja para melhorias, novas funcionalidades, ou mesmo para suprimir ou modificar as já existentes.
+13.9 É proibido usar ferramentas de spider ou de mineração de dados de qualquer natureza.
 
-14.2 A presente versão dos Termos e condições gerais de uso foi atualizada pela última vez em 27/04/2022.
+## 14. Limitação de responsabilidade
 
-## 15. Serviços de atendimento ao usuário
+14.1 Não temos obrigação de controlar todas as ações dos Usuários na Plataforma e não respondemos pelos atos deles, que respondem pessoal e exclusivamente por suas condutas.
 
-15.1 Em caso de dúvidas, sugestões, elogios ou problemas com a utilização do Aplicativo, Nós possuímos uma equipe especializada e pronta para atender o Usuário, através de nossos serviços de atendimento, no endereço de e-mail: contato@vocenohype.com.br ou do telefone: +551138345221.
+14.2 Respondemos, nos limites da lei, pelo funcionamento da Plataforma, inclusive pela correta movimentação dos valores reservados, liberados e sacados pela Carteira, conforme a seção 6.
 
-15.2 O Usuário poderá, ainda, optar por enviar correspondência ao endereço da sede do Aplicativo, informado no início deste documento.
+14.3 Não respondemos pelo cumprimento das obrigações que Marcas e Creators assumem entre si, como a qualidade e a veracidade do conteúdo, a entrega de produtos e o uso do conteúdo fora das condições da Campanha, nem por negociações e pagamentos feitos fora da Plataforma.
 
-15.3 Estes serviços de atendimento ao Usuário estarão disponíveis:
+14.4 A Você no Hype, os Creators e as Marcas são independentes entre si. A participação em campanhas não cria vínculo empregatício, societário ou de representação entre eles, salvo o que for expressamente contratado.
 
-- Segunda - Sexta - 10hrs às 18hrs
+14.5 Respondemos, nos termos da lei, pelo Nosso conteúdo, mas não pelo Conteúdo de terceiros.
 
-## 16. Informações gerais
+14.6 Nos responsabilizamos por defeitos ou vícios do software da Plataforma quando causados por Nós e comprovado o dano.
 
-16.1 Nós, não nos responsabilizamos por qualquer dano ou prejuízo com envio de informações ou de conteúdo publicitário, que não tenham sido disparados pelo Nosso Aplicativo.
+14.7 Não respondemos por danos decorrentes de caso fortuito ou força maior.
 
-16.2 Ao usar o Nosso Aplicativo e suas funcionalidades, os Usuários aceitam todo o disposto nos Termos de Uso e demais políticas legais que se encontram vigentes na data de acesso. Sendo assim, é recomendável que os Usuários se mantenham atualizados.
+## 15. Propriedade intelectual
 
-16.3 Em caso de eventual tolerância, quanto a qualquer violação dos Termos de Uso, será considerada mera liberalidade e não será interpretada como novação, precedente, renúncia a direitos, alteração tácita dos Termos, direito adquirido ou alteração dos presentes Termos.
+15.1 Estes Termos não transferem ao Usuário nenhum direito de propriedade intelectual sobre a Plataforma, incluindo desenhos, marcas, direitos autorais, modelo de negócio, informações confidenciais, segredos de negócio e bases de dados, que são de Nossa titularidade.
 
-16.4 Caso alguma disposição destes Termos de Uso for julgada inaplicável ou sem efeito, o restante das normas continua a viger, sem a necessidade de medida judicial que declare tal assertiva.
+15.2 O uso comercial da marca "HypeApp" ou de suas derivações, em nome empresarial, nome de domínio ou de outra forma, bem como de seus conteúdos, recursos tecnológicos e bancos de dados, depende de Nossa autorização prévia e por escrito. Esses elementos são protegidos pelas leis e tratados de direito autoral e de propriedade industrial.
 
-16.5 O Usuário declara ter ciência dos direitos e obrigações decorrentes dos presentes Termos de Uso, tendo lido, compreendido e aceito todos os Termos e condições neles inseridos.
+15.3 O conteúdo criado pelo Creator continua sendo dele, respeitados os direitos de uso concedidos à Marca nas condições da Campanha e a autorização prevista no item 5.5.
 
-## 17. Legislação e foro
+## 16. Proteção de dados pessoais
 
-Estes Termos de Uso, são regidos de acordo com a legislação brasileira, e sempre que possível, potenciais divergências entre Nós, e o Usuário, serão resolvidas de forma amigável, no entanto, quando todos os esforços neste sentido forem esgotados, e quaisquer disputas ou controvérsias oriundas de quaisquer atos praticados no âmbito da utilização do Aplicativos pelos Usuários, inclusive com relação ao descumprimento dos Termos de Uso ou pela violação dos direitos do Aplicativo, de outros Usuários e/ou de terceiros, incluindo direitos de propriedade intelectual, de sigilo e de personalidade, serão processadas na Comarca da Capital do Estado de São Paulo.
+16.1 O tratamento de dados pessoais segue a Lei nº 13.709/2018 (LGPD) e está descrito na Política de Privacidade, que é parte integrante destes Termos.
 
-Nós do Hype App, desejamos a todos os Usuários uma excelente navegação.
+16.2 Se houver conflito entre a Política de Privacidade e estes Termos em matéria de dados pessoais, prevalece a Política de Privacidade.
 
-Última atualização: 27 de Abril de 2022
+## 17. Registros, informações e comunicações privadas
+
+17.1 Só disponibilizaremos registros de acesso, dados pessoais ou comunicações privadas armazenados na Plataforma mediante ordem judicial ou requisição de autoridade competente, nos termos da lei.
+
+17.2 Sempre que a lei permitir, avisaremos o Usuário sobre o pedido recebido.
+
+## 18. Links externos
+
+18.1 A Plataforma pode conter links para páginas de terceiros, sobre as quais não temos controle. Não respondemos pelo conteúdo dessas páginas.
+
+## 19. Alterações
+
+19.1 Podemos modificar a Plataforma, seus serviços, recursos e regras para melhorias, novas funcionalidades ou para suprimir ou alterar as existentes.
+
+19.2 Podemos atualizar estes Termos. A versão e a data da última atualização aparecem no topo desta página, e mudanças relevantes serão avisadas no Aplicativo, no Painel ou por e-mail.
+
+## 20. Atendimento
+
+20.1 Dúvidas, sugestões e problemas podem ser enviados pelo e-mail contato@vocenohype.com.br, pelo telefone +55 11 3834-5221 ou pela página de suporte, de segunda a sexta, das 10h às 18h.
+
+20.2 O Usuário também pode enviar correspondência ao endereço indicado no início destes Termos.
+
+## 21. Disposições gerais
+
+21.1 Não nos responsabilizamos por mensagens ou conteúdos publicitários que não tenham sido enviados pela Plataforma. Desconfie de pedidos de senha, código ou pagamento por mensagem.
+
+21.2 Ao usar a Plataforma, o Usuário aceita estes Termos e as demais políticas vigentes na data do acesso.
+
+21.3 A tolerância com qualquer violação destes Termos é mera liberalidade e não implica renúncia de direitos, novação ou alteração dos Termos.
+
+21.4 Se alguma disposição destes Termos for considerada inválida, as demais continuam em vigor.
+
+21.5 O Usuário declara ter lido, compreendido e aceito estes Termos.
+
+## 22. Legislação e foro
+
+Estes Termos são regidos pela legislação brasileira. Sempre que possível, as divergências serão resolvidas de forma amigável. Esgotada essa via, fica eleito o foro da Comarca da Capital do Estado de São Paulo, ressalvado o direito do consumidor de propor ação no foro do seu domicílio.
 
 ---
 

@@ -1226,15 +1226,17 @@ def p_404(L, A):
 
 LEGAL_FILES = {
     '/privacidade/': ('privacidade.html', 'Política de Privacidade', 'Quais dados pessoais o HypeApp coleta, como usa, com quem compartilha e como você exerce seus direitos.',
-        ['O controlador aparece como "HypeApp", sem razão social e CNPJ. Os termos citam Você no Hype Marketing e Entretenimento LTDA, CNPJ 43.442.408/0001-26.',
-         'O encarregado aparece só pelo e-mail. A Resolução CD/ANPD 18/2024 pede que a identidade do encarregado também seja pública.',
-         'Duas referências internas estão trocadas: o resumo manda ver a seção 8 para exclusão (é a 9) e a tabela manda ver a seção 5 para rastreamento (é a 6).',
-         'A política fala do app. Falta cobrir o site (formulários do comercial e do suporte, cookies) e o painel das marcas.']),
-    '/termos/': ('termos.html', 'Termos de Uso', 'Termos e condições gerais de uso do aplicativo HypeApp.',
-        ['Texto de 27/04/2022, anterior ao relançamento. As cláusulas 2, 9.4 e 9.6 dizem que o HypeApp só intermedeia e não participa de transações financeiras, mas o app novo tem carteira, saque e pagamentos.',
-         'Não cita recursos novos: Hype Points, comunidade, lives, avaliações e o painel das marcas.',
-         'Erro de digitação na cláusula 2 ("Hyppe App") e menção a um "catálogo (hypeapp.com.br)" que não existe no site novo.',
-         'O telefone e o horário da cláusula 15 também foram para a página de suporte; confirmar se continuam valendo.']),
+        ['Versão 2.0 de 03/11, montada a partir da política da Você no Hype (2025) e da anterior do HypeApp (02/09/2026). Precisa da aprovação do jurídico.',
+         'Endereço: usamos R. Joaquim Floriano, 243, cj. 71 (política da Você no Hype). Os termos de 2022 citavam Av. Cardeal Motta, 1057. Confirmar qual vale.',
+         'Instagram: a conexão é pelo código na bio, sem login da Meta. Confirmar com a plataforma de onde vêm as métricas do Instagram.',
+         'TikTok: a lista de dados acessados precisa bater com as permissões (scopes) pedidas no app e aprovadas pelo TikTok.',
+         'Login com Google ou Apple: o app ainda não tem. O texto fala "quando estiver disponível".',
+         'Prazos de retenção vieram da política da Você no Hype (leads 24 meses, clientes 5 anos). Confirmar se valem para o HypeApp.']),
+    '/termos/': ('termos.html', 'Termos de Uso', 'Termos e condições gerais de uso do HypeApp para creators, marcas e agências.',
+        ['Versão 2.0 de 03/11: atualiza o texto de 2022 para o modelo atual (campanhas, carteira, reservas, PIX, redes conectadas, Hype Points e comunidade). Precisa da aprovação do jurídico.',
+         'A antiga cláusula 9.4 (sem responsabilidade sobre transações) virou 14.2 e 14.3: a plataforma responde pela movimentação da carteira e não pelas obrigações entre marca e creator.',
+         'Seção 6 (pagamentos): confirmar com a operação a titularidade da chave PIX, a retenção em caso de contestação (6.6) e os prazos de liberação.',
+         'Foro: incluída a ressalva do foro do domicílio do consumidor. Confirmar com o jurídico.']),
     '/exclusao-de-conta/': ('exclusao.html', 'Exclusão de conta e dados', 'Como excluir sua conta no HypeApp e o que acontece com os seus dados.',
         ['Texto da página oficial de exclusão (api-v2.hypeapp.com.br/api/legal/solicitar-exclusao-dados), sem a linha técnica sobre a chamada da API.',
          'Se as lojas apontam para o endereço antigo, mantenha os dois no ar ou redirecione o antigo para cá.']),
@@ -1244,7 +1246,7 @@ def p_legal_file(url):
     def f(L, A):
         fn, t, d, notes = LEGAL_FILES[url]
         body = open(os.path.join(HERE, 'content', fn), encoding='utf-8').read()
-        body = body.replace('{{PRIVACIDADE}}', L('/privacidade/')).replace('{{EXCLUSAO}}', L('/exclusao-de-conta/'))
+        body = body.replace('{{PRIVACIDADE}}', L('/privacidade/')).replace('{{EXCLUSAO}}', L('/exclusao-de-conta/')).replace('{{COOKIES}}', L('/cookies/'))
         toc = ''.join('<a href="#%s">%s</a>' % (i, re.sub('<[^>]+>', '', x)) for i, x in re.findall(r'<h2 id="([^"]+)">(.*?)</h2>', body))
         rev = ''
         if CFG['preview'] and notes:
@@ -1295,8 +1297,9 @@ EMPRESA = 'Você no Hype Marketing e Entretenimento LTDA'
 CNPJ = '43.442.408/0001-26'
 EMAIL = 'contato@vocenohype.com.br'
 FONE = '+55 11 3834-5221'
-ENDERECO = {'@type': 'PostalAddress', 'streetAddress': 'Av. Cardeal Motta, 1057, City América', 'addressLocality': 'São Paulo',
-            'addressRegion': 'SP', 'postalCode': '02452-001', 'addressCountry': 'BR'}
+# Endereço da política de privacidade da Você no Hype (2025). Os termos de 2022 citavam Av. Cardeal Motta, 1057: confirmar.
+ENDERECO = {'@type': 'PostalAddress', 'streetAddress': 'R. Joaquim Floriano, 243, cj. 71, Itaim Bibi', 'addressLocality': 'São Paulo',
+            'addressRegion': 'SP', 'postalCode': '04534-010', 'addressCountry': 'BR'}
 ORG_ID, SITE_ID, APP_ID = BASE + '/#organizacao', BASE + '/#site', BASE + '/#app'
 ORG = {'@context': 'https://schema.org', '@type': 'Organization', '@id': ORG_ID, 'name': 'HypeApp',
        'legalName': EMPRESA, 'taxID': CNPJ, 'url': BASE + '/', 'logo': BASE + '/assets/logo-hypeapp.svg',
