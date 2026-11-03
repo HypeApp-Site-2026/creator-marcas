@@ -111,5 +111,5 @@ def post_meta(posts, base):
             ld['author'] = {'@type': 'Person', 'name': p['autor']}
         out[u] = dict(title=p['titulo'] + ' | Blog HypeApp', desc=p['resumo'],
                       robots='noindex, follow' if p['status'] == 'exemplo' else 'index, follow',
-                      img='assets/blog/' + p['capa'], pagina=p['titulo'], ld=ld)
+                      img='og/blog/' + p['slug'] + '.jpg', pagina=p['titulo'], ld=ld)  # 1200×630 gerada por make_media.py com a capa e o título
     return out
