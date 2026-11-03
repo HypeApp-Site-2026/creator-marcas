@@ -1,8 +1,8 @@
 {
  "/": {
   "publicado": "2026-10-30",
-  "alterado": "2026-10-30",
-  "hash": "485b2fccaf11409f32581892f06421b6"
+  "alterado": "2026-11-03",
+  "hash": "78e4ea0d6dd439cf88b3380fd9144c53"
  },
  "/404": {
   "publicado": "2026-10-30",
@@ -41,8 +41,8 @@
  },
  "/criadores/": {
   "publicado": "2026-10-30",
-  "alterado": "2026-10-30",
-  "hash": "59544eb5d60be1261eb16f0f0953fcf8"
+  "alterado": "2026-11-03",
+  "hash": "e1b2acd63127ab2e259125c8d2af998c"
  },
  "/entrar/": {
   "publicado": "2026-10-30",
@@ -56,33 +56,38 @@
  },
  "/legal/": {
   "publicado": "2026-10-30",
-  "alterado": "2026-10-30",
-  "hash": "e7d077383d133962d56a4b96a4d69f74"
+  "alterado": "2026-11-03",
+  "hash": "1cf683ad47ea87006a37c1f07f956bc2"
  },
  "/marcas/": {
   "publicado": "2026-10-30",
-  "alterado": "2026-10-30",
-  "hash": "7daf8937c78875c41f8d71d8dbf2980a"
+  "alterado": "2026-11-03",
+  "hash": "ae37273b9ae70ca4ac4be81759f88684"
  },
  "/perguntas-frequentes/": {
   "publicado": "2026-10-30",
-  "alterado": "2026-10-30",
-  "hash": "19a43c350d483a335d2d7f6e89490315"
+  "alterado": "2026-11-03",
+  "hash": "bfb329f4944a129a2262b3b25c04a8ee"
  },
  "/privacidade/": {
   "publicado": "2026-10-30",
   "alterado": "2026-11-03",
   "hash": "30b6771f3b131ee69d13fcaa1617764b"
  },
+ "/regras-da-comunidade/": {
+  "publicado": "2026-11-03",
+  "alterado": "2026-11-03",
+  "hash": "57c5aad97bf71f2d3ed1315aeeacd0d3"
+ },
  "/sobre/": {
   "publicado": "2026-10-30",
-  "alterado": "2026-10-30",
-  "hash": "74c68fa35737bba49828804fa86b8002"
+  "alterado": "2026-11-03",
+  "hash": "437562b0ca8f53401e4019eebe57a2fd"
  },
  "/suporte/": {
   "publicado": "2026-10-30",
-  "alterado": "2026-10-30",
-  "hash": "9c5faf116205441d54bf3abeb312383e"
+  "alterado": "2026-11-03",
+  "hash": "46e11a807537dd91c8b887dffe925cce"
  },
  "/suporte/enviado/": {
   "publicado": "2026-10-30",
@@ -92,6 +97,6 @@
  "/termos/": {
   "publicado": "2026-10-30",
   "alterado": "2026-11-03",
-  "hash": "67c020413748670370becf4661d8da2e"
+  "hash": "e073830b299254732937a47927cf07cb"
  }
 }

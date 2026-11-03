@@ -3,6 +3,10 @@
    Tema único e claro por decisão do design system (marca). Todas as cores vêm dos tokens abaixo. */
 /* Inter hospedada no próprio site (sem Google Fonts: nenhum dado do visitante vai a terceiros). Licença: assets/fonts/LICENSE-Inter.txt */
 @font-face {
+  font-family: "Inter Fallback"; src: local("Arial"), local("Helvetica"), local("Liberation Sans");
+  ascent-override: 90.49%; descent-override: 22.56%; line-gap-override: 0%; size-adjust: 107.06%;
+}
+@font-face {
   font-family: "Inter"; font-style: normal; font-display: swap; font-weight: 100 900;
   src: url("fonts/inter-latin-wght-normal.woff2") format("woff2-variations"), url("fonts/inter-latin-wght-normal.woff2") format("woff2");
   unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
@@ -16,13 +20,14 @@
   --ground: #EFEFEF;
   --surface: #FFFFFF;
   --ink: #050505;
-  --muted: #6E6E6E;
+  --muted: #666666;
   --line: #E0E0E0;
   --purple: #9E2CFA;
+  --purple-text: #8A1FE0; /* roxo para texto sobre fundo cinza (contraste AA) */
   --purple-ink: #FFFFFF;
   --placeholder: #DADADA;
   --ph-bg: #F6EDFF;
-  --font: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --font: "Inter", "Inter Fallback", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
   --r-card: 32px;
   --r-mid: 28px;
   --r-small: 22px;
@@ -89,7 +94,7 @@ h1, h2, h3 { font-weight: 600; text-wrap: balance; margin: 0; }
 .stack-lg { display: flex; flex-direction: column; gap: 28px; min-width: 0; }
 .row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
 .between { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 20px; }
-.link-strong { font-size: 16px; font-weight: 600; text-decoration: none; color: var(--purple); }
+.link-strong { font-size: 16px; font-weight: 600; text-decoration: none; color: var(--purple-text); }
 .link-strong:hover { text-decoration: underline; }
 
 /* Rótulos */
@@ -365,7 +370,7 @@ fieldset.invalid .choice > span { box-shadow: inset 0 0 0 2px #C4122F; }
 @media (max-width: 720px) { .site-footer { padding-block: 72px 16px; } .ftr { padding: 28px 24px; } }
 
 /* ---------- Mockup de 12 s (creator) ---------- */
-.mc-frame { width: 100%; max-width: 560px; margin: 0 auto; position: relative; }
+.mc-frame { width: 100%; max-width: 560px; margin: 0 auto; position: relative; aspect-ratio: 560 / 700; } /* reserva a altura antes do script (evita salto) */
 .mc-stage { position: absolute; left: 0; top: 0; width: 560px; height: 700px; border-radius: 32px; overflow: hidden; background: var(--surface); transform-origin: top left; }
 .mc-cam { position: absolute; inset: 0; transform-style: preserve-3d; }
 .mc-scene { position: absolute; inset: 0; perspective: 1400px; }
@@ -447,7 +452,7 @@ fieldset.invalid .choice > span { box-shadow: inset 0 0 0 2px #C4122F; }
 
 /* ---------- Painel animado (marcas) ---------- */
 .bo-wrap { width: 100%; max-width: 1240px; }
-.bo-frame { width: 100%; position: relative; }
+.bo-frame { width: 100%; max-width: 1240px; position: relative; aspect-ratio: 1240 / 760; } /* reserva a altura antes do script */
 .bo-stage { position: absolute; left: 0; top: 0; width: 1240px; height: 760px; transform-origin: top left; }
 .bo-win { width: 1240px; height: 760px; border-radius: 28px; background: var(--ink); padding: 8px; display: flex; flex-direction: column; }
 .bo-bar { height: 40px; display: flex; align-items: center; gap: 8px; padding: 0 14px; }
@@ -694,8 +699,8 @@ fieldset.invalid .choice > span { box-shadow: inset 0 0 0 2px #C4122F; }
   .hh-pop{animation-name:hh-pop}
   .hh-type{animation-name:hh-type;animation-timing-function:linear}
 }
-@keyframes hh-rise{0%{opacity:0;transform:translateY(10px);filter:blur(3px)}5.23%,51.1%{opacity:1;transform:none;filter:none}54.6%,100%{opacity:0;transform:none;filter:none}}
-@keyframes hh-big{0%{opacity:0;transform:translateY(16px) scale(.97);filter:blur(5px)}5.81%,51.1%{opacity:1;transform:none;filter:none}54.6%,100%{opacity:0;transform:none;filter:none}}
+@keyframes hh-rise{0%{opacity:0;transform:translateY(10px)}5.23%,51.1%{opacity:1;transform:none}54.6%,100%{opacity:0;transform:none}}
+@keyframes hh-big{0%{opacity:0;transform:translateY(16px) scale(.97)}5.81%,51.1%{opacity:1;transform:none}54.6%,100%{opacity:0;transform:none}}
 @keyframes hh-pop{0%{opacity:0;transform:scale(.7)}2.9%{opacity:1;transform:scale(1.06)}4.06%,51.1%{opacity:1;transform:none}54.6%,100%{opacity:0;transform:none}}
 @keyframes hh-type{0%{clip-path:inset(0 100% 0 0)}6.97%,51.1%{clip-path:inset(0 0 0 0);opacity:1}54.6%,100%{clip-path:inset(0 0 0 0);opacity:0}}
 
@@ -781,7 +786,7 @@ fieldset.invalid .choice > span { box-shadow: inset 0 0 0 2px #C4122F; }
 @keyframes hh-scr { 0% { opacity: 0; } 2.58%, 18.71% { opacity: 1; } 21.29%, 100% { opacity: 0; } }
 @keyframes hh-scr-last { 0% { opacity: 0; } 2.58%, 13.55% { opacity: 1; } 16.13%, 100% { opacity: 0; } }
 @keyframes hh-notch { 0% { opacity: 0; } 2.58%, 45.8% { opacity: 1; } 48.4%, 100% { opacity: 0; } }
-@keyframes hh-keep-big { 0% { opacity: 0; transform: translateY(16px) scale(.97); filter: blur(5px); } 5.81%, 97% { opacity: 1; transform: none; filter: none; } 100% { opacity: 0; transform: none; filter: none; } }
+@keyframes hh-keep-big { 0% { opacity: 0; transform: translateY(16px) scale(.97); } 5.81%, 97% { opacity: 1; transform: none; } 100% { opacity: 0; transform: none; } }
 @keyframes hh-keep-pop { 0% { opacity: 0; transform: scale(.7); } 2.9% { opacity: 1; transform: scale(1.06); } 4.06%, 97% { opacity: 1; transform: none; } 100% { opacity: 0; transform: none; } }
 
 /* ---------- Como funciona (Início): carrossel com 4 clipes ---------- */
@@ -800,7 +805,7 @@ fieldset.invalid .choice > span { box-shadow: inset 0 0 0 2px #C4122F; }
 .cf-card { scroll-snap-align: start; background: var(--surface); border-radius: 28px; overflow: hidden; min-width: 0; grid-row: span 2; display: grid; grid-template-rows: subgrid; }
 .cf-top { display: flex; flex-direction: column; gap: 12px; padding: 22px 24px 24px; background: var(--surface); color: var(--ink); transition: background-color 460ms cubic-bezier(.32,.72,0,1), color 460ms cubic-bezier(.32,.72,0,1); }
 .cf-card.is-active .cf-top { background: #9E2CFA; color: #fff; }
-.cf-tag { align-self: flex-start; font-size: 14px; font-weight: 500; padding: 5px 14px; border-radius: 999px; border: 1.5px solid currentColor; opacity: .85; }
+.cf-tag { align-self: flex-start; font-size: 14px; font-weight: 500; padding: 5px 14px; border-radius: 999px; border: 1.5px solid currentColor; }
 .cf-t { margin: 0; font-size: clamp(22px, 2vw, 28px); font-weight: 800; line-height: 1.05; letter-spacing: -0.035em; text-wrap: balance; }
 .cf-d { margin: 0; font-size: 16px; line-height: 1.35; }
 .cf-media { aspect-ratio: 1 / 1; background: var(--ground); }
@@ -1037,3 +1042,16 @@ fieldset.invalid .choice > span { box-shadow: inset 0 0 0 2px #C4122F; }
 .form-erros { background: #FFF5F6; border-radius: 14px; padding: 12px 16px; line-height: 1.45; }
 @media (min-width: 1120px) { .form-side { position: sticky; top: 24px; } }
 .legal-hub { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; }
+.rv { background: #FFF3B8; box-shadow: 0 0 0 2px #FFF3B8; border-radius: 3px; }
+
+/* Celular, tela baixa ou movimento reduzido: cartões em coluna desde o primeiro desenho (evita o salto de layout) */
+@media (max-width: 767px), (max-height: 619px), (prefers-reduced-motion: reduce) {
+  .stk { height: auto; }
+  .stk .stk-stage { position: static; height: auto; display: block; perspective: none; margin-top: 24px; }
+  .stk .stk-deck { width: 100%; max-width: none; height: auto; display: flex; flex-direction: column; gap: 16px; }
+  .stk .stk-card { position: static; transform: none !important; opacity: 1 !important; }
+  .stk .stk-in { transform: none !important; }
+  .stk .stk-art { flex-wrap: wrap; padding: 24px; box-shadow: none; }
+  .stk .stk-txt h3 { font-size: 28px; margin-top: 4px; }
+  .stk .stk-demo { flex-basis: 100%; }
+}

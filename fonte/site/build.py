@@ -88,6 +88,20 @@ def qr_svg():
     return s.replace('fill="#000000"', 'fill="#050505"')
 QR = qr_svg()
 
+def rev(s):
+    """Texto em rascunho (aguarda o ok de quem cuida do tema): marcado em amarelo só na prévia."""
+    return s if WEB else f'<span class="rv" title="Rascunho: aguarda revisão">{s}</span>'
+
+PIX_TXT = ('O valor entra como "A liberar" e fica disponível 30 dias depois do encerramento da campanha. A partir daí você saca via PIX, '
+           'sem taxa e sem valor máximo; o mínimo é R$ 1,00. O saque é processado em até 2 horas úteis, e a chave PIX precisa estar no seu nome, com o mesmo CPF da conta.')
+CURADORIA_TXT = rev('Os creators se inscrevem pelo mural da campanha. No self-service, a marca escolhe quem participa e pode filtrar por rede, nicho, estado, '
+                    'gênero, seguidores, engajamento e proximidade. Na campanha gerenciada, quem seleciona e indica os nomes é a curadoria da Você no Hype.')
+METRICAS_TXT = rev('Por campanha: alcance, visualizações, engajamento médio, interações (incluindo salvamentos), cliques e conteúdos no ar, com a divisão por rede '
+                   'e os creators com mais visualizações. Por publicação: alcance, curtidas e comentários.')
+AGENCIAS_TXT = rev('Sim. Cada marca tem configurações próprias (marca, empresa e equipe), e a pessoa alterna entre as marcas pelo seletor no topo do menu. A equipe é convidada por marca.')
+COMUNIDADE_TXT = rev('Feed, grupos e lives com outros creators dentro do app. A comunidade tem tolerância zero a conteúdo censurável e comportamento abusivo: '
+                     'qualquer publicação, comentário ou mensagem pode ser denunciada pelo próprio app, e você também pode bloquear outro usuário.')
+
 def faq_html(items):
     out = []
     for q, a in items:
@@ -124,7 +138,7 @@ def showcase(A, sid, kind, tag, title, lead, items, flip=False, note='Dados de e
         hp = CURSOR_HOT.get(code) if kind == 'web' else None
         imgs += (f'<img src="{tela(A, code)}" alt="Tela do {"app" if kind == "phone" else "painel"}: {t}" width="{w}" height="{h}" data-i="{i}"'
                  + (f' data-hot="{hp[0]},{hp[1]}"' if hp else '') + ''
-                 f'{" class=\"on\"" if on else ""} loading="{"eager" if on else "lazy"}" decoding="async">')
+                 f'{" class=\"on\"" if on else ""} loading="{"eager" if on else "lazy"}"{" fetchpriority=\"high\"" if on and sid == "painel" else ""} decoding="async">')
     if kind == 'phone':
         dev = f'<div class="dev-phone"><div class="dev-screen" id="{sid}-tela" aria-live="polite">{imgs}</div></div>'
     else:
@@ -227,7 +241,7 @@ def footer(L, A):
         ('Para marcas', [('Para marcas e agências', L('/marcas/')), ('Falar com nosso time', L('/contato/marcas/')), ('Entrar no painel', CFG['painel'] or L('/entrar/', '#marcas'))]),
         ('Ajuda', [('Perguntas frequentes', L('/perguntas-frequentes/')), ('Suporte', L('/suporte/'))]),
         ('Empresa', [('Sobre o HypeApp', L('/sobre/'))] + ([('Blog', L('/blog/'))] if BLOG_ON else []) + [('Contato', L('/contato/'))]),
-        ('Legal', [('Privacidade', L('/privacidade/')), ('Encarregado de dados', L('/privacidade/', '#encarregado')), ('Termos de uso', L('/termos/')), ('Cookies', L('/cookies/')), ('Exclusão de conta', L('/exclusao-de-conta/'))]),
+        ('Legal', [('Privacidade', L('/privacidade/')), ('Encarregado de dados', L('/privacidade/', '#encarregado')), ('Termos de uso', L('/termos/')), ('Cookies', L('/cookies/')), ('Regras da comunidade', L('/regras-da-comunidade/')), ('Exclusão de conta', L('/exclusao-de-conta/'))]),
     ]
     c = ''.join(f'<nav aria-label="{t}"><span class="ftr-h">{t}</span>' + ''.join(f'<a href="{h}">{n}</a>' for n, h in ls) + '</nav>' for t, ls in cols)
     return f'''<footer class="site-footer wrap">
@@ -445,6 +459,9 @@ TELA_ALT = {
 HERO_MON_TELAS = ['bo-C2', 'bo-E1', 'bo-C1']
 HERO_PH_TELAS = ['app-D1', 'app-E4', 'app-G2']
 
+HERO_SRCSET = lambda A: ', '.join(f"{A('assets/hero/' + f)} {w}w" for f, w in (('hero-base-768.webp', 768), ('hero-base-1024.webp', 1024), ('hero-base.webp', 1536)))
+HERO_SIZES = '(max-width: 900px) calc(100vw - 32px), 50vw'
+
 def hero_scene(A):
     """Ilustração animada da hero. Arquivos: assets/hero/hero-base.webp e hero-textos.webp; estilos no fim do site.css.
     Ciclo de 15,5 s: a ilustração com os textos animados e, depois, três telas reais no monitor e no celular."""
@@ -453,10 +470,10 @@ def hero_scene(A):
     clip = 'polygon(' + ','.join(f'{x}px {y}px' for x, y in HERO_PH_CLIP) + ')'
     return f'''<div class="hero-art">
 <div class="hh" role="img" aria-label="HypeApp: painel de campanhas no computador para marcas e app no celular para creators" data-hh>
-  <img src="{A('assets/hero/hero-base.webp')}" width="1536" height="1024" alt="Ilustração: computador com o painel de campanhas das marcas e celular com o app dos creators" fetchpriority="high" decoding="async">
+  <img src="{A('assets/hero/hero-base.webp')}" srcset="{HERO_SRCSET(A)}" sizes="{HERO_SIZES}" width="1536" height="1024" alt=""Ilustração: computador com o painel de campanhas das marcas e celular com o app dos creators" fetchpriority="high" decoding="async">
   <div class="hh-scr" aria-hidden="true"><div class="hh-stage">
     <div class="hh-mon" style="transform:{homography_css(1120, 760, HERO_MON)}">{mon}</div>
-    <img class="hh-front" src="{A('assets/hero/hero-base.webp')}" alt="Ilustração: celular com o app do HypeApp" width="1536" height="1024" style="clip-path:{clip}">
+    <img class="hh-front" src="{A('assets/hero/hero-base.webp')}" srcset="{HERO_SRCSET(A)}" sizes="{HERO_SIZES}" alt=""Ilustração: celular com o app do HypeApp" width="1536" height="1024" style="clip-path:{clip}">
     <div class="hh-ph" style="transform:{homography_css(600, 1298, HERO_PH)}">{ph}<i class="hh-notch"></i></div>
   </div></div>
   <div aria-hidden="true">
@@ -724,7 +741,7 @@ def p_criadores(L, A):
     recs = ''.join(f'<div class="feat"><span class="h4">{t}</span><span style="font-size:15px">{d}</span></div>' for t, d in rec)
     faq = [('Quem pode participar?', 'Qualquer pessoa com 18 anos ou mais, ou emancipada, sem mínimo de seguidores. Cada campanha tem critérios próprios.'),
            ('O cadastro garante campanhas?', 'Não. Cada campanha tem critérios próprios e a seleção é feita pela marca ou pela curadoria.'),
-           ('Como recebo o pagamento?', 'O valor aparece na carteira do app e pode ser sacado quando for liberado.'),
+           ('Como recebo o pagamento?', PIX_TXT),
            ('Preciso emitir nota fiscal?', 'Depende da campanha e do seu cadastro como pessoa física ou jurídica. O app informa o que é exigido antes do pagamento.'),
            ('Quanto custa para creators?', 'Nada. O HypeApp é gratuito para creators: não há mensalidade nem taxa sobre o valor que você recebe das campanhas.'),
            ('Recebidos e permuta: o produto fica comigo?', 'Depende da campanha. O mural de cada campanha informa se o produto é seu ou se precisa ser devolvido.'),
@@ -794,9 +811,10 @@ def p_marcas(L, A):
     li = ''.join(f'<li><span class="step-n">{i + 1}</span><span class="t">{t}</span><span class="d">{d}</span></li>' for i, (t, d) in enumerate(steps))
     faq = [('Qual a diferença entre self-service e gerenciada?', 'No self-service sua equipe opera tudo no painel. Na gerenciada, a Você no Hype cuida da estratégia, da curadoria e da operação.'),
            ('Quanto custa uma campanha?', 'Os valores são sob consulta e dependem do escopo, do volume e da forma de trabalho.'),
-           ('Quais métricas eu acompanho?', 'As métricas vêm direto das redes sociais dos creators, conectadas ao app.'),
+           ('Quais métricas eu acompanho?', METRICAS_TXT),
+           ('Como os creators são selecionados?', CURADORIA_TXT),
            ('E se o creator não entregar?', 'O valor reservado para aquela participação volta ao saldo da campanha.'),
-           ('Agências podem gerir várias marcas?', 'Sim. Cada marca tem seu espaço no painel, e a equipe da agência alterna entre elas.')]
+           ('Agências podem gerir várias marcas?', AGENCIAS_TXT)]
     return f'''
 <section class="hero-center" aria-labelledby="hero-m">
   <div class="stack">
@@ -901,20 +919,21 @@ FAQ_GROUPS = [
         ('Como eu começo?', 'Baixe o HypeApp na App Store ou no Google Play, crie sua conta e conecte suas redes. Não há mínimo de seguidores.'),
         ('O cadastro garante participação em campanhas?', 'Não. Cada campanha tem critérios próprios e a marca ou a curadoria seleciona quem participa.'),
         ('Quanto custa para creators?', 'Nada. O HypeApp é gratuito para creators: não há mensalidade nem taxa sobre o valor que você recebe das campanhas.'),
-        ('Como recebo o pagamento?', 'O valor aparece na carteira do app e pode ser sacado via PIX quando for liberado.'),
+        ('Como recebo o pagamento?', PIX_TXT),
         ('Preciso emitir nota fiscal?', 'Depende da campanha e do seu cadastro como pessoa física ou jurídica. O app informa o que é exigido antes do pagamento.'),
         ('Recebidos e permuta: o produto fica comigo?', 'Depende da campanha. O mural de cada campanha informa se o produto é seu ou se precisa ser devolvido.'),
         ('A marca pode usar meu conteúdo depois?', 'Depende do contrato da campanha, firmado entre você e a marca. Confira as condições de uso de imagem antes de aceitar o convite.'),
-        ('Como funciona a comunidade?', 'Feed, grupos e lives com outros creators dentro do app, com regras de participação.'),
+        ('Como funciona a comunidade?', COMUNIDADE_TXT),
     ]),
     ('marcas', 'Para marcas e agências', [
         ('Como marcas e agências começam?', 'Pelo formulário Falar com nosso time. O comercial entende a campanha, envia uma proposta e libera o acesso ao painel.'),
         ('Como os creators chegam à minha campanha?', 'Você monta o mural da campanha no painel e os creators se inscrevem por ele. Também dá para buscar creators e enviar convites.'),
         ('Quanto custa uma campanha?', 'Os valores são sob consulta e dependem do escopo, do volume e da forma de trabalho.'),
         ('Qual a diferença entre self-service e gerenciada?', 'No self-service sua equipe opera tudo no painel. Na gerenciada, a Você no Hype cuida da estratégia, da curadoria e da operação.'),
-        ('Quais métricas eu acompanho?', 'As métricas vêm direto das redes sociais dos creators, conectadas ao app.'),
+        ('Quais métricas eu acompanho?', METRICAS_TXT),
+           ('Como os creators são selecionados?', CURADORIA_TXT),
         ('E se o creator não entregar?', 'O valor reservado para aquela participação volta ao saldo da campanha.'),
-        ('Agências podem gerir várias marcas?', 'Sim. Cada marca tem seu espaço no painel.'),
+        ('Agências podem gerir várias marcas?', AGENCIAS_TXT),
     ]),
     ('conta', 'Conta, acesso e segurança', [
         ('Baixei o app e não consigo entrar. O que faço?', 'Confira se o app está atualizado na loja e entre com o e-mail e a senha do cadastro. Se esqueceu a senha, use Esqueci a senha na tela de entrada. Se o erro continuar, abra um chamado no suporte.'),
@@ -957,7 +976,7 @@ def p_sobre(L, A):
 <section class="grid-300" aria-label="O que é o HypeApp">
   <div class="card stack"><span class="h4">Para creators</span><p class="small" style="font-size:15px">Um app para iPhone e Android com campanhas, convites, entregas, comunidade e carteira.</p><a class="link-strong" href="{L('/criadores/')}">Para creators</a></div>
   <div class="card stack"><span class="h4">Para marcas e agências</span><p class="small" style="font-size:15px">Um painel na web para encontrar creators, aprovar conteúdos e acompanhar resultados.</p><a class="link-strong" href="{L('/marcas/')}">Para marcas</a></div>
-  <div class="card stack" style="background:var(--ink);color:var(--purple-ink)"><span class="h4">Quem opera</span><p class="small" style="font-size:15px">Desenvolvido e operado pela Você no Hype Marketing e Entretenimento LTDA, CNPJ 43.442.408/0001-26. Av. Cardeal Motta, 1057, City América, São Paulo/SP, CEP 02452-001.</p></div>
+  <div class="card stack" style="background:var(--ink);color:var(--purple-ink)"><span class="h4">Quem opera</span><p class="small" style="font-size:15px">Desenvolvido e operado pela Você no Hype Marketing e Entretenimento LTDA, CNPJ 43.442.408/0001-26. R. Joaquim Floriano, 243, cj. 71, Itaim Bibi, São Paulo/SP, CEP 04534-010.</p></div>
 </section>
 <section class="band-white split" id="canais" aria-labelledby="canais-t">
   <div class="stack"><h2 id="canais-t" class="h2">Canais oficiais</h2><p class="body">Use só estes endereços. O HypeApp nunca pede senha, código de verificação ou chave PIX por mensagem.</p></div>
@@ -1104,7 +1123,7 @@ def p_suporte(L, A):
     </div>
     <p class="small muted">Pedidos sobre seus dados pessoais seguem pela <a href="{L('/privacidade/', '#encarregado')}">política de privacidade</a>. Marcas novas falam com o <a href="{L('/contato/marcas/')}">comercial</a>.</p>
   </div>
-  <form class="card form" style="flex:1 1 520px" data-form name="suporte" method="POST" action="{'/api/contato' if WEB else L('/suporte/enviado/')}" data-next="{L('/suporte/enviado/')}"{FORM_LIVE} novalidate>
+  <form class="card form" style="flex:1 1 520px" data-form name="suporte" method="POST" action="{'/api/lead' if WEB else L('/suporte/enviado/')}" data-next="{L('/suporte/enviado/')}"{FORM_LIVE} novalidate>
     <input type="hidden" name="form-name" value="suporte">
     {HONEYPOT}
     {choices('uso', 'Você usa', [('app', 'O app (creator)'), ('painel', 'O painel (marca ou agência)')])}
@@ -1202,11 +1221,30 @@ def p_legal(url):
 <div class="doc-layout"><nav class="toc" aria-label="Nesta página">{toc}</nav><article class="prose card">{body}{extra}</article></div>'''
     return f
 
+def p_regras(L, A):
+    nao = ['assédio, bullying, ameaças ou incitação ao ódio;', 'nudez, conteúdo sexual explícito ou exploração;', 'violência gráfica ou apologia a ela;',
+           'spam, golpes ou desinformação;', 'conteúdo ilegal, discriminatório ou que viole direitos de terceiros.']
+    secs = [('tolerancia', 'Tolerância zero', '<p>A comunidade do HypeApp tem tolerância zero a conteúdo censurável e a comportamento abusivo. Isso vale para publicações, comentários, grupos, lives e mensagens.</p>'),
+            ('proibido', 'O que não é permitido', '<ul>' + ''.join(f'<li>{x}</li>' for x in nao) + '</ul>'),
+            ('denunciar', 'Como denunciar', '<p>Toque no menu "…" da publicação, ou segure sobre o comentário, o comentário da live ou a mensagem, e escolha "Denunciar". As denúncias são analisadas em até 24 horas.</p>'),
+            ('consequencias', 'O que acontece com quem viola as regras', '<p>Contas que violarem estas diretrizes podem ter o conteúdo removido e o acesso suspenso ou encerrado, conforme os <a href="' + L('/termos/') + '">Termos de Uso</a>.</p>'),
+            ('bloquear', 'Bloquear outro usuário', '<p>Você também pode bloquear outro usuário. Quem você bloqueia deixa de interagir com você na comunidade.</p>')]
+    toc = ''.join(f'<a href="#{i}">{t}</a>' for i, t, _ in secs)
+    body = ''.join(f'<h2 id="{i}">{t}</h2>{c}' for i, t, c in secs)
+    rv = ('' if WEB else '<aside class="legal-review" aria-label="Pontos para revisão"><b>Só na prévia · rascunho</b><ul><li>Texto da tela Diretrizes da comunidade do app. Precisa do ok do jurídico antes de publicar.</li>'
+          '<li>Confirmar com o produto o que o bloqueio faz exatamente (ocultar conteúdo, impedir mensagens).</li></ul></aside>')
+    return f'''
+<section class="page-hero" aria-labelledby="rc-h"><h1 id="rc-h" class="display" style="font-size:clamp(36px,5vw,56px)">Regras da comunidade</h1>
+  <p class="lead">Como manter a comunidade do HypeApp segura para creators e marcas, e o que fazer quando algo passar do limite.</p></section>
+{rv}
+<div class="doc-layout"><nav class="toc" aria-label="Nesta página">{toc}</nav><article class="prose card legal">{body if WEB else '<div class="rv">' + body + '</div>'}</article></div>'''
+
 def p_legal_hub(L, A):
     docs = [('Política de privacidade', 'Como tratamos dados pessoais no site, no app e no painel, e os seus direitos.', L('/privacidade/')),
             ('Termos de uso', 'Regras para usar o site, o app e o painel do HypeApp.', L('/termos/')),
             ('Política de cookies', 'Quais tecnologias o site usa e como mudar suas preferências.', L('/cookies/')),
             ('Encarregado de dados', 'Quem responde por dados pessoais e como falar com ele.', L('/privacidade/', '#encarregado')),
+            ('Regras da comunidade', 'O que não é permitido na comunidade, como denunciar e o que acontece com quem viola as regras.', L('/regras-da-comunidade/')),
             ('Exclusão de conta', 'Como excluir sua conta e o que acontece com os seus dados.', L('/exclusao-de-conta/'))]
     cards = ''.join(f'<a class="help-card" href="{u}"><b>{t}</b><span class="small muted">{s}</span></a>' for t, s, u in docs)
     return f'''
@@ -1227,15 +1265,17 @@ def p_404(L, A):
 LEGAL_FILES = {
     '/privacidade/': ('privacidade.html', 'Política de Privacidade', 'Quais dados pessoais o HypeApp coleta, como usa, com quem compartilha e como você exerce seus direitos.',
         ['Versão 2.0 de 03/11, montada a partir da política da Você no Hype (2025) e da anterior do HypeApp (02/09/2026). Precisa da aprovação do jurídico.',
-         'Endereço: usamos R. Joaquim Floriano, 243, cj. 71 (política da Você no Hype). Os termos de 2022 citavam Av. Cardeal Motta, 1057. Confirmar qual vale.',
-         'Instagram: a conexão é pelo código na bio, sem login da Meta. Confirmar com a plataforma de onde vêm as métricas do Instagram.',
-         'TikTok: a lista de dados acessados precisa bater com as permissões (scopes) pedidas no app e aprovadas pelo TikTok.',
+         'Sede confirmada pelo Lucas em 03/11 (R. Joaquim Floriano, 243, cj. 71). Conferir o CEP 04534-010 com o cartão CNPJ.',
+         'Instagram: a conexão é pelo código na bio, sem login da Meta. A tecnologia precisa dizer de onde vêm as métricas (dados públicos, prints ou outro provedor); a resposta muda a seção 7.1.',
+         'TikTok: a lista de dados da seção 7.2 precisa bater com os escopos aprovados (por exemplo user.info.basic, user.info.stats, video.list). Aguardando a tecnologia.',
          'Login com Google ou Apple: o app ainda não tem. O texto fala "quando estiver disponível".',
-         'Prazos de retenção vieram da política da Você no Hype (leads 24 meses, clientes 5 anos). Confirmar se valem para o HypeApp.']),
+         'Prazos de retenção vieram da política da Você no Hype (leads 24 meses, clientes 5 anos). Confirmar se valem para o HypeApp.',
+         'Hype Points (seção 6): aguarda a confirmação do Lucas para aparecer nos textos legais.']),
     '/termos/': ('termos.html', 'Termos de Uso', 'Termos e condições gerais de uso do HypeApp para creators, marcas e agências.',
         ['Versão 2.0 de 03/11: atualiza o texto de 2022 para o modelo atual (campanhas, carteira, reservas, PIX, redes conectadas, Hype Points e comunidade). Precisa da aprovação do jurídico.',
          'A antiga cláusula 9.4 (sem responsabilidade sobre transações) virou 14.2 e 14.3: a plataforma responde pela movimentação da carteira e não pelas obrigações entre marca e creator.',
-         'Seção 6 (pagamentos): confirmar com a operação a titularidade da chave PIX, a retenção em caso de contestação (6.6) e os prazos de liberação.',
+         'Seção 6 atualizada com as respostas do Lucas (03/11): chave PIX do titular, sem taxa, sem valor máximo, mínimo de R$ 1,00, saque em até 2 horas úteis, liberação 30 dias após o encerramento. Falta o prazo máximo de análise de contestação (6.6).',
+         'Hype Points (seção 8): aguarda a confirmação do Lucas.',
          'Foro: incluída a ressalva do foro do domicílio do consumidor. Confirmar com o jurídico.']),
     '/exclusao-de-conta/': ('exclusao.html', 'Exclusão de conta e dados', 'Como excluir sua conta no HypeApp e o que acontece com os seus dados.',
         ['Texto da página oficial de exclusão (api-v2.hypeapp.com.br/api/legal/solicitar-exclusao-dados), sem a linha técnica sobre a chamada da API.',
@@ -1246,7 +1286,7 @@ def p_legal_file(url):
     def f(L, A):
         fn, t, d, notes = LEGAL_FILES[url]
         body = open(os.path.join(HERE, 'content', fn), encoding='utf-8').read()
-        body = body.replace('{{PRIVACIDADE}}', L('/privacidade/')).replace('{{EXCLUSAO}}', L('/exclusao-de-conta/')).replace('{{COOKIES}}', L('/cookies/'))
+        body = body.replace('{{PRIVACIDADE}}', L('/privacidade/')).replace('{{EXCLUSAO}}', L('/exclusao-de-conta/')).replace('{{COOKIES}}', L('/cookies/')).replace('{{REGRAS}}', L('/regras-da-comunidade/'))
         toc = ''.join('<a href="#%s">%s</a>' % (i, re.sub('<[^>]+>', '', x)) for i, x in re.findall(r'<h2 id="([^"]+)">(.*?)</h2>', body))
         rev = ''
         if CFG['preview'] and notes:
@@ -1270,7 +1310,7 @@ PAGES = [
     ('/app', p_app, 'mid'),
     ('/privacidade/', p_legal_file('/privacidade/'), 'mid'), ('/termos/', p_legal_file('/termos/'), 'mid'),
     ('/cookies/', p_legal('/cookies/'), 'mid'), ('/exclusao-de-conta/', p_legal_file('/exclusao-de-conta/'), 'mid'),
-    ('/legal/', p_legal_hub, 'mid'),
+    ('/legal/', p_legal_hub, 'mid'), ('/regras-da-comunidade/', p_regras, 'mid'),
     ('/404', p_404, 'mid'),
 ]
 if BLOG_ON:
@@ -1297,7 +1337,7 @@ EMPRESA = 'Você no Hype Marketing e Entretenimento LTDA'
 CNPJ = '43.442.408/0001-26'
 EMAIL = 'contato@vocenohype.com.br'
 FONE = '+55 11 3834-5221'
-# Endereço da política de privacidade da Você no Hype (2025). Os termos de 2022 citavam Av. Cardeal Motta, 1057: confirmar.
+# Sede confirmada pelo Lucas em 03/11 (conferir o CEP com o cartão CNPJ).
 ENDERECO = {'@type': 'PostalAddress', 'streetAddress': 'R. Joaquim Floriano, 243, cj. 71, Itaim Bibi', 'addressLocality': 'São Paulo',
             'addressRegion': 'SP', 'postalCode': '04534-010', 'addressCountry': 'BR'}
 ORG_ID, SITE_ID, APP_ID = BASE + '/#organizacao', BASE + '/#site', BASE + '/#app'
@@ -1393,7 +1433,7 @@ def build_page(url, fn, kind):
         d = dict(d, publicado=min(d['publicado'], doc), alterado=doc)
     jl = jsonld(url, title, desc, d)
     ld = ''.join(f'<script type="application/ld+json">{json.dumps(j, ensure_ascii=False)}</script>' for j in jl)
-    bar = (f'<div class="preview-bar"><strong>Prévia do site</strong> · conteúdo em revisão. Textos entre colchetes aguardam aprovação. Envios de formulário são simulados. <a href="{A("iphone/index.html")}">Ver no iPhone</a></div>' if CFG['preview'] else '')
+    bar = (f'<div class="preview-bar"><strong>Prévia do site</strong> · conteúdo em revisão. Textos entre colchetes aguardam aprovação; trechos em amarelo são rascunhos em revisão. Envios de formulário são simulados. <a href="{A("iphone/index.html")}">Ver no iPhone</a></div>' if CFG['preview'] else '')
     head = f'''<title>{html.escape(title)}</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="description" content="{html.escape(desc)}">
@@ -1409,6 +1449,7 @@ def build_page(url, fn, kind):
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#EFEFEF">
 <link rel="preload" href="{A('assets/fonts/inter-latin-wght-normal.woff2')}" as="font" type="font/woff2" crossorigin>
+{f'<link rel="preload" as="image" type="image/webp" fetchpriority="high" imagesrcset="{HERO_SRCSET(A)}" imagesizes="{HERO_SIZES}">' if url == '/' else ''}
 <link rel="icon" href="{A('favicon.ico')}" sizes="32x32">
 <link rel="icon" href="{A('favicon.svg')}" type="image/svg+xml">
 <link rel="apple-touch-icon" href="{A('apple-touch-icon.png')}">
@@ -1476,7 +1517,28 @@ HEADERS = '''/*
 /assets/fonts/*
   Cache-Control: public, max-age=31536000, immutable
 
+/assets/site.css
+  Cache-Control: public, max-age=31536000, immutable
+
+/assets/site.js
+  Cache-Control: public, max-age=31536000, immutable
+
 /assets/telas/*
+  Cache-Control: public, max-age=604800
+
+/assets/hero/*
+  Cache-Control: public, max-age=604800
+
+/assets/como-funciona/*
+  Cache-Control: public, max-age=604800
+
+/assets/carreira/*
+  Cache-Control: public, max-age=604800
+
+/assets/menu/*
+  Cache-Control: public, max-age=604800
+
+/assets/blog/*
   Cache-Control: public, max-age=604800
 
 /og/*
@@ -1537,8 +1599,9 @@ def arquivos_tecnicos(OUT):
     # 1. Datas: grava o registro e acrescenta <lastmod> ao sitemap (só quando o conteúdo muda de verdade)
     json.dump(dict(sorted(DATAS.items())), open(DATAS_F, 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
     sm = os.path.join(OUT, 'sitemap.xml'); x = open(sm, encoding='utf-8').read()
-    if f'<loc>{BASE}/legal/</loc>' not in x:
-        x = x.replace('</urlset>', f'  <url><loc>{BASE}/legal/</loc></url>\n</urlset>')
+    for _u in ('/legal/', '/regras-da-comunidade/'):
+        if f'<loc>{BASE}{_u}</loc>' not in x:
+            x = x.replace('</urlset>', f'  <url><loc>{BASE}{_u}</loc></url>\n</urlset>')
     x = re.sub(r'\s*<lastmod>[^<]*</lastmod>', '', x)
     x = x.replace('O CMS deve acrescentar <lastmod> quando o conteúdo mudar de verdade.', '<lastmod> = última mudança real do conteúdo (datas.json).')
     def _lm(m):
@@ -1598,6 +1661,14 @@ def main():
     os.makedirs(os.path.join(OUT, 'assets'))
     for f in ('site.css', 'site.js', 'logo-hypeapp.svg'):
         shutil.copy(os.path.join(HERE, 'assets', f), os.path.join(OUT, 'assets', f))
+    if WEB:  # produção: CSS e JS minificados (pip install rcssmin rjsmin; sem eles, copia como está)
+        try:
+            import rcssmin, rjsmin
+            for f, mini in (('site.css', rcssmin.cssmin), ('site.js', rjsmin.jsmin)):
+                src = open(os.path.join(HERE, 'assets', f), encoding='utf-8').read()
+                open(os.path.join(OUT, 'assets', f), 'w', encoding='utf-8').write(mini(src))
+        except ImportError:
+            print('aviso: rcssmin/rjsmin não instalados; CSS e JS saem sem minificar')
     shutil.copytree(os.path.join(HERE, 'assets', 'fonts'), os.path.join(OUT, 'assets', 'fonts'))
     shutil.copytree(os.path.join(HERE, 'assets', 'hero'), os.path.join(OUT, 'assets', 'hero'))
     shutil.copytree(os.path.join(HERE, 'assets', 'como-funciona'), os.path.join(OUT, 'assets', 'como-funciona'))

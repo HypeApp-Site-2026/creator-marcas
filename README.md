@@ -8,9 +8,6 @@ Site estático publicado no Vercel. A raiz do repositório é o site pronto. O c
 2. Em **Framework Preset**, escolha **Other**. Deixe Build Command e Output Directory vazios: o `vercel.json` já define tudo.
 3. **Environment Variables** (Production):
    - `PLATAFORMA_WEBHOOK_SECRET` (**obrigatória**): segredo do webhook do CRM Comercial da plataforma Você no Hype. Sem ela, o formulário "Fale com nosso time" não cria leads e o visitante vê "Não foi possível enviar agora".
-   - `RESEND_API_KEY`: chave do Resend, para os formulários enviarem e-mail.
-   - `FORM_TO` (opcional): destino. O padrão é contato@vocenohype.com.br.
-   - `FORM_FROM` (opcional): remetente, depois de verificar o domínio no Resend. Por exemplo, `Site HypeApp <site@hypeapp.com.br>`.
 4. **Deploy**. Confira o endereço `*.vercel.app` antes de ligar o domínio.
 
 ## Ligar o domínio
@@ -70,9 +67,11 @@ Mapeamento:
   - senão `site`.
 - **`source_form`:** sempre `Site-HypeApp`.
 
-### Suporte
+### Suporte → mesmo webhook
 
-`api/contato.js` recebe o formulário de `/suporte/` e envia para contato@vocenohype.com.br pelo Resend (`RESEND_API_KEY`). Se a chave não estiver configurada, o site mostra "Não foi possível enviar" com o e-mail de contato.
+O formulário de `/suporte/` também vai para o `api/lead.js`, com o mesmo segredo, e chega ao CRM Comercial como registro com `source_form` `Site-HypeApp`. As notas começam com "Tipo: CHAMADO DE SUPORTE (não é lead comercial)", seguidas do assunto e das respostas do chamado.
+
+O Resend não é mais usado: `api/contato.js` foi removido e a variável `RESEND_API_KEY` pode ser apagada do Vercel.
 
 ## SEO, IAs e buscadores
 

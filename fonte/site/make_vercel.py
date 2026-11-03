@@ -6,8 +6,7 @@ Uso (da pasta site/):
 
 Resultado em ../repo:
   index.html, criadores/, ...   site estático (o Vercel serve a raiz do repositório)
-  api/lead.js                   envia o formulário de marcas ao CRM Comercial (webhook)
-  api/contato.js                formulário de suporte por e-mail (Resend)
+  api/lead.js                   envia os formulários de marcas e de suporte ao CRM Comercial (webhook)
   vercel.json                   redirecionamentos e cabeçalhos (convertidos de _redirects/_headers)
   fonte/                        código-fonte para gerar o site de novo (não vai ao ar: .vercelignore)
 """

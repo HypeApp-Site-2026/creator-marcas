@@ -20,7 +20,7 @@ Informações oficiais:
 
 Fonte: https://www.hypeapp.com.br/
 Título: HypeApp: campanhas entre creators e marcas
-Atualizado em: 2026-10-30
+Atualizado em: 2026-11-03
 
 # O app de quem cria conteúdo. O painel de quem contrata.
 
@@ -92,7 +92,7 @@ Busque nas perguntas frequentes ou fale com o suporte.
 
 Fonte: https://www.hypeapp.com.br/criadores/
 Título: Para criadores e influenciadores | HypeApp
-Atualizado em: 2026-10-30
+Atualizado em: 2026-11-03
 
 # O app completo para quem cria conteúdo.
 
@@ -196,7 +196,7 @@ Não. Cada campanha tem critérios próprios e a seleção é feita pela marca o
 
 **P:** Como recebo o pagamento?
 
-O valor aparece na carteira do app e pode ser sacado quando for liberado.
+O valor entra como "A liberar" e fica disponível 30 dias depois do encerramento da campanha. A partir daí você saca via PIX, sem taxa e sem valor máximo; o mínimo é R$ 1,00. O saque é processado em até 2 horas úteis, e a chave PIX precisa estar no seu nome, com o mesmo CPF da conta.
 
 **P:** Preciso emitir nota fiscal?
 
@@ -218,7 +218,7 @@ Depende do contrato da campanha, firmado entre você e a marca. Confira as condi
 
 Fonte: https://www.hypeapp.com.br/marcas/
 Título: Para marcas e agências: campanhas com creators | HypeApp
-Atualizado em: 2026-10-30
+Atualizado em: 2026-11-03
 
 # Campanhas com creators do jeito que sua equipe preferir.
 
@@ -292,7 +292,11 @@ Os valores são sob consulta e dependem do escopo, do volume e da forma de traba
 
 **P:** Quais métricas eu acompanho?
 
-As métricas vêm direto das redes sociais dos creators, conectadas ao app.
+Por campanha: alcance, visualizações, engajamento médio, interações (incluindo salvamentos), cliques e conteúdos no ar, com a divisão por rede e os creators com mais visualizações. Por publicação: alcance, curtidas e comentários.
+
+**P:** Como os creators são selecionados?
+
+Os creators se inscrevem pelo mural da campanha. No self-service, a marca escolhe quem participa e pode filtrar por rede, nicho, estado, gênero, seguidores, engajamento e proximidade. Na campanha gerenciada, quem seleciona e indica os nomes é a curadoria da Você no Hype.
 
 **P:** E se o creator não entregar?
 
@@ -300,7 +304,7 @@ O valor reservado para aquela participação volta ao saldo da campanha.
 
 **P:** Agências podem gerir várias marcas?
 
-Sim. Cada marca tem seu espaço no painel, e a equipe da agência alterna entre elas.
+Sim. Cada marca tem configurações próprias (marca, empresa e equipe), e a pessoa alterna entre as marcas pelo seletor no topo do menu. A equipe é convidada por marca.
 
 ## Marque uma demonstração e veja como fica a sua gestão de marketing.
 
@@ -308,7 +312,7 @@ Sim. Cada marca tem seu espaço no painel, e a equipe da agência alterna entre 
 
 Fonte: https://www.hypeapp.com.br/sobre/
 Título: Sobre o HypeApp, da Você no Hype
-Atualizado em: 2026-10-30
+Atualizado em: 2026-11-03
 
 # Sobre o HypeApp
 
@@ -318,7 +322,7 @@ Um app para iPhone e Android com campanhas, convites, entregas, comunidade e car
 
 Um painel na web para encontrar creators, aprovar conteúdos e acompanhar resultados.
 
-Desenvolvido e operado pela Você no Hype Marketing e Entretenimento LTDA, CNPJ 43.442.408/0001-26. Av. Cardeal Motta, 1057, City América, São Paulo/SP, CEP 02452-001.
+Desenvolvido e operado pela Você no Hype Marketing e Entretenimento LTDA, CNPJ 43.442.408/0001-26. R. Joaquim Floriano, 243, cj. 71, Itaim Bibi, São Paulo/SP, CEP 04534-010.
 
 ## Canais oficiais
 
@@ -372,7 +376,7 @@ Escreva para contato@vocenohype.com.br com o assunto e o prazo do pedido.
 
 Fonte: https://www.hypeapp.com.br/perguntas-frequentes/
 Título: Perguntas frequentes | HypeApp
-Atualizado em: 2026-10-30
+Atualizado em: 2026-11-03
 
 # Perguntas frequentes
 
@@ -398,7 +402,7 @@ Nada. O HypeApp é gratuito para creators: não há mensalidade nem taxa sobre o
 
 **P:** Como recebo o pagamento?
 
-O valor aparece na carteira do app e pode ser sacado via PIX quando for liberado.
+O valor entra como "A liberar" e fica disponível 30 dias depois do encerramento da campanha. A partir daí você saca via PIX, sem taxa e sem valor máximo; o mínimo é R$ 1,00. O saque é processado em até 2 horas úteis, e a chave PIX precisa estar no seu nome, com o mesmo CPF da conta.
 
 **P:** Preciso emitir nota fiscal?
 
@@ -414,7 +418,7 @@ Depende do contrato da campanha, firmado entre você e a marca. Confira as condi
 
 **P:** Como funciona a comunidade?
 
-Feed, grupos e lives com outros creators dentro do app, com regras de participação.
+Feed, grupos e lives com outros creators dentro do app. A comunidade tem tolerância zero a conteúdo censurável e comportamento abusivo: qualquer publicação, comentário ou mensagem pode ser denunciada pelo próprio app, e você também pode bloquear outro usuário.
 
 ## Para marcas e agências
 
@@ -436,7 +440,11 @@ No self-service sua equipe opera tudo no painel. Na gerenciada, a Você no Hype 
 
 **P:** Quais métricas eu acompanho?
 
-As métricas vêm direto das redes sociais dos creators, conectadas ao app.
+Por campanha: alcance, visualizações, engajamento médio, interações (incluindo salvamentos), cliques e conteúdos no ar, com a divisão por rede e os creators com mais visualizações. Por publicação: alcance, curtidas e comentários.
+
+**P:** Como os creators são selecionados?
+
+Os creators se inscrevem pelo mural da campanha. No self-service, a marca escolhe quem participa e pode filtrar por rede, nicho, estado, gênero, seguidores, engajamento e proximidade. Na campanha gerenciada, quem seleciona e indica os nomes é a curadoria da Você no Hype.
 
 **P:** E se o creator não entregar?
 
@@ -444,7 +452,7 @@ O valor reservado para aquela participação volta ao saldo da campanha.
 
 **P:** Agências podem gerir várias marcas?
 
-Sim. Cada marca tem seu espaço no painel.
+Sim. Cada marca tem configurações próprias (marca, empresa e equipe), e a pessoa alterna entre as marcas pelo seletor no topo do menu. A equipe é convidada por marca.
 
 ## Conta, acesso e segurança
 
@@ -496,7 +504,7 @@ Atualize o app pela loja e entre com o mesmo e-mail e a mesma senha.
 
 Fonte: https://www.hypeapp.com.br/suporte/
 Título: Suporte: abra um chamado | HypeApp
-Atualizado em: 2026-10-30
+Atualizado em: 2026-11-03
 
 # Como podemos ajudar?
 
@@ -956,15 +964,15 @@ c) descumprir qualquer disposição destes Termos.
 
 6.1 Os valores das campanhas são movimentados pela Plataforma. A Marca aporta o saldo da Campanha e, quando o Creator confirma a participação, o valor correspondente fica reservado para ele.
 
-6.2 O valor reservado é liberado na Carteira do Creator depois da conclusão das entregas, conforme as regras e os prazos exibidos na Campanha e no Aplicativo.
+6.2 Concluídas as entregas, o valor aparece na Carteira do Creator como "A liberar" e fica disponível para saque 30 (trinta) dias depois do encerramento da Campanha, após a autorização do pagamento pela Marca.
 
 6.3 Se o Creator não fizer as entregas combinadas, o valor reservado para aquela participação volta ao saldo da Campanha.
 
-6.4 O Creator pode sacar o valor liberado por PIX, para uma chave de sua titularidade, conforme os limites e as regras de saque exibidos no Aplicativo.
+6.4 O Creator pode sacar o valor disponível por PIX, sem taxa e sem valor máximo, com valor mínimo de R$ 1,00 (um real). A chave PIX deve estar em nome do titular da conta, com o mesmo CPF do cadastro. O saque é processado em até 2 (duas) horas úteis.
 
 6.5 O Creator é responsável pelos tributos incidentes sobre os valores recebidos e, quando exigido, pela emissão de nota fiscal, conforme seu enquadramento como pessoa física ou jurídica. O Aplicativo informa o que é exigido antes do pagamento.
 
-6.6 Podemos reter ou bloquear valores em caso de suspeita de fraude, de descumprimento destes Termos, de contestação pela Marca ou de ordem judicial, até a conclusão da análise.
+6.6 O valor permanece "A liberar" enquanto houver contestação da Marca ou denúncia em análise. Também podemos reter valores em caso de suspeita de fraude, de descumprimento destes Termos ou de ordem judicial, até a conclusão da análise.
 
 ## 7. Redes sociais conectadas
 
@@ -986,7 +994,7 @@ c) descumprir qualquer disposição destes Termos.
 
 ## 9. Comunidade, grupos, lives e chat
 
-9.1 O Aplicativo oferece feed, grupos, lives e chat com as Marcas. O Usuário deve tratar os demais com respeito e seguir estes Termos e as regras de participação de cada grupo.
+9.1 O Aplicativo oferece feed, grupos, lives e chat com as Marcas. O Usuário deve tratar os demais com respeito e seguir estes Termos, as Regras da comunidade e as regras de participação de cada grupo.
 
 9.2 Podemos moderar, ocultar ou remover publicações, mensagens e transmissões que violem estes Termos ou a lei, e suspender os responsáveis.
 
@@ -1212,8 +1220,46 @@ Esta página é o ponto oficial de solicitação de exclusão referenciado na no
 
 Fonte: https://www.hypeapp.com.br/legal/
 Título: Documentos legais | HypeApp
-Atualizado em: 2026-10-30
+Atualizado em: 2026-11-03
 
 # Documentos legais
 
 Privacidade, termos e seus direitos sobre dados no HypeApp. Dúvidas: contato@vocenohype.com.br.
+
+---
+
+Fonte: https://www.hypeapp.com.br/regras-da-comunidade/
+Título: Regras da comunidade | HypeApp
+Atualizado em: 2026-11-03
+
+# Regras da comunidade
+
+Como manter a comunidade do HypeApp segura para creators e marcas, e o que fazer quando algo passar do limite.
+
+## Tolerância zero
+
+A comunidade do HypeApp tem tolerância zero a conteúdo censurável e a comportamento abusivo. Isso vale para publicações, comentários, grupos, lives e mensagens.
+
+## O que não é permitido
+
+- assédio, bullying, ameaças ou incitação ao ódio;
+
+- nudez, conteúdo sexual explícito ou exploração;
+
+- violência gráfica ou apologia a ela;
+
+- spam, golpes ou desinformação;
+
+- conteúdo ilegal, discriminatório ou que viole direitos de terceiros.
+
+## Como denunciar
+
+Toque no menu "…" da publicação, ou segure sobre o comentário, o comentário da live ou a mensagem, e escolha "Denunciar". As denúncias são analisadas em até 24 horas.
+
+## O que acontece com quem viola as regras
+
+Contas que violarem estas diretrizes podem ter o conteúdo removido e o acesso suspenso ou encerrado, conforme os Termos de Uso.
+
+## Bloquear outro usuário
+
+Você também pode bloquear outro usuário. Quem você bloqueia deixa de interagir com você na comunidade.
