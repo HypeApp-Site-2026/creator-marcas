@@ -20,7 +20,7 @@ Informações oficiais:
 ---
 
 Fonte: https://www.hypeapp.com.br/
-Título: HypeApp: campanhas entre creators e marcas
+Título: HypeApp: app para influenciadores e plataforma de campanhas
 Atualizado em: 2026-11-03
 
 # O app de quem cria conteúdo. O painel de quem contrata.
@@ -96,7 +96,7 @@ Busque nas perguntas frequentes ou fale com o suporte.
 ---
 
 Fonte: https://www.hypeapp.com.br/criadores/
-Título: Para criadores e influenciadores | HypeApp
+Título: App para influenciadores: campanhas com marcas | HypeApp
 Atualizado em: 2026-11-03
 
 # O app completo para quem cria conteúdo.
@@ -222,7 +222,7 @@ Depende do contrato da campanha, firmado entre você e a marca. Confira as condi
 ---
 
 Fonte: https://www.hypeapp.com.br/marcas/
-Título: Para marcas e agências: campanhas com creators | HypeApp
+Título: Plataforma de marketing de influência para marcas | HypeApp
 Atualizado em: 2026-11-03
 
 # Campanhas com creators do jeito que sua equipe preferir.
@@ -316,7 +316,7 @@ Sim. Cada marca tem configurações próprias (marca, empresa e equipe), e a pes
 ---
 
 Fonte: https://www.hypeapp.com.br/sobre/
-Título: Sobre o HypeApp, da Você no Hype
+Título: Sobre o HypeApp, da Você no Hype | Parceira TikTok Shop
 Atualizado em: 2026-11-03
 
 # Sobre o HypeApp
@@ -362,8 +362,8 @@ Falar com nosso time
 ---
 
 Fonte: https://www.hypeapp.com.br/contato/
-Título: Contato | HypeApp
-Atualizado em: 2026-10-30
+Título: Contato: comercial, suporte e privacidade | HypeApp
+Atualizado em: 2026-11-03
 
 # Fale com o HypeApp
 
@@ -384,7 +384,7 @@ Escreva para contato@vocenohype.com.br com o assunto e o prazo do pedido.
 ---
 
 Fonte: https://www.hypeapp.com.br/perguntas-frequentes/
-Título: Perguntas frequentes | HypeApp
+Título: Perguntas frequentes: campanhas, pagamento e conta | HypeApp
 Atualizado em: 2026-11-03
 
 # Perguntas frequentes
@@ -488,8 +488,8 @@ O suporte atende quem já usa o app. Marcas falam com o comercial.
 ---
 
 Fonte: https://www.hypeapp.com.br/baixar/
-Título: Baixar o HypeApp para iPhone e Android
-Atualizado em: 2026-10-30
+Título: Baixar o HypeApp: app de campanhas para iPhone e Android
+Atualizado em: 2026-11-03
 
 # Baixe o HypeApp
 
@@ -524,7 +524,7 @@ Pedidos sobre seus dados pessoais seguem pela política de privacidade. Marcas n
 ---
 
 Fonte: https://www.hypeapp.com.br/privacidade/
-Título: Política de privacidade | HypeApp
+Título: Política de privacidade (LGPD) | HypeApp
 Atualizado em: 2026-11-03
 
 # Política de Privacidade
@@ -1157,7 +1157,7 @@ Se alguma ferramenta de publicidade ou de análise com cookies for adicionada, o
 
 Fonte: https://www.hypeapp.com.br/exclusao-de-conta/
 Título: Como excluir sua conta | HypeApp
-Atualizado em: 2026-10-30
+Atualizado em: 2026-11-03
 
 # Exclusão de conta e dados
 

@@ -17,16 +17,16 @@ VAL = "Se o recurso for validado"
 
 # ---------- Páginas principais ----------
 add("/", "Início", "Todos", "Páginas principais", "P0", "", SIM_LANC, IDX, "Sim",
-    "HypeApp: campanhas entre creators e marcas",
-    "Plataforma da Você no Hype que conecta creators e marcas: campanhas, convites, entregas, aprovações e pagamentos em um só lugar.",
+    "HypeApp: app para influenciadores e plataforma de campanhas",
+    "App de gestão de carreira para influenciadores e plataforma de campanhas com creators para marcas e agências: convites, entregas, aprovações e pagamentos.",
     "O app de quem cria conteúdo. O painel de quem contrata.", "O que é o HypeApp?", "og/inicio.jpg", "Organization, WebSite")
 add("/criadores/", "Para creators", "Creators", "Páginas principais", "P0", "", SIM_LANC, IDX, "Sim",
-    "Para criadores e influenciadores | HypeApp",
-    "Encontre campanhas de marcas no seu nicho, receba convites, entregue pelo app e acompanhe seus pagamentos na carteira do HypeApp.",
+    "App para influenciadores: campanhas com marcas | HypeApp",
+    "Encontre campanhas de marcas no seu nicho, inscreva-se, entregue pelo app e receba via PIX na carteira. Grátis para creators, sem mínimo de seguidores.",
     "O app completo para quem cria conteúdo.", "Como conseguir campanhas com marcas?", "og/para-criadores.jpg")
 add("/marcas/", "Para marcas e agências", "Marcas e agências", "Páginas principais", "P0", "", SIM_LANC, IDX, "Sim",
-    "Para marcas e agências: campanhas com creators | HypeApp",
-    "Encontre creators, aprove conteúdos e acompanhe resultados de várias marcas no mesmo painel. Opere sozinho ou com a Você no Hype.",
+    "Plataforma de marketing de influência para marcas | HypeApp",
+    "Campanhas com influenciadores em um só painel: encontre creators, aprove conteúdos, acompanhe métricas e pague. Self-service ou gerenciada pela Você no Hype.",
     "Campanhas com creators do jeito que sua equipe preferir.", "Como contratar creators para uma campanha?", "og/para-marcas.jpg")
 add("/como-funciona/", "Como funciona", "Todos", "Páginas principais", "P0", "", SIM_LANC, IDX, "Sim",
     "Como funciona: creators e marcas | HypeApp",
@@ -38,18 +38,18 @@ add("/funcionalidades/", "Funcionalidades", "Todos", "Páginas principais", "P0"
     "Funcionalidades", "O que dá para fazer no HypeApp?", "og/funcionalidades.jpg",
     obs="Descrever só recursos validados para o lançamento.")
 add("/sobre/", "Sobre", "Todos", "Páginas principais", "P0", "", SIM_LANC, IDX, "Sim",
-    "Sobre o HypeApp, da Você no Hype",
-    "O HypeApp é a plataforma da Você no Hype para campanhas entre creators e marcas. Conheça quem opera o produto e os canais oficiais.",
+    "Sobre o HypeApp, da Você no Hype | Parceira TikTok Shop",
+    "O HypeApp é a plataforma da Você no Hype, agência parceira do TikTok Shop, para campanhas entre creators e marcas. Veja quem opera e os canais oficiais.",
     "Sobre o HypeApp", "Quem está por trás do HypeApp?", "og/sobre.jpg", "Organization (AboutPage)",
     "Mesma definição usada no Início, no rodapé e no llms.txt.")
 add("/contato/", "Contato", "Todos", "Páginas principais", "P0", "", SIM_LANC, IDX, "Sim",
-    "Contato | HypeApp",
-    "Fale com o comercial, envie uma proposta de parceria, peça ajuda ao suporte ou faça uma solicitação sobre seus dados.",
+    "Contato: comercial, suporte e privacidade | HypeApp",
+    "Fale com o time comercial sobre campanhas com influenciadores, peça ajuda ao suporte do app ou faça uma solicitação sobre seus dados pessoais no HypeApp.",
     "Fale com o HypeApp", "Como falar com o HypeApp?", schema="ContactPage")
 add("/perguntas-frequentes/", "Perguntas frequentes", "Todos", "Páginas principais", "P0", "", SIM_LANC, IDX, "Sim",
-    "Perguntas frequentes | HypeApp",
-    "Respostas rápidas sobre cadastro, campanhas, pagamentos, valores para marcas e segurança no HypeApp.",
-    "Perguntas frequentes", "Dúvidas comuns sobre o HypeApp", obs="Sem marcação FAQPage, conforme a regra do sitemap.")
+    "Perguntas frequentes: campanhas, pagamento e conta | HypeApp",
+    "Respostas sobre cadastro, campanhas, pagamento via PIX, nota fiscal, valores para marcas e agências, conta e segurança no HypeApp.",
+    "Perguntas frequentes", "Dúvidas comuns sobre o HypeApp", obs="Com marcação FAQPage (JSON-LD gerado das mesmas perguntas da página).")
 add("/mapa-do-site/", "Mapa do site", "Todos", "Páginas principais", "P0", "", SIM_LANC, IDX, "Sim",
     "Mapa do site | HypeApp",
     "Todas as páginas públicas do site do HypeApp, organizadas por seção.",
@@ -97,12 +97,13 @@ add("/preferencias-de-comunicacao/", "Preferências de comunicação", "Todos", 
 
 # ---------- App e acesso ----------
 add("/baixar/", "Baixar o app", "Creators", "App e acesso", "P0", "G", "Sim", IDX, "Sim",
-    "Baixar o HypeApp para iPhone e Android",
-    "Baixe o HypeApp na App Store ou no Google Play. No computador, use o QR code para abrir a loja no celular.",
+    "Baixar o HypeApp: app de campanhas para iPhone e Android",
+    "Baixe grátis o HypeApp na App Store ou no Google Play e participe de campanhas com marcas. No computador, use o QR code para abrir a loja no celular.",
     "Baixe o HypeApp", "Como baixar o HypeApp?", "og/baixar.jpg", "MobileApplication, só com dados confirmados",
     "Caminho principal de creators (ordem de 26/10): os dois botões levam direto às lojas. Pedir a troca do nome da ficha no Google Play, que ainda diz \"V2 - Beta\".")
-add("/app", "Link curto para as lojas", "Creators", "App e acesso", "P0", "G", "Sim", "Não se aplica (redirecionamento 302)", "Não",
-    "—", "—", "—", obs="iPhone → App Store; Android → Google Play; outros → /baixar/.")
+add("/app", "Link curto para as lojas", "Creators", "App e acesso", "P0", "G", "Sim", NOI, "Não",
+    "Baixar o HypeApp", "Leva à loja certa para o seu celular: App Store no iPhone e Google Play no Android.", "Baixe o HypeApp",
+    obs="Página de passagem (noindex). iPhone → App Store; Android → Google Play; outros → /baixar/.")
 add("/entrar/", "Entrar", "Todos", "App e acesso", "P0", "", SIM_LANC, NOI, "Não",
     "Entrar no HypeApp",
     "Entre no app do creator ou no painel das marcas.",
@@ -118,7 +119,7 @@ add("/ajuda/busca/?q=", "Busca da ajuda", "Todos", "Ajuda e suporte", "P0", "", 
     obs="Não bloquear no robots.txt. Medir buscas sem resultado.")
 add("/suporte/", "Suporte", "Todos", "Ajuda e suporte", "P0", "", SIM_LANC, IDX, "Sim",
     "Suporte: abra um chamado | HypeApp",
-    "Abra um chamado com o suporte do HypeApp, informe o assunto e acompanhe o atendimento pelo número de protocolo.",
+    "Abra um chamado com o suporte do HypeApp sobre conta, redes, campanhas, pagamentos ou erros no app. Atendimento de segunda a sexta, das 10h às 18h.",
     "Fale com o suporte", "Como falar com o suporte do HypeApp?", schema="—")
 add("/suporte/enviado/", "Chamado aberto", "Todos", "Ajuda e suporte", "P0", "", SIM_LANC, NOI, "Não",
     "Chamado aberto | HypeApp",
@@ -278,7 +279,7 @@ add("/atualizacoes/", "Atualizações", "Todos", "Blog e atualizações", "P0", 
 
 # ---------- Legal ----------
 for url, nome, title, desc, h1 in [
-    ("/privacidade/", "Privacidade", "Política de privacidade | HypeApp",
+    ("/privacidade/", "Privacidade", "Política de privacidade (LGPD) | HypeApp",
      "Como a Você no Hype trata dados pessoais no site e no app do HypeApp, os direitos dos titulares e o contato do encarregado.", "Política de privacidade"),
     ("/termos/", "Termos", "Termos de uso | HypeApp",
      "Regras para usar o site e o app do HypeApp: cadastro, responsabilidades, propriedade intelectual e direitos de creators, marcas e agências.", "Termos de uso"),
@@ -287,14 +288,14 @@ for url, nome, title, desc, h1 in [
     ("/direitos-sobre-dados/", "Direitos sobre dados", "Direitos sobre seus dados | HypeApp",
      "Peça acesso, correção, exclusão ou outras informações sobre seus dados pessoais no HypeApp.", "Direitos sobre seus dados"),
     ("/exclusao-de-conta/", "Exclusão de conta", "Como excluir sua conta | HypeApp",
-     "Passo a passo para excluir sua conta no app do HypeApp ou pedir a exclusão sem login, com prazos e o que é mantido.", "Como excluir sua conta"),
+     "Passo a passo para excluir sua conta no app do HypeApp ou pedir a exclusão por e-mail, com o que é apagado e o que fica guardado por obrigação legal.", "Como excluir sua conta"),
     ("/regras-da-comunidade/", "Regras da comunidade", "Regras da comunidade | HypeApp",
-     "Conduta esperada no HypeApp, como denunciar e o que acontece em caso de violação.", "Regras da comunidade")]:
+     "O que não é permitido na comunidade do HypeApp, como denunciar publicações, comentários e mensagens e o que acontece com quem viola as regras.", "Regras da comunidade")]:
     add(url, nome, "Todos", "Confiança e privacidade", "P0", "G", JUR, IDX, "Sim", title, desc, h1,
         obs="Bloqueia o lançamento: o site não coleta dados nos formulários sem estas páginas no ar.")
 add("/legal/", "Documentos legais", "Todos", "Confiança e privacidade", "P0", "", "Sim", IDX, "Sim",
     "Documentos legais | HypeApp",
-    "Política de privacidade, termos de uso, cookies, encarregado de dados e exclusão de conta do HypeApp em um só lugar.",
+    "Política de privacidade, termos de uso, cookies, regras da comunidade, encarregado de dados e exclusão de conta do HypeApp, reunidos em um só lugar.",
     "Documentos legais")
 add("/direitos-sobre-dados/confirmacao/", "Solicitação recebida", "Todos", "Confiança e privacidade", "P0", "G", JUR, NOI, "Não",
     "Solicitação recebida | HypeApp", "Sua solicitação sobre dados pessoais foi recebida.", "Solicitação recebida")

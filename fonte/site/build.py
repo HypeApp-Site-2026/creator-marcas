@@ -1470,8 +1470,14 @@ def build_page(url, fn, kind):
 <meta property="og:description" content="{html.escape(desc)}">
 {f'<meta property="og:url" content="{canon}">' if canon else ''}
 <meta property="og:image" content="{BASE}/{(m or {}).get('img', 'og/padrao.jpg')}">
+<meta property="og:image:width" content="{1200 if (m or {}).get('img', 'og/').startswith('og/') else 960}">
+<meta property="og:image:height" content="{630 if (m or {}).get('img', 'og/').startswith('og/') else 600}">
+<meta property="og:image:alt" content="{html.escape(title.split(' | ')[0])} · HypeApp">
 <meta property="og:locale" content="pt_BR">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{html.escape(title)}">
+<meta name="twitter:description" content="{html.escape(desc)}">
+<meta name="twitter:image" content="{BASE}/{(m or {}).get('img', 'og/padrao.jpg')}">
 <meta name="theme-color" content="#EFEFEF">
 <link rel="preload" href="{A('assets/fonts/inter-latin-wght-normal.woff2')}" as="font" type="font/woff2" crossorigin>
 {f'<link rel="preload" as="image" type="image/webp" fetchpriority="high" imagesrcset="{HERO_SRCSET(A)}" imagesizes="{HERO_SIZES}">' if url == '/' else ''}
