@@ -42,22 +42,33 @@ def img_b64(code, crop=None):
 
 # ---------- Imagens sociais ----------
 # url da página -> (selo, título, visual)  · visual: ('phones', [telas]) | ('web', tela)
+# (selo, título, visual, selo do TikTok Shop) · telas do painel de novembro/2026 (bo-n*)
 OG = {
-    'og/padrao.jpg':         ('HypeApp', 'Campanhas entre creators e marcas, do convite ao pagamento.', ('phones', ['app-E4', 'app-G2'])),
-    'og/inicio.jpg':         ('App para iPhone e Android', 'O app de quem cria conteúdo. O painel de quem contrata.', ('phones', ['app-E4', 'app-G2'])),
-    'og/para-criadores.jpg': ('Para creators', 'O app completo para quem cria conteúdo.', ('phones', ['app-D1', 'app-G2'])),
-    'og/para-marcas.jpg':    ('Para marcas e agências', 'Campanhas com creators do jeito que sua equipe preferir.', ('web', 'bo-C1')),
-    'og/baixar.jpg':         ('iPhone e Android', 'Baixe o HypeApp na App Store ou no Google Play.', ('phones', ['app-D1', 'app-E4'])),
-    'og/sobre.jpg':          ('Da Você no Hype', 'A plataforma de campanhas entre creators e marcas.', ('phones', ['app-E4', 'app-G2'])),
+    'og/padrao.jpg':         ('HypeApp', 'Campanhas entre creators e marcas, do convite ao pagamento.', ('phones', ['app-E4', 'app-G2']), False),
+    'og/inicio.jpg':         ('App e painel', 'O app de quem cria conteúdo. O painel de quem contrata.', ('phones', ['app-E4', 'app-G2']), True),
+    'og/para-criadores.jpg': ('Para creators', 'Campanhas com marcas, entregas e pagamento no app.', ('phones', ['app-D1', 'app-G2']), False),
+    'og/para-marcas.jpg':    ('Para marcas e agências', 'Campanhas com influenciadores em um só painel.', ('web', 'bo-n01'), True),
+    'og/baixar.jpg':         ('Grátis · iPhone e Android', 'Baixe o HypeApp na App Store ou no Google Play.', ('phones', ['app-D1', 'app-E4']), False),
+    'og/sobre.jpg':          ('Da Você no Hype', 'A plataforma de campanhas entre creators e marcas.', ('phones', ['app-E4', 'app-G2']), True),
+    'og/ajuda.jpg':          ('Perguntas frequentes', 'Campanhas, pagamento via PIX, conta e segurança.', ('phones', ['app-G2', 'app-E4']), False),
+    'og/suporte.jpg':        ('Suporte', 'Abra um chamado de segunda a sexta, das 10h às 18h.', ('phones', ['app-E4', 'app-D1']), False),
+    'og/contato.jpg':        ('Contato', 'Comercial, suporte e privacidade em um só lugar.', ('web', 'bo-n02'), False),
+    'og/legal.jpg':          ('Documentos legais', 'Privacidade, termos e seus direitos sobre dados.', ('phones', ['app-D1', 'app-G2']), False),
 }
 
-def og_html(tag, title, visual):
+def og_html(tag, title, visual, parceiro=False):
     logo_uri = 'data:image/svg+xml;base64,' + base64.b64encode(logo.encode()).decode()
     if visual[0] == 'phones':
         a, b = visual[1]
         vis = f'''<div class="ph p1"><img src="{img_b64(a)}"></div><div class="ph p2"><img src="{img_b64(b)}"></div>'''
     else:
-        vis = f'''<div class="web"><img src="{img_b64(visual[1], (280, 0, 1400, 875))}"></div>'''
+        im_w = Image.open(os.path.join(HERE, 'assets', 'telas', visual[1] + '.webp')).size
+        crop = (225, 0, im_w[0], im_w[1]) if visual[1].startswith('bo-n') else (280, 0, 1400, 875)  # sem a barra lateral
+        vis = f'''<div class="web"><img src="{img_b64(visual[1], crop)}"></div>'''
+    tts = ''
+    if parceiro:  # selo oficial, sem alteração, sobre fundo branco
+        b64 = base64.b64encode(open(os.path.join(HERE, 'assets', 'parceiros', 'tiktok-shop-partner.webp'), 'rb').read()).decode()
+        tts = f'<img class="tts" src="data:image/webp;base64,{b64}" alt="">'
     return f'''<!doctype html><html><head><meta charset="utf-8"><style>
 @font-face {{ font-family: Inter; src: url(data:font/woff2;base64,{font_b64()}) format("woff2"); font-weight: 100 900; }}
 * {{ box-sizing: border-box; margin: 0; }}
@@ -74,8 +85,9 @@ h1 {{ font-weight: 600; font-size: 58px; line-height: 1.04; letter-spacing: -0.0
 .p2 {{ left: 900px; top: 110px; }}
 .web {{ position: absolute; left: 676px; top: 70px; width: 640px; height: 480px; border-radius: 22px; overflow: hidden; background: {GROUND}; box-shadow: 0 30px 60px rgba(0,0,0,.16); border: 8px solid {INK}; }}
 .web img {{ width: 100%; display: block; }}
+.tts {{ position: absolute; right: 24px; top: 2px; width: 168px; height: auto; }}
 </style></head><body><div class="card">
-<div class="txt"><img class="logo" src="{logo_uri}"><span class="tag">{tag}</span><h1>{title}</h1><div class="url">hypeapp.com.br</div></div>
+<div class="txt"><img class="logo" src="{logo_uri}"><span class="tag">{tag}</span><h1>{title}</h1><div class="url">hypeapp.com.br</div>{tts}</div>
 {vis}</div></body></html>'''
 
 def main():
@@ -101,8 +113,8 @@ def main():
         # imagens sociais
         pg.set_viewport_size({'width': 1200, 'height': 630})
         made = []
-        for name, (tag, title, visual) in OG.items():
-            pg.set_content(og_html(tag, title, visual), wait_until='load')
+        for name, (tag, title, visual, parceiro) in OG.items():
+            pg.set_content(og_html(tag, title, visual, parceiro), wait_until='load')
             pg.wait_for_timeout(150)
             png = pg.screenshot(clip={'x': 0, 'y': 0, 'width': 1200, 'height': 630})
             Image.open(BytesIO(png)).convert('RGB').save(os.path.join(OUT, name), 'JPEG', quality=86, optimize=True, progressive=True)

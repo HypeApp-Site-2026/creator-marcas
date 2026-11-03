@@ -351,3 +351,17 @@ ORG_JSONLD = """{
     "https://play.google.com/store/apps/details?id=br.com.hypeapp.v2"
   ]
 }"""
+
+
+# ---------- Imagem de compartilhamento (Open Graph) por página ----------
+# Geradas por site/make_media.py em 1200×630. Páginas fora desta lista usam a imagem da própria linha (ou og/padrao.jpg).
+OG_POR_PAGINA = {
+    "/perguntas-frequentes/": "og/ajuda.jpg", "/suporte/": "og/suporte.jpg", "/suporte/enviado/": "og/suporte.jpg",
+    "/contato/": "og/contato.jpg", "/contato/marcas/": "og/para-marcas.jpg", "/contato/enviado/": "og/contato.jpg",
+    "/legal/": "og/legal.jpg", "/privacidade/": "og/legal.jpg", "/termos/": "og/legal.jpg", "/cookies/": "og/legal.jpg",
+    "/exclusao-de-conta/": "og/legal.jpg", "/regras-da-comunidade/": "og/legal.jpg", "/direitos-sobre-dados/": "og/legal.jpg",
+    "/app": "og/baixar.jpg", "/entrar/": "og/padrao.jpg",
+}
+for _r in R:
+    if _r["url"] in OG_POR_PAGINA:
+        _r["img"] = OG_POR_PAGINA[_r["url"]]

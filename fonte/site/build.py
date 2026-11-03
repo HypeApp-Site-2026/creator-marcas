@@ -1438,6 +1438,16 @@ def jsonld(url, title, desc, d):
         out.append(POST_META[url]['ld'])
     return out
 
+# Texto alternativo da imagem de compartilhamento: o que está escrito nela (make_media.OG)
+try:
+    import importlib.util as _ilu
+    _spec = _ilu.spec_from_file_location('make_media', os.path.join(HERE, 'make_media.py')); _mm = _ilu.module_from_spec(_spec); _spec.loader.exec_module(_mm)
+    OG_TXT = {k: f'HypeApp · {v[0]}: {v[1]}' for k, v in _mm.OG.items()}
+except Exception:
+    OG_TXT = {}
+def og_alt(img, title):
+    return OG_TXT.get(img) or f'{title.split(" | ")[0]} · HypeApp'
+
 def build_page(url, fn, kind):
     L, A = make_link(url)
     m = META.get(url) or POST_META.get(url)
@@ -1464,18 +1474,18 @@ def build_page(url, fn, kind):
 <meta name="description" content="{html.escape(desc)}">
 <meta name="robots" content="{robots}">
 {f'<link rel="canonical" href="{canon}">' if canon else ''}
-<meta property="og:type" content="website">
+<meta property="og:type" content="{'article' if url in POST_META else 'website'}">
 <meta property="og:site_name" content="HypeApp">
-<meta property="og:title" content="{html.escape(title)}">
+<meta property="og:title" content="{html.escape(title.split(' | ')[0])}">
 <meta property="og:description" content="{html.escape(desc)}">
 {f'<meta property="og:url" content="{canon}">' if canon else ''}
 <meta property="og:image" content="{BASE}/{(m or {}).get('img', 'og/padrao.jpg')}">
 <meta property="og:image:width" content="{1200 if (m or {}).get('img', 'og/').startswith('og/') else 960}">
 <meta property="og:image:height" content="{630 if (m or {}).get('img', 'og/').startswith('og/') else 600}">
-<meta property="og:image:alt" content="{html.escape(title.split(' | ')[0])} · HypeApp">
+<meta property="og:image:alt" content="{html.escape(og_alt((m or {}).get('img', 'og/padrao.jpg'), title))}">
 <meta property="og:locale" content="pt_BR">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="{html.escape(title)}">
+<meta name="twitter:title" content="{html.escape(title.split(' | ')[0])}">
 <meta name="twitter:description" content="{html.escape(desc)}">
 <meta name="twitter:image" content="{BASE}/{(m or {}).get('img', 'og/padrao.jpg')}">
 <meta name="theme-color" content="#EFEFEF">
