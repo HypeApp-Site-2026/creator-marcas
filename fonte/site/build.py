@@ -145,7 +145,7 @@ def showcase(A, sid, kind, tag, title, lead, items, flip=False, note='Dados de e
     if kind == 'phone':
         dev = f'<div class="dev-phone"><div class="dev-screen" id="{sid}-tela" aria-live="polite">{imgs}</div></div>'
     else:
-        dev = (f'<div class="dev-web"><div class="dev-bar"><i></i><i></i><i></i>{PAINEL_URL}</div>'
+        dev = (f'<div class="dev-web"><div class="dev-bar"><i></i><i></i><i></i></div>'
                f'<div class="dev-screen" id="{sid}-tela" aria-live="polite">{imgs}'
                + (f'<span class="tour" aria-hidden="true">{CURSOR_SVG}<i></i></span>' if 'data-hot=' in imgs else '') + '</div></div>')
     return f'''<section class="sc sc-{kind}{" flip" if flip else ""}" id="{sid}" data-show aria-labelledby="{sid}-t">
@@ -390,7 +390,7 @@ def motion_painel(A):
 <div class="bo-frame"><div class="bo-stage" role="img" aria-label="Animação do painel de marcas do HypeApp com dados de exemplo: busca de creators, aprovação de conteúdo, resultados e financeiro">
  <span class="tour tour-bo" aria-hidden="true">{CURSOR_SVG}<i></i></span>
  <div class="bo-win">
-  <div class="bo-bar"><i></i><i></i><i></i>{PAINEL_URL.replace("<span>", "<span class=\"bo-url\">")}</div>
+  <div class="bo-bar"><i></i><i></i><i></i></div>
   <div class="bo-body">
    <aside class="bo-side"><img class="lg" src="{A('assets/logo-hypeapp-branco.svg')}" alt="" width="92" height="50"><span class="bo-wsel"><span class="av">CL</span><span class="tx"><b>Casa Lume</b><i>Membro</i></span>{ico(I_DOWN, 14)}</span>{side}<span class="bo-ws"><span class="av">AS</span><span class="tx"><b>Ana Souza</b><i>Membro</i></span>{ico('M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4M10 17l5-5-5-5M15 12H3', 14, 1.8)}</span></aside>
    <section class="bo-main">
