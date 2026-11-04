@@ -915,14 +915,31 @@ def p_criadores(L, A):
       <h2 id="com-h" class="cv-h">A conversa que faltava na sua rotina.</h2>
       <p class="cv-p">Pergunte, responda e aprenda com outros creators, nos grupos, nos posts e nas lives do app.</p>
     </div>
-    <div class="cv-fone"><img src="{tela(A, 'app-F6')}" alt="Tela de uma live da comunidade sobre como fechar contratos com marcas, com comentários de creators" width="600" height="1298" loading="lazy" decoding="async"></div>
-    <ul class="cv-falas" aria-label="Exemplos de conversas na comunidade">
-      <li class="cv-b cv-b1"><b>No grupo da campanha</b>Alguém já fez campanha com envio de produto? Como fica o prazo de entrega?</li>
-      <li class="cv-b cv-b2 cv-lima">Já fiz uma! Te conto como foi aqui no grupo.</li>
-      <li class="cv-b cv-b3"><b>No feed</b>Gravem de manhã perto da janela: a luz natural resolve metade do trabalho.</li>
-      <li class="cv-b cv-b4 cv-cinza">128 curtidas · Salvei a dica!</li>
-      <li class="cv-b cv-b5"><b>Na live</b>Como você negocia o valor do primeiro contato?</li>
-    </ul>
+    <div class="cv-fone" data-cvf role="img" aria-label="Celular navegando pela comunidade do HypeApp: feed, post com comentários, grupos, um grupo de creators e uma live">
+      <div class="cv-tela" aria-hidden="true">
+        <img class="cv-s on" data-s="feed" src="{tela(A, 'app-F1')}" alt="" width="600" height="1298" loading="lazy" decoding="async">
+        <img class="cv-s" data-s="post" src="{tela(A, 'app-F4')}" alt="" width="600" height="1298" loading="lazy" decoding="async">
+        <img class="cv-s" data-s="grupos" src="{tela(A, 'app-F3s')}" alt="" width="600" height="1298" loading="lazy" decoding="async">
+        <img class="cv-s" data-s="grupo" src="{tela(A, 'app-F5')}" alt="" width="600" height="1298" loading="lazy" decoding="async">
+        <img class="cv-s" data-s="lives" src="{tela(A, 'app-F2')}" alt="" width="600" height="1298" loading="lazy" decoding="async">
+        <img class="cv-s" data-s="live" src="{tela(A, 'app-F6')}" alt="" width="600" height="1298" loading="lazy" decoding="async">
+        <i class="cv-tap" data-cvtap></i>
+      </div>
+    </div>
+    <div class="cv-chatw">
+      <div class="cv-chat" data-cvchat role="img" aria-label="Exemplo de conversa no grupo de uma campanha: um creator pergunta sobre envio de produto, outros respondem e compartilham uma dica de gravação">
+        <div class="cv-ch" aria-hidden="true"><span class="cv-gi">{ico('M16 19v-1a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v1M9 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM22 19v-1a4 4 0 0 0-3-3.9M16 4.1a3 3 0 0 1 0 5.8', 20)}</span><span><b>Verão Glow</b><small>Grupo da campanha</small></span></div>
+        <ol class="cv-msgs" aria-hidden="true">
+          <li class="cv-m" data-m="0"><img src="{A('assets/comunidade/av-caio.webp')}" alt="" width="96" height="96"><div><b>Caio Ferraz</b><p>Alguém já fez campanha com envio de produto? Como funciona o prazo de entrega?</p></div></li>
+          <li class="cv-m cv-eu" data-m="1"><div><p>Já fiz uma! Te conto como foi.</p></div></li>
+          <li class="cv-m" data-m="2"><img src="{A('assets/comunidade/av-beatriz.webp')}" alt="" width="96" height="96"><div><b>Beatriz Nunes <span class="cv-mod">Moderador</span></b><p>Dica: gravem de manhã perto da janela. A luz natural resolve metade do trabalho.</p></div></li>
+          <li class="cv-m" data-m="3"><img src="{A('assets/comunidade/av-larissa.webp')}" alt="" width="96" height="96"><div><b>Larissa Prado</b><p>Salvei a dica da luz natural!</p></div></li>
+          <li class="cv-dig" data-dig><i></i><i></i><i></i></li>
+        </ol>
+        <div class="cv-inp" aria-hidden="true"><span>Escreva uma mensagem</span><i>{ico('M22 2 11 13M22 2l-7 20-4-9-9-4 20-7z', 18)}</i></div>
+      </div>
+      <span class="cv-nota">Conversa ilustrativa.</span>
+    </div>
     <ul class="cv-grupos" aria-label="Exemplos de grupos"><li>Creators de Beleza</li><li>Fitness e Corrida</li><li class="cv-cinza">Grupo da sua campanha</li></ul>
     <ol class="cv-areas">
       <li><b><span>01</span> Grupos</b>Das suas campanhas e do seu nicho.</li>
@@ -1901,6 +1918,7 @@ def main():
     shutil.copytree(os.path.join(HERE, 'assets', 'menu'), os.path.join(OUT, 'assets', 'menu'))
     shutil.copytree(os.path.join(HERE, 'assets', 'parceiros'), os.path.join(OUT, 'assets', 'parceiros'))
     shutil.copytree(os.path.join(HERE, 'assets', 'ilustracoes'), os.path.join(OUT, 'assets', 'ilustracoes'))  # biblioteca roxa (página de creators)
+    shutil.copytree(os.path.join(HERE, 'assets', 'comunidade'), os.path.join(OUT, 'assets', 'comunidade'))  # avatares do chat da comunidade
     os.makedirs(os.path.join(OUT, 'assets', 'blog'))
     for _p in POSTS:
         shutil.copy(os.path.join(HERE, 'assets', 'blog', _p['capa']), os.path.join(OUT, 'assets', 'blog', _p['capa']))

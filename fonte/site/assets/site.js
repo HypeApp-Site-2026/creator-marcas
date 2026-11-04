@@ -398,6 +398,80 @@
     });
   });
 
+  /* ---------- Comunidade (/criadores/): celular navegando (feed > post > grupos > grupo > lives > live)
+     e chat do grupo com mensagens entrando. So roda quando aparece na tela; sem JS fica parado no feed. ---------- */
+  var quandoVisivel = function (el, ini, para) {
+    var vis = false;
+    if (window.IntersectionObserver) new IntersectionObserver(function (es) {
+      var v = es[0].isIntersecting;
+      if (v && !vis) { vis = true; ini(); } else if (!v && vis) { vis = false; para(); }
+    }, { threshold: 0.35 }).observe(el);
+    document.addEventListener('visibilitychange', function () { if (document.hidden) para(); else if (vis) ini(); });
+  };
+  var semMov = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  $$('[data-cvf]').forEach(function (fone) {
+    if (semMov) return;
+    var tap = $('[data-cvtap]', fone), cur = 'feed';
+    var tela = function (n) { return $('[data-s="' + n + '"]', fone); };
+    var EZ = 'cubic-bezier(.32,.72,0,1)';
+    var mostra = function (n, modo) {
+      var a = tela(cur), b = tela(n); if (!b || n === cur) return;
+      [a, b].forEach(function (el) { el.style.transition = 'none'; });
+      if (modo === 'push') { b.style.transform = 'translateX(100%)'; b.style.zIndex = 3; a.style.zIndex = 2; }
+      else if (modo === 'pop') { b.style.transform = 'translateX(-25%)'; b.style.zIndex = 2; a.style.zIndex = 3; }
+      else { b.style.transform = 'none'; b.style.opacity = 0; b.style.zIndex = 3; a.style.zIndex = 2; }
+      b.classList.add('on'); void b.offsetWidth;
+      var tr = 'transform .5s ' + EZ + ', opacity .35s';
+      a.style.transition = tr; b.style.transition = tr;
+      b.style.transform = 'none'; b.style.opacity = '';
+      if (modo === 'push') a.style.transform = 'translateX(-25%)';
+      if (modo === 'pop') a.style.transform = 'translateX(100%)';
+      var velha = a;
+      setTimeout(function () { if (velha !== tela(cur)) { velha.classList.remove('on'); velha.style.transform = ''; } }, 520);
+      cur = n;
+    };
+    var vai = function (x, y) { tap.style.left = x + '%'; tap.style.top = y + '%'; tap.classList.add('on'); };
+    var aperta = function () { tap.classList.remove('press'); void tap.offsetWidth; tap.classList.add('press'); };
+    var some = function () { tap.classList.remove('on'); };
+    var passos = [
+      [1200, function () { vai(50, 35); }], [1800, aperta], [2000, function () { some(); mostra('post', 'push'); }],
+      [4000, function () { vai(10.5, 9); }], [4600, aperta], [4800, function () { some(); mostra('feed', 'pop'); }],
+      [5800, function () { vai(79, 16.5); }], [6400, aperta], [6600, function () { mostra('grupos', 'fade'); }],
+      [7400, function () { vai(50, 32); }], [8000, aperta], [8200, function () { some(); mostra('grupo', 'push'); }],
+      [10200, function () { vai(10.5, 9); }], [10800, aperta], [11000, function () { some(); mostra('grupos', 'pop'); }],
+      [11900, function () { vai(21, 16.5); }], [12500, aperta], [12700, function () { mostra('lives', 'fade'); }],
+      [13500, function () { vai(50, 36); }], [14100, aperta], [14300, function () { some(); mostra('live', 'push'); }],
+      [17200, function () { vai(10.5, 9); }], [17800, aperta], [18000, function () { some(); mostra('lives', 'pop'); }],
+      [18900, function () { vai(50, 16.5); }], [19500, aperta], [19700, function () { some(); mostra('feed', 'fade'); }]
+    ];
+    var timer = 0, idx = 0, t0 = 0;
+    var agenda = function () {
+      if (idx >= passos.length) { timer = setTimeout(function () { idx = 0; t0 = Date.now(); agenda(); }, 1300); return; }
+      timer = setTimeout(function () { passos[idx][1](); idx++; agenda(); }, Math.max(0, passos[idx][0] - (Date.now() - t0)));
+    };
+    var reset = function () {
+      $$('.cv-s', fone).forEach(function (el) { el.style.transition = 'none'; el.style.transform = ''; el.style.opacity = ''; el.style.zIndex = ''; el.classList.toggle('on', el.getAttribute('data-s') === 'feed'); });
+      cur = 'feed'; some();
+    };
+    quandoVisivel(fone, function () { clearTimeout(timer); reset(); idx = 0; t0 = Date.now(); agenda(); }, function () { clearTimeout(timer); });
+  });
+  $$('[data-cvchat]').forEach(function (chat) {
+    if (semMov) return;
+    chat.classList.add('cv-anim');
+    var ms = $$('.cv-m', chat), dig = $('[data-dig]', chat), lista = $('.cv-msgs', chat), timer = 0;
+    var digita = function (on) { dig.classList.toggle('on', on); if (on) lista.appendChild(dig); };
+    var entra = function (i) { digita(false); ms[i].classList.add('on'); };
+    var passos = [[200, function () { entra(0); }], [1600, function () { entra(1); }],
+      [2600, function () { digita(true); }], [4000, function () { entra(2); }], [5300, function () { digita(true); }], [6300, function () { entra(3); }]];
+    var idx = 0, t0 = 0;
+    var agenda = function () {
+      if (idx >= passos.length) { timer = setTimeout(function () { ms.forEach(function (m) { m.classList.remove('on'); }); idx = 0; t0 = Date.now(); agenda(); }, 4500); return; }
+      timer = setTimeout(function () { passos[idx][1](); idx++; agenda(); }, Math.max(0, passos[idx][0] - (Date.now() - t0)));
+    };
+    quandoVisivel(chat, function () { clearTimeout(timer); ms.forEach(function (m) { m.classList.remove('on'); }); digita(false); idx = 0; t0 = Date.now(); agenda(); },
+      function () { clearTimeout(timer); });
+  });
+
   /* ---------- Carteira viva (/criadores/): celular em HTML; Visao geral > Historico > Solicitar saque.
      A arte tem 580 x 910 px; mostramos a janela de 420 px em volta do celular (x 80 a 500). ---------- */
   $$('[data-cw]').forEach(function (cw) {
