@@ -107,7 +107,7 @@ Busque nas perguntas frequentes ou fale com o suporte.
 
 Fonte: https://www.hypeapp.com.br/criadores/
 Título: App para influenciadores: campanhas com marcas | HypeApp
-Atualizado em: 2026-11-03
+Atualizado em: 2026-11-04
 
 # O app completo para quem cria conteúdo.
 
@@ -117,55 +117,55 @@ Grátis para iPhone e Android. Crie sua conta pelo app. Para maiores de 18 anos,
 
 ## Seu próximo passo no HypeApp
 
-Do convite ao pagamento, cada etapa fica no app.
+- 01 / 08
 
-### Explore oportunidades
+### Monte seu perfil
 
-Encontre campanhas do seu nicho, veja critérios, valor e prazo, e se inscreva nas que combinam com você.
+Cadastro em 5 passos: telefone, seus valores por formato, dados e nichos, e endereço. Depois, conecte Instagram, TikTok e YouTube.
 
-### Acompanhe suas entregas
+- 02 / 08
 
-Briefing, roteiro, conteúdo, ajustes e publicação, com o próximo passo sempre à vista.
+### Encontre campanhas
 
-### Conecte-se à comunidade
+No mural, busque e filtre por nicho. As campanhas em destaque aparecem primeiro.
 
-Feed, grupos e lives com outros creators, com regras claras de participação.
+- 03 / 08
 
-## Como se candidatar a uma campanha
+### Veja tudo antes de entrar
 
-Cinco passos, todos pelo app. Cada campanha tem critérios próprios, e a seleção é feita pela marca ou pela curadoria.
+Ganho, duração, entregas, regras e arquivos da marca, na página da campanha.
 
-- Encontre a campanha
+- 04 / 08
 
-- Leia o briefing
+### Inscreva-se
 
-- Escolha o perfil e envie
+Escolha com quais perfis quer participar e, quando a campanha pedir, proponha o seu valor.
 
-- Acompanhe a análise
-
-- Receba a resposta
-
-### Encontre a campanha
-
-Em Descobrir, filtre o mural por nicho e formato e veja as campanhas em destaque.
-
-### Leia o briefing
-
-Confira o que a marca pede, a remuneração, as entregas, os prazos e os critérios antes de decidir.
-
-### Escolha o perfil e envie
-
-Selecione com quais redes quer participar e, quando a campanha pedir, informe sua proposta de valor.
+- 05 / 08
 
 ### Acompanhe a análise
 
-Na aba Minhas inscrições você vê quando sua inscrição está em análise.
+Em Minhas inscrições: inscrição enviada, análise da marca e resultado. A seleção é da marca ou da curadoria da Você no Hype.
 
-### Receba a resposta
+- 06 / 08
 
-Se for pré-selecionado, a marca envia o convite com as condições. Você aceita ou recusa pelo app.
+### Aceite e comece
 
-Selecionado? Daí em diante, roteiro, conteúdo, publicação e pagamento seguem pelo app. Ver as funcionalidades
+Selecionado ou convidado, você vê as condições e o prazo e aceita pelo app. O contrato chega por e-mail.
+
+- 07 / 08
+
+### Envie roteiro e conteúdo
+
+Cada entrega passa pela aprovação da marca. O próximo passo e o prazo ficam sempre à vista.
+
+- 08 / 08
+
+### Receba na carteira
+
+Depois da publicação, o valor entra como "A liberar" e fica disponível 30 dias após o encerramento, para saque via PIX.
+
+Telas do app com dados de exemplo.
 
 ## Funcionalidades do app
 

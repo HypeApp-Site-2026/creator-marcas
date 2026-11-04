@@ -398,6 +398,62 @@
     });
   });
 
+  /* ---------- Jornada do creator em carrossel (/criadores/) ----------
+     Gira sozinho a cada 4,5 s so com a secao na tela; para com o mouse ou o foco em cima e tem botao de pausa.
+     Setas, pontos, toque numa tela, deslizar o dedo e as setas do teclado tambem trocam o passo. */
+  $$('[data-jc]').forEach(function (jc) {
+    var its = $$('.jc-it', jc), txs = $$('.jc-tx', jc), dots = $$('.jc-dot', jc), fases = $$('[data-ir]', jc), pp = $('[data-pp]', jc);
+    var n = its.length;
+    if (!n || reduced) return;
+    var idx = 0, paused = false, vis = false, hold = false, timer = 0, swiped = false;
+    var antes = fases[1] ? +fases[1].getAttribute('data-ir') : n;
+    jc.classList.add('jc-live');
+    var show = function (i) {
+      idx = ((i % n) + n) % n;
+      its.forEach(function (it, k) {
+        var d = k - idx; if (d > n / 2) d -= n; if (d < -n / 2) d += n;
+        it.setAttribute('data-d', String(d)); it.setAttribute('aria-current', d === 0 ? 'true' : 'false');
+      });
+      txs.forEach(function (t, k) { t.classList.toggle('on', k === idx); });
+      dots.forEach(function (b, k) { b.setAttribute('aria-current', k === idx ? 'true' : 'false'); });
+      fases.forEach(function (f, k) { f.setAttribute('aria-pressed', String((idx < antes) === (k === 0))); });
+    };
+    var tick = function () {
+      clearTimeout(timer);
+      if (!paused && vis && !hold && !document.hidden) timer = setTimeout(function () { show(idx + 1); tick(); }, 4500);
+    };
+    var go = function (i) { show(i); tick(); };
+    its.forEach(function (it, k) { it.addEventListener('click', function () { if (swiped) { swiped = false; return; } go(k); }); });
+    dots.forEach(function (b, k) { b.addEventListener('click', function () { go(k); }); });
+    fases.forEach(function (f) { f.addEventListener('click', function () { go(+f.getAttribute('data-ir')); }); });
+    $('[data-prev]', jc).addEventListener('click', function () { go(idx - 1); });
+    $('[data-next]', jc).addEventListener('click', function () { go(idx + 1); });
+    pp.addEventListener('click', function () {
+      paused = !paused;
+      pp.textContent = paused ? 'Reproduzir' : 'Pausar';
+      pp.setAttribute('aria-label', paused ? 'Retomar a rota\u00e7\u00e3o' : 'Pausar a rota\u00e7\u00e3o');
+      tick();
+    });
+    var stage = $('.jc-stage', jc), x0 = null;
+    stage.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowRight') { go(idx + 1); e.preventDefault(); } else if (e.key === 'ArrowLeft') { go(idx - 1); e.preventDefault(); }
+    });
+    stage.addEventListener('pointerdown', function (e) { x0 = e.clientX; swiped = false; });
+    stage.addEventListener('pointerup', function (e) {
+      if (x0 === null) return;
+      var dx = e.clientX - x0; x0 = null;
+      if (Math.abs(dx) > 40) { swiped = true; go(idx + (dx < 0 ? 1 : -1)); }
+    });
+    jc.addEventListener('mouseenter', function () { hold = true; clearTimeout(timer); });
+    jc.addEventListener('mouseleave', function () { hold = false; tick(); });
+    jc.addEventListener('focusin', function () { hold = true; clearTimeout(timer); });
+    jc.addEventListener('focusout', function (e) { if (!jc.contains(e.relatedTarget)) { hold = false; tick(); } });
+    document.addEventListener('visibilitychange', tick);
+    if (window.IntersectionObserver) new IntersectionObserver(function (es) { vis = es[0].isIntersecting; tick(); }, { threshold: 0.35 }).observe(jc);
+    else vis = true;
+    show(0); tick();
+  });
+
   /* ---------- Ambiente de teste: faixa de aviso (so em teste.hypeapp.com.br) ---------- */
   if (/^teste\./.test(location.hostname)) {
     var tb = document.createElement('div');

@@ -695,6 +695,53 @@ CANDIDATURA = [
     ('app-E3', 'Receba a resposta', 'Se for pré-selecionado, a marca envia o convite com as condições. Você aceita ou recusa pelo app.', 'Aceitar convite'),
 ]
 
+# Jornada do creator em carrossel (04/11, versão 4 do quadro de propostas): substitui "Seu próximo passo" e "Como se candidatar".
+# Só telas e textos do que o app faz hoje (levantamento de funcionalidades, app 2.0.28).
+JORNADA = [
+    ('app-B4', 'Monte seu perfil', 'Cadastro em 5 passos: telefone, seus valores por formato, dados e nichos, e endereço. Depois, conecte Instagram, TikTok e YouTube.'),
+    ('app-D1', 'Encontre campanhas', 'No mural, busque e filtre por nicho. As campanhas em destaque aparecem primeiro.'),
+    ('app-E1', 'Veja tudo antes de entrar', 'Ganho, duração, entregas, regras e arquivos da marca, na página da campanha.'),
+    ('app-E2', 'Inscreva-se', 'Escolha com quais perfis quer participar e, quando a campanha pedir, proponha o seu valor.'),
+    ('app-D3', 'Acompanhe a análise', 'Em Minhas inscrições: inscrição enviada, análise da marca e resultado. A seleção é da marca ou da curadoria da Você no Hype.'),
+    ('app-E3', 'Aceite e comece', 'Selecionado ou convidado, você vê as condições e o prazo e aceita pelo app. O contrato chega por e-mail.'),
+    ('app-E8', 'Envie roteiro e conteúdo', 'Cada entrega passa pela aprovação da marca. O próximo passo e o prazo ficam sempre à vista.'),
+    ('app-G2', 'Receba na carteira', 'Depois da publicação, o valor entra como "A liberar" e fica disponível 30 dias após o encerramento, para saque via PIX.'),
+]
+JORNADA_ANTES = 5   # passos 1 a 5: antes do sim; 6 a 8: depois
+
+def jornada_carrossel(L, A):
+    """Carrossel 3D das telas do app: gira sozinho com a seção na tela; título e explicação embaixo.
+    Sem JavaScript (ou com movimento reduzido), mostra a primeira tela e a lista com os 8 passos."""
+    n = len(JORNADA)
+    slides = ''.join(
+        f'<button type="button" class="jc-it" data-i="{i}" data-d="{i if i <= n // 2 else i - n}" aria-label="Passo {i + 1} de {n}: {html.escape(t)}" tabindex="-1">'
+        f'<img src="{tela(A, c)}" alt="" width="600" height="1298" loading="lazy" decoding="async"></button>'
+        for i, (c, t, d) in enumerate(JORNADA))
+    passos = ''.join(f'<li class="jc-tx{" on" if i == 0 else ""}" data-i="{i}"><span class="jc-n">{i + 1:02d} / {n:02d}</span>'
+                     f'<h3 class="jc-t">{html.escape(t)}</h3><p class="jc-d">{html.escape(d)}</p></li>'
+                     for i, (c, t, d) in enumerate(JORNADA))
+    dots = ''.join(f'<button type="button" class="jc-dot" data-i="{i}" aria-label="Ir para o passo {i + 1}"></button>' for i in range(n))
+    seta = lambda d: ico(d, 22)
+    return f'''<section class="jc" id="como-funciona" aria-labelledby="jc-h" data-jc>
+  <span id="candidatura" class="jc-anc" aria-hidden="true"></span>
+  <div class="jc-box">
+    <div class="jc-head">
+      <span class="pd-eyebrow">Do cadastro ao saque</span>
+      <h2 id="jc-h" class="pd-h">Seu próximo passo no HypeApp</h2>
+      <div class="jc-fases" role="group" aria-label="Fases"><button type="button" data-ir="0" aria-pressed="true">Antes do sim<span class="jc-fn"> · 1 a {JORNADA_ANTES}</span></button><button type="button" data-ir="{JORNADA_ANTES}" aria-pressed="false">Depois do sim<span class="jc-fn"> · {JORNADA_ANTES + 1} a {n}</span></button></div>
+    </div>
+    <div class="jc-stage" role="region" aria-roledescription="carrossel" aria-label="Telas do app, passo a passo" tabindex="0">{slides}</div>
+    <div class="jc-ctrl">
+      <button type="button" class="jc-arr" data-prev aria-label="Passo anterior">{seta('m15 6-6 6 6 6')}</button>
+      <div class="jc-dots">{dots}</div>
+      <button type="button" class="jc-arr jc-arr-n" data-next aria-label="Próximo passo">{seta('m9 6 6 6-6 6')}</button>
+      <button type="button" class="jc-pp" data-pp aria-label="Pausar a rotação">Pausar</button>
+    </div>
+    <ol class="jc-txs" aria-live="polite">{passos}</ol>
+    <p class="jc-note">Telas do app com dados de exemplo.</p>
+  </div>
+</section>'''
+
 def process_draw(L, A):
     """Process draw horizontal: a seção fica fixa enquanto a rolagem avança; a linha se desenha entre as etapas
     e, embaixo, aparecem a tela e o texto da etapa ativa. Sem JavaScript, mostra a primeira etapa."""
@@ -756,9 +803,7 @@ def p_criadores(L, A):
   <div style="flex-basis:520px">{motion_criador('comunidade')}</div>
 </section>
 
-{motion_stack(L, 'comunidade')}
-
-{process_draw(L, A)}
+{jornada_carrossel(L, A)}
 
 <div class="sc-intro stack" id="recursos" style="gap:10px"><h2 class="h2">Funcionalidades do app</h2><p class="body" style="max-width:620px">Tudo o que uma campanha pede, do cadastro ao saque. Toque em cada item para ver a tela.</p></div>
 {showcase(A, 'sc-cadastro', 'phone', 'Cadastro', 'Seu perfil pronto em poucos passos', 'Cinco etapas com barra de progresso. No fim, as marcas já veem suas redes e seus valores.', [
