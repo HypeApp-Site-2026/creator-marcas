@@ -908,26 +908,27 @@ def p_criadores(L, A):
   </div>
 </section>
 
-<section id="comunidade" aria-labelledby="com-h">
-  <h2 id="com-h" class="bt-h2">Comunidade: creators que se ajudam</h2>
-  <div class="bt-g bt-com">
-    <div class="bt bt-roxo bt-m1">
-      <span class="bt-pill">Comunidade</span>
-      <b class="bt-t1">Ninguém cresce sozinho.</b>
-      <p class="bt-lead">Dentro do app, você troca experiências com quem vive a mesma rotina: como cobrar, como fechar com uma marca, o que fez um vídeo viralizar.</p>
-      <ul class="bt-conversa" aria-label="Exemplos de conversas na comunidade">
-        <li>Qual horário você grava? Meus vídeos estão saindo escuros.</li>
-        <li class="bt-resp">De manhã, perto da janela: a luz natural resolve metade do trabalho.</li>
-        <li>Salvei a dica da luz natural!</li>
-      </ul>
+<section id="comunidade" class="cv" aria-labelledby="com-h">
+  <div class="cv-in">
+    <div class="cv-copy">
+      <span class="cv-pill">Comunidade</span>
+      <h2 id="com-h" class="cv-h">A conversa que faltava na sua rotina.</h2>
+      <p class="cv-p">Pergunte, responda e aprenda com outros creators, nos grupos, nos posts e nas lives do app.</p>
     </div>
-    <div class="bt bt-media bt-m2">{shot('app-F3c')}</div>
-    <div class="bt bt-preto bt-m3"><span class="bt-n">Grupos das campanhas</span><b class="bt-t3">Quem está na mesma campanha, conversa junto</b><span class="bt-p">Tire dúvidas sobre o briefing e as entregas e troque dicas com os outros creators da campanha.</span></div>
-    <div class="bt bt-branco bt-m4"><span class="bt-n">Grupos por assunto</span><b class="bt-t3">Do seu nicho e além dele</b><span class="bt-p">Grupos como Creators de Beleza e Fitness e Corrida reúnem quem cria sobre o mesmo tema.</span></div>
-    <div class="bt bt-branco bt-tela2"><b class="bt-t3">Feed: o que deu certo</b><span class="bt-p">Bastidores, roteiros e os conteúdos que bombaram, com curtidas e comentários de outros creators.</span>{shot('app-F1')}</div>
-    <div class="bt bt-branco bt-tela2"><b class="bt-t3">Lives</b><span class="bt-p">Conversas ao vivo sobre a rotina de creator, como fechar contratos com marcas, com chat aberto.</span>{shot('app-F2')}</div>
-    <div class="bt bt-lima bt-m7"><b class="bt-t3">O que se troca por lá</b><ul class="bt-lista"><li>Experiências com marcas e propostas</li><li>Roteiros, gravação e edição</li><li>Conteúdos que viralizaram, e por quê</li><li>Dúvidas de quem está começando</li></ul></div>
-    <div class="bt bt-preto bt-m8"><b class="bt-t3">Um espaço seguro</b><span class="bt-p">Grupos com moderação. Qualquer publicação, comentário ou mensagem pode ser denunciada pelo app, e você pode bloquear outro usuário.</span><a class="bt-lk" href="{L('/regras-da-comunidade/')}">Regras da comunidade</a></div>
+    <div class="cv-fone"><img src="{tela(A, 'app-F6')}" alt="Tela de uma live da comunidade sobre como fechar contratos com marcas, com comentários de creators" width="600" height="1298" loading="lazy" decoding="async"></div>
+    <ul class="cv-falas" aria-label="Exemplos de conversas na comunidade">
+      <li class="cv-b cv-b1"><b>No grupo da campanha</b>Alguém já fez campanha com envio de produto? Como fica o prazo de entrega?</li>
+      <li class="cv-b cv-b2 cv-lima">Já fiz uma! Te conto como foi aqui no grupo.</li>
+      <li class="cv-b cv-b3"><b>No feed</b>Gravem de manhã perto da janela: a luz natural resolve metade do trabalho.</li>
+      <li class="cv-b cv-b4 cv-cinza">128 curtidas · Salvei a dica!</li>
+      <li class="cv-b cv-b5"><b>Na live</b>Como você negocia o valor do primeiro contato?</li>
+    </ul>
+    <ul class="cv-grupos" aria-label="Exemplos de grupos"><li>Creators de Beleza</li><li>Fitness e Corrida</li><li class="cv-cinza">Grupo da sua campanha</li></ul>
+    <ol class="cv-areas">
+      <li><b><span>01</span> Grupos</b>Das suas campanhas e do seu nicho.</li>
+      <li><b><span>02</span> Para você</b>Posts, dicas e conteúdos que deram certo.</li>
+      <li><b><span>03</span> Lives</b>Ao vivo, com chat aberto. Comunidade moderada · <a href="{L('/regras-da-comunidade/')}">Regras</a></li>
+    </ol>
   </div>
 </section>
 

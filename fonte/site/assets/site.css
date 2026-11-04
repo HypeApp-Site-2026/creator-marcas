@@ -1893,3 +1893,52 @@ label.ck-op { cursor: pointer; }
 @keyframes cwPress { 50% { scale: .78; } }
 .cw.notr *, .cw.notr { transition: none !important; }
 @media (prefers-reduced-motion: reduce) { .cw * { transition: none !important; animation: none !important; } }
+
+/* ---------- Comunidade (/criadores/, versão C do canvas, 04/11): a conversa em volta do celular ---------- */
+.cv-in { position: relative; background: #050505; color: #fff; border-radius: 44px; overflow: hidden; padding: clamp(36px, 5vw, 72px) clamp(24px, 4.4vw, 64px) clamp(32px, 4vw, 56px);
+  display: grid; grid-template-columns: minmax(0, 1fr) clamp(260px, 25vw, 360px) minmax(0, 1fr); grid-template-areas: "copy fone falas" "grupos fone falas" "areas areas areas"; column-gap: clamp(24px, 3.4vw, 56px); row-gap: 28px; }
+.cv-in::before { content: ""; position: absolute; left: 50%; top: 6%; width: min(560px, 42%); height: 78%; transform: translateX(-50%); border-radius: 999px; background: radial-gradient(ellipse at 50% 45%, #6A12C9 0%, #2A0752 45%, rgba(5, 5, 5, 0) 72%); pointer-events: none; }
+.cv-in > * { position: relative; }
+.cv-copy { grid-area: copy; display: flex; flex-direction: column; gap: 18px; }
+.cv-pill { align-self: flex-start; background: #D2F51A; color: #050505; font-size: 14px; font-weight: 800; border-radius: 999px; padding: 8px 14px; }
+.cv-h { margin: 0; font-size: clamp(36px, 3.9vw, 56px); font-weight: 800; letter-spacing: -0.04em; line-height: 1; color: #fff; }
+.cv-p { margin: 0; font-size: clamp(16px, 1.25vw, 18px); line-height: 1.55; color: #CFCFCF; }
+.cv-fone { grid-area: fone; align-self: center; background: #1A1A1A; border-radius: clamp(44px, 4.4vw, 62px); padding: clamp(9px, .85vw, 12px); box-shadow: 0 0 0 1px #2E2E2E, 0 50px 100px rgba(106, 18, 201, .45); }
+.cv-fone img { display: block; width: 100%; height: auto; border-radius: clamp(36px, 3.5vw, 50px); }
+.cv-falas { grid-area: falas; list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 16px; align-self: center; }
+.cv-b { background: #fff; color: #050505; border-radius: 22px 22px 22px 6px; padding: 14px 18px; font-size: 16px; line-height: 1.45; box-shadow: 0 18px 40px rgba(0, 0, 0, .4); max-width: 320px; }
+.cv-b b { display: block; font-size: 13px; color: #7A12D6; margin-bottom: 4px; }
+.cv-lima { background: #D2F51A; border-radius: 22px 22px 6px 22px; align-self: flex-end; }
+.cv-cinza { background: #2A2A2A; color: #fff; }
+.cv-b.cv-cinza { align-self: flex-end; border-radius: 999px; padding: 10px 16px; font-size: 15px; font-weight: 600; box-shadow: none; }
+.cv-b3 { margin-left: clamp(0px, 2vw, 30px); }
+.cv-b5 { position: absolute; right: calc(100% + clamp(260px, 25vw, 360px) + clamp(48px, 6.8vw, 112px)); bottom: 120px; width: min(300px, 22vw); }
+.cv-grupos { grid-area: grupos; list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; align-items: flex-start; align-self: end; }
+.cv-grupos li { background: #8A1FE0; color: #fff; border-radius: 999px; padding: 10px 16px; font-size: 15px; font-weight: 700; }
+.cv-grupos li:nth-child(2) { margin-left: 60px; }
+.cv-grupos li:nth-child(3) { margin-left: 20px; }
+.cv-grupos .cv-cinza { background: #2A2A2A; }
+.cv-areas { grid-area: areas; list-style: none; margin: 16px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.cv-areas li { border-top: 1px solid #333; padding-top: 18px; display: flex; flex-direction: column; gap: 6px; font-size: 15px; line-height: 1.5; color: #BDBDBD; }
+.cv-areas b { font-size: 18px; color: #fff; }
+.cv-areas b span { color: #D2F51A; }
+.cv-areas a { color: #D2F51A; }
+.cv-areas a:hover { color: #fff; }
+@media (prefers-reduced-motion: no-preference) {
+  .cv-b { animation: cvFlut 6s ease-in-out infinite; }
+  .cv-b2 { animation-delay: -1.5s; } .cv-b3 { animation-delay: -3s; } .cv-b4 { animation-delay: -4.5s; } .cv-b5 { animation-delay: -2.2s; }
+}
+@keyframes cvFlut { 50% { translate: 0 -6px; } }
+@media (max-width: 1080px) {
+  .cv-in { grid-template-columns: minmax(0, 1fr) minmax(220px, 300px); grid-template-areas: "copy copy" "falas fone" "grupos fone" "areas areas"; }
+  .cv-b5 { position: static; width: auto; }
+  .cv-in::before { left: 75%; }
+}
+@media (max-width: 640px) {
+  .cv-in { grid-template-columns: 1fr; grid-template-areas: "copy" "fone" "falas" "grupos" "areas"; border-radius: 30px; }
+  .cv-fone { width: min(280px, 80%); justify-self: center; }
+  .cv-in::before { left: 50%; top: 22%; width: 90%; height: 40%; }
+  .cv-b { max-width: 88%; }
+  .cv-grupos li:nth-child(2) { margin-left: 30px; } .cv-grupos li:nth-child(3) { margin-left: 10px; }
+  .cv-areas { grid-template-columns: 1fr; }
+}
