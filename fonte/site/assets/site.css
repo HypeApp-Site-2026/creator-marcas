@@ -823,10 +823,6 @@ main.home > .home-body { padding-block: 120px 0; display: flex; flex-direction: 
   position: absolute; left: 13%; right: 13%; top: 6%; height: 44%; display: flex; flex-direction: column; gap: 1.6%;
   padding: 1.4% 1.2%; border-radius: calc(var(--w) * .006); background: #2a2b2e; box-shadow: inset 0 2px 3px rgba(0, 0, 0, .5);
 }
-.mb-kb i { flex: 1; --k: calc(100% / 14);
-  background: repeating-linear-gradient(90deg, #121214 0 calc(var(--k) - 3px), transparent calc(var(--k) - 3px) var(--k)); }
-.mb-kb i:first-child { flex: .55; }
-.mb-kb i:last-child { background: linear-gradient(90deg, transparent 0 30%, #121214 30% 69.5%, transparent 69.5%), repeating-linear-gradient(90deg, #121214 0 calc(var(--k) - 3px), transparent calc(var(--k) - 3px) var(--k)); }
 .mb-spk { position: absolute; top: 6%; height: 44%; width: 8.5%; background: radial-gradient(circle, rgba(20, 20, 22, .55) 0 32%, transparent 38%) 0 0 / 7px 7px; }
 .mb-spk-l { left: 3%; } .mb-spk-r { right: 3%; }
 .mb-pad {
@@ -1583,3 +1579,42 @@ label.ck-op { cursor: pointer; }
 .cr-tudo b { padding: 0 6px; } .cr-tudo li > span:last-child { padding: 0 6px; font-size: 14px; }
 /* botões das lojas dentro de faixa escura: texto escuro (a regra de links da faixa deixava o texto branco sobre branco) */
 .band-dark a.store, .band-dark a.store:hover { color: var(--ink); }
+
+/* ---------- MacBook da hero: cinza-espacial e teclado real (04/11) ----------
+   Mesmo ângulo e mesmas medidas; muda só o acabamento, o teclado (Touch Bar + 5 linhas), os alto-falantes e o trackpad. */
+.mb-back { background: linear-gradient(90deg, rgba(0, 0, 0, .18), rgba(0, 0, 0, 0) 45%, rgba(255, 255, 255, .16)), linear-gradient(180deg, #8e9095 0%, #74767b 55%, #5d5f63 100%); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .22), inset 0 -6px 14px rgba(0, 0, 0, .2); }
+.mb-bez { box-shadow: 0 0 0 calc(var(--w) * .0035) #8a8c90, 0 0 0 calc(var(--w) * .006) #55575b, 6px 0 0 -2px rgba(255, 255, 255, .14), -30px 30px 60px rgba(0, 0, 0, .45); }
+.mb-deck {
+  background:
+    linear-gradient(90deg, rgba(0, 0, 0, .16) 0%, rgba(0, 0, 0, 0) 45%, rgba(255, 255, 255, .12) 100%),
+    linear-gradient(180deg, #6f7176 0%, #7f8186 40%, #8b8d92 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .25);
+}
+.mb-kb {
+  left: 9.5%; right: 9.5%; top: 4.5%; height: 47%; gap: 2.2%; padding: 1.1% 1%;
+  border-radius: calc(var(--w) * .005); background: #3e4044; box-shadow: inset 0 1px 2px rgba(0, 0, 0, .55), 0 0 0 1px rgba(0, 0, 0, .15);
+}
+.mb-kb .mb-row { flex: 1; display: flex; gap: .55%; min-height: 0; background: none; }
+.mb-kb .mb-row:first-child { flex: .62; }
+.mb-k { position: relative; min-width: 0; border-radius: calc(var(--w) * .0016); background: linear-gradient(180deg, #1b1c1e, #0b0b0c); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .09), 0 1px 0 rgba(0, 0, 0, .5);
+  color: rgba(255, 255, 255, .78); font-style: normal; font-family: var(--font); font-size: max(4px, calc(var(--w) * .0062)); font-weight: 500; line-height: 1;
+  display: flex; align-items: center; justify-content: center; overflow: hidden; white-space: nowrap; }
+.mb-km { justify-content: flex-start; align-items: flex-end; padding: 0 0 7% 7%; font-size: max(3.5px, calc(var(--w) * .0048)); }
+.mb-kb .mb-row:first-child .mb-k { font-size: max(3.5px, calc(var(--w) * .0048)); }
+.mb-tid { background: radial-gradient(circle at 50% 50%, #2a2b2e 0 40%, #0b0b0c 42%); }
+.mb-tb { min-width: 0; display: flex; gap: 3%; align-items: center; padding: 0 3%; border-radius: calc(var(--w) * .0016); background: linear-gradient(180deg, #0f1012, #050506); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .06); }
+.mb-tb b { height: 46%; border-radius: 2px; }
+.mb-tb b:nth-child(1) { flex: .6; background: #2b2c30; }
+.mb-tb b:nth-child(2) { flex: 1.2; background: linear-gradient(90deg, #6f42d9, #c03fd8); opacity: .85; }
+.mb-tb b:nth-child(3) { flex: 4.5; background: linear-gradient(90deg, #8c2fd6, #e0418f 55%, #ff6a3d); opacity: .9; }
+.mb-tb b:nth-child(4) { flex: .8; background: #2b2c30; }
+.mb-arr { min-width: 0; display: flex; gap: 4%; align-items: flex-end; }
+.mb-arr > .mb-k { flex: 1; height: 50%; }
+.mb-ud { flex: 1; height: 100%; display: flex; flex-direction: column; gap: 6%; }
+.mb-ud .mb-k { flex: 1; }
+.mb-spk { top: 4.5%; height: 47%; width: 6%; background: radial-gradient(circle, rgba(16, 16, 18, .7) 0 30%, transparent 36%) 0 0 / 5px 5px; }
+.mb-spk-l { left: 2.4%; } .mb-spk-r { right: 2.4%; }
+.mb-pad { left: 30.5%; right: 30.5%; top: 56%; height: 39%; border-radius: calc(var(--w) * .006);
+  background: linear-gradient(90deg, #7a7c81, #85878c 60%, #8f9196); box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .18), inset 0 1px 0 rgba(255, 255, 255, .18); }
+.mb-lip { background: linear-gradient(90deg, rgba(0, 0, 0, .2), rgba(0, 0, 0, 0) 40%, rgba(255, 255, 255, .14)), linear-gradient(180deg, #9a9ca0 0%, #6c6e72 55%, #4a4c50 100%); }
+.mb-lip i { background: linear-gradient(180deg, #55575b, #6f7175); }

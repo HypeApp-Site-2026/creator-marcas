@@ -485,6 +485,34 @@ def hx_lista(itens, label):
 
 import hero_telas as _ht
 
+# Teclado do MacBook Pro 13" (Touch Bar) em layout ABNT/US de 6 linhas, cada linha somando 14,5 unidades de tecla.
+_MB_LINHAS = [
+    [('esc', 1.5), ('_tb', 12), ('_id', 1)],
+    [(c, 1) for c in '`1234567890-='] + [('delete', 1.5)],
+    [('tab', 1.5)] + [(c, 1) for c in 'QWERTYUIOP[]'] + [('\\', 1)],
+    [('caps lock', 1.8)] + [(c, 1) for c in "ASDFGHJKL;'"] + [('return', 1.7)],
+    [('shift', 2.3)] + [(c, 1) for c in 'ZXCVBNM,./'] + [('shift', 2.2)],
+    [('fn', 1), ('control', 1), ('option', 1), ('command', 1.25), ('', 5), ('command', 1.25), ('option', 1), ('_setas', 3)],
+]
+
+def mb_teclado():
+    """Teclado desenhado tecla a tecla (decorativo, aria-hidden no pai)."""
+    linhas = []
+    for li in _MB_LINHAS:
+        teclas = []
+        for t, w in li:
+            if t == '_tb':
+                teclas.append(f'<i class="mb-tb" style="flex:{w}"><b></b><b></b><b></b><b></b></i>')
+            elif t == '_id':
+                teclas.append(f'<i class="mb-k mb-tid" style="flex:{w}"></i>')
+            elif t == '_setas':
+                teclas.append(f'<i class="mb-arr" style="flex:{w}"><i class="mb-k"></i><i class="mb-ud"><i class="mb-k"></i><i class="mb-k"></i></i><i class="mb-k"></i></i>')
+            else:
+                cls = 'mb-k mb-km' if len(t) > 1 else 'mb-k'
+                teclas.append(f'<i class="{cls}" style="flex:{w}">{html.escape(t)}</i>')
+        linhas.append('<i class="mb-row">' + ''.join(teclas) + '</i>')
+    return '<div class="mb-kb">' + ''.join(linhas) + '</div>'
+
 def hero_scroll(L, A):
     """Sem tela de abertura: a página já abre na cena APLICATIVO. O H1 é um só, com uma frase em cada cena
     (linha 1 sobre o celular, linha 2 sobre o notebook); as duas ficam no mesmo elemento para o texto do H1 não mudar."""
@@ -516,7 +544,7 @@ def hero_scroll(L, A):
         <div class="mb-lid" data-lid><span class="mb-back" aria-hidden="true"></span><div class="mb-bez"><span class="mb-cam" aria-hidden="true"></span>
           <div class="mb-scr"><img src="{A(sb)}" alt="{alt_b}" width="{wb}" height="{hb}" loading="lazy" decoding="async">{_ht.tela_painel(A, A('assets/logo-hypeapp-branco.svg'))}<span class="mb-off" aria-hidden="true" data-off></span><span class="mb-sweep" aria-hidden="true" data-sweep></span><span class="hx-glare" aria-hidden="true"></span></div>
           <span class="mb-name" aria-hidden="true">MacBook Pro</span></div></div>
-        <div class="mb-base" aria-hidden="true"><i class="mb-shadow"></i><div class="mb-deck"><i class="mb-spk mb-spk-l"></i><div class="mb-kb"><i></i><i></i><i></i><i></i><i></i><i></i></div><i class="mb-spk mb-spk-r"></i><i class="mb-pad"></i></div><i class="mb-lip"><i></i></i></div>
+        <div class="mb-base" aria-hidden="true"><i class="mb-shadow"></i><div class="mb-deck"><i class="mb-spk mb-spk-l"></i>{mb_teclado()}<i class="mb-spk mb-spk-r"></i><i class="mb-pad"></i></div><i class="mb-lip"><i></i></i></div>
       </div></figure>
       <div class="hx-copy">
         <h2 class="hx-cap">{capb}</h2>
