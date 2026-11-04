@@ -487,6 +487,7 @@ def hx_lista(itens, label):
     return f'<ul class="hx-list" aria-label="{label}">{li}</ul>'
 
 import hero_telas as _ht
+import carteira_viva as _cv
 
 # Teclado do MacBook Pro 13" (Touch Bar) em layout ABNT/US de 6 linhas, cada linha somando 14,5 unidades de tecla.
 _MB_LINHAS = [
@@ -900,10 +901,10 @@ def p_criadores(L, A):
   <h2 id="din-h" class="bt-h2">Seu dinheiro, com regras claras</h2>
   <div class="bt-g bt-din">
     <div class="bt bt-preto bt-d1"><b class="bt-t2">Do post ao PIX</b><ol class="bt-pix"><li><b>1 · Publicou</b>A publicação é identificada.</li><li><b>2 · A liberar</b>O valor aparece na carteira.</li><li><b>3 · Disponível</b>30 dias após o encerramento da campanha.</li><li><b class="bt-lime">4 · PIX</b>Processado em até 2 horas úteis.</li></ol></div>
-    <div class="bt bt-tela bt-d2">{shot('app-G2')}</div>
+    <div class="bt bt-d2 bt-cwt">{_cv.carteira_viva()}</div>
     <div class="bt bt-lima bt-d3"><b class="bt-big">Sem taxa</b><span class="bt-p">no saque, a partir de R$ 1,00, com a chave PIX no seu nome e no mesmo CPF da conta.</span></div>
     <div class="bt bt-branco bt-d4"><b class="bt-t3">Como as campanhas pagam</b><ul class="bt-formas"><li><b>Valor fixo</b>o mesmo para cada creator</li><li><b>O seu preço</b>os valores do seu perfil</li><li><b>Proposta</b>você propõe; a marca aceita ou negocia</li><li><b>Permuta</b>produtos, com envio acompanhado no app</li></ul></div>
-    <div class="bt bt-media bt-d5">{ilu('assets/ilustracoes/reels-valores.webp', 'Ilustração: celular com Reels e cartões de valor')}</div>
+    <div class="bt bt-media bt-d5">{ilu('assets/ilustracoes/din-permuta.webp', 'Ilustração: caixa aberta com um produto, como numa permuta')}</div>
   </div>
 </section>
 

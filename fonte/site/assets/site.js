@@ -398,6 +398,70 @@
     });
   });
 
+  /* ---------- Carteira viva (/criadores/): celular em HTML; Visao geral > Historico > Solicitar saque.
+     A arte tem 580 x 910 px; mostramos a janela de 420 px em volta do celular (x 80 a 500). ---------- */
+  $$('[data-cw]').forEach(function (cw) {
+    var art = $('.cw-art', cw), scr = $('.cw-screen', cw), tap = $('[data-cw-tap]', cw);
+    var fit = function () { cw.style.setProperty('--cw-s', (cw.clientWidth / 420).toFixed(4)); };
+    fit();
+    if (window.ResizeObserver) new ResizeObserver(fit).observe(cw); else window.addEventListener('resize', fit);
+    var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduced) return;
+    var tabs = $$('[data-cw-t]', cw), views = $$('[data-cw-v]', cw);
+    var alvo = function (k) { return k === 'hist' || k === 'geral' ? $('[data-cw-t="' + k + '"]', cw) : $('[data-cw-a="' + k + '"]', cw); };
+    var setTab = function (k) {
+      cw.classList.toggle('hist', k === 'hist');
+      tabs.forEach(function (t) { t.classList.toggle('on', t.getAttribute('data-cw-t') === k); });
+      views.forEach(function (v) {
+        var on = v.getAttribute('data-cw-v') === k;
+        v.classList.toggle('prev', !on && v.classList.contains('on'));
+        v.classList.toggle('on', on);
+      });
+    };
+    var vai = function (k) {
+      var el = alvo(k); if (!el) return;
+      var sc = cw.clientWidth / 420 || 1, a = scr.getBoundingClientRect(), r = el.getBoundingClientRect();
+      var x = (r.left + r.width / 2 - a.left) / sc, y = (r.top + r.height / 2 - a.top) / sc;
+      tap.style.transform = 'translate3d(' + x.toFixed(1) + 'px,' + y.toFixed(1) + 'px,0)';
+      tap.classList.add('on');
+    };
+    var aperta = function (k) {
+      var el = alvo(k);
+      tap.classList.remove('press'); void tap.offsetWidth; tap.classList.add('press');
+      if (el) { el.classList.add('press-ok'); setTimeout(function () { el.classList.remove('press-ok'); }, 200); }
+    };
+    var reset = function () {
+      cw.classList.add('notr');
+      cw.classList.remove('sheet', 'tudo', 'novo'); setTab('geral'); views.forEach(function (v) { v.classList.remove('prev'); });
+      tap.classList.remove('on', 'press'); tap.style.transform = 'translate3d(180px,560px,0)';
+      void cw.offsetWidth; cw.classList.remove('notr');
+    };
+    var passos = [
+      [1200, function () { vai('hist'); }], [1800, function () { aperta('hist'); }], [2000, function () { setTab('hist'); }],
+      [3800, function () { vai('geral'); }], [4300, function () { aperta('geral'); }], [4500, function () { setTab('geral'); }],
+      [5600, function () { vai('saque'); }], [6200, function () { aperta('saque'); }], [6400, function () { tap.classList.remove('on'); cw.classList.add('sheet'); }],
+      [7500, function () { vai('tudo'); }], [8100, function () { aperta('tudo'); }], [8300, function () { cw.classList.add('tudo'); }],
+      [9200, function () { vai('conf'); }], [9800, function () { aperta('conf'); }], [10000, function () { tap.classList.remove('on'); cw.classList.remove('sheet'); }],
+      [10700, function () { setTab('hist'); }], [11200, function () { cw.classList.add('novo'); }]
+    ];
+    var TOTAL = 14500, t0 = 0, idx = 0, timer = 0, vis = false, rodando = false;
+    var agenda = function () {
+      clearTimeout(timer);
+      if (!vis || document.hidden) { rodando = false; return; }
+      rodando = true;
+      var agora = Date.now() - t0;
+      if (idx >= passos.length) { timer = setTimeout(function () { reset(); t0 = Date.now(); idx = 0; agenda(); }, Math.max(0, TOTAL - agora)); return; }
+      timer = setTimeout(function () { passos[idx][1](); idx++; agenda(); }, Math.max(0, passos[idx][0] - agora));
+    };
+    var inicia = function () { reset(); t0 = Date.now(); idx = 0; agenda(); };
+    reset();
+    if (window.IntersectionObserver) new IntersectionObserver(function (es) {
+      var v = es[0].isIntersecting;
+      if (v && !vis) { vis = true; inicia(); } else if (!v) { vis = false; clearTimeout(timer); rodando = false; }
+    }, { threshold: 0.4 }).observe(cw);
+    document.addEventListener('visibilitychange', function () { if (!document.hidden && vis && !rodando) inicia(); });
+  });
+
   /* ---------- Videos que tocam so quando aparecem na tela (data-vis-play) ---------- */
   (function () {
     var vs = $$('video[data-vis-play]');
