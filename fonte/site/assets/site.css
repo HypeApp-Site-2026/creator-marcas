@@ -692,7 +692,7 @@ fieldset.invalid .choice > span { box-shadow: inset 0 0 0 2px #C4122F; }
 
 /* ---------- Hero da home com rolagem (04/11) ----------
    Sem JavaScript ou com prefers-reduced-motion: as cenas ficam empilhadas, no fundo escuro, cada uma já montada.
-   Com JavaScript, o site.js põe .hx-live: a seção ganha ~400svh e as cenas passam a um palco fixo (sticky).
+   Com JavaScript, o site.js põe .hx-live: a seção ganha ~300svh e as cenas passam a um palco fixo (sticky).
    A troca acontece abaixo da dobra: a abertura ocupa a primeira tela nos dois modos, então nada se desloca (CLS 0).
    Animações: só transform e opacity. */
 main.home { display: block; }
@@ -703,6 +703,12 @@ main.home > .home-body { padding-block: 120px 0; display: flex; flex-direction: 
   --hx-bg: #08070A; --hx-paper: #ECEAE5;
   position: relative; background: var(--hx-bg); color: #fff;
 }
+.hx { --hx-light:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E"),
+    radial-gradient(55% 75% at 104% 42%, rgba(255, 246, 236, .16) 0%, rgba(255, 246, 236, .06) 40%, rgba(255, 246, 236, 0) 72%),
+    radial-gradient(120% 120% at 100% 50%, rgba(255, 255, 255, .03), rgba(255, 255, 255, 0) 60%),
+    var(--hx-bg); }
+.hx-sc { background: var(--hx-light); }
 .hx-pin { position: relative; }
 .hx-sc { position: relative; overflow: hidden; min-height: 100vh; min-height: 100svh; }
 
@@ -725,12 +731,13 @@ main.home > .home-body { padding-block: 120px 0; display: flex; flex-direction: 
   .hx-app [data-dev] { animation: hx-phone 1.4s var(--ease) 240ms backwards; }
   .hx-l1 .hx-w { animation: hx-up 1s var(--ease) calc(420ms + var(--i) * 55ms) backwards; }
   .hx-app .hx-cap .hx-w { animation: hx-up .9s var(--ease) calc(820ms + var(--i) * 40ms) backwards; }
-  .hx-app .hx-li { animation: hx-up .9s var(--ease) calc(980ms + var(--i) * 90ms) backwards; }
+  .hx-app .hx-li { animation: hx-up-li .9s var(--ease) calc(980ms + var(--i) * 90ms) backwards; }
   .hx-app .hx-list li::after { animation: hx-line .9s var(--ease) calc(980ms + var(--i) * 90ms) backwards; }
   .hx-skip * { animation: none !important; }
 }
 @keyframes hx-up { from { transform: translate3d(0, 130%, 0); } }
 @keyframes hx-line { from { transform: scaleX(0); } }
+@keyframes hx-up-li { from { transform: translate3d(0, 200%, 0); } }
 @keyframes hx-phone { from { opacity: 0; transform: translate3d(0, 85vh, 0) rotateZ(33deg) rotateY(-12deg) rotateX(6deg); } }
 
 /* Palavra gigante (decorativa): Inter 600, caixa alta, papel off-white com ruído leve */
@@ -744,24 +751,24 @@ main.home > .home-body { padding-block: 120px 0; display: flex; flex-direction: 
   color: transparent; -webkit-background-clip: text; background-clip: text;
   background:
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .32 0 0 0 0 .30 0 0 0 0 .27 0 0 0 .9 -.32'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
-    linear-gradient(180deg, #F2F0EC, var(--hx-paper) 55%, #E2DFD8);
+    linear-gradient(95deg, #D9D6CF 0%, var(--hx-paper) 55%, #F6F4F0 100%);
   -webkit-background-clip: text; background-clip: text;
 }
 
 /* Aparelhos (CSS). As telas são imagens exportadas do app e do painel. */
 .hx-dev { position: absolute; left: 50%; top: 48%; margin: 0; }
-.hx-glare { position: absolute; inset: 0; pointer-events: none; background: linear-gradient(118deg, rgba(255, 255, 255, .16) 0%, rgba(255, 255, 255, .05) 33%, rgba(255, 255, 255, 0) 33.5%); }
+.hx-glare { position: absolute; inset: 0; pointer-events: none; background: linear-gradient(242deg, rgba(255, 255, 255, .2) 0%, rgba(255, 255, 255, .06) 30%, rgba(255, 255, 255, 0) 30.5%), linear-gradient(90deg, rgba(0, 0, 0, .06), rgba(0, 0, 0, 0) 40%); }
 
 /* iPhone 15 Pro, titânio escuro */
 .hx-iphone { --w: min(33svh, 21vw); width: var(--w); height: calc(var(--w) * 2.06); transform: translate(-50%, -50%); perspective: 1800px; }
 .ip { width: 100%; height: 100%; transform: rotateZ(21deg) rotateY(-12deg) rotateX(6deg); transform-style: preserve-3d; }
 .ip-body {
   position: relative; width: 100%; height: 100%; border-radius: calc(var(--w) * .175); padding: calc(var(--w) * .022);
-  background: linear-gradient(135deg, #77777b 0%, #3d3d40 16%, #232325 42%, #2d2d30 68%, #66666a 100%);
+  background: linear-gradient(100deg, #26262a 0%, #1c1c1f 35%, #3a3a3e 70%, #8a8a90 96%, #5a5a5f 100%);
   box-shadow:
     inset 0 0 0 1px rgba(255, 255, 255, .25), inset 0 0 0 2.5px rgba(0, 0, 0, .55),
-    1px 1px 0 #303033, 2px 2px 0 #2a2a2d, 3px 3px 0 #252528, 4px 3px 0 #202022, 5px 4px 0 #1b1b1d, 6px 5px 0 #161618,
-    40px 60px 90px rgba(0, 0, 0, .6), 10px 18px 30px rgba(0, 0, 0, .45);
+    1px 1px 0 #5c5c61, 2px 2px 0 #4d4d52, 3px 3px 0 #414145, 4px 3px 0 #36363a, 5px 4px 0 #2b2b2f, 6px 5px 0 #222226,
+    -46px 60px 90px rgba(0, 0, 0, .65), -12px 18px 30px rgba(0, 0, 0, .45);
 }
 .ip-bez { height: 100%; border-radius: calc(var(--w) * .154); background: #000; padding: calc(var(--w) * .03); }
 .ip-scr { position: relative; height: 100%; border-radius: calc(var(--w) * .125); overflow: hidden; background: #F5F4F7; }
@@ -778,13 +785,13 @@ main.home > .home-body { padding-block: 120px 0; display: flex; flex-direction: 
 .hx-mac { --w: min(56vw, 94svh); width: var(--w); transform: translate(-50%, -52%); }
 /* A perspectiva fica no pai direto da tampa, com a câmera um pouco acima: a tampa gira na dobradiça
    (rotateX de -90deg, deitada sobre o teclado com o verso de alumínio para cima, até 0). */
-/* Câmera a ~43% da altura: com a tampa fechada (-90deg), a projeção dela cai sobre o teclado, do tamanho da base. */
-.mb { position: relative; width: 100%; perspective: 2200px; perspective-origin: 50% 43%; transform-origin: 50% 100%; }
+/* Câmera um pouco acima da dobradiça: tampa e tampo usam a mesma perspectiva, então a tampa fechada (-90deg) cai sobre o tampo. */
+.mb { --lw: calc(var(--w) * .805); --dd: calc(var(--lw) * .66); --th: calc(var(--w) * .013); position: relative; width: 100%; perspective: 2200px; perspective-origin: 50% 31%; transform-origin: 50% 70%; }
 .mb-lid { position: relative; z-index: 1; width: 80.5%; margin: 0 auto; transform-origin: 50% 100%; transform-style: preserve-3d; }
 .mb-back {
   position: absolute; inset: 0; transform: rotateY(180deg); backface-visibility: hidden; -webkit-backface-visibility: hidden;
   border-radius: calc(var(--w) * .024) calc(var(--w) * .024) calc(var(--w) * .006) calc(var(--w) * .006);
-  background: linear-gradient(180deg, #dfe0e3 0%, #c6c8cc 55%, #a9abaf 100%);
+  background: linear-gradient(90deg, rgba(0, 0, 0, .14), rgba(0, 0, 0, 0) 45%, rgba(255, 255, 255, .28)), linear-gradient(180deg, #e2e3e6 0%, #c8cace 55%, #a8aaae 100%);
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .45), inset 0 -6px 14px rgba(0, 0, 0, .12);
 }
 .mb-sweep { position: absolute; top: 0; bottom: 0; left: 0; width: 45%; transform: translate3d(-120%, 0, 0); pointer-events: none;
@@ -793,35 +800,45 @@ main.home > .home-body { padding-block: 120px 0; display: flex; flex-direction: 
   position: relative; aspect-ratio: 1.585; background: #0a0a0b; backface-visibility: hidden; -webkit-backface-visibility: hidden;
   border-radius: calc(var(--w) * .024) calc(var(--w) * .024) calc(var(--w) * .006) calc(var(--w) * .006);
   padding: calc(var(--w) * .014) calc(var(--w) * .014) calc(var(--w) * .028);
-  box-shadow: 0 0 0 calc(var(--w) * .0035) #c9cbcf, 0 0 0 calc(var(--w) * .006) #8e9095, 0 -10px 40px rgba(0, 0, 0, .25);
+  box-shadow: 0 0 0 calc(var(--w) * .0035) #c3c5c9, 0 0 0 calc(var(--w) * .006) #85878b, 6px 0 0 -2px rgba(255, 255, 255, .22), -30px 30px 60px rgba(0, 0, 0, .45);
 }
 .mb-scr { position: relative; height: 100%; overflow: hidden; border-radius: calc(var(--w) * .003); background: #F7F6F9; }
 .mb-scr img { width: 100%; height: 100%; object-fit: cover; object-position: top left; }
 .mb-off { position: absolute; inset: 0; background: #0a0a0b; opacity: 0; }
 .mb-cam { position: absolute; top: calc(var(--w) * .0055); left: 50%; width: calc(var(--w) * .005); height: calc(var(--w) * .005); margin-left: calc(var(--w) * -.0025); border-radius: 50%; background: #262830; }
 .mb-name { position: absolute; left: 0; right: 0; bottom: calc(var(--w) * .0075); text-align: center; font-size: max(7px, calc(var(--w) * .011)); line-height: 1; color: #8d8d92; letter-spacing: .02em; }
-.mb-base { position: relative; width: 100%; height: calc(var(--w) * .078); }
+/* Base em 3D: o tampo é um plano deitado (rotateX 90deg) a partir da dobradiça, com a mesma câmera da tampa.
+   Teclado, alto-falantes e trackpad ficam desenhados no tampo; a borda frontal fica em pé, na frente. Luz vinda da direita. */
+.mb-base { position: relative; height: calc(var(--w) * .1); transform-style: preserve-3d; }
+.mb-deck, .mb-shadow, .mb-lip { position: absolute; left: 50%; top: 0; width: var(--lw); margin-left: calc(var(--lw) / -2); }
 .mb-deck {
-  position: absolute; left: 0; right: 0; top: 0; bottom: calc(var(--w) * .016);
-  clip-path: polygon(7.2% 0, 92.8% 0, 100% 100%, 0 100%);
-  background: linear-gradient(180deg, #8f9196 0%, #c3c5c9 30%, #d9dadd 70%, #e4e5e7 100%);
-}
-.mb-keys {
-  position: absolute; left: 14.5%; right: 14.5%; top: 9%; height: 44%;
-  clip-path: polygon(1.8% 0, 98.2% 0, 100% 100%, 0 100%);
+  height: var(--dd); transform-origin: 50% 0; transform: rotateX(90deg);
+  border-radius: 0 0 calc(var(--w) * .022) calc(var(--w) * .022);
   background:
-    repeating-linear-gradient(90deg, transparent 0 calc(100% / 18 - 2px), #b4b6ba calc(100% / 18 - 2px) calc(100% / 18)),
-    repeating-linear-gradient(180deg, transparent 0 calc(100% / 4 - 1.5px), #b4b6ba calc(100% / 4 - 1.5px) calc(100% / 4)),
-    #1c1c1e;
+    linear-gradient(90deg, rgba(0, 0, 0, .16) 0%, rgba(0, 0, 0, 0) 45%, rgba(255, 255, 255, .22) 100%),
+    linear-gradient(180deg, #a9abb0 0%, #c9cbcf 35%, #dcdde0 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .5);
 }
-.mb-pad { position: absolute; left: 35%; right: 35%; top: 61%; bottom: 6%; clip-path: polygon(1.5% 0, 98.5% 0, 100% 100%, 0 100%); background: linear-gradient(180deg, #c6c8cb, #dcdde0); }
+.mb-kb {
+  position: absolute; left: 13%; right: 13%; top: 6%; height: 44%; display: flex; flex-direction: column; gap: 1.6%;
+  padding: 1.4% 1.2%; border-radius: calc(var(--w) * .006); background: #2a2b2e; box-shadow: inset 0 2px 3px rgba(0, 0, 0, .5);
+}
+.mb-kb i { flex: 1; --k: calc(100% / 14);
+  background: repeating-linear-gradient(90deg, #121214 0 calc(var(--k) - 3px), transparent calc(var(--k) - 3px) var(--k)); }
+.mb-kb i:first-child { flex: .55; }
+.mb-kb i:last-child { background: linear-gradient(90deg, transparent 0 30%, #121214 30% 69.5%, transparent 69.5%), repeating-linear-gradient(90deg, #121214 0 calc(var(--k) - 3px), transparent calc(var(--k) - 3px) var(--k)); }
+.mb-spk { position: absolute; top: 6%; height: 44%; width: 8.5%; background: radial-gradient(circle, rgba(20, 20, 22, .55) 0 32%, transparent 38%) 0 0 / 7px 7px; }
+.mb-spk-l { left: 3%; } .mb-spk-r { right: 3%; }
+.mb-pad {
+  position: absolute; left: 30%; right: 30%; top: 56%; height: 37%; border-radius: calc(var(--w) * .008);
+  background: linear-gradient(90deg, #c4c6ca, #d5d6d9 60%, #e2e3e6); box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .1), inset 0 1px 0 rgba(255, 255, 255, .4);
+}
 .mb-lip {
-  position: absolute; left: 0; right: 0; bottom: 0; height: calc(var(--w) * .017);
-  border-radius: 0 0 calc(var(--w) * .03) calc(var(--w) * .03) / 0 0 calc(var(--w) * .016) calc(var(--w) * .016);
-  background: linear-gradient(180deg, #eeeff1 0%, #b9bbbf 45%, #7a7c80 100%);
-  box-shadow: 0 34px 60px rgba(0, 0, 0, .55), 0 10px 20px rgba(0, 0, 0, .4);
+  height: var(--th); transform: translateZ(var(--dd)); border-radius: 0 0 calc(var(--w) * .02) calc(var(--w) * .02) / 0 0 calc(var(--th) * .9) calc(var(--th) * .9);
+  background: linear-gradient(90deg, rgba(0, 0, 0, .18), rgba(0, 0, 0, 0) 40%, rgba(255, 255, 255, .25)), linear-gradient(180deg, #eef0f2 0%, #b6b8bc 55%, #7d7f83 100%);
 }
-.mb-lip i { position: absolute; top: 0; left: 43%; width: 14%; height: 45%; border-radius: 0 0 6px 6px; background: linear-gradient(180deg, #9fa1a5, #c8cacd); }
+.mb-lip i { position: absolute; top: 0; left: 43%; width: 14%; height: 42%; border-radius: 0 0 6px 6px; background: linear-gradient(180deg, #8f9195, #babcc0); }
+.mb-shadow { height: var(--dd); transform-origin: 50% 0; transform: translate3d(0, var(--th), 0) rotateX(90deg) scale(1.18, 1.12); background: radial-gradient(50% 50% at 46% 55%, rgba(0, 0, 0, .75), rgba(0, 0, 0, 0) 72%); }
 
 /* Legenda (H2) e lista */
 .hx-copy { position: absolute; left: max(24px, 3.4vw); right: max(24px, 3.4vw); bottom: 9svh; display: flex; justify-content: space-between; align-items: flex-end; gap: 32px; }
@@ -836,8 +853,9 @@ main.home > .home-body { padding-block: 120px 0; display: flex; flex-direction: 
 .hx-cue2 { opacity: 0; }
 
 /* Modo com JavaScript: palco fixo */
-.hx.hx-live { height: 400vh; height: 400svh; }
-.hx-live .hx-pin { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; }
+.hx.hx-live { height: 300vh; height: 300svh; }
+.hx-live .hx-pin { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; background: var(--hx-light); }
+.hx-live .hx-sc { background: none; }
 .hx-live .hx-sc { position: absolute; inset: 0; min-height: 0; }
 .hx-live .hx-plat, .hx-live .hx-l2 { opacity: 0; }
 .hx-live .hx-l2 { transform: none; }

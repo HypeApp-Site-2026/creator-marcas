@@ -455,7 +455,7 @@ TELA_ALT = {
     'app-G2': 'Tela do app para creators: carteira com saldo',
 }
 # ---------- Hero da home com rolagem (04/11) ----------
-# Palco fixo de ~400svh com duas cenas: APLICATIVO (iPhone) e PLATAFORMA (MacBook, com a tampa abrindo).
+# Palco fixo de ~300svh: APLICATIVO (iPhone) passa para PLATAFORMA (MacBook, com a tampa abrindo) num movimento só.
 # Todo o texto sai daqui, no HTML. O site.js só move e revela (transform e opacity); sem JavaScript ou com
 # prefers-reduced-motion, as cenas ficam empilhadas e legíveis. As máscaras por palavra e por letra já saem do build.
 HX_TELAS = {
@@ -514,7 +514,7 @@ def hero_scroll(L, A):
         <div class="mb-lid" data-lid><span class="mb-back" aria-hidden="true"></span><div class="mb-bez"><span class="mb-cam" aria-hidden="true"></span>
           <div class="mb-scr"><img src="{A(sb)}" alt="{alt_b}" width="{wb}" height="{hb}" loading="lazy" decoding="async"><span class="mb-off" aria-hidden="true" data-off></span><span class="mb-sweep" aria-hidden="true" data-sweep></span><span class="hx-glare" aria-hidden="true"></span></div>
           <span class="mb-name" aria-hidden="true">MacBook Pro</span></div></div>
-        <div class="mb-base" aria-hidden="true"><div class="mb-deck"><i class="mb-keys"></i><i class="mb-pad"></i></div><div class="mb-lip"><i></i></div></div>
+        <div class="mb-base" aria-hidden="true"><i class="mb-shadow"></i><div class="mb-deck"><i class="mb-spk mb-spk-l"></i><div class="mb-kb"><i></i><i></i><i></i><i></i><i></i><i></i></div><i class="mb-spk mb-spk-r"></i><i class="mb-pad"></i></div><i class="mb-lip"><i></i></i></div>
       </div></figure>
       <div class="hx-copy">
         <h2 class="hx-cap">{capb}</h2>
