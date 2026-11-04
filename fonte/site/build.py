@@ -169,7 +169,7 @@ def header(cur, L, A):
     MEGA = {
         '/criadores/': ('Para creators', 'app-D1', [
             ('Como funciona', 'Do convite ao pagamento, passo a passo', L('/criadores/', '#como-funciona')),
-            ('Funcionalidades do app', 'Campanhas, entregas, comunidade e carteira', L('/criadores/', '#recursos')),
+            ('Comunidade', 'Grupos, feed e lives com outros creators', L('/criadores/', '#comunidade')),
             ('Baixar o app', 'App Store e Google Play', L('/baixar/')),
             ('Dúvidas de creators', 'Pagamento, nota fiscal e regras', L('/perguntas-frequentes/', '#creators'))]),
         '/marcas/': ('Para marcas e agências', 'monitor', [
@@ -220,7 +220,7 @@ def header(cur, L, A):
   </div>
   <nav aria-label="Menu do celular">
     <div class="mgroup"><a class="mhead" href="{L('/criadores/')}">Para creators {ico(I_ARROW, 18)}</a>
-      <div class="msub"><a href="{L('/criadores/', '#como-funciona')}">Como funciona</a><a href="{L('/criadores/', '#recursos')}">Recursos do app</a><a href="{L('/baixar/')}">Baixar o app</a></div></div>
+      <div class="msub"><a href="{L('/criadores/', '#como-funciona')}">Como funciona</a><a href="{L('/criadores/', '#comunidade')}">Comunidade</a><a href="{L('/baixar/')}">Baixar o app</a></div></div>
     <div class="mgroup"><a class="mhead" href="{L('/marcas/')}">Para marcas {ico(I_ARROW, 18)}</a>
       <div class="msub"><a href="{L('/marcas/', '#modalidades')}">Formas de trabalhar</a><a href="{L('/marcas/', '#agencias')}">Para agências</a><a href="{L('/contato/marcas/')}">Falar com nosso time</a></div></div>
     <a class="mlink" href="{L('/perguntas-frequentes/')}">Ajuda {ico('m9 6 6 6-6 6', 18)}</a>
@@ -453,6 +453,9 @@ TELA_ALT = {
     'app-D1': 'Tela do app para creators: descobrir campanhas',
     'app-E4': 'Tela do app para creators: campanha em andamento com ganho, data de publicação e entregas',
     'app-G2': 'Tela do app para creators: carteira com saldo',
+    'app-F1': 'Tela do app para creators: feed da comunidade com a dica de outra creator sobre gravar com luz natural',
+    'app-F2': 'Tela do app para creators: lives da comunidade, uma ao vivo e outra em breve',
+    'app-F3c': 'Tela do app para creators: grupos da comunidade, como Creators de Beleza',
 }
 # ---------- Hero da home com rolagem (04/11) ----------
 # Palco fixo de ~300svh: APLICATIVO (iPhone) passa para PLATAFORMA (MacBook, com a tampa abrindo) num movimento só.
@@ -808,7 +811,7 @@ def p_criadores(L, A):
     vid = lambda n, alt, cls='': (f'<video class="bt-vid {cls}" muted playsinline loop preload="none" width="720" height="720" data-vis-play '
                                   f'poster="{A(f"assets/como-funciona/cena{n}.webp")}" aria-label="{alt}"><source src="{A(f"assets/como-funciona/cena{n}.mp4")}" type="video/mp4"></video>')
     ilu = lambda f, alt, cls='': f'<img class="bt-img {cls}" src="{A(f)}" alt="{alt}" width="960" height="600" loading="lazy" decoding="async">'
-    shot = lambda c: f'<img class="bt-shot" src="{tela(A, c)}" alt="{TELA_ALT.get(c, "Tela do app HypeApp")}" width="600" height="1298" loading="lazy" decoding="async">'
+    shot = lambda c: f'<img class="bt-shot" src="{tela(A, c)}" alt="{TELA_ALT.get(c, "Tela do app HypeApp")}" width="600" height="{720 if c == 'app-F3c' else 1298}" loading="lazy" decoding="async">'
     # blog: o primeiro artigo; em revisão só aparece no ambiente de teste
     post = POSTS[0] if POSTS else None
     blog = ''
@@ -823,20 +826,21 @@ def p_criadores(L, A):
            ('Posso recusar uma campanha ou um convite?', 'Sim. Você só se inscreve nas campanhas que quiser e pode recusar convites; a marca é avisada.'),
            ('O cadastro garante campanhas?', 'Não. Cada campanha tem critérios próprios e a seleção é feita pela marca ou pela curadoria.'),
            ('Preciso emitir nota fiscal?', 'Depende da campanha e do seu cadastro como pessoa física ou jurídica. O app informa o que é exigido antes do pagamento.'),
-           ('A marca pode usar meu conteúdo depois?', 'Depende do contrato da campanha, firmado entre você e a marca. Confira as condições de uso de imagem antes de aceitar.')]
+           ('A marca pode usar meu conteúdo depois?', 'Depende do contrato da campanha, firmado entre você e a marca. Confira as condições de uso de imagem antes de aceitar.'),
+           ('Como funciona a comunidade?', COMUNIDADE_TXT)]
     return f'''
 <section class="bt-g bt-hero" aria-labelledby="hero-c">
   <div class="bt bt-roxo bt-h1">
     <span class="bt-pill">Para creators</span>
     <div class="stack" style="gap:20px">
       <h1 id="hero-c" class="bt-d">Sua carreira de creator, mais organizada.</h1>
-      <p class="bt-lead">Campanhas com marcas, entregas e pagamento num app só.</p>
+      <p class="bt-lead">Campanhas com marcas, entregas, pagamento e uma comunidade de creators num app só.</p>
       <div class="row"><a class="btn btn-ink btn-lg" href="{L('/baixar/')}">Baixar o app</a><a class="btn btn-soft btn-lg" href="{L('/entrar/', '#creators')}">Já tenho conta</a></div>
     </div>
   </div>
   <div class="bt bt-media bt-hv">{vid(1, 'Animação: creator monta o perfil no celular')}</div>
   <div class="bt bt-tela bt-hs">{shot('app-D1')}</div>
-  <ul class="bt bt-preto bt-selos" aria-label="Em resumo"><li>{ck}Grátis para creators</li><li>{ck}Sem mínimo de seguidores</li><li>{ck}Saque via PIX</li><li class="bt-sub">iPhone e Android</li></ul>
+  <ul class="bt bt-preto bt-selos" aria-label="Em resumo"><li>{ck}Grátis para creators</li><li>{ck}Sem mínimo de seguidores</li><li>{ck}Saque via PIX</li><li>{ck}Comunidade de creators</li><li class="bt-sub">iPhone e Android</li></ul>
 </section>
 
 <section id="para-quem" aria-labelledby="pq-h">
@@ -870,6 +874,29 @@ def p_criadores(L, A):
   </div>
 </section>
 
+<section id="comunidade" aria-labelledby="com-h">
+  <h2 id="com-h" class="bt-h2">Comunidade: creators que se ajudam</h2>
+  <div class="bt-g bt-com">
+    <div class="bt bt-roxo bt-m1">
+      <span class="bt-pill">Comunidade</span>
+      <b class="bt-t1">Ninguém cresce sozinho.</b>
+      <p class="bt-lead">Dentro do app, você troca experiências com quem vive a mesma rotina: como cobrar, como fechar com uma marca, o que fez um vídeo viralizar.</p>
+      <ul class="bt-conversa" aria-label="Exemplos de conversas na comunidade">
+        <li>Qual horário você grava? Meus vídeos estão saindo escuros.</li>
+        <li class="bt-resp">De manhã, perto da janela: a luz natural resolve metade do trabalho.</li>
+        <li>Salvei a dica da luz natural!</li>
+      </ul>
+    </div>
+    <div class="bt bt-media bt-m2">{shot('app-F3c')}</div>
+    <div class="bt bt-preto bt-m3"><span class="bt-n">Grupos das campanhas</span><b class="bt-t3">Quem está na mesma campanha, conversa junto</b><span class="bt-p">Tire dúvidas sobre o briefing e as entregas e troque dicas com os outros creators da campanha.</span></div>
+    <div class="bt bt-branco bt-m4"><span class="bt-n">Grupos por assunto</span><b class="bt-t3">Do seu nicho e além dele</b><span class="bt-p">Grupos como Creators de Beleza e Fitness e Corrida reúnem quem cria sobre o mesmo tema.</span></div>
+    <div class="bt bt-branco bt-tela2"><b class="bt-t3">Feed: o que deu certo</b><span class="bt-p">Bastidores, roteiros e os conteúdos que bombaram, com curtidas e comentários de outros creators.</span>{shot('app-F1')}</div>
+    <div class="bt bt-branco bt-tela2"><b class="bt-t3">Lives</b><span class="bt-p">Conversas ao vivo sobre a rotina de creator, como fechar contratos com marcas, com chat aberto.</span>{shot('app-F2')}</div>
+    <div class="bt bt-lima bt-m7"><b class="bt-t3">O que se troca por lá</b><ul class="bt-lista"><li>Experiências com marcas e propostas</li><li>Roteiros, gravação e edição</li><li>Conteúdos que viralizaram, e por quê</li><li>Dúvidas de quem está começando</li></ul></div>
+    <div class="bt bt-preto bt-m8"><b class="bt-t3">Um espaço seguro</b><span class="bt-p">Grupos com moderação. Qualquer publicação, comentário ou mensagem pode ser denunciada pelo app, e você pode bloquear outro usuário.</span><a class="bt-lk" href="{L('/regras-da-comunidade/')}">Regras da comunidade</a></div>
+  </div>
+</section>
+
 <section id="confianca" aria-labelledby="cf-h">
   <h2 id="cf-h" class="bt-h2">Quem está por trás</h2>
   <div class="bt-g bt-conf">
@@ -883,10 +910,9 @@ def p_criadores(L, A):
 
 <section id="crescer" aria-labelledby="cs-h">
   <h2 id="cs-h" class="bt-h2">Cresça além de uma campanha</h2>
-  <div class="bt-g bt-cres">
+  <div class="bt-g bt-3 bt-cres">
     <div class="bt bt-branco bt-tela2"><b class="bt-t3">Perfil que vira vitrine</b><span class="bt-p">Redes, nichos e valores: o que as marcas veem ao avaliar a sua inscrição.</span>{shot('app-G1')}</div>
     <div class="bt bt-branco bt-tela2"><b class="bt-t3">Avaliações das marcas</b><span class="bt-p">As campanhas concluídas ficam no seu perfil, com nota e comentário.</span>{shot('app-G5')}</div>
-    <div class="bt bt-branco bt-tela2"><b class="bt-t3">Comunidade</b><span class="bt-p">Grupos por nicho e lives com outros creators.</span>{shot('app-F3')}</div>
     {blog}
   </div>
 </section>

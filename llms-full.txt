@@ -111,13 +111,15 @@ Atualizado em: 2026-11-04
 
 # Sua carreira de creator, mais organizada.
 
-Campanhas com marcas, entregas e pagamento num app só.
+Campanhas com marcas, entregas, pagamento e uma comunidade de creators num app só.
 
 - Grátis para creators
 
 - Sem mínimo de seguidores
 
 - Saque via PIX
+
+- Comunidade de creators
 
 - iPhone e Android
 
@@ -142,6 +144,24 @@ Campanhas com marcas, entregas e pagamento num app só.
 - Propostavocê propõe; a marca aceita ou negocia
 
 - Permutaprodutos, com envio acompanhado no app
+
+## Comunidade: creators que se ajudam
+
+Dentro do app, você troca experiências com quem vive a mesma rotina: como cobrar, como fechar com uma marca, o que fez um vídeo viralizar.
+
+- Qual horário você grava? Meus vídeos estão saindo escuros.
+
+- De manhã, perto da janela: a luz natural resolve metade do trabalho.
+
+- Salvei a dica da luz natural!
+
+- Experiências com marcas e propostas
+
+- Roteiros, gravação e edição
+
+- Conteúdos que viralizaram, e por quê
+
+- Dúvidas de quem está começando
 
 ## Quem está por trás
 
@@ -180,6 +200,10 @@ Depende da campanha e do seu cadastro como pessoa física ou jurídica. O app in
 **P:** A marca pode usar meu conteúdo depois?
 
 Depende do contrato da campanha, firmado entre você e a marca. Confira as condições de uso de imagem antes de aceitar.
+
+**P:** Como funciona a comunidade?
+
+Feed, grupos e lives com outros creators dentro do app. A comunidade tem tolerância zero a conteúdo censurável e comportamento abusivo: qualquer publicação, comentário ou mensagem pode ser denunciada pelo próprio app, e você também pode bloquear outro usuário.
 
 ## Baixe o HypeApp
 

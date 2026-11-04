@@ -22,7 +22,7 @@ add("/", "Início", "Todos", "Páginas principais", "P0", "", SIM_LANC, IDX, "Si
     "O app de quem cria conteúdo. O painel de quem contrata.", "O que é o HypeApp?", "og/inicio.jpg", "Organization, WebSite")
 add("/criadores/", "Para creators", "Creators", "Páginas principais", "P0", "", SIM_LANC, IDX, "Sim",
     "App para influenciadores: campanhas com marcas | HypeApp",
-    "Encontre campanhas de marcas no seu nicho, inscreva-se, entregue pelo app e receba via PIX na carteira. Grátis para creators, sem mínimo de seguidores.",
+    "Campanhas de marcas no seu nicho, entregas pelo app, saque via PIX e uma comunidade de influenciadores para trocar experiências. Grátis para creators.",
     "O app completo para quem cria conteúdo.", "Como conseguir campanhas com marcas?", "og/para-criadores.jpg")
 add("/marcas/", "Para marcas e agências", "Marcas e agências", "Páginas principais", "P0", "", SIM_LANC, IDX, "Sim",
     "Plataforma de marketing de influência para marcas | HypeApp",
