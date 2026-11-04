@@ -20,7 +20,13 @@ CFG = {
     'android': 'https://play.google.com/store/apps/details?id=br.com.hypeapp.v2',
     'painel': 'https://www.hypeapp.com.br/backoffice/sign-up',   # backoffice das marcas (decisão de 30/10)
     'preview': not WEB,      # faixa "Prévia" + noindex
+    # Google Tag Manager: ID do contêiner (GTM-XXXXXXX). Vazio = nenhum script de análise e nenhum aviso de cookies.
+    # O GTM só é carregado depois que a pessoa aceita os cookies de medição (Consent Mode v2, modo básico).
+    'gtm': os.environ.get('HH_GTM', ''),
 }
+if CFG['gtm'] and not re.fullmatch(r'GTM-[A-Z0-9]{4,12}', CFG['gtm']):
+    raise SystemExit('CFG gtm inválido: use o formato GTM-XXXXXXX')
+ANALYTICS = WEB and bool(CFG['gtm'])
 META = {r['url']: r for r in R}
 PAINEL_URL = f"<span>{CFG['painel'].replace('https://', '').split('/sign-up')[0]}</span>" if CFG['painel'] else ''
 
@@ -244,7 +250,7 @@ def footer(L, A):
         ('Para marcas', [('Para marcas e agências', L('/marcas/')), ('Falar com nosso time', L('/contato/marcas/')), ('Entrar no painel', CFG['painel'] or L('/entrar/', '#marcas'))]),
         ('Ajuda', [('Perguntas frequentes', L('/perguntas-frequentes/')), ('Suporte', L('/suporte/'))]),
         ('Empresa', [('Sobre o HypeApp', L('/sobre/'))] + ([('Blog', L('/blog/'))] if BLOG_ON else []) + [('Contato', L('/contato/'))]),
-        ('Legal', [('Privacidade', L('/privacidade/')), ('Encarregado de dados', L('/privacidade/', '#encarregado')), ('Termos de uso', L('/termos/')), ('Cookies', L('/cookies/')), ('Regras da comunidade', L('/regras-da-comunidade/')), ('Exclusão de conta', L('/exclusao-de-conta/'))]),
+        ('Legal', [('Privacidade', L('/privacidade/')), ('Encarregado de dados', L('/privacidade/', '#encarregado')), ('Termos de uso', L('/termos/')), ('Cookies', L('/cookies/')), ('Regras da comunidade', L('/regras-da-comunidade/')), ('Exclusão de conta', L('/exclusao-de-conta/'))] + ([('Preferências de cookies', '#preferencias-cookies')] if ANALYTICS else [])),
     ]
     c = ''.join(f'<nav aria-label="{t}"><span class="ftr-h">{t}</span>' + ''.join(f'<a href="{h}">{n}</a>' for n, h in ls) + '</nav>' for t, ls in cols)
     return f'''<footer class="site-footer wrap">
@@ -1204,6 +1210,21 @@ def p_app(L, A):
   <div class="qr" style="width:220px;height:220px;flex:0 0 auto">{QR}</div>
 </section>'''
 
+COOKIES_GA = [
+    ('necessarios', 'Necessários', rev('Para funcionar, o site guarda no seu navegador a sua escolha sobre cookies (por até 12 meses) e, só enquanto a aba estiver aberta, '
+        'a página de entrada e os parâmetros da campanha que trouxe você (utm, gclid e fbclid), que seguem junto com o formulário de contato. '
+        'Isso não identifica você e não precisa de consentimento.')),
+    ('medicao', 'Medição de visitas', rev('Usamos o Cloudflare Web Analytics, que conta visitas de forma agregada e sem cookies. Se você aceitar os cookies de medição, '
+        'usamos também o Google Analytics 4, carregado pelo Google Tag Manager, para saber quais páginas são vistas, de onde vêm as visitas, '
+        'quais botões são clicados e quantos formulários são enviados. Não enviamos nome, e-mail, telefone nem o texto dos formulários ao Google.')),
+    ('google', 'Cookies do Google Analytics', rev('Os cookies _ga e _ga_ seguido do código da propriedade distinguem visitantes e visitas e duram até 2 anos. '
+        'Só são gravados depois do seu aceite. O Google atua como operador desses dados e pode tratá-los fora do Brasil, '
+        'conforme a <a href="{{PRIVACIDADE}}">Política de Privacidade</a>.')),
+    ('publicidade', 'Publicidade', rev('O site não usa cookies de publicidade. Se isso mudar, esta política será atualizada e o site vai pedir a sua escolha antes de ativá-los.')),
+    ('escolha', 'Como mudar a sua escolha', rev('Use o link <a href="#preferencias-cookies">Preferências de cookies</a>, no rodapé de qualquer página. '
+        'Se você recusar depois de ter aceitado, o site apaga os cookies do Google Analytics. Você também pode apagar cookies nas configurações do navegador.')),
+]
+
 LEGAL = {
     '/privacidade/': ('Política de privacidade', 'Como o HypeApp trata os dados pessoais de quem usa o site, o app e o painel.', [
         ('controlador', 'Quem é o controlador', 'Você no Hype Marketing e Entretenimento LTDA, CNPJ [CNPJ], [endereço]. [Texto aprovado pelo jurídico.]'),
@@ -1221,7 +1242,7 @@ LEGAL = {
         ('campanhas', 'Campanhas e pagamentos', '[Regras de participação, aprovação e pagamento.]'),
         ('fiscal', 'Obrigações fiscais', '[Cláusula fiscal, minuta seção 6.]'),
         ('alteracoes', 'Alterações', 'Versão [número], de [data].')]),
-    '/cookies/': ('Política de cookies', 'Quais tecnologias o site usa e para quê.', [
+    '/cookies/': ('Política de cookies', 'Quais tecnologias o site usa, para quê e como mudar sua escolha.', COOKIES_GA) if ANALYTICS else ('Política de cookies', 'Quais tecnologias o site usa e para quê.', [
         ('necessarios', 'Cookies necessários', 'O site não usa cookies de publicidade nem de rastreamento. Usa apenas o necessário para funcionar.'),
         ('medicao', 'Medição de visitas', 'Usamos o Cloudflare Web Analytics para contar visitas de forma agregada. Ele não usa cookies e não identifica quem visita.'),
         ('opcionais', 'Cookies opcionais', 'Se alguma ferramenta de publicidade ou de análise com cookies for adicionada, o site vai pedir sua escolha antes de carregá-la.')]),
@@ -1232,11 +1253,31 @@ LEGAL = {
         ('saldo', 'Saldo e campanhas em andamento', '[Regra aprovada para saldo a liberar e entregas abertas.]')]),
 }
 
+def aviso_cookies(L):
+    """Aviso de cookies (LGPD). Começa escondido; o site.js mostra quando ainda não há escolha salva."""
+    return f'''<section class="ck" id="ck" hidden role="dialog" aria-modal="false" aria-labelledby="ck-t" aria-describedby="ck-d">
+  <div class="ck-in">
+    <h2 class="ck-t" id="ck-t" tabindex="-1">Cookies no HypeApp</h2>
+    <p class="ck-d" id="ck-d">Com a sua permissão, usamos cookies de medição do Google Analytics para entender como o site é usado e melhorar as páginas. Eles só são ativados se você aceitar. <a href="{L('/cookies/')}">Política de cookies</a></p>
+    <div class="ck-pref" id="ck-pref" hidden>
+      <div class="ck-op"><div><b>Necessários</b><span>Guardam a sua escolha sobre cookies e a origem da visita para o formulário de contato. Não identificam você.</span></div><span class="ck-sempre">Sempre ativos</span></div>
+      <label class="ck-op" for="ck-med"><div><b>Medição</b><span>Google Analytics, pelo Google Tag Manager: páginas vistas, cliques e envios de formulário, sem nome, e-mail ou telefone.</span></div><input type="checkbox" class="ck-sw" id="ck-med" role="switch"></label>
+    </div>
+    <div class="ck-bt">
+      <button type="button" class="btn btn-ghost" data-ck="recusar">Recusar</button>
+      <button type="button" class="btn btn-soft ck-mais" data-ck="personalizar" aria-controls="ck-pref" aria-expanded="false">Personalizar</button>
+      <button type="button" class="btn btn-ghost" data-ck="salvar" hidden>Salvar escolhas</button>
+      <button type="button" class="btn btn-ink" data-ck="aceitar">Aceitar</button>
+    </div>
+  </div>
+</section>
+'''
+
 def p_legal(url):
     def f(L, A):
         t, d, secs = LEGAL[url]
         toc = ''.join(f'<a href="#{sid}">{st}</a>' for sid, st, _ in secs)
-        body = ''.join(f'<h2 id="{sid}">{st}</h2><p>{tx}</p>' for sid, st, tx in secs)
+        body = ''.join(f'<h2 id="{sid}">{st}</h2><p>{tx}</p>' for sid, st, tx in secs).replace('{{PRIVACIDADE}}', L('/privacidade/'))
         extra = ''
         if url == '/exclusao-de-conta/':
             extra = f'<p><a class="btn btn-ink" href="{L("/suporte/")}">Abrir pedido de exclusão</a></p>'
@@ -1497,10 +1538,11 @@ def build_page(url, fn, kind):
 <link rel="manifest" href="{A('site.webmanifest')}">
 {f'<link rel="alternate" type="application/rss+xml" title="Blog HypeApp" href="{BASE}/blog/feed.xml">' if WEB and BLOG_ON and any(_p['status'] != 'exemplo' for _p in POSTS) else ''}
 <link rel="stylesheet" href="{A('assets/site.css')}?v={VER['site.css']}">
+{f'<meta name="hh-gtm" content="{CFG["gtm"]}">' if ANALYTICS else ''}
 {ld}'''
     if url == '/app' and WEB:
         pass
-    inner = f'<a class="sr-only" href="#conteudo">Pular para o conteúdo</a>\n{bar}\n{body}\n<script src="{A("assets/site.js")}?v={VER['site.js']}" defer></script>'
+    inner = f'<a class="sr-only" href="#conteudo">Pular para o conteúdo</a>\n{aviso_cookies(L) if ANALYTICS else ""}{bar}\n{body}\n<script src="{A("assets/site.js")}?v={VER['site.js']}" defer></script>'
     is_root = url == '/'
     if is_root and not WEB:
         # A página principal da prévia é publicada sem esqueleto (a publicação acrescenta doctype, head e body).
@@ -1547,6 +1589,20 @@ http://hypeapp.com.br/*         https://www.hypeapp.com.br/:splat   301!
 /murais-campanhas/*  /criadores/              301
 /influenciadores/*   /criadores/              301
 '''
+
+def csp_ga(h):
+    """Domínios do Google Tag Manager, do GA4 e do modo de visualização do GTM (Tag Assistant), conforme o guia de CSP do Google."""
+    add = {
+        "script-src 'self'": "script-src 'self' https://*.googletagmanager.com https://tagmanager.google.com",
+        "img-src 'self' data:": "img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com https://ssl.gstatic.com https://www.gstatic.com",
+        "style-src 'self' 'unsafe-inline'": "style-src 'self' 'unsafe-inline' https://*.googletagmanager.com https://tagmanager.google.com https://fonts.googleapis.com",
+        "font-src 'self'": "font-src 'self' data: https://fonts.gstatic.com",
+        "connect-src 'self'": "connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com",
+    }
+    for k, v in add.items():
+        assert h.count(k) == 1, k
+        h = h.replace(k, v)
+    return h
 
 HEADERS = '''/*
   X-Content-Type-Options: nosniff
@@ -1751,7 +1807,7 @@ def main():
             open(sm, 'w', encoding='utf-8').write(x)
         arquivos_tecnicos(OUT)
         open(os.path.join(OUT, '_redirects'), 'w').write(REDIRECTS)
-        open(os.path.join(OUT, '_headers'), 'w').write(HEADERS)
+        open(os.path.join(OUT, '_headers'), 'w').write(csp_ga(HEADERS) if ANALYTICS else HEADERS)
     if not WEB:  # simulador de iPhone (só na prévia)
         names = {r['url']: r['pagina'] for r in R}; names.update({u: v['pagina'] for u, v in POST_META.items()})
         names.update({'/': 'Início', '/404': 'Página 404', '/app': 'Link para as lojas', '/blog/': 'Blog'})

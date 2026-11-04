@@ -9,6 +9,98 @@
   var ease = function (x) { return x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; };
   var clamp = function (v) { return Math.max(0, Math.min(1, v)); };
 
+  /* ---------- Medicao: dataLayer, aviso de cookies e Google Tag Manager ----------
+     Consent Mode v2, modo basico: tudo comeca negado e o GTM so e carregado depois do aceite.
+     Eventos vao para o dataLayer mesmo sem GTM; se a pessoa aceitar depois, o GTM processa a fila.
+     Nunca enviar dados pessoais (nome, e-mail, telefone, texto livre) ao dataLayer. */
+  var dl = window.dataLayer = window.dataLayer || [];
+  var gtag = function () { dl.push(arguments); };
+  var GTM = ($('meta[name="hh-gtm"]') || {}).content || '';
+  var CK = 'hh_cookies', CK_MS = 365 * 864e5;
+  var lerEscolha = function () {
+    try { var c = JSON.parse(localStorage.getItem(CK) || 'null'); if (c && c.v === 1 && Date.now() - c.t < CK_MS) return c; } catch (e) {}
+    return null;
+  };
+  var gtmOn = false;
+  var carregaGTM = function () {
+    if (gtmOn || !GTM) return; gtmOn = true;
+    dl.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+    var sc = document.createElement('script'); sc.async = true;
+    sc.src = 'https://www.googletagmanager.com/gtm.js?id=' + encodeURIComponent(GTM);
+    document.head.appendChild(sc);
+  };
+  var apagaCookiesGA = function () {
+    var partes = location.hostname.split('.'), doms = [''];
+    for (var i = 0; i < partes.length - 1; i++) doms.push('.' + partes.slice(i).join('.'));
+    document.cookie.split(';').forEach(function (c) {
+      var n = c.split('=')[0].trim();
+      if (/^(_ga|_gid|_gat|_gcl)/.test(n)) doms.forEach(function (d) { document.cookie = n + '=; Max-Age=0; path=/' + (d ? '; domain=' + d : ''); });
+    });
+  };
+  if (GTM) {
+    gtag('consent', 'default', { analytics_storage: 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', functionality_storage: 'granted', security_storage: 'granted' });
+    dl.push({ ambiente: /^teste\./.test(location.hostname) ? 'teste' : (/hypeapp\.com\.br$/.test(location.hostname) ? 'producao' : 'local') });
+    var ck = $('#ck'), ckPref = $('#ck-pref'), ckMed = $('#ck-med');
+    var bt = function (k) { return ck && $('[data-ck="' + k + '"]', ck); };
+    var aplica = function (c, salvar) {
+      var antes = lerEscolha();
+      if (salvar) { try { localStorage.setItem(CK, JSON.stringify({ v: 1, medicao: !!c.medicao, t: Date.now() })); } catch (e) {} }
+      gtag('consent', 'update', { analytics_storage: c.medicao ? 'granted' : 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
+      if (c.medicao) carregaGTM();
+      else if (antes && antes.medicao) apagaCookiesGA();
+    };
+    var detalhe = function (on) {
+      if (!ck) return;
+      ckPref.hidden = !on; bt('salvar').hidden = !on; bt('personalizar').hidden = on; bt('personalizar').setAttribute('aria-expanded', String(on));
+    };
+    var abre = function (comDetalhe, foco) {
+      if (!ck) return;
+      var c = lerEscolha(); ckMed.checked = !!(c && c.medicao);
+      detalhe(!!comDetalhe); ck.hidden = false;
+      if (foco) $('#ck-t').focus();
+    };
+    var fecha = function () { if (ck) ck.hidden = true; };
+    if (ck) {
+      ck.addEventListener('click', function (ev) {
+        var b = ev.target.closest('[data-ck]'); if (!b) return;
+        var k = b.getAttribute('data-ck');
+        if (k === 'personalizar') { detalhe(true); ckMed.focus(); return; }
+        aplica({ medicao: k === 'aceitar' || (k === 'salvar' && ckMed.checked) }, true);
+        fecha();
+      });
+      ck.addEventListener('keydown', function (ev) { if (ev.key === 'Escape') fecha(); });
+    }
+    document.addEventListener('click', function (ev) {
+      var a = ev.target.closest && ev.target.closest('a[href$="#preferencias-cookies"]');
+      if (a) { ev.preventDefault(); abre(true, true); }
+    });
+    var escolha = lerEscolha();
+    if (escolha) aplica(escolha, false); else abre(false, false);
+    if (location.hash === '#preferencias-cookies') abre(true, true);
+  }
+  var evento = function (o) { dl.push(o); };
+  /* conversao dos formularios: guardada antes de sair da pagina e enviada na pagina de confirmacao */
+  (function () {
+    var c = null;
+    try { c = JSON.parse(sessionStorage.getItem('hh_conv') || 'null'); sessionStorage.removeItem('hh_conv'); } catch (e) {}
+    if (c && c.event) evento(c);
+  })();
+  var guardaConversao = function (f) {
+    var fd = new FormData(f), nome = f.getAttribute('name'), o;
+    var v = function (k) { var x = fd.get(k); return x ? String(x).slice(0, 40) : undefined; };
+    if (nome === 'comercial') o = { event: 'generate_lead', form_name: 'comercial', lead_tipo: v('agencia') === 'sim' ? 'agencia' : 'marca', lead_verba: v('verba'), lead_inicio: v('inicio') };
+    else if (nome === 'suporte') o = { event: 'support_request', form_name: 'suporte', support_uso: v('uso'), support_assunto: v('assunto') };
+    if (o) { try { sessionStorage.setItem('hh_conv', JSON.stringify(o)); } catch (e) { evento(o); } }
+  };
+  var onde = function (a) { return a.closest('#mmenu') ? 'menu' : a.closest('header') ? 'cabecalho' : a.closest('footer') ? 'rodape' : 'pagina'; };
+  document.addEventListener('click', function (ev) {
+    var a = ev.target.closest && ev.target.closest('a[href]'); if (!a) return;
+    var h = a.href || '';
+    if (/^https:\/\/apps\.apple\.com\//.test(h)) evento({ event: 'app_store_click', store: 'app_store', link_local: onde(a) });
+    else if (/^https:\/\/play\.google\.com\//.test(h)) evento({ event: 'app_store_click', store: 'google_play', link_local: onde(a) });
+    else if (/\/backoffice\//.test(h)) evento({ event: 'painel_click', painel_destino: /sign-up/.test(h) ? 'cadastro' : 'entrar', link_local: onde(a) });
+  }, true);
+
   /* Barra inferior do app no mockup */
   window.HYPE_NAV = function (active) {
     var icons = {
@@ -257,6 +349,7 @@
       var next = f.getAttribute('data-next');
       if (!f.hasAttribute('data-live')) {
         // Pr\u00e9via: nada \u00e9 gravado.
+        guardaConversao(f);
         setTimeout(function () { location.href = next; }, 500);
         return;
       }
@@ -270,7 +363,7 @@
       var falha = 'N\u00e3o foi poss\u00edvel enviar agora, tente novamente em instantes.';
       fetch(f.getAttribute('action'), { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded', 'Accept': 'application/json' }, body: body })
         .then(function (r) {
-          if (r.ok) { location.href = next; return; }
+          if (r.ok) { guardaConversao(f); location.href = next; return; }
           return r.json().catch(function () { return {}; }).then(function (j) {
             var cs = (j && j.campos) || [], ns = [];
             cs.forEach(function (c) { var el = f.elements[c]; el = el && el.length && !el.tagName ? el[0] : el; if (el) { setErr(el, 'Confira este campo.'); ns.push(nomeDo(el)); } });
@@ -326,6 +419,7 @@
     var msg = $('#app-msg');
     if (dest) {
       msg.textContent = ios ? 'Abrindo a App Store\u2026' : 'Abrindo o Google Play\u2026';
+      evento({ event: 'app_store_click', store: ios ? 'app_store' : 'google_play', link_local: 'redirecionamento_app' });
       setTimeout(function () { location.href = dest; }, 600);
     } else {
       msg.textContent = 'Voc\u00ea est\u00e1 no computador. Escolha a loja ou aponte a c\u00e2mera do celular para o QR code.';

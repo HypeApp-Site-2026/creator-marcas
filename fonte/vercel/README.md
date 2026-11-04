@@ -109,3 +109,27 @@ O script confere, simulando as regras do `vercel.json`:
 - redirecionamentos do domínio, da barra final, de `index.html`, dos endereços antigos, do `assets` e do endereço de teste.
 
 O resultado esperado é "PROBLEMAS (0)".
+
+## Medição: Google Tag Manager e GA4
+
+- **Ligar:** em `site/build.py`, preencha `CFG['gtm']` com o ID do contêiner (GTM-XXXXXXX), ou rode o build com `HH_GTM=GTM-XXXXXXX`. Vazio = nenhum script de análise e nenhum aviso de cookies.
+- **Com o ID preenchido, o build:**
+  - mostra o aviso de cookies (Aceitar, Recusar, Personalizar) e o link "Preferências de cookies" no rodapé;
+  - libera os domínios do Google na CSP;
+  - troca o texto da página /cookies/ pela versão com Google Analytics (rascunho, aguarda o jurídico).
+- **Consent Mode v2, modo básico:** tudo começa negado e o GTM só é carregado depois do aceite. Os pedidos de publicidade ficam sempre negados (não há ferramenta de anúncio). A escolha fica 12 meses no navegador (`hh_cookies`). Se a pessoa recusar depois de aceitar, o site apaga os cookies `_ga`.
+- **Eventos no dataLayer (site.js), sem dados pessoais:**
+
+  | Evento | Parâmetros |
+  |---|---|
+  | `generate_lead` | form_name, lead_tipo (marca/agencia), lead_verba, lead_inicio |
+  | `support_request` | form_name, support_uso, support_assunto |
+  | `app_store_click` | store (app_store/google_play), link_local |
+  | `painel_click` | painel_destino (cadastro/entrar), link_local |
+
+  - `generate_lead` e `support_request` disparam na página de confirmação e só depois que o servidor aceitou o envio. Não duplicam se a página for recarregada.
+  - Todas as páginas recebem `ambiente` (producao/teste/local).
+- **Contêiner pronto:** `site/tools/gtm-container-hypeapp.json`, gerado por `python3 tools/gtm_container.py G-XXXXXXXXXX`. Importe em Admin › Importar contêiner.
+  - Ele tem a Google tag e as 4 tags de evento.
+  - Marca `traffic_type=internal` no teste e em localhost.
+- **Não crie no GTM** tags de HTML personalizado nem variáveis de JavaScript personalizado: a CSP bloqueia. Para outra ferramenta (Google Ads, Meta), use os modelos da galeria e libere o domínio dela na CSP (`csp_ga()` no build.py).
