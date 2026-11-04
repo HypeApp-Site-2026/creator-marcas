@@ -1526,3 +1526,8 @@ label.ck-op { cursor: pointer; }
   .jc-ctrl { gap: 12px; }
 }
 @media (prefers-reduced-motion: reduce) { .jc-it, .jc-tx, .jc-dot { transition: none !important; } }
+
+/* Hero da home: fim da parte preta com cantos levemente arredondados.
+   overflow: clip (e não hidden) para o palco sticky continuar funcionando. */
+.hx { border-radius: 0 0 40px 40px; overflow: clip; }
+@media (max-width: 760px) { .hx { border-radius: 0 0 28px 28px; } }
