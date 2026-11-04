@@ -952,10 +952,10 @@ def p_criadores(L, A):
 <section id="confianca" aria-labelledby="cf-h">
   <h2 id="cf-h" class="bt-h2">Quem está por trás</h2>
   <div class="bt-g bt-conf">
-    <div class="bt bt-media bt-c1">{ilu('assets/ilustracoes/acordo-produtos.webp', 'Ilustração: duas mãos fechando um acordo sobre uma caixa de produtos')}</div>
+    <div class="bt bt-media bt-c1">{ilu('assets/ilustracoes/conf-fantasma.webp', 'Ilustração: creator sorrindo e estendendo na palma da mão o fantasminha do HypeApp', 'bt-fant')}</div>
     <div class="bt bt-branco"><b class="bt-t3">Você no Hype</b><span class="bt-p">Agência de marketing de influência de São Paulo. CNPJ 43.442.408/0001-26.</span><a class="bt-lk" href="{L('/sobre/')}">Sobre o HypeApp</a></div>
     <div class="bt bt-branco bt-ttk"><img src="{A('assets/parceiros/tiktok-shop-partner.webp')}" alt="TikTok Shop Partner" width="280" height="79" loading="lazy" decoding="async"><span class="bt-p">Agência parceira do TikTok Shop.</span></div>
-    <div class="bt bt-branco"><b class="bt-t3">Contrato digital</b><span class="bt-p">Ao ser selecionado, o contrato chega por e-mail. Entregas, prazos e condições ficam por escrito.</span></div>
+    <div class="bt bt-branco bt-ctr"><b class="bt-t3">Contrato digital</b><span class="bt-p">Ao ser selecionado, o contrato chega por e-mail. Entregas, prazos e condições ficam por escrito.</span></div>
     <div class="bt bt-preto bt-c5"><b class="bt-t3">Seus dados protegidos</b><span class="bt-p">Tratados conforme a LGPD. O HypeApp nunca pede senha, código de verificação ou chave PIX por mensagem.</span><a class="bt-lk" href="{L('/privacidade/')}">Política de Privacidade</a></div>
   </div>
 </section>
