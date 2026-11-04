@@ -22,7 +22,7 @@ def load_posts(here, web):
                 meta[k.strip()] = v.strip()
         body = m.group(2).strip()
         st = meta.get('status', 'rascunho')
-        if st not in ('publicado', 'exemplo'):
+        if st not in ('publicado', 'exemplo', 'revisao'):
             continue
         slug = fn[:-3]
         assert re.fullmatch(r'[a-z0-9]+(-[a-z0-9]+)*', slug), f'{fn}: o nome do arquivo vira a URL; use minúsculas, sem acento, com hífen'
@@ -41,11 +41,15 @@ def load_posts(here, web):
                           minutos=max(1, math.ceil(palavras / 200)),
                           html=_md.markdown(body, extensions=['extra', 'sane_lists'])))
     pub = sorted([p for p in posts if p['status'] == 'publicado'], key=lambda p: p['data'], reverse=True)
+    rev = sorted([p for p in posts if p['status'] == 'revisao'], key=lambda p: p['ordem'])
     ex = sorted([p for p in posts if p['status'] == 'exemplo'], key=lambda p: p['ordem'])
-    return pub + ([] if web else ex)   # exemplos só na prévia
+    # prévia: artigos em revisão (e os exemplos de layout só enquanto não houver artigo de verdade); --web: só publicados
+    return pub + ([] if web else (rev + (ex if not (pub or rev) else [])))
 
 def leitura(p):
-    return 'Exemplo de layout' if p['status'] == 'exemplo' else f'{p["minutos"]} min de leitura'
+    if p['status'] == 'exemplo':
+        return 'Exemplo de layout'
+    return f'{p["minutos"]} min de leitura' + (' · em revisão' if p['status'] == 'revisao' else '')
 
 def post_card(L, A, p, heading='h3'):
     return (f'<li class="bl-card"><a href="{L("/blog/" + p["slug"] + "/")}">'
@@ -83,11 +87,12 @@ def p_blog(posts):
 
 def p_post(p):
     def f(L, A):
-        ex = p['status'] == 'exemplo'
-        meta = [] if ex else [f'{p["data"].day} de {MESES[p["data"].month - 1]} de {p["data"].year}', f'{p["minutos"]} min de leitura']
+        ex, rv = p['status'] == 'exemplo', p['status'] == 'revisao'
+        meta = [] if ex else ([f'{p["minutos"]} min de leitura'] if rv else [f'{p["data"].day} de {MESES[p["data"].month - 1]} de {p["data"].year}', f'{p["minutos"]} min de leitura'])
         if p['autor'] and not ex:
             meta.insert(0, 'Por ' + html.escape(p['autor']))
-        aviso = ('<p class="bl-ex" role="note">Exemplo de layout na prévia. Este artigo não existe e não vai para o site publicado.</p>' if ex else '')
+        aviso = ('<p class="bl-ex" role="note">Exemplo de layout na prévia. Este artigo não existe e não vai para o site publicado.</p>' if ex else
+                 '<p class="bl-ex" role="note">Em revisão: este artigo aparece só na prévia. Para publicar, troque o status para publicado e preencha a data.</p>' if rv else '')
         meta_html = ('<p class="post-meta">' + ' · '.join(meta) + '</p>') if meta else ''
         return (f'<article class="post">'
                 f'<nav class="post-crumbs" aria-label="Caminho"><a href="{L("/")}">Início</a><span aria-hidden="true">/</span><a href="{L("/blog/")}">Blog</a></nav>'
@@ -110,6 +115,6 @@ def post_meta(posts, base):
         if p['autor']:
             ld['author'] = {'@type': 'Person', 'name': p['autor']}
         out[u] = dict(title=p['titulo'] + ' | Blog HypeApp', desc=p['resumo'],
-                      robots='noindex, follow' if p['status'] == 'exemplo' else 'index, follow',
+                      robots='index, follow' if p['status'] == 'publicado' else 'noindex, follow',
                       img='og/blog/' + p['slug'] + '.jpg', pagina=p['titulo'], ld=ld)  # 1200×630 gerada por make_media.py com a capa e o título
     return out

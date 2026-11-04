@@ -1501,7 +1501,7 @@ def build_page(url, fn, kind):
 <link rel="icon" href="{A('favicon.svg')}" type="image/svg+xml">
 <link rel="apple-touch-icon" href="{A('apple-touch-icon.png')}">
 <link rel="manifest" href="{A('site.webmanifest')}">
-{f'<link rel="alternate" type="application/rss+xml" title="Blog HypeApp" href="{BASE}/blog/feed.xml">' if WEB and BLOG_ON and any(_p['status'] != 'exemplo' for _p in POSTS) else ''}
+{f'<link rel="alternate" type="application/rss+xml" title="Blog HypeApp" href="{BASE}/blog/feed.xml">' if WEB and BLOG_ON and any(_p['status'] == 'publicado' for _p in POSTS) else ''}
 <link rel="stylesheet" href="{A('assets/site.css')}?v={VER['site.css']}">
 {f'<meta name="hh-gtm" content="{CFG["gtm"]}">' if ANALYTICS else ''}{f'<meta name="hh-clarity" content="{CFG["clarity"]}">' if ANALYTICS and CFG['clarity'] else ''}
 {ld}'''
@@ -1709,7 +1709,7 @@ def arquivos_tecnicos(OUT):
         from email.utils import format_datetime as _fd
         itens = ''
         for p in POSTS:
-            if p['status'] == 'exemplo':
+            if p['status'] != 'publicado':
                 continue
             u = f"{BASE}/blog/{p['slug']}/"
             data = f"<pubDate>{_fd(_dt.combine(p['data'], _dt.min.time(), tzinfo=_Z('America/Sao_Paulo')))}</pubDate>" if p['data'] else ''
