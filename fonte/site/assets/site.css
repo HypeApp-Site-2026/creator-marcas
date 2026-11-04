@@ -1756,3 +1756,27 @@ label.ck-op { cursor: pointer; }
 @media (max-width: 640px) {
   .bt-m1, .bt-m2, .bt-m3, .bt-m4 { grid-column: auto; }
 }
+
+/* ---------- Cresça além de uma campanha (/criadores/): leque do modelo B girando como carrossel ----------
+   Centro reto e mais alto; vizinhas inclinadas 10 graus e mais baixas, atrás; as demais saem pelas bordas. */
+.jc-b { --w: clamp(150px, 17vw, 230px); --sx: calc(var(--w) * 1.11); display: flex; flex-direction: column; align-items: center; gap: clamp(24px, 3vw, 40px); padding: clamp(40px, 6vw, 96px) 0 clamp(8px, 2vw, 24px); text-align: center; overflow: hidden; }
+.jcb-head { display: flex; flex-direction: column; align-items: center; gap: 14px; padding: 0 8px; }
+.jcb-h { margin: 0; font-size: clamp(34px, 4.2vw, 56px); font-weight: 800; letter-spacing: -0.04em; line-height: 1; }
+.jcb-sub { margin: 0; font-size: clamp(16px, 1.3vw, 18px); line-height: 1.5; color: #444; max-width: 620px; }
+.jc-b .jc-stage { width: 100%; max-width: 1000px; height: calc(var(--w) * 2.164 + var(--w) * .3); perspective: none; }
+.jc-b .jc-it { padding: calc(var(--w) * .035); border-radius: calc(var(--w) * .174); box-shadow: 0 24px 50px rgba(20, 0, 40, .22); filter: none !important;
+  transition: transform .8s var(--ease), opacity .6s; }
+.jc-b .jc-it img { border-radius: calc(var(--w) * .14); }
+.jc-b .jc-it[data-d="0"] { transform: none; z-index: 5; opacity: 1; }
+.jc-b .jc-it[data-d="1"] { transform: translate(var(--sx), calc(var(--w) * .22)) rotate(10deg); z-index: 4; opacity: 1; }
+.jc-b .jc-it[data-d="-1"] { transform: translate(calc(var(--sx) * -1), calc(var(--w) * .22)) rotate(-10deg); z-index: 4; opacity: 1; }
+.jc-b .jc-it[data-d="2"], .jc-b .jc-it[data-d="3"] { transform: translate(calc(var(--sx) * 2), calc(var(--w) * .5)) rotate(18deg); z-index: 2; opacity: 0; pointer-events: none; }
+.jc-b .jc-it[data-d="-2"], .jc-b .jc-it[data-d="-3"] { transform: translate(calc(var(--sx) * -2), calc(var(--w) * .5)) rotate(-18deg); z-index: 2; opacity: 0; pointer-events: none; }
+.jc-b .jc-arr { background: #fff; color: #050505; }
+.jc-b .jc-arr-n { background: #050505; color: #fff; }
+.jc-b .jc-dot::before { background: #C9C9C9; }
+.jc-b .jc-dot[aria-current="true"]::before { background: #8A1FE0; }
+.jc-b .jc-pp { color: #444; box-shadow: inset 0 0 0 1.5px #C9C9C9; }
+@media (max-width: 640px) {
+  .jc-b { --w: clamp(140px, 42vw, 190px); --sx: calc(var(--w) * .8); }
+}

@@ -740,6 +740,38 @@ JORNADA = [
 ]
 JORNADA_ANTES = 5   # passos 1 a 5: antes do sim; 6 a 8: depois
 
+# "Cresça além de uma campanha" (04/11): igual ao modelo B do canvas (título central e telas em leque),
+# girando como o carrossel de telas, sem texto por tela.
+CRESCA = [
+    ('app-G1', 'Perfil com redes, nichos e campanhas concluídas'),
+    ('app-G5', 'Avaliações recebidas das marcas'),
+    ('app-F1', 'Feed da comunidade com dicas de outros creators'),
+    ('app-G6', 'Atualizar os valores por formato de conteúdo'),
+    ('app-F2', 'Lives da comunidade'),
+    ('app-F5', 'Grupo da comunidade'),
+]
+
+def cresca_carrossel(A):
+    n = len(CRESCA)
+    slides = ''.join(
+        f'<button type="button" class="jc-it" data-i="{i}" data-d="{i if i <= n // 2 else i - n}" aria-label="Tela {i + 1} de {n}: {html.escape(t)}" tabindex="-1">'
+        f'<img src="{tela(A, c)}" alt="" width="600" height="1298" loading="lazy" decoding="async"></button>'
+        for i, (c, t) in enumerate(CRESCA))
+    dots = ''.join(f'<button type="button" class="jc-dot" data-i="{i}" aria-label="Ir para a tela {i + 1}"></button>' for i in range(n))
+    return f'''<section id="crescer" class="jc jc-b" aria-labelledby="cs-h" data-jc>
+  <div class="jcb-head">
+    <h2 id="cs-h" class="jcb-h">Cresça além de uma campanha</h2>
+    <p class="jcb-sub">Perfil que vira vitrine, avaliações das marcas e uma comunidade de creators.</p>
+  </div>
+  <div class="jc-stage" role="region" aria-roledescription="carrossel" aria-label="Telas do app para crescer como creator" tabindex="0">{slides}</div>
+  <div class="jc-ctrl">
+    <button type="button" class="jc-arr" data-prev aria-label="Tela anterior">{ico('m15 6-6 6 6 6', 22)}</button>
+    <div class="jc-dots">{dots}</div>
+    <button type="button" class="jc-arr jc-arr-n" data-next aria-label="Próxima tela">{ico('m9 6 6 6-6 6', 22)}</button>
+    <button type="button" class="jc-pp" data-pp aria-label="Pausar a rotação">Pausar</button>
+  </div>
+</section>'''
+
 def jornada_carrossel(L, A):
     """Carrossel 3D das telas do app: gira sozinho com a seção na tela; título e explicação embaixo.
     Sem JavaScript (ou com movimento reduzido), mostra a primeira tela e a lista com os 8 passos."""
@@ -908,14 +940,7 @@ def p_criadores(L, A):
   </div>
 </section>
 
-<section id="crescer" aria-labelledby="cs-h">
-  <h2 id="cs-h" class="bt-h2">Cresça além de uma campanha</h2>
-  <div class="bt-g bt-3 bt-cres">
-    <div class="bt bt-branco bt-tela2"><b class="bt-t3">Perfil que vira vitrine</b><span class="bt-p">Redes, nichos e valores: o que as marcas veem ao avaliar a sua inscrição.</span>{shot('app-G1')}</div>
-    <div class="bt bt-branco bt-tela2"><b class="bt-t3">Avaliações das marcas</b><span class="bt-p">As campanhas concluídas ficam no seu perfil, com nota e comentário.</span>{shot('app-G5')}</div>
-    {blog}
-  </div>
-</section>
+{cresca_carrossel(A)}
 
 <section class="bt-g bt-fim" aria-label="Dúvidas e download">
   <div class="bt bt-branco bt-faq" aria-labelledby="faq-c">
