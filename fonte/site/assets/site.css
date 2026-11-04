@@ -982,7 +982,7 @@ main.home > .home-body { padding-block: 120px 0; display: flex; flex-direction: 
 .mz-pill { align-self: flex-start; display: inline-flex; align-items: center; gap: 1.4cqw; margin-top: 2.2cqw; padding: 1.2cqw 3cqw 1.2cqw 2cqw; border-radius: 999px; background: #EFE6FE; font-size: 2.3cqw; font-weight: 500; }
 .mz-pill i { width: 1.8cqw; height: 1.8cqw; border-radius: 50%; background: #9E2CFA; }
 .mz-char { background: #ECDEFA; }
-.mz-char .mz-fill { inset: auto; left: -4%; top: 10%; width: 124%; height: 124%; object-position: 40% 0%; }
+.mz-char .mz-fill { inset: auto; left: -4%; top: 10%; width: 124%; height: 124%; max-width: none; object-position: 40% 0%; }
 @media (max-width: 1000px) { .gc { grid-template-columns: minmax(0, 1fr); } .mz { margin: 0 auto; } }
 @media (max-width: 600px) {
   .gc { border-radius: 32px; padding: 32px 20px 24px; }
