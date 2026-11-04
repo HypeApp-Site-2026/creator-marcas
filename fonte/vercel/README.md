@@ -132,4 +132,9 @@ O resultado esperado é "PROBLEMAS (0)".
 - **Contêiner pronto:** `site/tools/gtm-container-hypeapp.json`, gerado por `python3 tools/gtm_container.py G-XXXXXXXXXX`. Importe em Admin › Importar contêiner.
   - Ele tem a Google tag e as 4 tags de evento.
   - Marca `traffic_type=internal` no teste e em localhost.
+- **Microsoft Clarity** (projeto `z8cuz3l4nn`, em `CFG['clarity']`):
+  - é carregado direto pelo site.js, fora do GTM, e só depois do aceite de medição;
+  - recebe `consentv2` e a tag `ambiente` (producao/teste) para filtrar as gravações;
+  - os dois formulários têm `data-clarity-mask="true"`, então nada do que é digitado aparece nas gravações;
+  - se a pessoa revogar o aceite, o site apaga `_clck` e `_clsk`.
 - **Não crie no GTM** tags de HTML personalizado nem variáveis de JavaScript personalizado: a CSP bloqueia. Para outra ferramenta (Google Ads, Meta), use os modelos da galeria e libere o domínio dela na CSP (`csp_ga()` no build.py).

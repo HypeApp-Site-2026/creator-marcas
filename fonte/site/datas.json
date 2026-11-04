@@ -31,13 +31,13 @@
  },
  "/contato/marcas/": {
   "publicado": "2026-10-30",
-  "alterado": "2026-10-30",
-  "hash": "b83df2bd11c72913163150d64e5b9b13"
+  "alterado": "2026-11-04",
+  "hash": "129d36bffe89d29def661792c9ecda0b"
  },
  "/cookies/": {
   "publicado": "2026-10-30",
   "alterado": "2026-11-04",
-  "hash": "6ea91b1ac7c2491d2db0428ae7d3a657"
+  "hash": "66c658b7b49efed0e000f19ddb45c2ff"
  },
  "/criadores/": {
   "publicado": "2026-10-30",
@@ -86,8 +86,8 @@
  },
  "/suporte/": {
   "publicado": "2026-10-30",
-  "alterado": "2026-11-03",
-  "hash": "d7ee91e335013d5c1186a16189decb92"
+  "alterado": "2026-11-04",
+  "hash": "4bf3d09d0db07ab14b7d2fd61aeb83ee"
  },
  "/suporte/enviado/": {
   "publicado": "2026-10-30",

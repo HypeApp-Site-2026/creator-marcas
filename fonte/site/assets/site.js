@@ -29,12 +29,23 @@
     sc.src = 'https://www.googletagmanager.com/gtm.js?id=' + encodeURIComponent(GTM);
     document.head.appendChild(sc);
   };
+  var CLARITY = ($('meta[name="hh-clarity"]') || {}).content || '';
+  var clarityOn = false;
+  var carregaClarity = function () {
+    if (clarityOn || !CLARITY) return; clarityOn = true;
+    window.clarity = window.clarity || function () { (window.clarity.q = window.clarity.q || []).push(arguments); };
+    window.clarity('consentv2', { ad_Storage: 'denied', analytics_Storage: 'granted' });
+    window.clarity('set', 'ambiente', /^teste\./.test(location.hostname) ? 'teste' : 'producao');
+    var sc = document.createElement('script'); sc.async = true;
+    sc.src = 'https://www.clarity.ms/tag/' + encodeURIComponent(CLARITY);
+    document.head.appendChild(sc);
+  };
   var apagaCookiesGA = function () {
     var partes = location.hostname.split('.'), doms = [''];
     for (var i = 0; i < partes.length - 1; i++) doms.push('.' + partes.slice(i).join('.'));
     document.cookie.split(';').forEach(function (c) {
       var n = c.split('=')[0].trim();
-      if (/^(_ga|_gid|_gat|_gcl)/.test(n)) doms.forEach(function (d) { document.cookie = n + '=; Max-Age=0; path=/' + (d ? '; domain=' + d : ''); });
+      if (/^(_ga|_gid|_gat|_gcl|_clck|_clsk)/.test(n)) doms.forEach(function (d) { document.cookie = n + '=; Max-Age=0; path=/' + (d ? '; domain=' + d : ''); });
     });
   };
   if (GTM) {
@@ -46,8 +57,11 @@
       var antes = lerEscolha();
       if (salvar) { try { localStorage.setItem(CK, JSON.stringify({ v: 1, medicao: !!c.medicao, t: Date.now() })); } catch (e) {} }
       gtag('consent', 'update', { analytics_storage: c.medicao ? 'granted' : 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
-      if (c.medicao) carregaGTM();
-      else if (antes && antes.medicao) apagaCookiesGA();
+      if (c.medicao) { carregaGTM(); carregaClarity(); }
+      else if (antes && antes.medicao) {
+        if (window.clarity) window.clarity('consentv2', { ad_Storage: 'denied', analytics_Storage: 'denied' });
+        apagaCookiesGA();
+      }
     };
     var detalhe = function (on) {
       if (!ck) return;

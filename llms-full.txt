@@ -513,7 +513,7 @@ Atualize o app pela loja e entre com o mesmo e-mail e a mesma senha.
 
 Fonte: https://www.hypeapp.com.br/suporte/
 Título: Suporte: abra um chamado | HypeApp
-Atualizado em: 2026-11-03
+Atualizado em: 2026-11-04
 
 # Como podemos ajudar?
 
@@ -1147,11 +1147,15 @@ Para funcionar, o site guarda no seu navegador a sua escolha sobre cookies (por 
 
 ## Medição de visitas
 
-Usamos o Cloudflare Web Analytics, que conta visitas de forma agregada e sem cookies. Se você aceitar os cookies de medição, usamos também o Google Analytics 4, carregado pelo Google Tag Manager, para saber quais páginas são vistas, de onde vêm as visitas, quais botões são clicados e quantos formulários são enviados. Não enviamos nome, e-mail, telefone nem o texto dos formulários ao Google.
+Usamos o Cloudflare Web Analytics, que conta visitas de forma agregada e sem cookies. Se você aceitar os cookies de medição, usamos também o Google Analytics 4, carregado pelo Google Tag Manager, para saber quais páginas são vistas, de onde vêm as visitas, quais botões são clicados e quantos formulários são enviados, e o Microsoft Clarity, que registra cliques, rolagem e movimentos na página para gerar mapas de calor e gravações da navegação. Os campos de formulário ficam ocultos nas gravações. Não enviamos nome, e-mail, telefone nem o texto dos formulários ao Google ou à Microsoft.
 
 ## Cookies do Google Analytics
 
 Os cookies _ga e _ga_ seguido do código da propriedade distinguem visitantes e visitas e duram até 2 anos. Só são gravados depois do seu aceite. O Google atua como operador desses dados e pode tratá-los fora do Brasil, conforme a Política de Privacidade.
+
+## Cookies do Microsoft Clarity
+
+Os cookies _clck (até 1 ano) e _clsk (1 dia) ligam as páginas de uma mesma visita. Só são gravados depois do seu aceite. A Microsoft atua como operadora desses dados e pode tratá-los fora do Brasil, conforme a Política de Privacidade.
 
 ## Publicidade
 
@@ -1159,7 +1163,7 @@ O site não usa cookies de publicidade. Se isso mudar, esta política será atua
 
 ## Como mudar a sua escolha
 
-Use o link Preferências de cookies, no rodapé de qualquer página. Se você recusar depois de ter aceitado, o site apaga os cookies do Google Analytics. Você também pode apagar cookies nas configurações do navegador.
+Use o link Preferências de cookies, no rodapé de qualquer página. Se você recusar depois de ter aceitado, o site apaga os cookies do Google Analytics e do Clarity. Você também pode apagar cookies nas configurações do navegador.
 
 ---
 

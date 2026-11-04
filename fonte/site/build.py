@@ -24,6 +24,9 @@ CFG = {
     # O GTM só é carregado depois que a pessoa aceita os cookies de medição (Consent Mode v2, modo básico).
     'gtm': os.environ.get('HH_GTM', 'GTM-KKF9JKK9'),   # contêiner "www.hypeapp.com.br" (04/11); GA4 G-3WD7HYT50C fica dentro do GTM
 }
+CFG['clarity'] = os.environ.get('HH_CLARITY', 'z8cuz3l4nn')   # Microsoft Clarity (04/11); só carrega com o aceite de medição
+if CFG['clarity'] and not re.fullmatch(r'[a-z0-9]{6,16}', CFG['clarity']):
+    raise SystemExit('CFG clarity inválido')
 if CFG['gtm'] and not re.fullmatch(r'GTM-[A-Z0-9]{4,12}', CFG['gtm']):
     raise SystemExit('CFG gtm inválido: use o formato GTM-XXXXXXX')
 ANALYTICS = WEB and bool(CFG['gtm'])
@@ -1111,7 +1114,7 @@ def p_contato_marcas(L, A):
     <ul class="body" style="padding-left:20px;margin:0;display:flex;flex-direction:column;gap:6px"><li>Valores sob consulta, conforme escopo e volume</li><li>Painel para operar sozinho ou campanha gerenciada pela Você no Hype</li><li>Retornamos em até 2 dias úteis</li></ul>
     <p class="small muted">É creator? <a href="{L('/baixar/')}">Baixe o app</a>. Já usa o HypeApp? <a href="{L('/suporte/')}">Fale com o suporte</a>.</p>
   </div>
-  <form class="card form form-steps" style="flex:1 1 560px" data-form name="comercial" method="POST" action="{'/api/lead' if WEB else L('/contato/enviado/')}" data-next="{L('/contato/enviado/')}"{FORM_LIVE} novalidate>
+  <form class="card form form-steps" style="flex:1 1 560px" data-form data-clarity-mask="true" name="comercial" method="POST" action="{'/api/lead' if WEB else L('/contato/enviado/')}" data-next="{L('/contato/enviado/')}"{FORM_LIVE} novalidate>
     <input type="hidden" name="form-name" value="comercial">
     {HONEYPOT}
     {etapa(1, 'Quem é a empresa', s1)}
@@ -1154,7 +1157,7 @@ def p_suporte(L, A):
     </div>
     <p class="small muted">Pedidos sobre seus dados pessoais seguem pela <a href="{L('/privacidade/', '#encarregado')}">política de privacidade</a>. Marcas novas falam com o <a href="{L('/contato/marcas/')}">comercial</a>.</p>
   </div>
-  <form class="card form" style="flex:1 1 520px" data-form name="suporte" method="POST" action="{'/api/lead' if WEB else L('/suporte/enviado/')}" data-next="{L('/suporte/enviado/')}"{FORM_LIVE} novalidate>
+  <form class="card form" style="flex:1 1 520px" data-form data-clarity-mask="true" name="suporte" method="POST" action="{'/api/lead' if WEB else L('/suporte/enviado/')}" data-next="{L('/suporte/enviado/')}"{FORM_LIVE} novalidate>
     <input type="hidden" name="form-name" value="suporte">
     {HONEYPOT}
     {choices('uso', 'Você usa', [('app', 'O app (creator)'), ('painel', 'O painel (marca ou agência)')])}
@@ -1216,13 +1219,18 @@ COOKIES_GA = [
         'Isso não identifica você e não precisa de consentimento.')),
     ('medicao', 'Medição de visitas', rev('Usamos o Cloudflare Web Analytics, que conta visitas de forma agregada e sem cookies. Se você aceitar os cookies de medição, '
         'usamos também o Google Analytics 4, carregado pelo Google Tag Manager, para saber quais páginas são vistas, de onde vêm as visitas, '
-        'quais botões são clicados e quantos formulários são enviados. Não enviamos nome, e-mail, telefone nem o texto dos formulários ao Google.')),
+        'quais botões são clicados e quantos formulários são enviados, e o Microsoft Clarity, que registra cliques, rolagem e movimentos na página '
+        'para gerar mapas de calor e gravações da navegação. Os campos de formulário ficam ocultos nas gravações. '
+        'Não enviamos nome, e-mail, telefone nem o texto dos formulários ao Google ou à Microsoft.')),
     ('google', 'Cookies do Google Analytics', rev('Os cookies _ga e _ga_ seguido do código da propriedade distinguem visitantes e visitas e duram até 2 anos. '
         'Só são gravados depois do seu aceite. O Google atua como operador desses dados e pode tratá-los fora do Brasil, '
         'conforme a <a href="{{PRIVACIDADE}}">Política de Privacidade</a>.')),
+    ('clarity', 'Cookies do Microsoft Clarity', rev('Os cookies _clck (até 1 ano) e _clsk (1 dia) ligam as páginas de uma mesma visita. '
+        'Só são gravados depois do seu aceite. A Microsoft atua como operadora desses dados e pode tratá-los fora do Brasil, '
+        'conforme a <a href="{{PRIVACIDADE}}">Política de Privacidade</a>.')),
     ('publicidade', 'Publicidade', rev('O site não usa cookies de publicidade. Se isso mudar, esta política será atualizada e o site vai pedir a sua escolha antes de ativá-los.')),
     ('escolha', 'Como mudar a sua escolha', rev('Use o link <a href="#preferencias-cookies">Preferências de cookies</a>, no rodapé de qualquer página. '
-        'Se você recusar depois de ter aceitado, o site apaga os cookies do Google Analytics. Você também pode apagar cookies nas configurações do navegador.')),
+        'Se você recusar depois de ter aceitado, o site apaga os cookies do Google Analytics e do Clarity. Você também pode apagar cookies nas configurações do navegador.')),
 ]
 
 LEGAL = {
@@ -1258,10 +1266,10 @@ def aviso_cookies(L):
     return f'''<section class="ck" id="ck" hidden role="dialog" aria-modal="false" aria-labelledby="ck-t" aria-describedby="ck-d">
   <div class="ck-in">
     <h2 class="ck-t" id="ck-t" tabindex="-1">Cookies no HypeApp</h2>
-    <p class="ck-d" id="ck-d">Com a sua permissão, usamos cookies de medição do Google Analytics para entender como o site é usado e melhorar as páginas. Eles só são ativados se você aceitar. <a href="{L('/cookies/')}">Política de cookies</a></p>
+    <p class="ck-d" id="ck-d">Com a sua permissão, usamos cookies de medição do Google Analytics e do Microsoft Clarity para entender como o site é usado e melhorar as páginas. Eles só são ativados se você aceitar. <a href="{L('/cookies/')}">Política de cookies</a></p>
     <div class="ck-pref" id="ck-pref" hidden>
       <div class="ck-op"><div><b>Necessários</b><span>Guardam a sua escolha sobre cookies e a origem da visita para o formulário de contato. Não identificam você.</span></div><span class="ck-sempre">Sempre ativos</span></div>
-      <label class="ck-op" for="ck-med"><div><b>Medição</b><span>Google Analytics, pelo Google Tag Manager: páginas vistas, cliques e envios de formulário, sem nome, e-mail ou telefone.</span></div><input type="checkbox" class="ck-sw" id="ck-med" role="switch"></label>
+      <label class="ck-op" for="ck-med"><div><b>Medição</b><span>Google Analytics (páginas vistas, cliques e envios de formulário) e Microsoft Clarity (mapas de cliques e gravações da navegação, com os campos de formulário ocultos). Nada de nome, e-mail ou telefone.</span></div><input type="checkbox" class="ck-sw" id="ck-med" role="switch"></label>
     </div>
     <div class="ck-bt">
       <button type="button" class="btn btn-ghost" data-ck="recusar">Recusar</button>
@@ -1538,7 +1546,7 @@ def build_page(url, fn, kind):
 <link rel="manifest" href="{A('site.webmanifest')}">
 {f'<link rel="alternate" type="application/rss+xml" title="Blog HypeApp" href="{BASE}/blog/feed.xml">' if WEB and BLOG_ON and any(_p['status'] != 'exemplo' for _p in POSTS) else ''}
 <link rel="stylesheet" href="{A('assets/site.css')}?v={VER['site.css']}">
-{f'<meta name="hh-gtm" content="{CFG["gtm"]}">' if ANALYTICS else ''}
+{f'<meta name="hh-gtm" content="{CFG["gtm"]}">' if ANALYTICS else ''}{f'<meta name="hh-clarity" content="{CFG["clarity"]}">' if ANALYTICS and CFG['clarity'] else ''}
 {ld}'''
     if url == '/app' and WEB:
         pass
@@ -1599,6 +1607,8 @@ def csp_ga(h):
         "font-src 'self'": "font-src 'self' data: https://fonts.gstatic.com",
         "connect-src 'self'": "connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com",
     }
+    if CFG['clarity']:  # guia de CSP do Microsoft Clarity
+        add = {k: v + (' https://*.clarity.ms https://c.bing.com' if k.split('-')[0] in ('script', 'img', 'connect') else '') for k, v in add.items()}
     for k, v in add.items():
         assert h.count(k) == 1, k
         h = h.replace(k, v)
