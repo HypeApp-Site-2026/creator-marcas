@@ -573,7 +573,7 @@ COMO_FUNCIONA_M = [
     ('04 · Resultados', 'Acompanhe cada resultado', 'Veja publicações, métricas e pagamentos no painel.', 'Ilustração: tablet com a tela Resultados do painel'),
 ]
 
-def como_funciona(A, pid, tab, label, items, media, hidden=False):
+def como_funciona(A, pid, tab, label, items, media, hidden=False, img_prefix='marca'):
     """Carrossel do "Como funciona". media='video' usa cenaN.mp4 (make_comofunciona.py);
     media='img' usa marcaN.webp com aproximação sutil da imagem inteira (sem camadas, nada interno se mexe).
     Títulos e textos ficam no HTML. Só o card ativo anima; nada avança sozinho."""
@@ -584,7 +584,7 @@ def como_funciona(A, pid, tab, label, items, media, hidden=False):
             m = (f'<video muted playsinline loop preload="{"metadata" if i == 0 else "none"}" width="720" height="720" '
                  f'poster="{A(f"assets/como-funciona/cena{n}.webp")}" aria-label="{alt}"><source src="{A(f"assets/como-funciona/cena{n}.mp4")}" type="video/mp4"></video>')
         else:
-            m = f'<img class="cf-anim cf-anim-{n}" src="{A(f"assets/como-funciona/marca{n}.webp")}" alt="{alt}" width="720" height="720" loading="lazy" decoding="async">'
+            m = f'<img class="cf-anim cf-anim-{n}" src="{A(f"assets/como-funciona/{img_prefix}{n}.webp")}" alt="{alt}" width="720" height="720" loading="lazy" decoding="async">'
         cards += (f'<li class="cf-card{" is-active" if i == 0 else ""}" data-i="{i}" style="--d:{i * 110}ms">'
                   f'<div class="cf-top"><span class="cf-tag">{tg}</span><h3 class="cf-t">{t}</h3><p class="cf-d">{d}</p></div>'
                   f'<div class="cf-media">{m}</div></li>')
@@ -695,7 +695,7 @@ def p_home(L, A):
       <div class="cf-arrows"><button type="button" class="cf-arrow" data-cf-prev aria-label="Passo anterior">{ico('M19 12H5M11 6l-6 6 6 6', 20)}</button><button type="button" class="cf-arrow" data-cf-next aria-label="Próximo passo">{ico(I_ARROW, 20)}</button></div>
     </div>
   </div>
-  {como_funciona(A, 'painel-c', 'tab-c', 'Passos para creators', COMO_FUNCIONA_C, 'video')}
+  {como_funciona(A, 'painel-c', 'tab-c', 'Passos para creators', COMO_FUNCIONA_C, 'img', img_prefix='creator')}
   {como_funciona(A, 'painel-m', 'tab-m', 'Passos para marcas', COMO_FUNCIONA_M, 'img', hidden=True)}
 </section>
 
