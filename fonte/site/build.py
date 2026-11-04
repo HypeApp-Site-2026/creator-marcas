@@ -1051,6 +1051,155 @@ def p_marcas(L, A):
   <a class="btn btn-cta btn-xl" href="{L('/contato/marcas/')}">Falar com nosso time {ico(I_ARROW, 22)}</a>
 </section>'''
 
+
+# ---------- /marcas/: 3 versões de estudo (04/11), só no endereço de teste ----------
+# Todas mantêm as telas funcionando: a animação do painel (motion_painel) e as vitrines clicáveis (showcase).
+MV_STEPS = [('Mural da campanha', 'Objetivo, público, formatos, prazos e remuneração, publicados no painel.'),
+            ('Inscrições e convites', 'Creators se inscrevem pelo mural. Você também busca por nicho e rede e envia convites.'),
+            ('Aprovações', 'Roteiros e conteúdos revisados antes de ir ao ar.'),
+            ('Entregas e resultados', 'Publicações registradas e métricas da campanha no painel.')]
+MV_AG = 'Agências gerenciam as campanhas de cada cliente em espaços separados. Cada marca tem configurações próprias (marca, empresa e equipe), e a equipe alterna entre as marcas pelo seletor no topo do menu.'
+
+def mv_faq():
+    return [('Qual a diferença entre self-service e gerenciada?', 'No self-service sua equipe opera tudo no painel. Na gerenciada, a Você no Hype cuida da estratégia, da curadoria e da operação.'),
+            ('Quanto custa uma campanha?', 'Os valores são sob consulta e dependem do escopo, do volume e da forma de trabalho.'),
+            ('Quais métricas eu acompanho?', METRICAS_TXT),
+            ('Como os creators são selecionados?', CURADORIA_TXT),
+            ('E se o creator não entregar?', 'O valor reservado para aquela participação volta ao saldo da campanha.'),
+            ('Agências podem gerir várias marcas?', AGENCIAS_TXT)]
+
+def mv_aviso(L, letra, nome):
+    outras = ''.join(f'<a href="{L("/marcas/versao-" + x.lower() + "/")}"{" aria-current=\"page\"" if x == letra else ""}>Versão {x}</a>' for x in 'ABC')
+    return (f'<div class="mv-aviso" role="note"><span><b>Estudo · Versão {letra}:</b> {nome}. Só no endereço de teste.</span>'
+            f'<nav aria-label="Versões da página de marcas">{outras}<a href="{L("/marcas/")}">Atual</a></nav></div>')
+
+MV_TELAS = [('bo-n04', 'Catálogo de creators', 'Cada rede com @, seguidores e engajamento. Ver perfil, Convidar e Favoritar.'),
+            ('bo-n05', 'Perfil do creator', 'Redes, nichos, bio, campanhas no HypeApp e índice de confiança.'),
+            ('bo-n03a', 'Visão geral da campanha', 'Arte da campanha, progresso geral, etapas e o botão Verificar publicações.'),
+            ('bo-n03b', 'Precisa da sua ação', 'Inscrições novas para triar e tudo o que aguarda a sua decisão.'),
+            ('bo-n01', 'Início', 'Tarefas e aprovações de cada campanha, com o botão Revisar, e as métricas do workspace.'),
+            ('bo-n02', 'Campanhas', 'Cartões com capa, status, progresso de publicação, alcance e pendências.'),
+            ('bo-n06', 'Lives', 'Ao vivo, agendadas, anteriores e canceladas. Agende ou transmita agora.'),
+            ('bo-n07', 'Financeiro', 'Saldo disponível, valor reservado, depósitos e pagamentos aos creators.')]
+
+def p_marcas_a(L, A):
+    """Versão A · Produto primeiro: faixa escura com o painel animado, uma vitrine única com todas as telas, modalidades lado a lado."""
+    li = ''.join(f'<li><span class="mv-n">0{i + 1}</span><b>{t}</b><span>{d}</span></li>' for i, (t, d) in enumerate(MV_STEPS))
+    return f'''{mv_aviso(L, 'A', 'produto primeiro')}
+<section class="mva-hero" aria-labelledby="mva-h">
+  <div class="mva-top">
+    <span class="mv-pill">Para marcas e agências</span>
+    <h1 id="mva-h" class="mva-h1">Campanhas com creators do jeito que sua equipe preferir.</h1>
+    <p class="mva-lead">Monte o mural da campanha no painel, receba as inscrições, aprove roteiros e conteúdos e acompanhe as métricas. Ou deixe a operação com a Você no Hype.</p>
+    <div class="row"><a class="btn btn-cta btn-lg" href="{L('/contato/marcas/')}">Falar com nosso time</a><a class="btn mva-ghost btn-lg" href="#funcionalidades">Ver o painel por dentro</a></div>
+  </div>
+  {motion_painel(A)}
+  <span class="mva-nota">Valores sob consulta, conforme escopo e volume.</span>
+</section>
+
+<div id="funcionalidades" class="mv-sc">{showcase(A, 'sc-tudo', 'web', 'Painel', 'Tudo o que a campanha precisa, numa tela só', 'Clique em cada item para ver a tela do painel.', MV_TELAS)}</div>
+
+<section id="modalidades" class="mva-mod" aria-labelledby="mva-mod">
+  <h2 id="mva-mod" class="h2">Duas formas de trabalhar</h2>
+  <div class="mva-mod-g">
+    <div class="mva-card"><span class="tag soft">Self-service</span><b class="h3">Sua equipe opera a campanha no painel.</b>
+      <ul><li>Monta o mural da campanha, com briefing e fases</li><li>Seleciona as inscrições e convida creators</li><li>Aprova roteiros e conteúdos</li><li>Acompanha entregas e métricas</li></ul></div>
+    <div class="mva-card mva-dark"><span class="tag">Gerenciada</span><b class="h3">A Você no Hype opera a campanha por você.</b>
+      <ul><li>Estratégia e curadoria de creators</li><li>Negociação e contratos</li><li>Acompanhamento das entregas</li><li>Relatório de resultados</li></ul></div>
+  </div>
+</section>
+
+<section class="mva-proc" aria-labelledby="mva-proc"><h2 id="mva-proc" class="h2">Do briefing ao resultado</h2><ol class="mva-steps">{li}</ol></section>
+
+<section id="agencias" class="mva-ag" aria-labelledby="mva-ag"><span class="mv-pill mv-pill-l">Para agências</span><h2 id="mva-ag" class="h2">Várias marcas, um painel.</h2><p>{rev(MV_AG)}</p><a class="btn btn-cta" href="{L('/contato/marcas/')}">Falar com nosso time</a></section>
+
+<section class="faq-block" aria-labelledby="faq-ma"><div class="stack"><h2 id="faq-ma" class="h2">Dúvidas de marcas</h2><a class="link-strong" href="{L('/perguntas-frequentes/', '#marcas')}">Ver todas as dúvidas de marcas</a></div><div class="faq">{faq_html(mv_faq())}</div></section>
+
+<section class="band-dark between" aria-labelledby="mva-cta" style="align-items:center"><h2 id="mva-cta" class="h2" style="flex:1 1 420px">Marque uma demonstração e veja como fica a sua gestão de marketing.</h2><a class="btn btn-cta btn-xl" href="{L('/contato/marcas/')}">Falar com nosso time {ico(I_ARROW, 22)}</a></section>'''
+
+def p_marcas_b(L, A):
+    """Versão B · Bento, no mesmo estilo da página de creators."""
+    passos = ''.join(f'<div class="bt {c}"><span class="bt-n">0{i + 1}</span><b class="bt-t3">{t}</b><span class="bt-p">{d}</span></div>'
+                     for i, ((t, d), c) in enumerate(zip(MV_STEPS, ['bt-branco', 'bt-branco', 'bt-lima', 'bt-preto'])))
+    return f'''{mv_aviso(L, 'B', 'bento, como a página de creators')}
+<section class="bt-g mvb-hero" aria-labelledby="mvb-h">
+  <div class="bt bt-roxo mvb-h1">
+    <span class="bt-pill">Para marcas e agências</span>
+    <div class="stack" style="gap:20px">
+      <h1 id="mvb-h" class="bt-d">Campanhas com creators, do seu jeito.</h1>
+      <p class="bt-lead">Opere pelo painel ou deixe a operação com a Você no Hype. Valores sob consulta, conforme escopo e volume.</p>
+      <div class="row"><a class="btn btn-ink btn-lg" href="{L('/contato/marcas/')}">Falar com nosso time</a><a class="btn btn-soft btn-lg" href="#funcionalidades">Ver o painel</a></div>
+    </div>
+  </div>
+  <div class="bt bt-preto mvb-demo">{motion_painel(A)}</div>
+</section>
+
+<section id="modalidades" aria-labelledby="mvb-mod">
+  <h2 id="mvb-mod" class="bt-h2">Quem opera a campanha?</h2>
+  <div class="bt-g bt-3">
+    <div class="bt bt-branco"><span class="bt-n">Self-service</span><b class="bt-t2">Sua equipe, no painel</b><span class="bt-p">Monta o mural, seleciona as inscrições, convida creators, aprova roteiros e conteúdos e acompanha as métricas.</span></div>
+    <div class="bt bt-preto"><span class="bt-n bt-n-l">Gerenciada</span><b class="bt-t2">A Você no Hype, por você</b><span class="bt-p">Estratégia, curadoria de creators, negociação, contratos, acompanhamento das entregas e relatório de resultados.</span></div>
+    <div id="agencias" class="bt bt-lima"><span class="bt-n">Agências</span><b class="bt-t2">Várias marcas, um painel</b><span class="bt-p">{rev(MV_AG)}</span></div>
+  </div>
+</section>
+
+<div id="funcionalidades" class="mvb-sc">
+{showcase(A, 'sc-painel', 'web', 'Painel', 'Tudo o que pede atenção, logo na entrada', 'Pendências agrupadas por campanha, métricas do workspace e a lista de campanhas.', [MV_TELAS[4], MV_TELAS[5]])}
+{showcase(A, 'sc-criadores', 'web', 'Creators', 'Encontre e convide os creators certos', 'Catálogo com as redes de cada creator e um perfil completo antes de convidar.', [MV_TELAS[0], MV_TELAS[1]], flip=True)}
+{showcase(A, 'sc-acompanhar', 'web', 'Acompanhamento', 'Cada etapa da campanha à vista', 'Progresso da seleção ao pagamento, indicadores e o que precisa da sua ação.', [MV_TELAS[2], MV_TELAS[3]])}
+{showcase(A, 'sc-financeiro', 'web', 'Lives e financeiro', 'Lives e pagamentos no mesmo painel', 'Transmita ao vivo e acompanhe o saldo, o valor reservado e as movimentações.', [MV_TELAS[6], MV_TELAS[7]], flip=True)}
+</div>
+
+<section aria-labelledby="mvb-proc"><h2 id="mvb-proc" class="bt-h2">Do briefing ao resultado</h2><div class="bt-g mvb-4">{passos}</div></section>
+
+<section class="bt bt-branco mvb-faq" aria-labelledby="faq-mb"><div class="between" style="align-items:baseline"><h2 id="faq-mb" class="bt-h2" style="margin:0">Dúvidas de marcas</h2><a class="link-strong" href="{L('/perguntas-frequentes/', '#marcas')}">Ver todas</a></div><div class="faq">{faq_html(mv_faq())}</div></section>
+
+<section class="bt-baixe" aria-labelledby="mvb-cta"><div class="bt-baixe-tx"><h2 id="mvb-cta" class="bt-baixe-h">Marque uma demonstração.</h2><div class="row"><a class="btn btn-ink btn-xl" href="{L('/contato/marcas/')}">Falar com nosso time {ico(I_ARROW, 22)}</a></div></div><img class="bt-baixe-v" src="{A('assets/menu/monitor-painel.webp')}" alt="Monitor com o painel das marcas do HypeApp" width="480" height="424" loading="lazy" decoding="async"></section>'''
+
+def p_marcas_c(L, A):
+    """Versão C · Perguntas da marca: cada seção responde uma dúvida, com a tela que prova a resposta."""
+    def q(n, t):
+        return f'<div class="mvc-q"><span class="mvc-num">{n}</span><h2 class="mvc-qt">{t}</h2></div>'
+    return f'''{mv_aviso(L, 'C', 'perguntas da marca')}
+<section class="mvc-hero" aria-labelledby="mvc-h">
+  <span class="mv-pill mv-pill-l">Para marcas e agências</span>
+  <h1 id="mvc-h" class="mvc-h1">Tudo o que sua marca quer saber antes de rodar uma campanha com creators.</h1>
+  <ul class="mvc-chips" aria-label="Perguntas respondidas nesta página">
+    <li><a href="#q1">Como encontro os creators certos?</a></li><li><a href="#q2">Como controlo o que vai ao ar?</a></li>
+    <li><a href="#q3">Como acompanho os resultados?</a></li><li><a href="#q4">Como pago os creators?</a></li><li><a href="#modalidades">Quem opera a campanha?</a></li>
+  </ul>
+</section>
+
+<section id="q1" class="mvc-sec">{q('01', 'Como encontro os creators certos?')}
+{showcase(A, 'sc-criadores', 'web', 'Creators', 'Busque por nicho e rede, veja o perfil e convide', 'Creators também se inscrevem pelo mural da campanha. Você escolhe quem participa.', [MV_TELAS[0], MV_TELAS[1]])}</section>
+
+<section id="q2" class="mvc-sec mvc-dark">{q('02', 'Como controlo o que vai ao ar?')}
+  <p class="mvc-p">Roteiros e conteúdos passam pela sua aprovação antes da publicação. Veja o painel em ação: encontrar creators, aprovar conteúdo, resultados e financeiro.</p>
+  {motion_painel(A)}
+</section>
+
+<section id="q3" class="mvc-sec">{q('03', 'Como acompanho os resultados?')}
+{showcase(A, 'sc-acompanhar', 'web', 'Acompanhamento', 'Cada etapa da campanha à vista', 'Progresso da seleção ao pagamento, indicadores e o que precisa da sua ação.', [MV_TELAS[2], MV_TELAS[3], MV_TELAS[4], MV_TELAS[5]], flip=True)}</section>
+
+<section id="q4" class="mvc-sec">{q('04', 'Como pago os creators?')}
+{showcase(A, 'sc-financeiro', 'web', 'Financeiro', 'Saldo, valor reservado e pagamentos no painel', 'Se o creator não entregar, o valor reservado para aquela participação volta ao saldo da campanha.', [MV_TELAS[7], MV_TELAS[6]])}</section>
+
+<section id="modalidades" class="mvc-sec">{q('05', 'Quem opera a campanha?')}
+  <div class="grid-300">
+    <div class="mode"><span class="tag soft">Self-service</span><span class="h3">Sua equipe opera a campanha no painel.</span>
+      <ul><li>Monta o mural da campanha, com briefing e fases</li><li>Seleciona as inscrições e convida creators</li><li>Aprova roteiros e conteúdos</li><li>Acompanha entregas e métricas</li></ul></div>
+    <div class="mode dark"><span class="tag">Gerenciada</span><span class="h3">A Você no Hype opera a campanha por você.</span>
+      <ul><li>Estratégia e curadoria de creators</li><li>Negociação e contratos</li><li>Acompanhamento das entregas</li><li>Relatório de resultados</li></ul></div>
+  </div>
+</section>
+
+<section id="agencias" class="mvc-sec">{q('06', 'E se eu for agência?')}<p class="mvc-p">{rev(MV_AG)}</p></section>
+
+<section class="mvc-sec">{q('07', 'Quanto custa?')}<p class="mvc-p">O valor depende do escopo, do volume e da forma de trabalho. O comercial monta a proposta depois de entender sua campanha.</p>
+  <div class="faq">{faq_html(mv_faq()[2:5])}</div></section>
+
+<section class="band-dark between" aria-labelledby="mvc-cta" style="align-items:center"><h2 id="mvc-cta" class="h2" style="flex:1 1 420px">Ficou alguma pergunta? A gente responde numa demonstração.</h2><a class="btn btn-cta btn-xl" href="{L('/contato/marcas/')}">Falar com nosso time {ico(I_ARROW, 22)}</a></section>'''
+
 def p_baixar(L, A):
     return f'''
 <section class="band-white split" aria-labelledby="baixar-t" style="padding:clamp(28px,5vw,64px)">
@@ -1523,6 +1672,9 @@ PAGES = [
     ('/legal/', p_legal_hub, 'mid'), ('/regras-da-comunidade/', p_regras, 'mid'),
     ('/404', p_404, 'mid'),
 ]
+if WEB:  # estudo de 04/11: 3 versões da página de marcas, só no endereço de teste
+    PAGES += [('/marcas/versao-a/', p_marcas_a, 'wide'), ('/marcas/versao-b/', p_marcas_b, 'wide'), ('/marcas/versao-c/', p_marcas_c, 'wide')]
+    SO_TESTE += ['/marcas/versao-a/', '/marcas/versao-b/', '/marcas/versao-c/']
 if BLOG_ON:
     PAGES += [('/blog/', _blog.p_blog(POSTS), 'wide')] + [('/blog/' + _p['slug'] + '/', _blog.p_post(_p), 'mid') for _p in POSTS]
 
@@ -1530,6 +1682,9 @@ FALLBACK = {
     '/entrar/': ('Entrar no HypeApp', 'Creators entram pelo app. Marcas e agências entram pelo painel.'),
     '/app': ('Baixar o HypeApp', 'Leva à loja certa para o seu celular.'),
     '/404': ('Página não encontrada | HypeApp', 'O endereço pode ter mudado.'),
+    '/marcas/versao-a/': ('Para marcas · versão A (estudo) | HypeApp', 'Estudo da página de marcas: produto primeiro.'),
+    '/marcas/versao-b/': ('Para marcas · versão B (estudo) | HypeApp', 'Estudo da página de marcas: bento.'),
+    '/marcas/versao-c/': ('Para marcas · versão C (estudo) | HypeApp', 'Estudo da página de marcas: perguntas da marca.'),
 }
 
 def crumbs(url):
@@ -1638,7 +1793,7 @@ def build_page(url, fn, kind):
     m = META.get(url) or POST_META.get(url)
     title, desc = (m['title'], m['desc']) if m else FALLBACK[url]
     robots = 'noindex, nofollow' if CFG['preview'] or url in SO_TESTE else (m['robots'] if m else 'noindex, follow')
-    canon = BASE + url if url not in ('/404', '/app') else ''  # /app é página de passagem, sem índice
+    canon = (BASE + '/marcas/' if url.startswith('/marcas/versao-') else BASE + url) if url not in ('/404', '/app') else ''  # /app é página de passagem, sem índice
     main = fn(L, A)
     cls = 'home' if url == '/' else 'wrap' + (' tight' if kind == 'tight' else '')
     body = header(url, L, A) + f'\n<main class="{cls}" id="conteudo">{main}</main>\n' + tiktok_shop(L, A, url) + '\n' + footer(L, A)
