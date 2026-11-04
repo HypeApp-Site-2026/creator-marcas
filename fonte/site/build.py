@@ -641,7 +641,7 @@ def gestao_carreira(L, A):
   </div>
   <figure class="gc-fig">
     <div class="mz" data-mz aria-hidden="true">
-      <div class="mz-b mz-phone" style="{pos('phone')}"><img class="mz-fill" src="{A('assets/carreira/celular-inicio.webp')}" alt="Tela inicial do app HypeApp no celular, com campanhas e próximos passos do creator" width="902" height="1218" loading="lazy" decoding="async"></div>
+      <div class="mz-b mz-phone" style="{pos('phone')}"><img class="mz-fill" src="{A('assets/carreira/celular-proximo-passo.webp')}" alt="Celular com a tela Início do HypeApp: campanhas em destaque e o próximo passo, Enviar roteiro" width="900" height="1169" loading="lazy" decoding="async"></div>
       <div class="mz-b mz-receb" style="{pos('receb')}"><div class="mz-in">
         <div class="mz-rh"><b>Recebimentos</b>{wallet}</div>
         <div class="mz-row"><i class="mz-dot"></i><span>Em campanha</span><i class="mz-bar"><i style="width:76%"></i></i><i class="mz-dash"></i></div>
@@ -650,7 +650,7 @@ def gestao_carreira(L, A):
       <div class="mz-b mz-entrega" style="{pos('entrega')}"><div class="mz-in">
         <span class="mz-cal">{cal}</span><b class="mz-et">Próxima entrega</b><span class="mz-es">Envio de roteiro</span><span class="mz-pill"><i></i>Em andamento</span>
       </div></div>
-      <div class="mz-b mz-char" style="{pos('char')}"><img class="mz-fill" src="{A('assets/carreira/creator-celular.webp')}" alt="Ilustração: creator usando o HypeApp no celular" width="993" height="1094" loading="lazy" decoding="async"></div>
+      <div class="mz-b mz-char" style="{pos('char')}"><img class="mz-fill" src="{A('assets/carreira/creator-hijab.webp')}" alt="Ilustração: creator sentada, sorrindo enquanto usa o HypeApp no celular" width="1000" height="1000" loading="lazy" decoding="async"></div>
     </div>
     <figcaption class="gc-cap">Interface e dados ilustrativos.</figcaption>
   </figure>
