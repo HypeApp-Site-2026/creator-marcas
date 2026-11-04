@@ -801,43 +801,21 @@ def process_draw(L, A):
 </section>'''
 
 def p_criadores(L, A):
-    """Página de creators (04/11): segue as dúvidas de quem está decidindo se o HypeApp ajuda na carreira.
-    Isso é pra mim? > o que muda na rotina > como funciona > dinheiro > quem está por trás > crescer > tudo no app > dúvidas.
+    """Página de creators em blocos (bento), versão C do quadro de propostas (04/11).
+    Segue as dúvidas de quem decide se o HypeApp ajuda na carreira, misturando animação, ilustração, tela do app e selo.
     Só fatos confirmados (app 2.0.28 e decisões do Lucas); nada de números de usuários ou campanhas."""
-    ck = ico('M20 6 9 17l-5-5', 18, 2.4)
-    xx = ico('M18 6 6 18M6 6l12 12', 16, 2.2)
-    selos = ''.join(f'<li>{ck}{t}</li>' for t in ('Grátis para creators', 'Sem mínimo de seguidores', 'Saque via PIX', 'iPhone e Android'))
-    perfis = [('Está começando', 'Não existe mínimo de seguidores para criar a conta. Cada campanha diz os critérios dela, e o app mostra se o seu perfil atende antes de você se inscrever.'),
-              ('Já faz publis', 'Tire as propostas do direct. Briefing, prazos, aprovações e pagamento ficam registrados em cada campanha, num lugar só.'),
-              ('Trabalha com UGC', 'Marque no cadastro que faz UGC e defina o seu valor para conteúdo que a marca usa nos canais dela.')]
-    rotina = [('Proposta solta no direct', 'Campanhas no mural, com ganho, entregas e prazo escritos'),
-              ('Prazo anotado na planilha', 'O próximo passo e o prazo na tela da campanha, e um calendário'),
-              ('Aprovação perdida na conversa', 'Roteiro e conteúdo enviados e aprovados no app, com histórico'),
-              ('Correr atrás do pagamento', 'O valor entra na carteira e você saca via PIX')]
-    rot = ''.join(f'<li><span class="cr-antes">{xx}{a}</span><span class="cr-depois">{ck}{d}</span></li>' for a, d in rotina)
-    formas = [('Valor fixo', 'A campanha paga o mesmo valor para cada creator.'),
-              ('O seu preço', 'Vale o valor por formato que você definiu no perfil.'),
-              ('Proposta', 'Você propõe um valor por rede; a marca aceita ou faz uma contraproposta.'),
-              ('Permuta', 'Você recebe produtos; o app mostra o envio e você confirma o recebimento.')]
-    fm = ''.join(f'<li><b>{t}</b><span>{d}</span></li>' for t, d in formas)
-    caminho = [('Publicou', 'Você registra o link e a publicação é identificada.'),
-               ('A liberar', 'O valor aparece na carteira.'),
-               ('Disponível', '30 dias após o encerramento da campanha.'),
-               ('Saque via PIX', 'Sem taxa, a partir de R$ 1,00, processado em até 2 horas úteis.')]
-    cm = ''.join(f'<li><span class="cr-cn">{i + 1}</span><b>{t}</b><span>{d}</span></li>' for i, (t, d) in enumerate(caminho))
-    confianca = [('Feito pela Você no Hype', 'Agência de marketing de influência de São Paulo. Você no Hype Marketing e Entretenimento LTDA, CNPJ 43.442.408/0001-26.', L('/sobre/'), 'Sobre o HypeApp'),
-                 ('Agência parceira do TikTok Shop', 'A mesma equipe que desenvolve o app é agência parceira do TikTok Shop.', '', ''),
-                 ('Contrato em cada campanha', 'Ao ser selecionado, o contrato digital chega por e-mail. Entregas, prazos e condições ficam por escrito.', '', ''),
-                 ('Seus dados protegidos', 'Tratamos seus dados conforme a LGPD. O HypeApp nunca pede senha, código de verificação ou chave PIX por mensagem.', L('/privacidade/'), 'Política de Privacidade')]
-    cf = ''.join(f'<li class="cr-cf"><b>{t}</b><span>{d}</span>{f"<a href={chr(34)}{h}{chr(34)}>{lk}</a>" if h else ""}</li>' for t, d, h, lk in confianca)
-    crescer = [('app-G1', 'O seu perfil é a sua vitrine', 'Redes conectadas, nichos e valores: é o que as marcas veem quando avaliam as inscrições.'),
-               ('app-G5', 'Histórico e avaliações', 'As campanhas concluídas ficam no seu perfil, e as marcas deixam nota e comentário sobre o seu trabalho.'),
-               ('app-F3', 'Uma comunidade de creators', 'Grupos por nicho, lives e trocas com quem também vive de conteúdo.')]
-    cr = ''.join(f'<li class="cr-gw"><span class="cr-shot"><img src="{tela(A, c)}" alt="{TELA_ALT.get(c, "Tela do app HypeApp")}" width="600" height="1298" loading="lazy" decoding="async"></span><b>{t}</b><span>{d}</span></li>' for c, t, d in crescer)
-    tudo = [('app-B4', 'Cadastro', 'Perfil, redes e valores por formato.'), ('app-D1', 'Campanhas', 'Mural, convites e inscrições.'),
-            ('app-E8', 'Entregas', 'Briefing, roteiro, conteúdo e publicação.'), ('app-E6', 'Chat', 'Conversa com a marca em cada campanha.'),
-            ('app-G2', 'Carteira', 'A liberar, disponível e extrato.'), ('app-H1', 'Calendário', 'Prazos de cada campanha por dia.')]
-    td = ''.join(f'<li><span class="cr-mini"><img src="{tela(A, c)}" alt="{TELA_ALT.get(c, "Tela do app HypeApp")}" width="600" height="1298" loading="lazy" decoding="async"></span><b>{t}</b><span>{d}</span></li>' for c, t, d in tudo)
+    ck = ico('M20 6 9 17l-5-5', 20, 2.4)
+    vid = lambda n, alt, cls='': (f'<video class="bt-vid {cls}" muted playsinline loop preload="none" width="720" height="720" data-vis-play '
+                                  f'poster="{A(f"assets/como-funciona/cena{n}.webp")}" aria-label="{alt}"><source src="{A(f"assets/como-funciona/cena{n}.mp4")}" type="video/mp4"></video>')
+    ilu = lambda f, alt, cls='': f'<img class="bt-img {cls}" src="{A(f)}" alt="{alt}" width="960" height="600" loading="lazy" decoding="async">'
+    shot = lambda c: f'<img class="bt-shot" src="{tela(A, c)}" alt="{TELA_ALT.get(c, "Tela do app HypeApp")}" width="600" height="1298" loading="lazy" decoding="async">'
+    # blog: o primeiro artigo; em revisão só aparece no ambiente de teste
+    post = POSTS[0] if POSTS else None
+    blog = ''
+    if post:
+        so = _blog.SO_TESTE if _blog.so_teste(post) else ''
+        blog = (f'<a class="bt bt-roxo bt-blog" href="{L("/blog/" + post["slug"] + "/")}"{so}>{ilu("assets/blog/" + post["capa"], "")}'
+                f'<span class="bt-pad"><span class="bt-k">Do blog</span><b class="bt-t3">{html.escape(post["titulo"])}</b><span class="bt-lk">Ler o artigo</span></span></a>')
     faq = [('É pago para creators?', 'Não. O HypeApp é gratuito para creators: não há mensalidade nem taxa sobre o valor que você recebe das campanhas.'),
            ('Preciso de quantos seguidores?', 'Nenhum mínimo para criar a conta. Cada campanha tem critérios próprios, e o app mostra se o seu perfil atende antes de você se inscrever.'),
            ('Como e quando recebo?', PIX_TXT),
@@ -847,66 +825,83 @@ def p_criadores(L, A):
            ('Preciso emitir nota fiscal?', 'Depende da campanha e do seu cadastro como pessoa física ou jurídica. O app informa o que é exigido antes do pagamento.'),
            ('A marca pode usar meu conteúdo depois?', 'Depende do contrato da campanha, firmado entre você e a marca. Confira as condições de uso de imagem antes de aceitar.')]
     return f'''
-<section class="split" aria-labelledby="hero-c">
-  <div class="stack" style="gap:24px;flex-basis:540px">
-    <span class="tag">Para creators</span>
-    <h1 id="hero-c" class="display">Sua carreira de creator, mais organizada.</h1>
-    <p class="lead">Campanhas com marcas, entregas e pagamento num app só. Você escolhe as campanhas, entrega pelo app e recebe na carteira.</p>
-    <div class="row"><a class="btn btn-cta btn-lg" href="{L('/baixar/')}">Baixar o app</a><a class="btn btn-ghost btn-lg" href="{L('/entrar/', '#creators')}">Já tenho conta</a></div>
-    <ul class="cr-selos" aria-label="Em resumo">{selos}</ul>
+<section class="bt-g bt-hero" aria-labelledby="hero-c">
+  <div class="bt bt-roxo bt-h1">
+    <span class="bt-pill">Para creators</span>
+    <div class="stack" style="gap:20px">
+      <h1 id="hero-c" class="bt-d">Sua carreira de creator, mais organizada.</h1>
+      <p class="bt-lead">Campanhas com marcas, entregas e pagamento num app só.</p>
+      <div class="row"><a class="btn btn-ink btn-lg" href="{L('/baixar/')}">Baixar o app</a><a class="btn btn-soft btn-lg" href="{L('/entrar/', '#creators')}">Já tenho conta</a></div>
+    </div>
   </div>
-  <div style="flex-basis:520px">{motion_criador('comunidade')}</div>
+  <div class="bt bt-media bt-hv">{vid(1, 'Animação: creator monta o perfil no celular')}</div>
+  <div class="bt bt-tela bt-hs">{shot('app-D1')}</div>
+  <ul class="bt bt-preto bt-selos" aria-label="Em resumo"><li>{ck}Grátis para creators</li><li>{ck}Sem mínimo de seguidores</li><li>{ck}Saque via PIX</li><li class="bt-sub">iPhone e Android</li></ul>
 </section>
 
-<section class="stack-lg" id="para-quem" aria-labelledby="pq-h">
-  <div class="stack" style="gap:10px"><h2 id="pq-h" class="h2">Isso é pra mim?</h2><p class="lead">Se você cria conteúdo e quer trabalhar com marcas, é. Para maiores de 18 anos ou emancipados.</p></div>
-  <ul class="cr-grid3">{''.join(f'<li class="feat"><span class="h4">{t}</span><span style="font-size:16px;line-height:1.5">{d}</span></li>' for t, d in perfis)}</ul>
-</section>
-
-<section class="band-white cr-rot" aria-labelledby="rot-h">
-  <div class="stack" style="gap:10px"><h2 id="rot-h" class="h2">O que muda na sua rotina</h2><p class="lead">O trabalho com marcas sai das conversas soltas e ganha um lugar.</p></div>
-  <div class="cr-rot-h" aria-hidden="true"><span>Sem o HypeApp</span><span>Com o HypeApp</span></div>
-  <ul class="cr-rot-l">{rot}</ul>
-</section>
-
-{jornada_carrossel(L, A)}
-
-<section class="split cr-din" id="dinheiro" aria-labelledby="din-h">
-  <div class="stack-lg">
-    <div class="stack" style="gap:10px"><span class="tag">Pagamento</span><h2 id="din-h" class="h2">Seu dinheiro, com regras claras</h2><p class="lead">Antes de se inscrever, você já sabe quanto e como vai receber. Os seus valores por formato ficam no seu perfil.</p></div>
-    <div class="stack" style="gap:12px"><span class="h4">Como as campanhas pagam</span><ul class="cr-formas">{fm}</ul></div>
-    <div class="stack" style="gap:12px"><span class="h4">Do post ao PIX</span><ol class="cr-cam">{cm}</ol><p class="small muted">A chave PIX precisa estar no seu nome, com o mesmo CPF da conta.</p></div>
+<section id="para-quem" aria-labelledby="pq-h">
+  <h2 id="pq-h" class="bt-h2">Isso é pra mim?</h2>
+  <div class="bt-g bt-3">
+    <div class="bt bt-card">{ilu('assets/ilustracoes/creator-metricas.webp', 'Ilustração: creator com o celular e cartões de perfil e métricas')}<div class="bt-pad"><b class="bt-t3">Está começando</b><span class="bt-p">Não existe mínimo de seguidores. Cada campanha diz os critérios dela, e o app mostra se o seu perfil atende antes de você se inscrever.</span></div></div>
+    <div class="bt bt-card">{ilu('assets/ilustracoes/entregas-notebook.webp', 'Ilustração: lista de entregas marcada na tela do notebook')}<div class="bt-pad"><b class="bt-t3">Já faz publis</b><span class="bt-p">Tire as propostas do direct. Briefing, prazos, aprovações e pagamento ficam registrados em cada campanha.</span></div></div>
+    <div class="bt bt-card">{ilu('assets/ilustracoes/reels-valores.webp', 'Ilustração: celular com um vídeo e cartões de valor e uso de imagem')}<div class="bt-pad"><b class="bt-t3">Trabalha com UGC</b><span class="bt-p">Marque no cadastro que faz UGC e defina o seu valor para conteúdo que a marca usa nos canais dela.</span></div></div>
   </div>
-  <figure class="cr-phone"><span class="cr-shot"><img src="{tela(A, 'app-G2')}" alt="{TELA_ALT.get('app-G2', 'Tela da carteira do app')}" width="600" height="1298" loading="lazy" decoding="async"></span><figcaption class="small muted">Tela do app com dados de exemplo.</figcaption></figure>
 </section>
 
-<section class="stack-lg" id="confianca" aria-labelledby="cf-h">
-  <div class="stack" style="gap:10px"><h2 id="cf-h" class="h2">Quem está por trás</h2><p class="lead">Um app de uma agência de verdade, com contrato e regras claras.</p></div>
-  <ul class="cr-grid4">{cf}</ul>
+<section id="como-funciona" aria-labelledby="cf-h2">
+  <span id="candidatura" class="jc-anc" aria-hidden="true"></span><span id="recursos" class="jc-anc" aria-hidden="true"></span>
+  <h2 id="cf-h2" class="bt-h2">Como funciona</h2>
+  <div class="bt-g bt-cf">
+    <div class="bt bt-branco bt-cf1"><div class="stack" style="gap:10px"><span class="bt-n">01 · 02</span><b class="bt-t2">Monte o perfil e escolha campanhas</b><span class="bt-p">Cadastro em 5 passos, com os seus valores por formato. Depois, inscreva-se no mural ou aceite convites: ganho, entregas e prazo estão escritos antes.</span></div>{ilu('assets/como-funciona/cena2.webp', 'Ilustração: tela de campanhas com o botão Quero participar', 'bt-sq')}</div>
+    <div class="bt bt-preto bt-cf3">{vid(3, 'Animação: creator envia o conteúdo pelo app', 'bt-grow')}<span class="bt-n bt-n-l">03</span><b class="bt-t2">Entregue pelo app</b><span class="bt-p">Roteiro, conteúdo e publicação. A marca aprova ou pede ajuste, e o próximo passo e o prazo ficam sempre à vista.</span></div>
+    <div class="bt bt-lima bt-cf4"><span class="bt-n">04</span><b class="bt-t2">Receba na carteira</b><span class="bt-p">O valor entra como "A liberar" e, depois, fica disponível para saque via PIX.</span></div>
+    <div class="bt bt-media bt-cf5">{ilu('assets/como-funciona/cena4.webp', 'Ilustração: carteira do app com o botão Solicitar saque')}</div>
+  </div>
 </section>
 
-<section class="stack-lg" id="crescer" aria-labelledby="cs-h">
-  <div class="stack" style="gap:10px"><h2 id="cs-h" class="h2">Cresça além de uma campanha</h2><p class="lead">Cada campanha que você entrega fica no seu perfil e conta a seu favor na próxima.</p></div>
-  <ul class="cr-grid3">{cr}</ul>
+<section id="dinheiro" aria-labelledby="din-h">
+  <h2 id="din-h" class="bt-h2">Seu dinheiro, com regras claras</h2>
+  <div class="bt-g bt-din">
+    <div class="bt bt-preto bt-d1"><b class="bt-t2">Do post ao PIX</b><ol class="bt-pix"><li><b>1 · Publicou</b>A publicação é identificada.</li><li><b>2 · A liberar</b>O valor aparece na carteira.</li><li><b>3 · Disponível</b>30 dias após o encerramento da campanha.</li><li><b class="bt-lime">4 · PIX</b>Processado em até 2 horas úteis.</li></ol></div>
+    <div class="bt bt-tela bt-d2">{shot('app-G2')}</div>
+    <div class="bt bt-lima bt-d3"><b class="bt-big">Sem taxa</b><span class="bt-p">no saque, a partir de R$ 1,00, com a chave PIX no seu nome e no mesmo CPF da conta.</span></div>
+    <div class="bt bt-branco bt-d4"><b class="bt-t3">Como as campanhas pagam</b><ul class="bt-formas"><li><b>Valor fixo</b>o mesmo para cada creator</li><li><b>O seu preço</b>os valores do seu perfil</li><li><b>Proposta</b>você propõe; a marca aceita ou negocia</li><li><b>Permuta</b>produtos, com envio acompanhado no app</li></ul></div>
+    <div class="bt bt-media bt-d5">{ilu('assets/ilustracoes/reels-valores.webp', 'Ilustração: celular com Reels e cartões de valor')}</div>
+  </div>
 </section>
 
-<section class="stack-lg" id="recursos" aria-labelledby="rc-h">
-  <div class="stack" style="gap:10px"><h2 id="rc-h" class="h2">Tudo no app</h2><p class="lead">Do cadastro ao saque, sem planilha e sem perder mensagem.</p></div>
-  <ul class="cr-tudo">{td}</ul>
+<section id="confianca" aria-labelledby="cf-h">
+  <h2 id="cf-h" class="bt-h2">Quem está por trás</h2>
+  <div class="bt-g bt-conf">
+    <div class="bt bt-media bt-c1">{ilu('assets/ilustracoes/acordo-produtos.webp', 'Ilustração: duas mãos fechando um acordo sobre uma caixa de produtos')}</div>
+    <div class="bt bt-branco"><b class="bt-t3">Você no Hype</b><span class="bt-p">Agência de marketing de influência de São Paulo. CNPJ 43.442.408/0001-26.</span><a class="bt-lk" href="{L('/sobre/')}">Sobre o HypeApp</a></div>
+    <div class="bt bt-branco bt-ttk"><img src="{A('assets/parceiros/tiktok-shop-partner.webp')}" alt="TikTok Shop Partner" width="280" height="79" loading="lazy" decoding="async"><span class="bt-p">Agência parceira do TikTok Shop.</span></div>
+    <div class="bt bt-branco"><b class="bt-t3">Contrato digital</b><span class="bt-p">Ao ser selecionado, o contrato chega por e-mail. Entregas, prazos e condições ficam por escrito.</span></div>
+    <div class="bt bt-preto bt-c5"><b class="bt-t3">Seus dados protegidos</b><span class="bt-p">Tratados conforme a LGPD. O HypeApp nunca pede senha, código de verificação ou chave PIX por mensagem.</span><a class="bt-lk" href="{L('/privacidade/')}">Política de Privacidade</a></div>
+  </div>
 </section>
 
-<section class="band-dark between" aria-labelledby="baixar-c" style="align-items:center">
-  <div class="stack" style="flex:1 1 380px">
-    <h2 id="baixar-c" class="h2">Baixe o HypeApp</h2>
-    <p class="body">Grátis para iPhone e Android. Crie sua conta pelo app. Já tem conta? Entre com o mesmo e-mail.</p>
+<section id="crescer" aria-labelledby="cs-h">
+  <h2 id="cs-h" class="bt-h2">Cresça além de uma campanha</h2>
+  <div class="bt-g bt-cres">
+    <div class="bt bt-branco bt-tela2"><b class="bt-t3">Perfil que vira vitrine</b><span class="bt-p">Redes, nichos e valores: o que as marcas veem ao avaliar a sua inscrição.</span>{shot('app-G1')}</div>
+    <div class="bt bt-branco bt-tela2"><b class="bt-t3">Avaliações das marcas</b><span class="bt-p">As campanhas concluídas ficam no seu perfil, com nota e comentário.</span>{shot('app-G5')}</div>
+    <div class="bt bt-branco bt-tela2"><b class="bt-t3">Comunidade</b><span class="bt-p">Grupos por nicho e lives com outros creators.</span>{shot('app-F3')}</div>
+    {blog}
+  </div>
+</section>
+
+<section class="bt-g bt-fim" aria-label="Dúvidas e download">
+  <div class="bt bt-branco bt-faq" aria-labelledby="faq-c">
+    <div class="between" style="align-items:baseline"><h2 id="faq-c" class="bt-h2" style="margin:0">Dúvidas de creators</h2><a class="link-strong" href="{L('/perguntas-frequentes/', '#creators')}">Ver todas</a></div>
+    <div class="faq">{faq_html(faq)}</div>
+  </div>
+  <div class="bt bt-preto bt-dl" aria-labelledby="baixar-c">
+    <h2 id="baixar-c" class="bt-t1">Baixe o HypeApp</h2>
+    <p class="bt-p">Grátis para iPhone e Android. Crie sua conta pelo app.</p>
+    <div class="qr bt-qr">{QR}</div>
     <div class="row">{stores(L)}</div>
   </div>
-  <div class="qr">{QR}</div>
-</section>
-
-<section class="faq-block" aria-labelledby="faq-c">
-  <div class="stack"><h2 id="faq-c" class="h2">Dúvidas de creators</h2><a class="link-strong" href="{L('/perguntas-frequentes/', '#creators')}">Ver todas as dúvidas</a></div>
-  <div class="faq">{faq_html(faq)}</div>
 </section>'''
 
 def p_marcas(L, A):
@@ -1851,6 +1846,7 @@ def main():
     shutil.copytree(os.path.join(HERE, 'assets', 'carreira'), os.path.join(OUT, 'assets', 'carreira'))
     shutil.copytree(os.path.join(HERE, 'assets', 'menu'), os.path.join(OUT, 'assets', 'menu'))
     shutil.copytree(os.path.join(HERE, 'assets', 'parceiros'), os.path.join(OUT, 'assets', 'parceiros'))
+    shutil.copytree(os.path.join(HERE, 'assets', 'ilustracoes'), os.path.join(OUT, 'assets', 'ilustracoes'))  # biblioteca roxa (página de creators)
     os.makedirs(os.path.join(OUT, 'assets', 'blog'))
     for _p in POSTS:
         shutil.copy(os.path.join(HERE, 'assets', 'blog', _p['capa']), os.path.join(OUT, 'assets', 'blog', _p['capa']))

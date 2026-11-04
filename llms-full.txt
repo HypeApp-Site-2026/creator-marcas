@@ -111,7 +111,7 @@ Atualizado em: 2026-11-04
 
 # Sua carreira de creator, mais organizada.
 
-Campanhas com marcas, entregas e pagamento num app só. Você escolhe as campanhas, entrega pelo app e recebe na carteira.
+Campanhas com marcas, entregas e pagamento num app só.
 
 - Grátis para creators
 
@@ -123,143 +123,29 @@ Campanhas com marcas, entregas e pagamento num app só. Você escolhe as campanh
 
 ## Isso é pra mim?
 
-Se você cria conteúdo e quer trabalhar com marcas, é. Para maiores de 18 anos ou emancipados.
-
-- Está começandoNão existe mínimo de seguidores para criar a conta. Cada campanha diz os critérios dela, e o app mostra se o seu perfil atende antes de você se inscrever.
-
-- Já faz publisTire as propostas do direct. Briefing, prazos, aprovações e pagamento ficam registrados em cada campanha, num lugar só.
-
-- Trabalha com UGCMarque no cadastro que faz UGC e defina o seu valor para conteúdo que a marca usa nos canais dela.
-
-## O que muda na sua rotina
-
-O trabalho com marcas sai das conversas soltas e ganha um lugar.
-
-- Proposta solta no directCampanhas no mural, com ganho, entregas e prazo escritos
-
-- Prazo anotado na planilhaO próximo passo e o prazo na tela da campanha, e um calendário
-
-- Aprovação perdida na conversaRoteiro e conteúdo enviados e aprovados no app, com histórico
-
-- Correr atrás do pagamentoO valor entra na carteira e você saca via PIX
-
-## Seu próximo passo no HypeApp
-
-- 01 / 08
-
-### Monte seu perfil
-
-Cadastro em 5 passos: telefone, seus valores por formato, dados e nichos, e endereço. Depois, conecte Instagram, TikTok e YouTube.
-
-- 02 / 08
-
-### Encontre campanhas
-
-No mural, busque e filtre por nicho. As campanhas em destaque aparecem primeiro.
-
-- 03 / 08
-
-### Veja tudo antes de entrar
-
-Ganho, duração, entregas, regras e arquivos da marca, na página da campanha.
-
-- 04 / 08
-
-### Inscreva-se
-
-Escolha com quais perfis quer participar e, quando a campanha pedir, proponha o seu valor.
-
-- 05 / 08
-
-### Acompanhe a análise
-
-Em Minhas inscrições: inscrição enviada, análise da marca e resultado. A seleção é da marca ou da curadoria da Você no Hype.
-
-- 06 / 08
-
-### Aceite e comece
-
-Selecionado ou convidado, você vê as condições e o prazo e aceita pelo app. O contrato chega por e-mail.
-
-- 07 / 08
-
-### Envie roteiro e conteúdo
-
-Cada entrega passa pela aprovação da marca. O próximo passo e o prazo ficam sempre à vista.
-
-- 08 / 08
-
-### Receba na carteira
-
-Depois da publicação, o valor entra como "A liberar" e fica disponível 30 dias após o encerramento, para saque via PIX.
-
-Telas do app com dados de exemplo.
+## Como funciona
 
 ## Seu dinheiro, com regras claras
 
-Antes de se inscrever, você já sabe quanto e como vai receber. Os seus valores por formato ficam no seu perfil.
+- 1 · PublicouA publicação é identificada.
 
-- Valor fixoA campanha paga o mesmo valor para cada creator.
+- 2 · A liberarO valor aparece na carteira.
 
-- O seu preçoVale o valor por formato que você definiu no perfil.
+- 3 · Disponível30 dias após o encerramento da campanha.
 
-- PropostaVocê propõe um valor por rede; a marca aceita ou faz uma contraproposta.
+- 4 · PIXProcessado em até 2 horas úteis.
 
-- PermutaVocê recebe produtos; o app mostra o envio e você confirma o recebimento.
+- Valor fixoo mesmo para cada creator
 
-- 1PublicouVocê registra o link e a publicação é identificada.
+- O seu preçoos valores do seu perfil
 
-- 2A liberarO valor aparece na carteira.
+- Propostavocê propõe; a marca aceita ou negocia
 
-- 3Disponível30 dias após o encerramento da campanha.
-
-- 4Saque via PIXSem taxa, a partir de R$ 1,00, processado em até 2 horas úteis.
-
-A chave PIX precisa estar no seu nome, com o mesmo CPF da conta.
-
-Tela do app com dados de exemplo.
+- Permutaprodutos, com envio acompanhado no app
 
 ## Quem está por trás
 
-Um app de uma agência de verdade, com contrato e regras claras.
-
-- Feito pela Você no HypeAgência de marketing de influência de São Paulo. Você no Hype Marketing e Entretenimento LTDA, CNPJ 43.442.408/0001-26.Sobre o HypeApp
-
-- Agência parceira do TikTok ShopA mesma equipe que desenvolve o app é agência parceira do TikTok Shop.
-
-- Contrato em cada campanhaAo ser selecionado, o contrato digital chega por e-mail. Entregas, prazos e condições ficam por escrito.
-
-- Seus dados protegidosTratamos seus dados conforme a LGPD. O HypeApp nunca pede senha, código de verificação ou chave PIX por mensagem.Política de Privacidade
-
 ## Cresça além de uma campanha
-
-Cada campanha que você entrega fica no seu perfil e conta a seu favor na próxima.
-
-- O seu perfil é a sua vitrineRedes conectadas, nichos e valores: é o que as marcas veem quando avaliam as inscrições.
-
-- Histórico e avaliaçõesAs campanhas concluídas ficam no seu perfil, e as marcas deixam nota e comentário sobre o seu trabalho.
-
-- Uma comunidade de creatorsGrupos por nicho, lives e trocas com quem também vive de conteúdo.
-
-## Tudo no app
-
-Do cadastro ao saque, sem planilha e sem perder mensagem.
-
-- CadastroPerfil, redes e valores por formato.
-
-- CampanhasMural, convites e inscrições.
-
-- EntregasBriefing, roteiro, conteúdo e publicação.
-
-- ChatConversa com a marca em cada campanha.
-
-- CarteiraA liberar, disponível e extrato.
-
-- CalendárioPrazos de cada campanha por dia.
-
-## Baixe o HypeApp
-
-Grátis para iPhone e Android. Crie sua conta pelo app. Já tem conta? Entre com o mesmo e-mail.
 
 ## Dúvidas de creators
 
@@ -294,6 +180,10 @@ Depende da campanha e do seu cadastro como pessoa física ou jurídica. O app in
 **P:** A marca pode usar meu conteúdo depois?
 
 Depende do contrato da campanha, firmado entre você e a marca. Confira as condições de uso de imagem antes de aceitar.
+
+## Baixe o HypeApp
+
+Grátis para iPhone e Android. Crie sua conta pelo app.
 
 ---
 

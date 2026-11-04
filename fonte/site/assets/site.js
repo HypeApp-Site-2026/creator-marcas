@@ -398,6 +398,19 @@
     });
   });
 
+  /* ---------- Videos que tocam so quando aparecem na tela (data-vis-play) ---------- */
+  (function () {
+    var vs = $$('video[data-vis-play]');
+    if (!vs.length || reduced || !window.IntersectionObserver) return;
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        var v = e.target;
+        if (e.isIntersecting) { var p = v.play(); if (p && p.catch) p.catch(function () {}); } else v.pause();
+      });
+    }, { threshold: 0.25 });
+    vs.forEach(function (v) { io.observe(v); });
+  })();
+
   /* ---------- Jornada do creator em carrossel (/criadores/) ----------
      Gira sozinho a cada 4,5 s so com a secao na tela; para com o mouse ou o foco em cima e tem botao de pausa.
      Setas, pontos, toque numa tela, deslizar o dedo e as setas do teclado tambem trocam o passo. */
