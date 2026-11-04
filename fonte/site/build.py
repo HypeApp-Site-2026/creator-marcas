@@ -916,7 +916,9 @@ def p_criadores(L, A):
       <p class="cv-p">Pergunte, responda e aprenda com outros creators, nos grupos, nos posts e nas lives do app.</p>
     </div>
     <div class="cv-fone" data-cvf role="img" aria-label="Celular navegando pela comunidade do HypeApp: feed, post com comentários, grupos, um grupo de creators e uma live">
+      <span class="cv-sb cv-sb1" aria-hidden="true"></span><span class="cv-sb cv-sb2" aria-hidden="true"></span><span class="cv-sb cv-sb3" aria-hidden="true"></span>
       <div class="cv-tela" aria-hidden="true">
+        <i class="cv-ilha"></i>
         <img class="cv-s on" data-s="feed" src="{tela(A, 'app-F1')}" alt="" width="600" height="1298" loading="lazy" decoding="async">
         <img class="cv-s" data-s="post" src="{tela(A, 'app-F4')}" alt="" width="600" height="1298" loading="lazy" decoding="async">
         <img class="cv-s" data-s="grupos" src="{tela(A, 'app-F3s')}" alt="" width="600" height="1298" loading="lazy" decoding="async">

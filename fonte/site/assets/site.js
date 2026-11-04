@@ -427,7 +427,7 @@
       if (modo === 'push') a.style.transform = 'translateX(-25%)';
       if (modo === 'pop') a.style.transform = 'translateX(100%)';
       var velha = a;
-      setTimeout(function () { if (velha !== tela(cur)) { velha.classList.remove('on'); velha.style.transform = ''; } }, 520);
+      setTimeout(function () { if (velha !== tela(cur)) { velha.style.transition = 'none'; velha.classList.remove('on'); velha.style.transform = ''; } }, 520);
       cur = n;
     };
     var vai = function (x, y) { tap.style.left = x + '%'; tap.style.top = y + '%'; tap.classList.add('on'); };

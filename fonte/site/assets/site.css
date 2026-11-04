@@ -1898,15 +1898,22 @@ label.ck-op { cursor: pointer; }
    Três colunas que respeitam as margens do bloco: texto e grupos | celular | chat. */
 .cv-in { position: relative; background: #050505; color: #fff; border-radius: 44px; overflow: hidden; padding: clamp(36px, 5vw, 72px) clamp(24px, 4.4vw, 64px) clamp(32px, 4vw, 56px);
   display: grid; grid-template-columns: minmax(0, 1fr) clamp(250px, 24vw, 340px) minmax(0, 1fr); grid-template-areas: "copy fone chat" "grupos fone chat" "areas areas areas"; column-gap: clamp(28px, 4vw, 64px); row-gap: 28px; }
-.cv-in::before { content: ""; position: absolute; left: 50%; top: 6%; width: min(560px, 42%); height: 78%; transform: translateX(-50%); border-radius: 999px; background: radial-gradient(ellipse at 50% 45%, #6A12C9 0%, #2A0752 45%, rgba(5, 5, 5, 0) 72%); pointer-events: none; }
 .cv-in > * { position: relative; }
 .cv-copy { grid-area: copy; display: flex; flex-direction: column; gap: 18px; }
 .cv-pill { align-self: flex-start; background: #D2F51A; color: #050505; font-size: 14px; font-weight: 800; border-radius: 999px; padding: 8px 14px; }
 .cv-h { margin: 0; font-size: clamp(36px, 3.9vw, 56px); font-weight: 800; letter-spacing: -0.04em; line-height: 1; color: #fff; }
 .cv-p { margin: 0; font-size: clamp(16px, 1.25vw, 18px); line-height: 1.55; color: #CFCFCF; }
 /* celular */
-.cv-fone { grid-area: fone; align-self: center; background: #1A1A1A; border-radius: clamp(44px, 4.4vw, 60px); padding: clamp(9px, .85vw, 12px); box-shadow: 0 0 0 1px #2E2E2E, 0 50px 100px rgba(106, 18, 201, .45); }
-.cv-tela { position: relative; aspect-ratio: 600 / 1298; border-radius: clamp(36px, 3.5vw, 48px); overflow: hidden; background: #EFEFEF; }
+/* moldura verde-lima (mockup enviado em 04/11, 400 x 830): corpo lima, borda preta e tela por cima */
+.cv-fone { grid-area: fone; align-self: center; position: relative; aspect-ratio: 400 / 830; border-radius: 17% / 8.2%;
+  background: linear-gradient(90deg, #536b0e 0%, #b3d837 1%, #eeffb1 3%, #cbef63 4.4%, #8caa25 5.8%, #dbfa81 8%, #b5da43 94%, #f1ffbb 96%, #6c8c17 98%, #b7df4b 100%);
+  box-shadow: inset 0 2px 1px #f9ffcd, inset 0 -3px 2px #5b7419, 2px 5px 5px rgba(0, 0, 0, .4), 12px 20px 38px rgba(0, 0, 0, .33); }
+.cv-fone::before { content: ""; position: absolute; inset: .48% 1% .6% 4%; border-radius: 14.5% / 7%; background: linear-gradient(110deg, #646561, #131414 8%, #060707 70%, #55534e); box-shadow: 0 0 0 1px rgba(255, 255, 255, .5), inset 1px 1px 1px #000; }
+.cv-sb { position: absolute; left: .5%; width: 1.5%; border-radius: 5px; background: linear-gradient(90deg, #ebffb1, #89ac25 60%, #d6f27c); }
+.cv-sb1 { top: 17.5%; height: 4.6%; } .cv-sb2 { top: 25%; height: 7.6%; } .cv-sb3 { top: 34.6%; height: 7.3%; }
+.cv-tela { position: absolute; inset: 1.45% 3% 1.57% 6%; border-radius: 13.5% / 6.1%; overflow: hidden; background: #EFEFEF; box-shadow: 0 0 0 3px #0a0b0a; }
+.cv-ilha { position: absolute; top: 1.5%; left: 50%; transform: translateX(-50%); width: 29.7%; height: 3.6%; border-radius: 999px; background: #050505; z-index: 6; }
+.cv-s { object-fit: cover; object-position: top; }
 .cv-s { position: absolute; inset: 0; width: 100%; height: 100%; display: block; opacity: 0; background: #EFEFEF; }
 .cv-s.on { opacity: 1; }
 .cv-tap { position: absolute; left: 50%; top: 50%; width: 15%; aspect-ratio: 1; margin: -7.5% 0 0 -7.5%; border-radius: 50%; background: rgba(158, 44, 250, .3); box-shadow: 0 0 0 2px rgba(255, 255, 255, .95), 0 6px 16px rgba(0, 0, 0, .3); opacity: 0; z-index: 5; transition: left .7s cubic-bezier(.32,.72,0,1), top .7s cubic-bezier(.32,.72,0,1), opacity .3s; pointer-events: none; }
@@ -1952,12 +1959,10 @@ label.ck-op { cursor: pointer; }
 .cv-areas a:hover { color: #fff; }
 @media (max-width: 1080px) {
   .cv-in { grid-template-columns: minmax(0, 1fr) minmax(220px, 290px); grid-template-areas: "copy copy" "chat fone" "grupos fone" "areas areas"; }
-  .cv-in::before { left: 75%; }
 }
 @media (max-width: 640px) {
   .cv-in { grid-template-columns: 1fr; grid-template-areas: "copy" "fone" "chat" "grupos" "areas"; border-radius: 30px; }
   .cv-fone { width: min(270px, 78%); justify-self: center; }
-  .cv-in::before { left: 50%; top: 16%; width: 90%; height: 34%; }
   .cv-msgs { height: 430px; }
   .cv-areas { grid-template-columns: 1fr; }
 }
