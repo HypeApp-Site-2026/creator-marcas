@@ -773,69 +773,104 @@ def process_draw(L, A):
 </section>'''
 
 def p_criadores(L, A):
-    camps = [('beleza', 'Paga', 'VG', 'Verão Glow', 'Beleza · Instagram', 'R$ 1.200', ''),
-             ('moda', 'Permuta', 'MO', 'Brisa de Verão', 'Moda · TikTok', 'Produto + R$ 300', 'alt'),
-             ('gastronomia', 'Recebido', 'GA', 'Café Brasa', 'Gastronomia · Instagram', 'Produto', ''),
-             ('fitness', 'Paga', 'FT', 'Run Club SP', 'Fitness · YouTube', 'R$ 2.500', 'alt')]
-    cards = ''.join(f'<article class="camp-card" data-nicho="{n}"><div class="camp-cover {a}"><span class="tag">{tp}</span>{ini}</div><div class="camp-body"><b style="font-size:19px;font-weight:600">{nm}</b><span class="small muted">{ni}</span><span class="v">{v}</span></div></article>' for n, tp, ini, nm, ni, v, a in camps)
-    filt = ''.join(f'<button type="button" data-v="{v}" aria-pressed="{"true" if v == "todas" else "false"}">{t}</button>' for v, t in [('todas', 'Todas'), ('beleza', 'Beleza'), ('moda', 'Moda'), ('gastronomia', 'Gastronomia'), ('fitness', 'Fitness')])
-    rec = [('Perfil e redes', 'Conecte suas redes e mostre seus dados profissionais e valores por formato.'),
-           ('Mural e convites', 'Filtre o mural por nicho, inscreva-se e responda aos convites das marcas.'),
-           ('Entregas e aprovações', 'Briefing, roteiro, conteúdo e ajustes com prazo em cada etapa.'),
-           ('Carteira', 'Saldo em campanha, a liberar e disponível para saque via PIX.')]
-    recs = ''.join(f'<div class="feat"><span class="h4">{t}</span><span style="font-size:15px">{d}</span></div>' for t, d in rec)
-    faq = [('Quem pode participar?', 'Qualquer pessoa com 18 anos ou mais, ou emancipada, sem mínimo de seguidores. Cada campanha tem critérios próprios.'),
+    """Página de creators (04/11): segue as dúvidas de quem está decidindo se o HypeApp ajuda na carreira.
+    Isso é pra mim? > o que muda na rotina > como funciona > dinheiro > quem está por trás > crescer > tudo no app > dúvidas.
+    Só fatos confirmados (app 2.0.28 e decisões do Lucas); nada de números de usuários ou campanhas."""
+    ck = ico('M20 6 9 17l-5-5', 18, 2.4)
+    xx = ico('M18 6 6 18M6 6l12 12', 16, 2.2)
+    selos = ''.join(f'<li>{ck}{t}</li>' for t in ('Grátis para creators', 'Sem mínimo de seguidores', 'Saque via PIX', 'iPhone e Android'))
+    perfis = [('Está começando', 'Não existe mínimo de seguidores para criar a conta. Cada campanha diz os critérios dela, e o app mostra se o seu perfil atende antes de você se inscrever.'),
+              ('Já faz publis', 'Tire as propostas do direct. Briefing, prazos, aprovações e pagamento ficam registrados em cada campanha, num lugar só.'),
+              ('Trabalha com UGC', 'Marque no cadastro que faz UGC e defina o seu valor para conteúdo que a marca usa nos canais dela.')]
+    rotina = [('Proposta solta no direct', 'Campanhas no mural, com ganho, entregas e prazo escritos'),
+              ('Prazo anotado na planilha', 'O próximo passo e o prazo na tela da campanha, e um calendário'),
+              ('Aprovação perdida na conversa', 'Roteiro e conteúdo enviados e aprovados no app, com histórico'),
+              ('Correr atrás do pagamento', 'O valor entra na carteira e você saca via PIX')]
+    rot = ''.join(f'<li><span class="cr-antes">{xx}{a}</span><span class="cr-depois">{ck}{d}</span></li>' for a, d in rotina)
+    formas = [('Valor fixo', 'A campanha paga o mesmo valor para cada creator.'),
+              ('O seu preço', 'Vale o valor por formato que você definiu no perfil.'),
+              ('Proposta', 'Você propõe um valor por rede; a marca aceita ou faz uma contraproposta.'),
+              ('Permuta', 'Você recebe produtos; o app mostra o envio e você confirma o recebimento.')]
+    fm = ''.join(f'<li><b>{t}</b><span>{d}</span></li>' for t, d in formas)
+    caminho = [('Publicou', 'Você registra o link e a publicação é identificada.'),
+               ('A liberar', 'O valor aparece na carteira.'),
+               ('Disponível', '30 dias após o encerramento da campanha.'),
+               ('Saque via PIX', 'Sem taxa, a partir de R$ 1,00, processado em até 2 horas úteis.')]
+    cm = ''.join(f'<li><span class="cr-cn">{i + 1}</span><b>{t}</b><span>{d}</span></li>' for i, (t, d) in enumerate(caminho))
+    confianca = [('Feito pela Você no Hype', 'Agência de marketing de influência de São Paulo. Você no Hype Marketing e Entretenimento LTDA, CNPJ 43.442.408/0001-26.', L('/sobre/'), 'Sobre o HypeApp'),
+                 ('Agência parceira do TikTok Shop', 'A mesma equipe que desenvolve o app é agência parceira do TikTok Shop.', '', ''),
+                 ('Contrato em cada campanha', 'Ao ser selecionado, o contrato digital chega por e-mail. Entregas, prazos e condições ficam por escrito.', '', ''),
+                 ('Seus dados protegidos', 'Tratamos seus dados conforme a LGPD. O HypeApp nunca pede senha, código de verificação ou chave PIX por mensagem.', L('/privacidade/'), 'Política de Privacidade')]
+    cf = ''.join(f'<li class="cr-cf"><b>{t}</b><span>{d}</span>{f"<a href={chr(34)}{h}{chr(34)}>{lk}</a>" if h else ""}</li>' for t, d, h, lk in confianca)
+    crescer = [('app-G1', 'O seu perfil é a sua vitrine', 'Redes conectadas, nichos e valores: é o que as marcas veem quando avaliam as inscrições.'),
+               ('app-G5', 'Histórico e avaliações', 'As campanhas concluídas ficam no seu perfil, e as marcas deixam nota e comentário sobre o seu trabalho.'),
+               ('app-F3', 'Uma comunidade de creators', 'Grupos por nicho, lives e trocas com quem também vive de conteúdo.')]
+    cr = ''.join(f'<li class="cr-gw"><span class="cr-shot"><img src="{tela(A, c)}" alt="{TELA_ALT.get(c, "Tela do app HypeApp")}" width="600" height="1298" loading="lazy" decoding="async"></span><b>{t}</b><span>{d}</span></li>' for c, t, d in crescer)
+    tudo = [('app-B4', 'Cadastro', 'Perfil, redes e valores por formato.'), ('app-D1', 'Campanhas', 'Mural, convites e inscrições.'),
+            ('app-E8', 'Entregas', 'Briefing, roteiro, conteúdo e publicação.'), ('app-E6', 'Chat', 'Conversa com a marca em cada campanha.'),
+            ('app-G2', 'Carteira', 'A liberar, disponível e extrato.'), ('app-H1', 'Calendário', 'Prazos de cada campanha por dia.')]
+    td = ''.join(f'<li><span class="cr-mini"><img src="{tela(A, c)}" alt="{TELA_ALT.get(c, "Tela do app HypeApp")}" width="600" height="1298" loading="lazy" decoding="async"></span><b>{t}</b><span>{d}</span></li>' for c, t, d in tudo)
+    faq = [('É pago para creators?', 'Não. O HypeApp é gratuito para creators: não há mensalidade nem taxa sobre o valor que você recebe das campanhas.'),
+           ('Preciso de quantos seguidores?', 'Nenhum mínimo para criar a conta. Cada campanha tem critérios próprios, e o app mostra se o seu perfil atende antes de você se inscrever.'),
+           ('Como e quando recebo?', PIX_TXT),
+           ('Quem escolhe quem participa?', 'No self-service, a própria marca. Na campanha gerenciada, a curadoria da Você no Hype.'),
+           ('Posso recusar uma campanha ou um convite?', 'Sim. Você só se inscreve nas campanhas que quiser e pode recusar convites; a marca é avisada.'),
            ('O cadastro garante campanhas?', 'Não. Cada campanha tem critérios próprios e a seleção é feita pela marca ou pela curadoria.'),
-           ('Como recebo o pagamento?', PIX_TXT),
            ('Preciso emitir nota fiscal?', 'Depende da campanha e do seu cadastro como pessoa física ou jurídica. O app informa o que é exigido antes do pagamento.'),
-           ('Quanto custa para creators?', 'Nada. O HypeApp é gratuito para creators: não há mensalidade nem taxa sobre o valor que você recebe das campanhas.'),
-           ('Recebidos e permuta: o produto fica comigo?', 'Depende da campanha. O mural de cada campanha informa se o produto é seu ou se precisa ser devolvido.'),
-           ('A marca pode usar meu conteúdo depois?', 'Depende do contrato da campanha, firmado entre você e a marca. Confira as condições de uso de imagem antes de aceitar o convite.')]
+           ('A marca pode usar meu conteúdo depois?', 'Depende do contrato da campanha, firmado entre você e a marca. Confira as condições de uso de imagem antes de aceitar.')]
     return f'''
 <section class="split" aria-labelledby="hero-c">
   <div class="stack" style="gap:24px;flex-basis:540px">
     <span class="tag">Para creators</span>
-    <h1 id="hero-c" class="display">O app completo para quem cria conteúdo.</h1>
-    <p class="lead">Encontre no mural as campanhas do seu nicho, inscreva-se, entregue pelo app e acompanhe seus pagamentos na carteira.</p>
+    <h1 id="hero-c" class="display">Sua carreira de creator, mais organizada.</h1>
+    <p class="lead">Campanhas com marcas, entregas e pagamento num app só. Você escolhe as campanhas, entrega pelo app e recebe na carteira.</p>
     <div class="row"><a class="btn btn-cta btn-lg" href="{L('/baixar/')}">Baixar o app</a><a class="btn btn-ghost btn-lg" href="{L('/entrar/', '#creators')}">Já tenho conta</a></div>
-    <p class="small" style="max-width:540px">Grátis para iPhone e Android. Crie sua conta pelo app. Para maiores de 18 anos, sem mínimo de seguidores.</p>
+    <ul class="cr-selos" aria-label="Em resumo">{selos}</ul>
   </div>
   <div style="flex-basis:520px">{motion_criador('comunidade')}</div>
 </section>
 
+<section class="stack-lg" id="para-quem" aria-labelledby="pq-h">
+  <div class="stack" style="gap:10px"><h2 id="pq-h" class="h2">Isso é pra mim?</h2><p class="lead">Se você cria conteúdo e quer trabalhar com marcas, é. Para maiores de 18 anos ou emancipados.</p></div>
+  <ul class="cr-grid3">{''.join(f'<li class="feat"><span class="h4">{t}</span><span style="font-size:16px;line-height:1.5">{d}</span></li>' for t, d in perfis)}</ul>
+</section>
+
+<section class="band-white cr-rot" aria-labelledby="rot-h">
+  <div class="stack" style="gap:10px"><h2 id="rot-h" class="h2">O que muda na sua rotina</h2><p class="lead">O trabalho com marcas sai das conversas soltas e ganha um lugar.</p></div>
+  <div class="cr-rot-h" aria-hidden="true"><span>Sem o HypeApp</span><span>Com o HypeApp</span></div>
+  <ul class="cr-rot-l">{rot}</ul>
+</section>
+
 {jornada_carrossel(L, A)}
 
-<div class="sc-intro stack" id="recursos" style="gap:10px"><h2 class="h2">Funcionalidades do app</h2><p class="body" style="max-width:620px">Tudo o que uma campanha pede, do cadastro ao saque. Toque em cada item para ver a tela.</p></div>
-{showcase(A, 'sc-cadastro', 'phone', 'Cadastro', 'Seu perfil pronto em poucos passos', 'Cinco etapas com barra de progresso. No fim, as marcas já veem suas redes e seus valores.', [
-  ('app-B3', 'Conecte suas redes', 'Instagram, TikTok e YouTube. Quem conecta todas recebe mais convites.'),
-  ('app-B4', 'Defina seus valores', 'Quanto você cobra por Reels, Stories e post, com valor sugerido.'),
-  ('app-B7', 'Perfil concluído', 'Pronto para entrar nas campanhas.')])}
-{showcase(A, 'sc-campanhas', 'phone', 'Campanhas', 'Campanhas do seu nicho em um só lugar', 'Descubra campanhas abertas, responda convites e acompanhe o próximo passo de cada uma.', [
-  ('app-D1', 'Descobrir', 'Busca, filtro por nicho e campanhas em destaque.'),
-  ('app-D5', 'Convites', 'Convites das marcas, com prazo para responder.'),
-  ('app-D2', 'Minhas campanhas', 'Ativas, inscrições e finalizadas, com o próximo passo à vista.')], flip=True)}
-{showcase(A, 'sc-execucao', 'phone', 'Entregas', 'Do briefing à publicação', 'Veja as condições antes de entrar, proponha seu valor e entregue cada etapa pelo app.', [
-  ('app-E1', 'Detalhe da campanha', 'Ganho, duração, entregas, benefícios e regras.'),
-  ('app-E2', 'Inscrição', 'Escolha as redes e proponha seu valor para cada uma.'),
-  ('app-E5', 'Briefing', 'Sobre a campanha, produtos da marca e fases com prazo.'),
-  ('app-E8', 'Envio do roteiro', 'Escreva ou anexe o roteiro e envie para aprovação.'),
-  ('app-E6', 'Chat com a marca', 'Tire dúvidas sem sair da campanha.')])}
-{showcase(A, 'sc-comunidade', 'phone', 'Comunidade', 'Uma comunidade de quem cria conteúdo', 'Feed, lives e grupos com outros creators, com regras claras de convivência.', [
-  ('app-F1', 'Para você', 'Publicações, dicas e bastidores de outros creators.'),
-  ('app-F2', 'Lives', 'Ao vivo, em breve e gravadas, com chat.'),
-  ('app-F3', 'Grupos', 'Grupos por nicho, com outros creators.')], flip=True)}
-{showcase(A, 'sc-carteira', 'phone', 'Carteira', 'Seu dinheiro com regras claras', 'Acompanhe o que está em campanha, a liberar e disponível, e peça o saque via PIX.', [
-  ('app-G2', 'Carteira', 'Saldo disponível, valores a liberar e extrato.'),
-  ('app-G4', 'Solicitar saque', 'Valor e chave PIX, com as regras do saque na tela.'),
-  ('app-G5', 'Avaliações', 'A nota e os comentários das marcas sobre seu trabalho.')])}
-{showcase(A, 'sc-rotina', 'phone', 'Organização', 'Prazos e avisos sem planilha', 'Calendário com os prazos de cada campanha e notificações por assunto.', [
-  ('app-H1', 'Calendário', 'Prazos de envio e publicação por dia.'),
-  ('app-H3', 'Notificações', 'Filtros por campanhas, comunidade e carteira.')], flip=True)}
+<section class="split cr-din" id="dinheiro" aria-labelledby="din-h">
+  <div class="stack-lg">
+    <div class="stack" style="gap:10px"><span class="tag">Pagamento</span><h2 id="din-h" class="h2">Seu dinheiro, com regras claras</h2><p class="lead">Antes de se inscrever, você já sabe quanto e como vai receber. Os seus valores por formato ficam no seu perfil.</p></div>
+    <div class="stack" style="gap:12px"><span class="h4">Como as campanhas pagam</span><ul class="cr-formas">{fm}</ul></div>
+    <div class="stack" style="gap:12px"><span class="h4">Do post ao PIX</span><ol class="cr-cam">{cm}</ol><p class="small muted">A chave PIX precisa estar no seu nome, com o mesmo CPF da conta.</p></div>
+  </div>
+  <figure class="cr-phone"><span class="cr-shot"><img src="{tela(A, 'app-G2')}" alt="{TELA_ALT.get('app-G2', 'Tela da carteira do app')}" width="600" height="1298" loading="lazy" decoding="async"></span><figcaption class="small muted">Tela do app com dados de exemplo.</figcaption></figure>
+</section>
+
+<section class="stack-lg" id="confianca" aria-labelledby="cf-h">
+  <div class="stack" style="gap:10px"><h2 id="cf-h" class="h2">Quem está por trás</h2><p class="lead">Um app de uma agência de verdade, com contrato e regras claras.</p></div>
+  <ul class="cr-grid4">{cf}</ul>
+</section>
+
+<section class="stack-lg" id="crescer" aria-labelledby="cs-h">
+  <div class="stack" style="gap:10px"><h2 id="cs-h" class="h2">Cresça além de uma campanha</h2><p class="lead">Cada campanha que você entrega fica no seu perfil e conta a seu favor na próxima.</p></div>
+  <ul class="cr-grid3">{cr}</ul>
+</section>
+
+<section class="stack-lg" id="recursos" aria-labelledby="rc-h">
+  <div class="stack" style="gap:10px"><h2 id="rc-h" class="h2">Tudo no app</h2><p class="lead">Do cadastro ao saque, sem planilha e sem perder mensagem.</p></div>
+  <ul class="cr-tudo">{td}</ul>
+</section>
 
 <section class="band-dark between" aria-labelledby="baixar-c" style="align-items:center">
   <div class="stack" style="flex:1 1 380px">
     <h2 id="baixar-c" class="h2">Baixe o HypeApp</h2>
-    <p class="body">Disponível para iPhone e Android. Já tem conta? Entre com o mesmo e-mail.</p>
+    <p class="body">Grátis para iPhone e Android. Crie sua conta pelo app. Já tem conta? Entre com o mesmo e-mail.</p>
     <div class="row">{stores(L)}</div>
   </div>
   <div class="qr">{QR}</div>
