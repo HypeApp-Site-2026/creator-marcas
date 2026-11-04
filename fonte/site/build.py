@@ -231,7 +231,7 @@ def header(cur, L, A):
     <a class="btn btn-ghost" href="{L('/entrar/')}">Entrar</a>
   </div>
 </div>'''
-    return f'''<header class="site-header wrap">
+    return f'''<header class="site-header wrap{' hdr-over' if cur == '/' else ''}">
   <div class="hdr">
     <a class="logo" href="{L('/')}" aria-label="HypeApp, página inicial">{logo(A, 40)}</a>
     <nav class="nav" aria-label="Principal">{links}</nav>
@@ -442,32 +442,6 @@ def motion_painel(A):
 </div>'''
 
 # ---------- Páginas ----------
-def homography_css(w, h, quad):
-    """matrix3d que leva um retângulo w×h (origem no canto superior esquerdo) ao quadrilátero
-    quad = [(x0,y0) sup. esq., (x1,y1) sup. dir., (x2,y2) inf. dir., (x3,y3) inf. esq.], em px da ilustração 1536×1024."""
-    src = [(0, 0), (w, 0), (w, h), (0, h)]
-    M, b = [], []
-    for (x, y), (u, v) in zip(src, quad):
-        M.append([x, y, 1, 0, 0, 0, -u * x, -u * y]); b.append(u)
-        M.append([0, 0, 0, x, y, 1, -v * x, -v * y]); b.append(v)
-    n = 8  # eliminação de Gauss
-    A_ = [row + [bb] for row, bb in zip(M, b)]
-    for c in range(n):
-        piv = max(range(c, n), key=lambda r: abs(A_[r][c])); A_[c], A_[piv] = A_[piv], A_[c]
-        for r in range(n):
-            if r != c:
-                f = A_[r][c] / A_[c][c]
-                A_[r] = [a - f * cc for a, cc in zip(A_[r], A_[c])]
-    a, b_, c_, d, e, f, g, hh = [A_[i][n] / A_[i][i] for i in range(n)]
-    m = [a, d, 0, g, b_, e, 0, hh, 0, 0, 1, 0, c_, f, 0, 1]
-    return 'matrix3d(' + ','.join(f'{x:.8g}' for x in m) + ')'
-
-# Cantos das telas na ilustração (medidos no hero-base.webp, 1536×1024)
-HERO_MON = [(328.2, 190.9), (1180.7, 73.8), (1151.8, 736.0), (279.5, 739.5)]
-HERO_PH = [(1018.3, 433.7), (1250.2, 413.7), (1237.3, 927.5), (994.0, 920.2)]
-# Contorno do celular por cima do monitor (para o celular continuar na frente)
-HERO_PH_CLIP = [(1300, 380), (1220, 403), (1180, 406), (1160, 408), (1100, 414), (1061, 417), (1041, 419), (1027, 425), (1014, 440),
-                (1008, 455), (1005, 470), (1004, 500), (1003, 515), (1001, 545), (999, 590), (997, 635), (995, 680), (993, 725), (990, 1000), (1300, 1000)]
 # Texto alternativo das telas usadas fora das vitrines (hero e menu)
 TELA_ALT = {
     'bo-C1': 'Tela do painel das marcas: dashboard com pendências e métricas',
@@ -480,79 +454,83 @@ TELA_ALT = {
     'app-E4': 'Tela do app para creators: campanha em andamento com ganho, data de publicação e entregas',
     'app-G2': 'Tela do app para creators: carteira com saldo',
 }
-HERO_MON_TELAS = ['bo-n02', 'bo-n04', 'bo-n01']
-HERO_PH_TELAS = ['app-D1', 'app-E4', 'app-G2']
+# ---------- Hero da home com rolagem (04/11) ----------
+# Palco fixo de ~500svh com quatro cenas: abertura (H1), APLICATIVO (iPhone), PLATAFORMA (MacBook) e final.
+# Todo o texto sai daqui, no HTML. O site.js só move e revela (transform e opacity); sem JavaScript ou com
+# prefers-reduced-motion, as cenas ficam empilhadas e legíveis. As máscaras por palavra e por letra já saem do build.
+HX_TELAS = {
+    'app': ('assets/hero/tela-app.webp', 'Tela do app HypeApp no iPhone: Campanhas, na aba Ativas, com as campanhas de exemplo Verão Glow e Run Club SP, o próximo passo e o prazo de cada uma'),
+    'painel': ('assets/hero/tela-painel.webp', 'Tela do painel HypeApp no MacBook: Campanhas, com as abas Todas, Ativas, Rascunhos e Finalizadas e cartões de exemplo com o progresso de publicação, o alcance e as pendências'),
+}
 
-HERO_SRCSET = lambda A: ', '.join(f"{A('assets/hero/' + f)} {w}w" for f, w in (('hero-base-768.webp', 768), ('hero-base-1024.webp', 1024), ('hero-base.webp', 1536)))
-HERO_SIZES = '(max-width: 900px) calc(100vw - 32px), 50vw'
+def _img_wh(rel):
+    from PIL import Image as _Im
+    with _Im.open(os.path.join(HERE, rel)) as im:
+        return im.size
 
-def hero_scene(A):
-    """Ilustração animada da hero. Arquivos: assets/hero/hero-base.webp e hero-textos.webp; estilos no fim do site.css.
-    Ciclo de 15,5 s: a ilustração com os textos animados e, depois, três telas reais no monitor e no celular."""
-    mon = ''.join(f'<img src="{tela(A, c)}" alt="{TELA_ALT[c]}" width="1600" height="771" loading="lazy" decoding="async">' for c in HERO_MON_TELAS)
-    ph = ''.join(f'<img src="{tela(A, c)}" alt="{TELA_ALT[c]}" width="600" height="1298" loading="lazy" decoding="async">' for c in HERO_PH_TELAS)
-    clip = 'polygon(' + ','.join(f'{x}px {y}px' for x, y in HERO_PH_CLIP) + ')'
-    return f'''<div class="hero-art">
-<div class="hh" role="img" aria-label="HypeApp: painel de campanhas no computador para marcas e app no celular para creators" data-hh>
-  <img src="{A('assets/hero/hero-base.webp')}" srcset="{HERO_SRCSET(A)}" sizes="{HERO_SIZES}" width="1536" height="1024" alt=""Ilustração: computador com o painel de campanhas das marcas e celular com o app dos creators" fetchpriority="high" decoding="async">
-  <div class="hh-scr" aria-hidden="true"><div class="hh-stage">
-    <div class="hh-mon" style="transform:{homography_css(1120, 760, HERO_MON)}">{mon}</div>
-    <img class="hh-front" src="{A('assets/hero/hero-base.webp')}" srcset="{HERO_SRCSET(A)}" sizes="{HERO_SIZES}" alt=""Ilustração: celular com o app do HypeApp" width="1536" height="1024" style="clip-path:{clip}">
-    <div class="hh-ph" style="transform:{homography_css(600, 1298, HERO_PH)}">{ph}<i class="hh-notch"></i></div>
-  </div></div>
-  <div aria-hidden="true">
-    <span class="hh-t hh-big hh-logo"></span>
-    <span class="hh-t hh-rise hh-nav-inicio"></span>
-    <span class="hh-t hh-rise hh-nav-campanhas"></span>
-    <span class="hh-t hh-rise hh-nav-criadores"></span>
-    <span class="hh-t hh-rise hh-nav-financeiro"></span>
-    <span class="hh-t hh-type hh-busca"></span>
-    <span class="hh-t hh-pop hh-avatar"></span>
-    <span class="hh-t hh-big hh-titulo"></span>
-    <span class="hh-t hh-rise hh-subtitulo"></span>
-    <span class="hh-t hh-rise hh-aba-todas"></span>
-    <span class="hh-t hh-rise hh-aba-andamento"></span>
-    <span class="hh-t hh-rise hh-aba-disponiveis"></span>
-    <span class="hh-t hh-rise hh-aba-concluidas"></span>
-    <span class="hh-t hh-pop hh-r1-letra"></span>
-    <span class="hh-t hh-rise hh-r1-nome"></span>
-    <span class="hh-t hh-rise hh-r1-chip1"></span>
-    <span class="hh-t hh-rise hh-r1-chip2"></span>
-    <span class="hh-t hh-pop hh-r1-status"></span>
-    <span class="hh-t hh-pop hh-r2-letra"></span>
-    <span class="hh-t hh-rise hh-r2-nome"></span>
-    <span class="hh-t hh-rise hh-r2-chip1"></span>
-    <span class="hh-t hh-rise hh-r2-chip2"></span>
-    <span class="hh-t hh-pop hh-r2-status"></span>
-    <span class="hh-t hh-pop hh-r3-letra"></span>
-    <span class="hh-t hh-rise hh-r3-nome"></span>
-    <span class="hh-t hh-rise hh-r3-chip1"></span>
-    <span class="hh-t hh-rise hh-r3-chip2"></span>
-    <span class="hh-t hh-pop hh-r3-status"></span>
-    <span class="hh-t hh-rise hh-cel-hora"></span>
-    <span class="hh-t hh-pop hh-cel-avatar"></span>
-    <span class="hh-t hh-big hh-cel-ola"></span>
-    <span class="hh-t hh-rise hh-cel-sub"></span>
-    <span class="hh-t hh-rise hh-cel-destaque"></span>
-    <span class="hh-t hh-rise hh-cel-destaque-l1"></span>
-    <span class="hh-t hh-rise hh-cel-destaque-l2"></span>
-    <span class="hh-t hh-rise hh-cel-proximo"></span>
-    <span class="hh-t hh-rise hh-cel-perfil"></span>
-    <span class="hh-t hh-rise hh-cel-perfil-l1"></span>
-    <span class="hh-t hh-rise hh-cel-perfil-l2"></span>
-    <span class="hh-t hh-rise hh-cel-tab-inicio"></span>
-    <span class="hh-t hh-rise hh-cel-tab-campanhas"></span>
-    <span class="hh-t hh-rise hh-cel-tab-comunidade"></span>
-    <span class="hh-t hh-rise hh-cel-tab-perfil"></span>
-    <span class="hh-t hh-big hh-card-roteiro"></span>
-    <span class="hh-t hh-big hh-card-comunidade"></span>
-    <span class="hh-t hh-pop hh-card-l"></span>
-    <span class="hh-t hh-pop hh-card-b"></span>
-    <span class="hh-t hh-pop hh-card-s"></span>
-    <span class="hh-t hh-pop hh-card-99"></span>
+def hx_palavras(txt, i0=0):
+    """Cada palavra numa máscara (overflow hidden). O texto continua igual: os espaços ficam entre as máscaras."""
+    out = [f'<span class="hx-m"><span class="hx-w" style="--i:{i0 + k}">{w}</span></span>' for k, w in enumerate(txt.split(' '))]
+    return ' '.join(out), i0 + len(out)
+
+def hx_gigante(word):
+    """Palavra decorativa (aria-hidden), letra a letra. --k = largura em em (Inter 600, -0,05em) para caber na tela."""
+    k = {'APLICATIVO': 5.46, 'PLATAFORMA': 6.31}[word]
+    letras = ''.join(f'<span class="hx-ch"><span style="--i:{i}">{c}</span></span>' for i, c in enumerate(word))
+    return f'<span class="hx-word" aria-hidden="true" style="--k:{k}">{letras}</span>'
+
+def hx_lista(itens, label):
+    li = ''.join(f'<li style="--i:{i}"><span class="hx-li">{t}</span></li>' for i, t in enumerate(itens))
+    return f'<ul class="hx-list" aria-label="{label}">{li}</ul>'
+
+def hero_scroll(L, A):
+    seta = ico('m6 9 6 6 6-6', 18)
+    h1a, n = hx_palavras('O app de quem cria conteúdo.')
+    h1b, n = hx_palavras('O painel de quem contrata.', n)
+    capa, _ = hx_palavras('Sua carreira de creator, mais organizada.')
+    capb, _ = hx_palavras('Sua campanha, do início ao resultado.')
+    fim, _ = hx_palavras('Do convite ao pagamento, tudo em um só lugar.')
+    (sa, alt_a), (sb, alt_b) = HX_TELAS['app'], HX_TELAS['painel']
+    wa, ha = _img_wh(sa)
+    wb, hb = _img_wh(sb)
+    ip_btns = ''.join(f'<span class="ip-btn ip-{k}"></span>' for k in ('act', 'vu', 'vd', 'pw'))
+    return f'''<section class="hx" aria-labelledby="hero-t" data-hx>
+  <div class="hx-pin">
+    <div class="hx-sc hx-open" data-sc="0">
+      <h1 id="hero-t" class="hx-h1"><span class="hx-l">{h1a}</span> <span class="hx-l hx-l2">{h1b}</span></h1>
+    </div>
+    <div class="hx-sc hx-app" data-sc="1">
+      {hx_gigante('APLICATIVO')}
+      <figure class="hx-dev hx-iphone"><div class="ip" data-dev><div class="ip-body"><span class="ip-btns" aria-hidden="true">{ip_btns}</span>
+        <div class="ip-bez"><div class="ip-scr"><img src="{A(sa)}" alt="{alt_a}" width="{wa}" height="{ha}" decoding="async"><span class="ip-di" aria-hidden="true"></span><span class="hx-glare" aria-hidden="true"></span></div></div>
+      </div></div></figure>
+      <div class="hx-copy">
+        <h2 class="hx-cap">{capa}</h2>
+        {hx_lista(['Campanhas com marcas', 'Entregas e aprovações', 'Recebimentos no app'], 'O que o app organiza')}
+      </div>
+    </div>
+    <div class="hx-sc hx-plat" data-sc="2">
+      {hx_gigante('PLATAFORMA')}
+      <figure class="hx-dev hx-mac"><div class="mb" data-dev>
+        <div class="mb-lid" data-lid><div class="mb-bez"><span class="mb-cam" aria-hidden="true"></span>
+          <div class="mb-scr"><img src="{A(sb)}" alt="{alt_b}" width="{wb}" height="{hb}" loading="lazy" decoding="async"><span class="mb-off" aria-hidden="true" data-off></span><span class="hx-glare" aria-hidden="true"></span></div>
+          <span class="mb-name" aria-hidden="true">MacBook Pro</span></div></div>
+        <div class="mb-base" aria-hidden="true"><div class="mb-deck"><i class="mb-keys"></i><i class="mb-pad"></i></div><div class="mb-lip"><i></i></div></div>
+      </div></figure>
+      <div class="hx-copy">
+        <h2 class="hx-cap">{capb}</h2>
+        {hx_lista(['Seleção de creators', 'Conteúdos e aprovações', 'Resultados em um só painel'], 'O que o painel reúne')}
+      </div>
+    </div>
+    <div class="hx-sc hx-end" data-sc="3">
+      <span class="hx-m hx-logo-m"><img class="hx-w hx-logo" src="{A('assets/logo-hypeapp-branco.svg')}" alt="HypeApp" width="292" height="160" loading="lazy" decoding="async"></span>
+      <p class="hx-fim">{fim}</p>
+      <div class="hx-ctas"><a class="btn btn-cta btn-lg" href="{L('/criadores/')}">Sou creator</a><a class="btn hx-btn-w btn-lg" href="{L('/marcas/')}">Tenho uma marca</a></div>
+    </div>
+    <span class="hx-cue hx-cue1" aria-hidden="true">Role para explorar {seta}</span>
+    <span class="hx-cue hx-cue2" aria-hidden="true">Continue explorando {seta}</span>
   </div>
-</div>
-</div>'''
+</section>'''
 
 COMO_FUNCIONA_C = [
     ('01 · Seu perfil', 'Mostre quem você é', 'Crie sua conta e conecte suas redes.', 'Ilustração: creator segurando o celular, com o cartão de perfil ao lado'),
@@ -676,18 +654,8 @@ def p_home(L, A):
            ('Já tenho conta no HypeApp. Preciso me cadastrar de novo?', 'Não. Atualize o app pela loja e entre com o mesmo e-mail e a mesma senha que você já usava.')]
     chips = lambda xs: ''.join(f'<span class="chip">{x}</span>' for x in xs)
     return f'''
-<section class="hero-home" aria-labelledby="hero-t">
-  <div class="stack hero-copy">
-    <span class="notice">App para iPhone e Android · <a href="{L('/baixar/')}">Baixar o app</a></span>
-    <h1 id="hero-t" class="display hero-t1"><span>O app de quem cria conteúdo.</span> <span>O painel de quem contrata.</span></h1>
-    <p class="lead">O app de gestão de carreira para creators e a plataforma de gestão de campanhas para marcas.</p>
-    <div class="row hero-ctas">
-      <a class="btn btn-cta btn-lg" href="{L('/baixar/')}">Baixar o app {ico(I_ARROW)}</a>
-      <a class="btn btn-grey btn-lg" href="{L('/marcas/')}">Sou marca ou agência</a>
-    </div>
-  </div>
-  {hero_scene(A)}
-</section>
+{hero_scroll(L, A)}
+<div class="wrap home-body">
 
 <section class="stack-lg cf-sec" aria-labelledby="como-t" data-tabs>
   <div class="cf-head">
@@ -720,7 +688,8 @@ def p_home(L, A):
     <input id="busca-home" class="input" type="search" placeholder="Ex.: como recebo o pagamento">
     <button class="btn btn-cta" type="submit">Buscar</button>
   </form>
-</section>'''
+</section>
+</div>'''
 
 CANDIDATURA = [
     ('app-D1', 'Encontre a campanha', 'Em Descobrir, filtre o mural por nicho e formato e veja as campanhas em destaque.', 'Descobrir'),
@@ -1496,7 +1465,7 @@ def build_page(url, fn, kind):
     robots = 'noindex, nofollow' if CFG['preview'] else (m['robots'] if m else 'noindex, follow')
     canon = BASE + url if url not in ('/404', '/app') else ''  # /app é página de passagem, sem índice
     main = fn(L, A)
-    cls = 'wrap' + (' tight' if kind == 'tight' else '')
+    cls = 'home' if url == '/' else 'wrap' + (' tight' if kind == 'tight' else '')
     body = header(url, L, A) + f'\n<main class="{cls}" id="conteudo">{main}</main>\n' + tiktok_shop(L, A, url) + '\n' + footer(L, A)
     body = mark_ph(body)
     for p, _ in [('/criadores/', 0), ('/marcas/', 0), ('/perguntas-frequentes/', 0)]:
@@ -1531,7 +1500,6 @@ def build_page(url, fn, kind):
 <meta name="twitter:image" content="{BASE}/{(m or {}).get('img', 'og/padrao.jpg')}">
 <meta name="theme-color" content="#EFEFEF">
 <link rel="preload" href="{A('assets/fonts/inter-latin-wght-normal.woff2')}" as="font" type="font/woff2" crossorigin>
-{f'<link rel="preload" as="image" type="image/webp" fetchpriority="high" imagesrcset="{HERO_SRCSET(A)}" imagesizes="{HERO_SIZES}">' if url == '/' else ''}
 <link rel="icon" href="{A('favicon.ico')}" sizes="32x32">
 <link rel="icon" href="{A('favicon.svg')}" type="image/svg+xml">
 <link rel="apple-touch-icon" href="{A('apple-touch-icon.png')}">

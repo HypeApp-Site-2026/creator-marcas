@@ -84,7 +84,6 @@ h1, h2, h3 { font-weight: 600; text-wrap: balance; margin: 0; }
 .display { font-size: clamp(40px, 6.2vw, 68px); line-height: 1.02; letter-spacing: -0.04em; }
 .h2 { font-size: clamp(30px, 4vw, 44px); line-height: 1.05; letter-spacing: -0.04em; }
 .h3 { font-size: clamp(24px, 2.6vw, 28px); line-height: 1.15; letter-spacing: -0.035em; }
-.hero-t1 > span { display: block; text-wrap: wrap; }
 .h4 { font-size: 21px; line-height: 1.25; letter-spacing: -0.03em; font-weight: 600; }
 .lead { font-size: clamp(17px, 1.6vw, 19px); line-height: 1.5; max-width: 560px; margin: 0; }
 .body { font-size: 17px; line-height: 1.5; margin: 0; }
@@ -216,13 +215,6 @@ body.menu-open { overflow: hidden; }
 @media (max-width: 720px) { .split { gap: 32px; } .split > * { flex-basis: 100%; } }
 
 /* Início */
-.hero-home { display: grid; grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr); gap: 24px; align-items: center; }
-.hero-home > .stack { justify-content: center; gap: 24px; padding: 24px 0; min-width: 0; }
-.hero-ctas { gap: 12px; padding-top: 4px; }
-.hero-t1 { text-transform: uppercase; font-weight: 800; font-size: clamp(34px, 4.1vw, 58px); line-height: 0.95; letter-spacing: -0.035em; }
-.hero-ctas .btn-grey { background: var(--surface); }
-.hero-ctas .btn-grey:hover { background: #F7F7F7; }
-@media (max-width: 960px) { .hero-home { grid-template-columns: minmax(0, 1fr); gap: 8px; } }
 
 .stats { display: flex; gap: 32px; flex-wrap: wrap; padding-top: 12px; }
 .stat b { display: block; font-size: 44px; font-weight: 600; letter-spacing: -0.045em; line-height: 1.05; }
@@ -698,112 +690,172 @@ fieldset.invalid .choice > span { box-shadow: inset 0 0 0 2px #C4122F; }
 
 .hp { position: absolute; left: -9999px; }
 
-/* ---------- Ilustração animada da hero (arquivos em assets/hero/, enviada em 27/10) ---------- */
-/* HypeApp · ilustração de destaque com textos animados
-   Arquivos: hero-base.webp (ilustração sem textos) + hero-textos.webp (todos os textos, recortados do PNG original).
-   Só CSS: não precisa de JavaScript nem de nada externo (compatível com a CSP do site). */
+/* ---------- Hero da home com rolagem (04/11) ----------
+   Sem JavaScript ou com prefers-reduced-motion: as cenas ficam empilhadas, no fundo escuro, cada uma já montada.
+   Com JavaScript, o site.js põe .hx-live: a seção ganha ~500svh e as cenas passam a um palco fixo (sticky).
+   A troca acontece abaixo da dobra: a abertura ocupa a primeira tela nos dois modos, então nada se desloca (CLS 0).
+   Animações: só transform e opacity. */
+main.home { display: block; }
+main.home > .home-body { padding-block: 120px 0; display: flex; flex-direction: column; gap: 120px; }
+.site-header.hdr-over { position: absolute; left: 0; right: 0; }
 
-.hh{position:relative;width:100%;max-width:1536px;aspect-ratio:3/2;margin-inline:auto}
-.hh>img{position:absolute;inset:0;width:100%;height:100%;display:block;user-select:none;-webkit-user-drag:none}
-.hh-t{position:absolute;display:block;background-image:url("hero/hero-textos.webp");background-repeat:no-repeat;pointer-events:none}
-
-/* Ciclo de 9s: entra, fica na tela e some de leve antes de repetir */
-@media (prefers-reduced-motion:no-preference){
-  .hh-t{animation:hh-rise 15.5s cubic-bezier(.2,.8,.2,1) infinite both}
-  .hh-big{animation-name:hh-big}
-  .hh-pop{animation-name:hh-pop}
-  .hh-type{animation-name:hh-type;animation-timing-function:linear}
+.hx {
+  --hx-bg: #08070A; --hx-paper: #ECEAE5;
+  position: relative; background: var(--hx-bg); color: #fff;
 }
-@keyframes hh-rise{0%{opacity:0;transform:translateY(10px)}5.23%,51.1%{opacity:1;transform:none}54.6%,100%{opacity:0;transform:none}}
-@keyframes hh-big{0%{opacity:0;transform:translateY(16px) scale(.97)}5.81%,51.1%{opacity:1;transform:none}54.6%,100%{opacity:0;transform:none}}
-@keyframes hh-pop{0%{opacity:0;transform:scale(.7)}2.9%{opacity:1;transform:scale(1.06)}4.06%,51.1%{opacity:1;transform:none}54.6%,100%{opacity:0;transform:none}}
-@keyframes hh-type{0%{clip-path:inset(0 100% 0 0)}6.97%,51.1%{clip-path:inset(0 0 0 0);opacity:1}54.6%,100%{clip-path:inset(0 0 0 0);opacity:0}}
+.hx-pin { position: relative; }
+.hx-sc { position: relative; overflow: hidden; min-height: 100vh; min-height: 100svh; }
 
-/* Posição de cada texto (em % da ilustração 1536×1024) e atraso de entrada */
-.hh-logo{left:22.0703%;top:20.7031%;width:7.5521%;aspect-ratio:116/43;background-size:882.7586% 390.6977%;background-position:53.6344% 0.0000%;animation-delay:0.00s}
-.hh-nav-inicio{left:24.0885%;top:28.7109%;width:2.4089%;aspect-ratio:37/21;background-size:2767.5676% 800.0000%;background-position:97.9737% 81.6327%;animation-delay:0.07s}
-.hh-nav-campanhas{left:23.6979%;top:32.7148%;width:4.9479%;aspect-ratio:76/27;background-size:1347.3684% 622.2222%;background-position:35.0211% 63.8298%;animation-delay:0.14s}
-.hh-nav-criadores{left:23.5677%;top:37.5977%;width:3.7760%;aspect-ratio:58/22;background-size:1765.5172% 763.6364%;background-position:63.6646% 82.1918%;animation-delay:0.21s}
-.hh-nav-financeiro{left:23.3073%;top:41.9922%;width:3.9714%;aspect-ratio:61/22;background-size:1678.6885% 763.6364%;background-position:70.0935% 82.1918%;animation-delay:0.28s}
-.hh-busca{left:55.2083%;top:17.3828%;width:7.0964%;aspect-ratio:109/28;background-size:939.4495% 600.0000%;background-position:0.0000% 64.2857%;animation-delay:0.45s}
-.hh-avatar{left:70.1172%;top:14.9414%;width:1.8229%;aspect-ratio:28/23;background-size:3657.1429% 730.4348%;background-position:46.6867% 82.7586%;animation-delay:0.52s}
-.hh-titulo{left:32.8776%;top:23.0469%;width:10.4167%;aspect-ratio:160/46;background-size:640.0000% 365.2174%;background-position:37.6157% 0.0000%;animation-delay:0.25s}
-.hh-subtitulo{left:32.7474%;top:25.0000%;width:21.0286%;aspect-ratio:323/53;background-size:317.0279% 316.9811%;background-position:0.0000% 0.0000%;animation-delay:0.32s}
-.hh-aba-todas{left:33.0078%;top:32.9102%;width:2.6693%;aspect-ratio:41/23;background-size:2497.5610% 730.4348%;background-position:50.3561% 82.7586%;animation-delay:0.65s}
-.hh-aba-andamento{left:37.7604%;top:31.9336%;width:5.8594%;aspect-ratio:90/25;background-size:1137.7778% 672.0000%;background-position:86.7238% 62.9371%;animation-delay:0.72s}
-.hh-aba-disponiveis{left:45.8984%;top:30.7617%;width:4.5573%;aspect-ratio:70/26;background-size:1462.8571% 646.1538%;background-position:48.9518% 63.3803%;animation-delay:0.79s}
-.hh-aba-concluidas{left:52.9948%;top:29.5898%;width:4.6224%;aspect-ratio:71/25;background-size:1442.2535% 672.0000%;background-position:94.6485% 62.9371%;animation-delay:0.86s}
-.hh-r1-letra{left:34.1146%;top:40.3320%;width:1.6927%;aspect-ratio:26/32;background-size:3938.4615% 525.0000%;background-position:17.0341% 40.4412%;animation-delay:0.90s}
-.hh-r1-nome{left:37.9557%;top:37.7930%;width:10.9375%;aspect-ratio:168/33;background-size:609.5238% 509.0909%;background-position:0.0000% 40.7407%;animation-delay:0.97s}
-.hh-r1-chip1{left:38.3464%;top:41.3086%;width:9.7656%;aspect-ratio:150/30;background-size:682.6667% 560.0000%;background-position:43.2494% 39.8551%;animation-delay:1.04s}
-.hh-r1-chip2{left:48.8932%;top:40.4297%;width:5.0781%;aspect-ratio:78/28;background-size:1312.8205% 600.0000%;background-position:11.7336% 64.2857%;animation-delay:1.11s}
-.hh-r1-status{left:61.5885%;top:36.2305%;width:6.9661%;aspect-ratio:107/29;background-size:957.0093% 579.3103%;background-position:57.7972% 39.5683%;animation-delay:1.18s}
-.hh-r2-letra{left:33.5286%;top:51.6602%;width:1.6276%;aspect-ratio:25/32;background-size:4096.0000% 525.0000%;background-position:19.8198% 40.4412%;animation-delay:1.10s}
-.hh-r2-nome{left:37.3698%;top:49.7070%;width:8.7891%;aspect-ratio:135/29;background-size:758.5185% 579.3103%;background-position:71.8785% 39.5683%;animation-delay:1.17s}
-.hh-r2-chip1{left:37.7604%;top:53.5156%;width:4.8828%;aspect-ratio:75/23;background-size:1365.3333% 730.4348%;background-position:56.6913% 82.7586%;animation-delay:1.24s}
-.hh-r2-chip2{left:43.6849%;top:53.0273%;width:3.9062%;aspect-ratio:60/24;background-size:1706.6667% 700.0000%;background-position:14.4191% 83.3333%;animation-delay:1.31s}
-.hh-r2-status{left:56.7057%;top:49.5117%;width:7.6172%;aspect-ratio:117/28;background-size:875.2137% 600.0000%;background-position:21.0584% 64.2857%;animation-delay:1.38s}
-.hh-r3-letra{left:33.0729%;top:62.9883%;width:1.4974%;aspect-ratio:23/32;background-size:4452.1739% 525.0000%;background-position:22.4775% 40.4412%;animation-delay:1.30s}
-.hh-r3-nome{left:36.9141%;top:61.4258%;width:5.9896%;aspect-ratio:92/26;background-size:1113.0435% 646.1538%;background-position:57.8326% 63.3803%;animation-delay:1.37s}
-.hh-r3-chip1{left:37.0443%;top:65.1367%;width:7.6823%;aspect-ratio:118/22;background-size:867.7966% 763.6364%;background-position:81.4570% 82.1918%;animation-delay:1.44s}
-.hh-r3-chip2{left:45.8333%;top:65.0391%;width:4.8828%;aspect-ratio:75/21;background-size:1365.3333% 800.0000%;background-position:0.0000% 100.0000%;animation-delay:1.51s}
-.hh-r3-status{left:58.3333%;top:62.5977%;width:4.8177%;aspect-ratio:74/25;background-size:1383.7838% 672.0000%;background-position:0.0000% 83.9161%;animation-delay:1.58s}
-.hh-cel-hora{left:67.4479%;top:43.0664%;width:1.9531%;aspect-ratio:30/19;background-size:3413.3333% 884.2105%;background-position:17.8068% 98.6577%;animation-delay:1.25s}
-.hh-cel-avatar{left:78.3854%;top:46.3867%;width:1.9531%;aspect-ratio:30/27;background-size:3413.3333% 622.2222%;background-position:41.2475% 63.8298%;animation-delay:1.32s}
-.hh-cel-ola{left:66.7318%;top:47.5586%;width:8.2031%;aspect-ratio:126/32;background-size:812.6984% 525.0000%;background-position:27.8396% 40.4412%;animation-delay:1.39s}
-.hh-cel-sub{left:66.7318%;top:50.0977%;width:11.3932%;aspect-ratio:175/26;background-size:585.1429% 646.1538%;background-position:74.5583% 63.3803%;animation-delay:1.46s}
-.hh-cel-destaque{left:67.3828%;top:54.9805%;width:10.9375%;aspect-ratio:168/29;background-size:609.5238% 579.3103%;background-position:90.6542% 39.5683%;animation-delay:1.53s}
-.hh-cel-destaque-l1{left:67.3177%;top:57.6172%;width:9.8958%;aspect-ratio:152/24;background-size:673.6842% 700.0000%;background-position:23.0505% 83.3333%;animation-delay:1.60s}
-.hh-cel-destaque-l2{left:67.2526%;top:59.4727%;width:4.1667%;aspect-ratio:64/21;background-size:1600.0000% 800.0000%;background-position:8.0208% 100.0000%;animation-delay:1.67s}
-.hh-cel-proximo{left:66.0807%;top:68.3594%;width:7.0312%;aspect-ratio:108/24;background-size:948.1481% 700.0000%;background-position:38.7555% 83.3333%;animation-delay:1.74s}
-.hh-cel-perfil{left:69.7266%;top:72.5586%;width:6.9661%;aspect-ratio:107/22;background-size:957.0093% 763.6364%;background-position:93.5660% 82.1918%;animation-delay:1.81s}
-.hh-cel-perfil-l1{left:69.7266%;top:74.4141%;width:8.2682%;aspect-ratio:127/19;background-size:806.2992% 884.2105%;background-position:23.2999% 98.6577%;animation-delay:1.88s}
-.hh-cel-perfil-l2{left:69.7266%;top:75.8789%;width:7.7474%;aspect-ratio:119/19;background-size:860.5042% 884.2105%;background-position:37.3481% 98.6577%;animation-delay:1.95s}
-.hh-cel-tab-inicio{left:66.4714%;top:85.3516%;width:2.0833%;aspect-ratio:32/21;background-size:3200.0000% 800.0000%;background-position:14.4153% 100.0000%;animation-delay:2.02s}
-.hh-cel-tab-campanhas{left:69.4661%;top:85.6445%;width:3.3203%;aspect-ratio:51/19;background-size:2007.8431% 884.2105%;background-position:47.1737% 98.6577%;animation-delay:2.09s}
-.hh-cel-tab-comunidade{left:73.1120%;top:85.7422%;width:3.5807%;aspect-ratio:55/18;background-size:1861.8182% 933.3333%;background-position:52.8380% 98.0000%;animation-delay:2.16s}
-.hh-cel-tab-perfil{left:77.3438%;top:85.8398%;width:1.9531%;aspect-ratio:30/18;background-size:3413.3333% 933.3333%;background-position:57.2435% 98.0000%;animation-delay:2.23s}
-.hh-card-roteiro{left:7.2917%;top:35.2539%;width:10.1562%;aspect-ratio:156/39;background-size:656.4103% 430.7692%;background-position:69.7005% 0.0000%;animation-delay:2.00s}
-.hh-card-comunidade{left:84.8958%;top:31.9336%;width:7.0964%;aspect-ratio:109/34;background-size:939.4495% 494.1176%;background-position:83.3880% 0.0000%;animation-delay:2.10s}
-.hh-card-l{left:83.7240%;top:38.7695%;width:1.3021%;aspect-ratio:20/28;background-size:5120.0000% 600.0000%;background-position:30.8765% 64.2857%;animation-delay:2.17s}
-.hh-card-b{left:86.6536%;top:38.3789%;width:1.3672%;aspect-ratio:21/25;background-size:4876.1905% 672.0000%;background-position:7.5773% 83.9161%;animation-delay:2.24s}
-.hh-card-s{left:89.6484%;top:37.7930%;width:1.4974%;aspect-ratio:23/27;background-size:4452.1739% 622.2222%;background-position:44.1558% 63.8298%;animation-delay:2.31s}
-.hh-card-99{left:92.3177%;top:37.4023%;width:2.4740%;aspect-ratio:38/25;background-size:2694.7368% 672.0000%;background-position:10.0406% 83.9161%;animation-delay:2.38s}
+/* Máscaras: cada palavra (ou letra) sobe de dentro de uma janela com overflow hidden */
+.hx-m { display: inline-block; overflow: hidden; vertical-align: top; padding: .1em .02em .16em; margin: -.1em -.02em -.16em; }
+.hx-w { display: inline-block; }
+.hx-ch { display: inline-block; margin-right: -.05em; clip-path: inset(-.3em -.3em 0 -.3em); }
+.hx-ch > span { display: inline-block; }
 
-.hero-art { min-width: 0; }
-.hero-art .hh { max-width: 100%; }
-
-/* Telas que vão trocando nos aparelhos (ciclo de 15,5 s, junto com os textos acima):
-   0–8 s ilustração com textos · 8–10,5 s, 10,5–13 s e 13–15,5 s telas reais no monitor e no celular.
-   Os cartões "Roteiro aprovado" e "Comunidade" ficam na tela o ciclo todo. */
-.hh-scr { position: absolute; inset: 0; overflow: hidden; display: none; pointer-events: none; }
-.hh.live .hh-scr { display: block; }
-.hh-stage { position: absolute; left: 0; top: 0; width: 1536px; height: 1024px; transform-origin: 0 0; transform: scale(var(--hh-k, 1)); }
-.hh-stage > * { position: absolute; left: 0; top: 0; transform-origin: 0 0; }
-.hh-mon { width: 1120px; height: 760px; overflow: hidden; border-radius: 10px; background: #EDEDED; }
-/* telas novas (1600x771): conteúdo sem a lateral, encaixado na largura do monitor */
-.hh-mon img { position: absolute; top: 0; left: -188px; width: 1336px; height: 644px; max-width: none; opacity: 0; }
-.hh-front { width: 1536px; height: 1024px; max-width: none; }
-.hh-ph { width: 600px; height: 1298px; overflow: hidden; border-radius: 72px; }
-.hh-ph img { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; object-fit: cover; object-position: top; opacity: 0; }
-.hh-notch { position: absolute; left: 50%; top: 0; width: 210px; height: 46px; margin-left: -105px; border-radius: 0 0 26px 26px; background: #0B0B0F; opacity: 0; }
+/* Abertura */
+.hx-open { display: flex; align-items: center; justify-content: center; padding: 120px max(24px, 4vw) 120px; }
+.hx-h1 {
+  margin: 0; max-width: 15em; text-align: center; color: #fff;
+  font-size: clamp(40px, 6vw, 112px); font-weight: 600; line-height: 1.02; letter-spacing: -0.045em;
+}
+.hx-l { display: block; }
+.hx-l2 { color: rgba(236, 234, 229, .58); }
 @media (prefers-reduced-motion: no-preference) {
-  .hh-card-roteiro, .hh-card-comunidade { animation-name: hh-keep-big; }
-  .hh-card-l, .hh-card-b, .hh-card-s, .hh-card-99 { animation-name: hh-keep-pop; }
-  .hh-mon img, .hh-ph img, .hh-notch { animation: hh-scr 15.5s ease-in-out infinite both; }
-  .hh-mon img:nth-child(1) { animation-delay: 7.9s; }
-  .hh-mon img:nth-child(2) { animation-delay: 10.4s; }
-  .hh-mon img:nth-child(3) { animation-delay: 12.9s; animation-name: hh-scr-last; }
-  .hh-ph img:nth-child(1) { animation-delay: 8.1s; }
-  .hh-ph img:nth-child(2) { animation-delay: 10.6s; }
-  .hh-ph img:nth-child(3) { animation-delay: 13.1s; animation-name: hh-scr-last; }
-  .hh-notch { animation-name: hh-notch; animation-delay: 8.1s; }
+  .hx-open .hx-w { animation: hx-up 1s var(--ease) calc(160ms + var(--i) * 55ms) backwards; }
+  .hx-skip .hx-open .hx-w { animation: none; }
 }
-@keyframes hh-scr { 0% { opacity: 0; } 2.58%, 18.71% { opacity: 1; } 21.29%, 100% { opacity: 0; } }
-@keyframes hh-scr-last { 0% { opacity: 0; } 2.58%, 13.55% { opacity: 1; } 16.13%, 100% { opacity: 0; } }
-@keyframes hh-notch { 0% { opacity: 0; } 2.58%, 45.8% { opacity: 1; } 48.4%, 100% { opacity: 0; } }
-@keyframes hh-keep-big { 0% { opacity: 0; transform: translateY(16px) scale(.97); } 5.81%, 97% { opacity: 1; transform: none; } 100% { opacity: 0; transform: none; } }
-@keyframes hh-keep-pop { 0% { opacity: 0; transform: scale(.7); } 2.9% { opacity: 1; transform: scale(1.06); } 4.06%, 97% { opacity: 1; transform: none; } 100% { opacity: 0; transform: none; } }
+@keyframes hx-up { from { transform: translate3d(0, 130%, 0); } }
+
+/* Palavra gigante (decorativa): Inter 600, caixa alta, papel off-white com ruído leve */
+.hx-word {
+  position: absolute; left: 0; right: 0; top: 46%; transform: translateY(-50%);
+  display: flex; justify-content: center; white-space: nowrap; pointer-events: none; user-select: none;
+  font-weight: 600; text-transform: uppercase; line-height: 1; letter-spacing: 0;
+  font-size: min(22vw, calc(94vw / var(--k, 6)));
+}
+.hx-word .hx-ch > span {
+  color: transparent; -webkit-background-clip: text; background-clip: text;
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .32 0 0 0 0 .30 0 0 0 0 .27 0 0 0 .9 -.32'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
+    linear-gradient(180deg, #F2F0EC, var(--hx-paper) 55%, #E2DFD8);
+  -webkit-background-clip: text; background-clip: text;
+}
+
+/* Aparelhos (CSS). As telas são imagens exportadas do app e do painel. */
+.hx-dev { position: absolute; left: 50%; top: 48%; margin: 0; }
+.hx-glare { position: absolute; inset: 0; pointer-events: none; background: linear-gradient(118deg, rgba(255, 255, 255, .16) 0%, rgba(255, 255, 255, .05) 33%, rgba(255, 255, 255, 0) 33.5%); }
+
+/* iPhone 15 Pro, titânio escuro */
+.hx-iphone { --w: min(33svh, 21vw); width: var(--w); height: calc(var(--w) * 2.06); transform: translate(-50%, -50%); perspective: 1800px; }
+.ip { width: 100%; height: 100%; transform: rotateZ(21deg) rotateY(-12deg) rotateX(6deg); transform-style: preserve-3d; }
+.ip-body {
+  position: relative; width: 100%; height: 100%; border-radius: calc(var(--w) * .175); padding: calc(var(--w) * .022);
+  background: linear-gradient(135deg, #77777b 0%, #3d3d40 16%, #232325 42%, #2d2d30 68%, #66666a 100%);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, .25), inset 0 0 0 2.5px rgba(0, 0, 0, .55),
+    1px 1px 0 #303033, 2px 2px 0 #2a2a2d, 3px 3px 0 #252528, 4px 3px 0 #202022, 5px 4px 0 #1b1b1d, 6px 5px 0 #161618,
+    40px 60px 90px rgba(0, 0, 0, .6), 10px 18px 30px rgba(0, 0, 0, .45);
+}
+.ip-bez { height: 100%; border-radius: calc(var(--w) * .154); background: #000; padding: calc(var(--w) * .03); }
+.ip-scr { position: relative; height: 100%; border-radius: calc(var(--w) * .125); overflow: hidden; background: #F5F4F7; }
+.ip-scr img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+.ip-di { position: absolute; top: calc(var(--w) * .032); left: 50%; width: calc(var(--w) * .3); height: calc(var(--w) * .088); margin-left: calc(var(--w) * -.15); border-radius: 999px; background: #000; }
+.ip-btns { position: absolute; inset: 0; pointer-events: none; }
+.ip-btn { position: absolute; width: calc(var(--w) * .016); border-radius: 3px; background: linear-gradient(90deg, #1f1f21, #6a6a6e 50%, #2a2a2c); }
+.ip-act { left: calc(var(--w) * -.013); top: 17%; height: 5.2%; }
+.ip-vu { left: calc(var(--w) * -.013); top: 25%; height: 8.6%; }
+.ip-vd { left: calc(var(--w) * -.013); top: 35.5%; height: 8.6%; }
+.ip-pw { right: calc(var(--w) * -.015); top: 28%; height: 13%; }
+
+/* MacBook Pro prata, de frente */
+.hx-mac { --w: min(56vw, 94svh); width: var(--w); transform: translate(-50%, -52%); perspective: 2400px; perspective-origin: 50% -20%; }
+.mb { position: relative; width: 100%; }
+.mb-lid { width: 80.5%; margin: 0 auto; transform-origin: 50% 100%; }
+.mb-bez {
+  position: relative; aspect-ratio: 1.585; background: #0a0a0b;
+  border-radius: calc(var(--w) * .024) calc(var(--w) * .024) calc(var(--w) * .006) calc(var(--w) * .006);
+  padding: calc(var(--w) * .014) calc(var(--w) * .014) calc(var(--w) * .028);
+  box-shadow: 0 0 0 calc(var(--w) * .0035) #c9cbcf, 0 0 0 calc(var(--w) * .006) #8e9095, 0 -10px 40px rgba(0, 0, 0, .25);
+}
+.mb-scr { position: relative; height: 100%; overflow: hidden; border-radius: calc(var(--w) * .003); background: #F7F6F9; }
+.mb-scr img { width: 100%; height: 100%; object-fit: cover; object-position: top left; }
+.mb-off { position: absolute; inset: 0; background: #0a0a0b; opacity: 0; }
+.mb-cam { position: absolute; top: calc(var(--w) * .0055); left: 50%; width: calc(var(--w) * .005); height: calc(var(--w) * .005); margin-left: calc(var(--w) * -.0025); border-radius: 50%; background: #262830; }
+.mb-name { position: absolute; left: 0; right: 0; bottom: calc(var(--w) * .0075); text-align: center; font-size: max(7px, calc(var(--w) * .011)); line-height: 1; color: #8d8d92; letter-spacing: .02em; }
+.mb-base { position: relative; width: 100%; height: calc(var(--w) * .078); }
+.mb-deck {
+  position: absolute; left: 0; right: 0; top: 0; bottom: calc(var(--w) * .016);
+  clip-path: polygon(7.2% 0, 92.8% 0, 100% 100%, 0 100%);
+  background: linear-gradient(180deg, #8f9196 0%, #c3c5c9 30%, #d9dadd 70%, #e4e5e7 100%);
+}
+.mb-keys {
+  position: absolute; left: 14.5%; right: 14.5%; top: 9%; height: 44%;
+  clip-path: polygon(1.8% 0, 98.2% 0, 100% 100%, 0 100%);
+  background:
+    repeating-linear-gradient(90deg, transparent 0 calc(100% / 18 - 2px), #b4b6ba calc(100% / 18 - 2px) calc(100% / 18)),
+    repeating-linear-gradient(180deg, transparent 0 calc(100% / 4 - 1.5px), #b4b6ba calc(100% / 4 - 1.5px) calc(100% / 4)),
+    #1c1c1e;
+}
+.mb-pad { position: absolute; left: 35%; right: 35%; top: 61%; bottom: 6%; clip-path: polygon(1.5% 0, 98.5% 0, 100% 100%, 0 100%); background: linear-gradient(180deg, #c6c8cb, #dcdde0); }
+.mb-lip {
+  position: absolute; left: 0; right: 0; bottom: 0; height: calc(var(--w) * .017);
+  border-radius: 0 0 calc(var(--w) * .03) calc(var(--w) * .03) / 0 0 calc(var(--w) * .016) calc(var(--w) * .016);
+  background: linear-gradient(180deg, #eeeff1 0%, #b9bbbf 45%, #7a7c80 100%);
+  box-shadow: 0 34px 60px rgba(0, 0, 0, .55), 0 10px 20px rgba(0, 0, 0, .4);
+}
+.mb-lip i { position: absolute; top: 0; left: 43%; width: 14%; height: 45%; border-radius: 0 0 6px 6px; background: linear-gradient(180deg, #9fa1a5, #c8cacd); }
+
+/* Legenda (H2) e lista */
+.hx-copy { position: absolute; left: max(24px, 3.4vw); right: max(24px, 3.4vw); bottom: 9svh; display: flex; justify-content: space-between; align-items: flex-end; gap: 32px; }
+.hx-cap { max-width: 11.5em; color: #fff; font-size: clamp(26px, 2.45vw, 40px); font-weight: 400; line-height: 1.18; letter-spacing: -0.02em; }
+.hx-list { list-style: none; margin: 0; padding: 0; width: min(20vw, 340px); min-width: 250px; }
+.hx-list li { position: relative; overflow: hidden; padding: 12px 0 13px; color: #fff; font-size: 18px; line-height: 1.35; }
+.hx-list li::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 1px; background: rgba(255, 255, 255, .4); transform-origin: 0 50%; transform: scaleX(var(--k, 1)); }
+.hx-li { display: inline-block; }
+
+/* Final */
+.hx-end { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 28px; padding: 96px max(24px, 6vw); text-align: center; }
+.hx-logo-m { padding: 0; margin: 0; }
+.hx-logo { width: clamp(150px, 15vw, 240px); height: auto; }
+.hx-fim { margin: 0; max-width: 13em; color: #fff; font-size: clamp(30px, 4.2vw, 64px); font-weight: 600; line-height: 1.05; letter-spacing: -0.04em; }
+.hx-ctas { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; padding-top: 8px; }
+.hx-btn-w { background: #fff; color: var(--ink); }
+.hx-btn-w:hover { background: var(--hx-paper); color: var(--ink); }
+
+/* "Role para explorar" */
+.hx-cue { position: absolute; left: 50%; top: calc(100svh - 64px); transform: translateX(-50%); display: inline-flex; align-items: center; gap: 8px; color: #fff; font-size: 17px; white-space: nowrap; pointer-events: none; }
+.hx-cue2 { opacity: 0; }
+
+/* Modo com JavaScript: palco fixo */
+.hx.hx-live { height: 500vh; height: 500svh; }
+.hx-live .hx-pin { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; }
+.hx-live .hx-sc { position: absolute; inset: 0; min-height: 0; }
+.hx-live .hx-sc:not(.hx-open) { opacity: 0; }
+.hx-live .hx-cue { top: auto; bottom: 3.2svh; }
+.hx-live [data-dev], .hx-live .hx-word .hx-ch > span { will-change: transform; }
+
+/* Celular */
+@media (max-width: 760px) {
+  main.home > .home-body { padding-block: 72px 0; gap: 72px; }
+  .hx-h1 { font-size: clamp(36px, 10.4vw, 56px); }
+  .hx-app, .hx-plat { display: flex; flex-direction: column; justify-content: flex-end; padding: 24px 20px calc(64px + env(safe-area-inset-bottom, 0px)); }
+  .hx-word { font-size: 24vw; top: 38%; }
+  .hx-dev { top: 38%; }
+  .hx-mac { top: 42%; }
+  .hx-iphone { --w: min(21svh, 44vw); }
+  .hx-mac { --w: min(92vw, 70svh); }
+  .hx-copy { position: relative; left: auto; right: auto; bottom: auto; flex-direction: column; align-items: stretch; gap: 16px; }
+  .hx-cap { font-size: 26px; max-width: none; }
+  .hx-list { width: 100%; min-width: 0; }
+  .hx-list li { font-size: 17px; padding: 9px 0 10px; }
+  .hx-cue { font-size: 15px; top: calc(100svh - 48px); }
+  .hx-live .hx-cue { bottom: calc(16px + env(safe-area-inset-bottom, 0px)); }
+}
+@media (max-width: 760px) and (max-height: 700px) {
+  .hx-iphone { --w: min(18svh, 40vw); }
+  .hx-cap { font-size: 22px; }
+  .hx-list li { font-size: 16px; padding: 7px 0 8px; }
+}
 
 /* ---------- Como funciona (Início): carrossel com 4 clipes ---------- */
 .cf-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 20px; }

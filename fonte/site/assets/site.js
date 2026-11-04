@@ -457,14 +457,124 @@
   var pauseIcon = 'M7 5h4v14H7zM13 5h4v14h-4z', playIcon = 'M8 5v14l11-7z';
 
 
-  /* ---------- Hero: telas reais por cima da ilustra\u00e7\u00e3o ---------- */
-  $$('[data-hh]').forEach(function (hh) {
-    var stage = $('.hh-stage', hh); if (!stage) return;
-    var set = function () { hh.style.setProperty('--hh-k', hh.clientWidth / 1536); };
-    set();
-    if (window.ResizeObserver) new ResizeObserver(set).observe(hh); else window.addEventListener('resize', set);
-    if (!reduced) hh.classList.add('live');
-  });
+  /* ---------- Hero da home: palco fixo com rolagem suavizada ----------
+     O texto vem todo do HTML; aqui so se move e revela (transform e opacity).
+     Sem JavaScript ou com movimento reduzido, a secao continua empilhada (CSS). */
+  (function () {
+    var hx = $('[data-hx]');
+    if (!hx || reduced || !window.requestAnimationFrame) return;
+    var sc = $$('.hx-sc', hx);
+    var parts = function (s) {
+      return { ch: $$('.hx-word .hx-ch > span', s), w: $$('.hx-cap .hx-w', s), li: $$('.hx-list li', s), lt: $$('.hx-li', s), dev: $('[data-dev]', s) };
+    };
+    var open = sc[0], end = sc[3], AP = parts(sc[1]), PL = parts(sc[2]);
+    var h1w = $$('.hx-w', open);
+    var lid = $('[data-lid]', sc[2]), off = $('[data-off]', sc[2]);
+    var logo = $('.hx-logo', end), fimW = $$('.hx-fim .hx-w', end), ctas = $('.hx-ctas', end);
+    var cue1 = $('.hx-cue1', hx), cue2 = $('.hx-cue2', hx);
+    var eoq = function (x) { x = clamp(x); return 1 - Math.pow(1 - x, 4); };
+    var eio = function (x) { return ease(clamp(x)); };
+    var seg = function (p, a, b) { return clamp((p - a) / (b - a)); };
+    var y = function (v, u) { return 'translate3d(0,' + v.toFixed(3) + (u || '%') + ',0)'; };
+    /* Linha do tempo (0 a 1 ao longo da secao). Cada cena: entra em A, para, e sai em B. */
+    var T = { app: [0.05, 0.40], plat: [0.46, 0.80], end: 0.86 };
+    var HOLD = [0, 0.32, 0.74, 0.97];
+    var top = 0, dist = 1, target = 0, cur = 0, raf = 0, onScreen = true, t0 = 0;
+
+    var rise = function (els, p, a, step, dur) {
+      for (var i = 0; i < els.length; i++) els[i].style.transform = y((1 - eoq(seg(p, a + i * step, a + i * step + dur))) * 130);
+    };
+    var scene = function (s, p, a, b) {
+      var o = eio(seg(p, b, b + 0.06)), on = p > a - 0.02 && p < b + 0.065;
+      s.style.opacity = on ? String(1 - o) : '0';
+      s.style.transform = o ? y(-o * 6, 'vh') + ' scale(' + (1 - o * 0.04).toFixed(4) + ')' : '';
+      s.style.pointerEvents = on && o < 0.5 ? '' : 'none';
+      return on;
+    };
+    /* ordem: palavra gigante (a), aparelho, legenda (c) e lista (c + 0.02) */
+    var copy = function (S, p, a, c) {
+      rise(S.ch, p, a, 0.007, 0.06);
+      rise(S.w, p, c, 0.006, 0.05);
+      for (var i = 0; i < S.li.length; i++) {
+        var k = eoq(seg(p, c + 0.02 + i * 0.016, c + 0.08 + i * 0.016));
+        S.lt[i].style.transform = y((1 - k) * 110);
+        S.li[i].style.setProperty('--k', k.toFixed(3));
+      }
+    };
+
+    var render = function (p, now) {
+      /* abertura: o H1 sai palavra a palavra ao comecar a rolar */
+      for (var i = 0; i < h1w.length; i++) {
+        var k = eio(seg(p, 0.002 + i * 0.0028, 0.03 + i * 0.0028));
+        h1w[i].style.transform = k ? y(-k * 130) : '';
+      }
+      open.style.opacity = p < 0.07 ? '1' : '0';
+      /* APLICATIVO */
+      var a = T.app[0];
+      if (scene(sc[1], p, a, T.app[1])) {
+        copy(AP, p, a + 0.01, a + 0.14);
+        var q = eoq(seg(p, a + 0.04, a + 0.17)), fl = Math.sin((now - t0) / 1000 * 1.25);
+        AP.dev.style.opacity = String(clamp(q * 3));
+        AP.dev.style.transform = 'translate3d(0,' + ((1 - q) * 85).toFixed(2) + 'vh,0) translate3d(0,' + (fl * 7 * q).toFixed(2) + 'px,0)' +
+          ' rotateZ(' + (21 + (1 - q) * 12 + fl * 0.5 * q).toFixed(2) + 'deg) rotateY(-12deg) rotateX(6deg)';
+      }
+      /* PLATAFORMA */
+      a = T.plat[0];
+      if (scene(sc[2], p, a, T.plat[1])) {
+        copy(PL, p, a + 0.01, a + 0.18);
+        var m = eoq(seg(p, a + 0.04, a + 0.14)), L = eio(seg(p, a + 0.11, a + 0.22));
+        PL.dev.style.opacity = String(clamp(m * 3));
+        PL.dev.style.transform = y((1 - m) * 70, 'vh');
+        lid.style.transform = 'rotateX(' + (-90 * (1 - L)).toFixed(2) + 'deg)';
+        off.style.opacity = String(1 - seg(p, a + 0.17, a + 0.23));
+      }
+      /* Final */
+      a = T.end;
+      var ef = p > a - 0.02;
+      end.style.opacity = ef ? '1' : '0';
+      end.style.pointerEvents = p > a + 0.06 ? '' : 'none';
+      if (ef) {
+        logo.style.transform = y((1 - eoq(seg(p, a, a + 0.05))) * 115);
+        rise(fimW, p, a + 0.015, 0.006, 0.05);
+        var c = eoq(seg(p, a + 0.07, a + 0.11));
+        ctas.style.opacity = String(c);
+        ctas.style.transform = y((1 - c) * 24, 'px');
+      }
+      cue1.style.opacity = String(1 - seg(p, 0.34, 0.4));
+      cue2.style.opacity = String(seg(p, 0.6, 0.66) * (1 - seg(p, 0.76, 0.8)));
+    };
+
+    var measure = function () {
+      var r = hx.getBoundingClientRect();
+      top = r.top + window.pageYOffset;
+      dist = Math.max(1, hx.offsetHeight - window.innerHeight);
+    };
+    var read = function () { target = clamp((window.pageYOffset - top) / dist); };
+    var loop = function (now) {
+      raf = 0;
+      var d = target - cur;
+      cur = Math.abs(d) < 0.0002 ? target : cur + d * 0.085;
+      render(cur, now);
+      var floating = onScreen && !document.hidden && cur > T.app[0] && cur < T.app[1] + 0.06;
+      if (cur !== target || floating) raf = requestAnimationFrame(loop);
+    };
+    var kick = function () { if (!raf) raf = requestAnimationFrame(loop); };
+
+    hx.classList.add('hx-live');
+    measure(); read(); cur = target; t0 = (window.performance && performance.now()) || 0;
+    if (cur > 0.02) hx.classList.add('hx-skip');
+    render(cur, t0);
+    window.addEventListener('scroll', function () { read(); kick(); }, { passive: true });
+    window.addEventListener('resize', function () { measure(); read(); kick(); });
+    if (window.IntersectionObserver) new IntersectionObserver(function (es) { onScreen = es[0].isIntersecting; if (onScreen) kick(); }).observe(hx);
+    /* Teclado: ao focar algo de uma cena, a rolagem vai ate o ponto em que ela fica parada na tela */
+    hx.addEventListener('focusin', function (ev) {
+      var s = ev.target.closest && ev.target.closest('.hx-sc'), i = sc.indexOf(s);
+      if (i < 0) return;
+      var to = Math.round(top + dist * HOLD[i]);
+      if (Math.abs(window.pageYOffset - to) > 4) { window.scrollTo(0, to); read(); cur = target; render(cur, t0); }
+    });
+  })();
 
   /* ---------- Como funciona: carrossel com clipes (so o card ativo toca) ---------- */
   $$('[data-cf]').forEach(function (cf) {
