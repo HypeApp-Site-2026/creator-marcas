@@ -978,79 +978,8 @@ def p_criadores(L, A):
 </section>'''
 
 def p_marcas(L, A):
-    steps = [('Mural da campanha', 'Objetivo, público, formatos, prazos e remuneração, publicados no painel.'),
-             ('Inscrições e convites', 'Creators se inscrevem pelo mural. Você também busca por nicho e rede e envia convites.'),
-             ('Aprovações', 'Roteiros e conteúdos revisados antes de ir ao ar.'),
-             ('Entregas e resultados', 'Publicações registradas e métricas da campanha no painel.')]
-    li = ''.join(f'<li><span class="step-n">{i + 1}</span><span class="t">{t}</span><span class="d">{d}</span></li>' for i, (t, d) in enumerate(steps))
-    faq = [('Qual a diferença entre self-service e gerenciada?', 'No self-service sua equipe opera tudo no painel. Na gerenciada, a Você no Hype cuida da estratégia, da curadoria e da operação.'),
-           ('Quanto custa uma campanha?', 'Os valores são sob consulta e dependem do escopo, do volume e da forma de trabalho.'),
-           ('Quais métricas eu acompanho?', METRICAS_TXT),
-           ('Como os creators são selecionados?', CURADORIA_TXT),
-           ('E se o creator não entregar?', 'O valor reservado para aquela participação volta ao saldo da campanha.'),
-           ('Agências podem gerir várias marcas?', AGENCIAS_TXT)]
-    return f'''
-<section class="hero-center" aria-labelledby="hero-m">
-  <div class="stack">
-    <span class="tag ink">Para marcas e agências</span>
-    <h1 id="hero-m" class="display" style="font-size:clamp(38px,5.8vw,64px)">Campanhas com creators do jeito que sua equipe preferir.</h1>
-    <p class="lead">Monte o mural da campanha no painel, receba as inscrições dos creators, aprove roteiros e conteúdos e acompanhe as métricas. Você opera pelo painel ou deixa a operação com a Você no Hype.</p>
-    <div class="row" style="justify-content:center"><a class="btn btn-cta" href="{L('/contato/marcas/')}">Falar com nosso time</a><a class="btn btn-soft" href="#modalidades">Ver as duas formas de trabalhar</a></div>
-    <span class="small">Valores sob consulta, conforme escopo e volume.</span>
-  </div>
-  {motion_painel(A)}
-</section>
-
-<div class="sc-intro stack" id="funcionalidades" style="gap:10px"><h2 class="h2">Funcionalidades do painel</h2><p class="body" style="max-width:620px">Da criação da campanha ao pagamento dos creators. Clique em cada item para ver a tela.</p></div>
-{showcase(A, 'sc-painel', 'web', 'Painel', 'Tudo o que pede atenção, logo na entrada', 'Pendências agrupadas por campanha, métricas do workspace e a lista de campanhas.', [
-  ('bo-n01', 'Início', 'Tarefas e aprovações de cada campanha, com o botão Revisar, e as métricas do workspace.'),
-  ('bo-n02', 'Campanhas', 'Cartões com capa, status, progresso de publicação, alcance e pendências.')])}
-{showcase(A, 'sc-acompanhar', 'web', 'Acompanhamento', 'Cada etapa da campanha à vista', 'Progresso da seleção ao pagamento, indicadores e o que precisa da sua ação.', [
-  ('bo-n03a', 'Visão geral', 'Arte da campanha, progresso geral, etapas e o botão Verificar publicações.'),
-  ('bo-n03b', 'Precisa da sua ação', 'Inscrições novas para triar e tudo o que aguarda a sua decisão.')], flip=True)}
-{showcase(A, 'sc-criadores', 'web', 'Creators', 'Encontre e convide os creators certos', 'Catálogo com as redes de cada creator e um perfil completo antes de convidar.', [
-  ('bo-n04', 'Catálogo de creators', 'Cada rede com @, seguidores e engajamento. Ver perfil, Convidar e Favoritar.'),
-  ('bo-n05', 'Perfil do creator', 'Redes, nichos, bio, campanhas no HypeApp e índice de confiança.')])}
-{showcase(A, 'sc-financeiro', 'web', 'Lives e financeiro', 'Lives e pagamentos no mesmo painel', 'Transmita ao vivo e acompanhe o saldo, o valor reservado e as movimentações.', [
-  ('bo-n06', 'Lives', 'Ao vivo, agendadas, anteriores e canceladas. Agende ou transmita agora.'),
-  ('bo-n07', 'Financeiro', 'Saldo disponível, valor reservado, depósitos e pagamentos aos creators.')], flip=True)}
-
-<section id="modalidades" class="stack-lg" aria-labelledby="mod-t">
-  <h2 id="mod-t" class="h2">Duas formas de trabalhar</h2>
-  <div class="grid-300">
-    <div class="mode"><span class="tag soft">Self-service</span><span class="h3">Sua equipe opera a campanha no painel.</span>
-      <ul><li>Monta o mural da campanha, com briefing e fases</li><li>Seleciona as inscrições e convida creators</li><li>Aprova roteiros e conteúdos</li><li>Acompanha entregas e métricas</li></ul></div>
-    <div class="mode dark"><span class="tag">Gerenciada</span><span class="h3">A Você no Hype opera a campanha por você.</span>
-      <ul><li>Estratégia e curadoria de creators</li><li>Negociação e contratos</li><li>Acompanhamento das entregas</li><li>Relatório de resultados</li></ul></div>
-  </div>
-  <div class="card-mid between" style="align-items:center">
-    <div class="stack" style="gap:4px;flex:1 1 360px"><span class="h4">Quanto custa?</span><span style="font-size:16px">O valor depende do escopo, do volume e da forma de trabalho. O comercial monta a proposta depois de entender sua campanha.</span></div>
-    <a class="btn btn-cta" href="{L('/contato/marcas/')}">Falar com nosso time</a>
-  </div>
-</section>
-
-<section class="stack-lg" aria-labelledby="proc-t">
-  <h2 id="proc-t" class="h2">Do briefing ao resultado</h2>
-  <ol class="steps">{li}</ol>
-</section>
-
-<section id="agencias" class="card-mid between" style="align-items:center" aria-labelledby="ag-t">
-  <div class="stack" style="gap:10px;flex:1 1 420px"><span class="tag ink" style="align-self:flex-start">Para agências</span>
-    <h2 id="ag-t" class="h3">Várias marcas, um painel</h2>
-    <p style="font-size:16px;margin:0;max-width:640px">{rev('Agências gerenciam as campanhas de cada cliente em espaços separados. Cada marca tem configurações próprias (marca, empresa e equipe), e a equipe alterna entre as marcas pelo seletor no topo do menu.')}</p></div>
-  <a class="btn btn-cta" href="{L('/contato/marcas/')}">Falar com nosso time</a>
-</section>
-
-<section class="faq-block" aria-labelledby="faq-m">
-  <div class="stack"><h2 id="faq-m" class="h2">Dúvidas de marcas</h2><a class="link-strong" href="{L('/perguntas-frequentes/', '#marcas')}">Ver todas as dúvidas de marcas</a></div>
-  <div class="faq">{faq_html(faq)}</div>
-</section>
-
-<section class="band-dark between" aria-labelledby="com-t" style="align-items:center">
-  <h2 id="com-t" class="h2" style="flex:1 1 420px">Marque uma demonstração e veja como fica a sua gestão de marketing.</h2>
-  <a class="btn btn-cta btn-xl" href="{L('/contato/marcas/')}">Falar com nosso time {ico(I_ARROW, 22)}</a>
-</section>'''
-
+    """Versão B do estudo de 04/11 (bento, como a página de creators), com a seção de agências."""
+    return p_marcas_b(L, A)
 
 # ---------- /marcas/: 3 versões de estudo (04/11), só no endereço de teste ----------
 # Todas mantêm as telas funcionando: a animação do painel (motion_painel) e as vitrines clicáveis (showcase).
@@ -1121,7 +1050,7 @@ def p_marcas_b(L, A):
     """Versão B · Bento, no mesmo estilo da página de creators."""
     passos = ''.join(f'<div class="bt {c}"><span class="bt-n">0{i + 1}</span><b class="bt-t3">{t}</b><span class="bt-p">{d}</span></div>'
                      for i, ((t, d), c) in enumerate(zip(MV_STEPS, ['bt-branco', 'bt-branco', 'bt-lima', 'bt-preto'])))
-    return f'''{mv_aviso(L, 'B', 'bento, como a página de creators')}
+    return f'''
 <section class="bt-g mvb-hero" aria-labelledby="mvb-h">
   <div class="bt bt-roxo mvb-h1">
     <span class="bt-pill">Para marcas e agências</span>
@@ -1139,7 +1068,7 @@ def p_marcas_b(L, A):
   <div class="bt-g bt-3">
     <div class="bt bt-branco"><span class="bt-n">Self-service</span><b class="bt-t2">Sua equipe, no painel</b><span class="bt-p">Monta o mural, seleciona as inscrições, convida creators, aprova roteiros e conteúdos e acompanha as métricas.</span></div>
     <div class="bt bt-preto"><span class="bt-n bt-n-l">Gerenciada</span><b class="bt-t2">A Você no Hype, por você</b><span class="bt-p">Estratégia, curadoria de creators, negociação, contratos, acompanhamento das entregas e relatório de resultados.</span></div>
-    <div id="agencias" class="bt bt-lima"><span class="bt-n">Agências</span><b class="bt-t2">Várias marcas, um painel</b><span class="bt-p">{rev(MV_AG)}</span></div>
+    <a class="bt bt-lima mvb-aglk" href="#agencias"><span class="bt-n">Agências</span><b class="bt-t2">Várias marcas, um painel</b><span class="bt-p">Sua equipe gerencia as campanhas de cada cliente em espaços separados.</span><span class="bt-lk">Ver como funciona</span></a>
   </div>
 </section>
 
@@ -1149,6 +1078,30 @@ def p_marcas_b(L, A):
 {showcase(A, 'sc-acompanhar', 'web', 'Acompanhamento', 'Cada etapa da campanha à vista', 'Progresso da seleção ao pagamento, indicadores e o que precisa da sua ação.', [MV_TELAS[2], MV_TELAS[3]])}
 {showcase(A, 'sc-financeiro', 'web', 'Lives e financeiro', 'Lives e pagamentos no mesmo painel', 'Transmita ao vivo e acompanhe o saldo, o valor reservado e as movimentações.', [MV_TELAS[6], MV_TELAS[7]], flip=True)}
 </div>
+
+<section id="agencias" class="ag" aria-labelledby="ag-h">
+  <div class="ag-tx">
+    <span class="ag-pill">Para agências</span>
+    <h2 id="ag-h" class="ag-h">Sua equipe toda, todas as marcas, um painel só.</h2>
+    <p class="ag-p">{rev('Cada cliente tem um espaço próprio, com as configurações da marca, da empresa e da equipe. Várias pessoas do seu time cuidam das campanhas de cada marca, e quem atende mais de um cliente troca de marca pelo seletor no topo do menu.')}</p>
+    <ul class="ag-lista">
+      <li><b>Um espaço por cliente</b>Campanhas, creators e financeiro de cada marca, separados.</li>
+      <li><b>Equipe por marca</b>As pessoas certas cuidando de cada cliente.</li>
+      <li><b>Várias campanhas ao mesmo tempo</b>Pendências e aprovações de cada campanha logo na entrada do painel.</li>
+    </ul>
+    <a class="btn btn-cta btn-lg" href="{L('/contato/marcas/')}">Falar com nosso time</a>
+  </div>
+  <div class="ag-arte">
+    <div class="ag-pers ag-p1" data-slot="agencia-personagem-1"><span>Personagem 1</span></div>
+    <div class="ag-pers ag-p2" data-slot="agencia-personagem-2"><span>Personagem 2</span></div>
+    <div class="ag-sel" aria-hidden="true">
+      <span class="ag-sel-h">Trocar de marca</span>
+      <span class="ag-m on"><i>CL</i>Casa Lume<em>4 campanhas</em></span>
+      <span class="ag-m"><i>AU</i>Aurora<em>2 campanhas</em></span>
+      <span class="ag-m"><i>BR</i>Brisa<em>3 campanhas</em></span>
+    </div>
+  </div>
+</section>
 
 <section aria-labelledby="mvb-proc"><h2 id="mvb-proc" class="bt-h2">Do briefing ao resultado</h2><div class="bt-g mvb-4">{passos}</div></section>
 
@@ -1672,9 +1625,7 @@ PAGES = [
     ('/legal/', p_legal_hub, 'mid'), ('/regras-da-comunidade/', p_regras, 'mid'),
     ('/404', p_404, 'mid'),
 ]
-if WEB:  # estudo de 04/11: 3 versões da página de marcas, só no endereço de teste
-    PAGES += [('/marcas/versao-a/', p_marcas_a, 'wide'), ('/marcas/versao-b/', p_marcas_b, 'wide'), ('/marcas/versao-c/', p_marcas_c, 'wide')]
-    SO_TESTE += ['/marcas/versao-a/', '/marcas/versao-b/', '/marcas/versao-c/']
+
 if BLOG_ON:
     PAGES += [('/blog/', _blog.p_blog(POSTS), 'wide')] + [('/blog/' + _p['slug'] + '/', _blog.p_post(_p), 'mid') for _p in POSTS]
 

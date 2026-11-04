@@ -162,39 +162,6 @@
       "permanent": false
     },
     {
-      "source": "/marcas/versao-a(/.*)?",
-      "missing": [
-        {
-          "type": "host",
-          "value": "teste.hypeapp.com.br"
-        }
-      ],
-      "destination": "/",
-      "permanent": false
-    },
-    {
-      "source": "/marcas/versao-b(/.*)?",
-      "missing": [
-        {
-          "type": "host",
-          "value": "teste.hypeapp.com.br"
-        }
-      ],
-      "destination": "/",
-      "permanent": false
-    },
-    {
-      "source": "/marcas/versao-c(/.*)?",
-      "missing": [
-        {
-          "type": "host",
-          "value": "teste.hypeapp.com.br"
-        }
-      ],
-      "destination": "/",
-      "permanent": false
-    },
-    {
       "source": "/index.html",
       "destination": "/",
       "permanent": true

@@ -213,61 +213,39 @@ Fonte: https://www.hypeapp.com.br/marcas/
 Título: Plataforma de marketing de influência para marcas | HypeApp
 Atualizado em: 2026-11-04
 
-# Campanhas com creators do jeito que sua equipe preferir.
+# Campanhas com creators, do seu jeito.
 
-Monte o mural da campanha no painel, receba as inscrições dos creators, aprove roteiros e conteúdos e acompanhe as métricas. Você opera pelo painel ou deixa a operação com a Você no Hype.
+Opere pelo painel ou deixe a operação com a Você no Hype. Valores sob consulta, conforme escopo e volume.
 
-## Funcionalidades do painel
-
-Da criação da campanha ao pagamento dos creators. Clique em cada item para ver a tela.
+## Quem opera a campanha?
 
 ## Tudo o que pede atenção, logo na entrada
 
 Pendências agrupadas por campanha, métricas do workspace e a lista de campanhas.
 
-## Cada etapa da campanha à vista
-
-Progresso da seleção ao pagamento, indicadores e o que precisa da sua ação.
-
 ## Encontre e convide os creators certos
 
 Catálogo com as redes de cada creator e um perfil completo antes de convidar.
+
+## Cada etapa da campanha à vista
+
+Progresso da seleção ao pagamento, indicadores e o que precisa da sua ação.
 
 ## Lives e pagamentos no mesmo painel
 
 Transmita ao vivo e acompanhe o saldo, o valor reservado e as movimentações.
 
-## Duas formas de trabalhar
+## Sua equipe toda, todas as marcas, um painel só.
 
-- Monta o mural da campanha, com briefing e fases
+Cada cliente tem um espaço próprio, com as configurações da marca, da empresa e da equipe. Várias pessoas do seu time cuidam das campanhas de cada marca, e quem atende mais de um cliente troca de marca pelo seletor no topo do menu.
 
-- Seleciona as inscrições e convida creators
+- Um espaço por clienteCampanhas, creators e financeiro de cada marca, separados.
 
-- Aprova roteiros e conteúdos
+- Equipe por marcaAs pessoas certas cuidando de cada cliente.
 
-- Acompanha entregas e métricas
-
-- Estratégia e curadoria de creators
-
-- Negociação e contratos
-
-- Acompanhamento das entregas
-
-- Relatório de resultados
+- Várias campanhas ao mesmo tempoPendências e aprovações de cada campanha logo na entrada do painel.
 
 ## Do briefing ao resultado
-
-- 1Mural da campanhaObjetivo, público, formatos, prazos e remuneração, publicados no painel.
-
-- 2Inscrições e convitesCreators se inscrevem pelo mural. Você também busca por nicho e rede e envia convites.
-
-- 3AprovaçõesRoteiros e conteúdos revisados antes de ir ao ar.
-
-- 4Entregas e resultadosPublicações registradas e métricas da campanha no painel.
-
-## Várias marcas, um painel
-
-Agências gerenciam as campanhas de cada cliente em espaços separados. Cada marca tem configurações próprias (marca, empresa e equipe), e a equipe alterna entre as marcas pelo seletor no topo do menu.
 
 ## Dúvidas de marcas
 
@@ -295,7 +273,7 @@ O valor reservado para aquela participação volta ao saldo da campanha.
 
 Sim. Cada marca tem configurações próprias (marca, empresa e equipe), e a pessoa alterna entre as marcas pelo seletor no topo do menu. A equipe é convidada por marca.
 
-## Marque uma demonstração e veja como fica a sua gestão de marketing.
+## Marque uma demonstração.
 
 ---
 
