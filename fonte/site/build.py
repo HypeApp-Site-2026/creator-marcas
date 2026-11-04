@@ -870,8 +870,8 @@ def p_criadores(L, A):
       <div class="row"><a class="btn btn-ink btn-lg" href="{L('/baixar/')}">Baixar o app</a><a class="btn btn-soft btn-lg" href="{L('/entrar/', '#creators')}">Já tenho conta</a></div>
     </div>
   </div>
-  <div class="bt bt-media bt-hv">{vid(1, 'Animação: creator monta o perfil no celular')}</div>
-  <div class="bt bt-tela bt-hs">{shot('app-D1')}</div>
+  <div class="bt bt-hv bt-hfoto"><img class="bt-img" src="{A('assets/ilustracoes/hero-creator.webp')}" alt="Ilustração: creator sorrindo com o celular na mão e cartões de perfil e aprovação ao lado" width="934" height="1685" fetchpriority="high" decoding="async"></div>
+  <div class="bt bt-hs bt-hfoto"><img class="bt-img" src="{A('assets/ilustracoes/hero-celular.webp')}" alt="Celular com a tela Campanhas do HypeApp aberta em Descobrir" width="1000" height="1000" decoding="async"></div>
   <ul class="bt bt-preto bt-selos" aria-label="Em resumo"><li>{ck}Grátis para creators</li><li>{ck}Sem mínimo de seguidores</li><li>{ck}Saque via PIX</li><li>{ck}Comunidade de creators</li><li class="bt-sub">iPhone e Android</li></ul>
 </section>
 

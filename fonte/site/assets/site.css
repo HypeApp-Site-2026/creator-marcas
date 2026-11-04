@@ -1789,3 +1789,8 @@ label.ck-op { cursor: pointer; }
 .bt-baixe .store, .bt-baixe a.store:hover { background: #050505; color: #fff; }
 .bt-baixe .bt-baixe-v { width: 100%; height: auto; aspect-ratio: 7 / 5; object-fit: cover; border-radius: 28px; display: block; background: #F1EAFB; }
 @media (max-width: 860px) { .bt-baixe { grid-template-columns: 1fr; } }
+
+/* Hero de /criadores/ (04/11): ilustração da creator e celular com a tela Campanhas, fundo lilás das imagens */
+.bt-hfoto { background: #F2E5FB; padding: 0; overflow: hidden; }
+.bt-hv.bt-hfoto .bt-img { object-position: 50% 12%; }
+.bt-hs.bt-hfoto .bt-img { object-position: 50% 50%; }
