@@ -2,7 +2,7 @@
  "/": {
   "publicado": "2026-10-30",
   "alterado": "2026-11-04",
-  "hash": "fd89d176a14455231a0c7f52bcd53232"
+  "hash": "a5f70e565f846cc76266b8bd1102814b"
  },
  "/404": {
   "publicado": "2026-10-30",
@@ -18,6 +18,26 @@
   "publicado": "2026-10-30",
   "alterado": "2026-11-03",
   "hash": "9ad33c951271ca7ba7e25742e02dfe75"
+ },
+ "/blog/": {
+  "publicado": "2026-11-04",
+  "alterado": "2026-11-04",
+  "hash": "cc14ac5af19933614811bc0a7cafc4a5"
+ },
+ "/blog/media-kit-link-ou-pdf/": {
+  "publicado": "2026-11-04",
+  "alterado": "2026-11-04",
+  "hash": "e501d0f9ce67b6a61380794f6fcefb20"
+ },
+ "/blog/permuta-recebido-ou-campanha-paga/": {
+  "publicado": "2026-11-04",
+  "alterado": "2026-11-04",
+  "hash": "c8d5aecad0ac65517818f62b6a4a6036"
+ },
+ "/blog/quanto-cobrar-por-reels/": {
+  "publicado": "2026-11-04",
+  "alterado": "2026-11-04",
+  "hash": "7a47cdc15ef7b09d02f15cc5edc7b700"
  },
  "/contato/": {
   "publicado": "2026-10-30",

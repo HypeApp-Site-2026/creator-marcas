@@ -57,6 +57,13 @@ def teste_host():
     # no endereço de teste, robots.txt bloqueia tudo (além do cabeçalho noindex)
     return [{'source': '/robots.txt', 'has': [{'type': 'host', 'value': TESTE_HOST}], 'destination': '/robots-homologacao.txt', 'permanent': False}]
 
+def so_teste():
+    # artigos do blog em revisão (build.py grava _so_teste.json): fora do endereço de teste, voltam para a Início
+    f = os.path.join(DIST, '_so_teste.json')
+    caminhos = json.load(open(f)) if os.path.exists(f) else []
+    fora = [{'type': 'host', 'value': TESTE_HOST}]
+    return [{'source': c.rstrip('/') + '(/.*)?', 'missing': fora, 'destination': '/', 'permanent': False} for c in caminhos]
+
 def sem_index_html():
     # /marcas/index.html e /index.html abrem a mesma página: leva ao endereço limpo
     return [{'source': '/index.html', 'destination': '/', 'permanent': True},
@@ -117,7 +124,7 @@ def main():
             shutil.rmtree(p) if os.path.isdir(p) else os.remove(p)
     os.makedirs(OUT, exist_ok=True)
     for f in os.listdir(DIST):
-        if f in ('_redirects', '_headers'):
+        if f in ('_redirects', '_headers', '_so_teste.json'):
             continue
         s = os.path.join(DIST, f)
         (shutil.copytree if os.path.isdir(s) else shutil.copy)(s, os.path.join(OUT, f))
@@ -135,7 +142,7 @@ def main():
         'framework': None, 'buildCommand': '', 'installCommand': '', 'outputDirectory': '.',
         'trailingSlash': True,
         'rewrites': rewrites,
-        'redirects': assets_host() + teste_host() + sem_index_html() + redirects(),
+        'redirects': assets_host() + teste_host() + so_teste() + sem_index_html() + redirects(),
         'headers': headers() + [{'source': '/(.*)', 'has': [{'type': 'host', 'value': TESTE_HOST}],
                                  'headers': [{'key': 'X-Robots-Tag', 'value': 'noindex, nofollow'}]}],
     }

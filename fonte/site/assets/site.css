@@ -1469,3 +1469,5 @@ label.ck-op { cursor: pointer; }
 .lp-toast { position: absolute; z-index: 15; top: 26px; left: 1093px; display: flex; align-items: center; gap: 12px; height: 54px; padding: 0 24px 0 12px; border-radius: 27px; background: #050505; color: #fff; font-size: 15.5px; font-weight: 600; white-space: nowrap; opacity: 0; transform: translate3d(-50%, -140%, 0); transition: transform .5s var(--ease), opacity .3s; }
 .lp-toast.on { transform: translate3d(-50%, 0, 0); }
 .lp-toast > svg { flex: none; width: 32px; height: 32px; padding: 7px; border-radius: 50%; background: #9E2CFA; }
+/* artigos em revisão: só no ambiente de teste (o site.js tira o hidden lá) */
+[data-so-teste][hidden] { display: none !important; }

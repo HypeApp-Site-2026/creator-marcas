@@ -118,6 +118,50 @@
       "permanent": false
     },
     {
+      "source": "/blog(/.*)?",
+      "missing": [
+        {
+          "type": "host",
+          "value": "teste.hypeapp.com.br"
+        }
+      ],
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/blog/quanto-cobrar-por-reels(/.*)?",
+      "missing": [
+        {
+          "type": "host",
+          "value": "teste.hypeapp.com.br"
+        }
+      ],
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/blog/media-kit-link-ou-pdf(/.*)?",
+      "missing": [
+        {
+          "type": "host",
+          "value": "teste.hypeapp.com.br"
+        }
+      ],
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/blog/permuta-recebido-ou-campanha-paga(/.*)?",
+      "missing": [
+        {
+          "type": "host",
+          "value": "teste.hypeapp.com.br"
+        }
+      ],
+      "destination": "/",
+      "permanent": false
+    },
+    {
       "source": "/index.html",
       "destination": "/",
       "permanent": true

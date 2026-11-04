@@ -255,7 +255,7 @@ def footer(L, A):
         ('Empresa', [('Sobre o HypeApp', L('/sobre/'))] + ([('Blog', L('/blog/'))] if BLOG_ON else []) + [('Contato', L('/contato/'))]),
         ('Legal', [('Privacidade', L('/privacidade/')), ('Encarregado de dados', L('/privacidade/', '#encarregado')), ('Termos de uso', L('/termos/')), ('Cookies', L('/cookies/')), ('Regras da comunidade', L('/regras-da-comunidade/')), ('Exclusão de conta', L('/exclusao-de-conta/'))] + ([('Preferências de cookies', '#preferencias-cookies')] if ANALYTICS else [])),
     ]
-    c = ''.join(f'<nav aria-label="{t}"><span class="ftr-h">{t}</span>' + ''.join(f'<a href="{h}">{n}</a>' for n, h in ls) + '</nav>' for t, ls in cols)
+    c = ''.join(f'<nav aria-label="{t}"><span class="ftr-h">{t}</span>' + ''.join(f'<a href="{h}"{_blog.SO_TESTE if n == "Blog" and "/blog/" in SO_TESTE else ""}>{n}</a>' for n, h in ls) + '</nav>' for t, ls in cols)
     return f'''<footer class="site-footer wrap">
   <div class="ftr">
     <div class="between" style="align-items:center">
@@ -1331,6 +1331,9 @@ def p_legal_file(url):
 import blog_build as _blog
 POSTS = _blog.load_posts(HERE, WEB)
 BLOG_ON = bool(POSTS)   # sem artigo, /blog/ não existe e os links para ele somem
+PUBLICADOS = [_p for _p in POSTS if _p['status'] == 'publicado']
+# Só no ambiente de teste (artigos em revisão): no www esses endereços redirecionam para a Início (make_vercel.py)
+SO_TESTE = ([] if PUBLICADOS else ['/blog/']) + ['/blog/' + _p['slug'] + '/' for _p in POSTS if _p['status'] == 'revisao'] if WEB else []
 POST_META = _blog.post_meta(POSTS, BASE)
 
 PAGES = [
@@ -1458,7 +1461,7 @@ def build_page(url, fn, kind):
     L, A = make_link(url)
     m = META.get(url) or POST_META.get(url)
     title, desc = (m['title'], m['desc']) if m else FALLBACK[url]
-    robots = 'noindex, nofollow' if CFG['preview'] else (m['robots'] if m else 'noindex, follow')
+    robots = 'noindex, nofollow' if CFG['preview'] or url in SO_TESTE else (m['robots'] if m else 'noindex, follow')
     canon = BASE + url if url not in ('/404', '/app') else ''  # /app é página de passagem, sem índice
     main = fn(L, A)
     cls = 'home' if url == '/' else 'wrap' + (' tight' if kind == 'tight' else '')
@@ -1769,11 +1772,12 @@ def main():
             shutil.copy(os.path.join(seo, f), os.path.join(OUT, f))
         if BLOG_ON:  # o blog entra no sitemap só com artigo publicado
             sm = os.path.join(OUT, 'sitemap.xml'); x = open(sm, encoding='utf-8').read()
-            urls = ['/blog/'] + ['/blog/' + _p['slug'] + '/' for _p in POSTS]
+            urls = (['/blog/'] if PUBLICADOS else []) + ['/blog/' + _p['slug'] + '/' for _p in PUBLICADOS]
             x = x.replace('</urlset>', ''.join(f'  <url><loc>{BASE}{u}</loc></url>\n' for u in urls) + '</urlset>')
             open(sm, 'w', encoding='utf-8').write(x)
         arquivos_tecnicos(OUT)
         open(os.path.join(OUT, '_redirects'), 'w').write(REDIRECTS)
+        open(os.path.join(OUT, '_so_teste.json'), 'w').write(json.dumps(SO_TESTE))
         open(os.path.join(OUT, '_headers'), 'w').write(csp_ga(HEADERS) if ANALYTICS else HEADERS)
     if not WEB:  # simulador de iPhone (só na prévia)
         names = {r['url']: r['pagina'] for r in R}; names.update({u: v['pagina'] for u, v in POST_META.items()})

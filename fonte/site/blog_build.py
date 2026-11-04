@@ -6,7 +6,12 @@ import markdown as _md
 
 MESES = ['janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro']
 
+SO_TESTE = ' data-so-teste hidden'   # some no domínio oficial; o site.js mostra só em teste.hypeapp.com.br
+WEB = False
+
 def load_posts(here, web):
+    global WEB
+    WEB = web
     pasta = os.path.join(here, 'content', 'blog')
     posts = []
     for fn in sorted(os.listdir(pasta)):
@@ -43,8 +48,12 @@ def load_posts(here, web):
     pub = sorted([p for p in posts if p['status'] == 'publicado'], key=lambda p: p['data'], reverse=True)
     rev = sorted([p for p in posts if p['status'] == 'revisao'], key=lambda p: p['ordem'])
     ex = sorted([p for p in posts if p['status'] == 'exemplo'], key=lambda p: p['ordem'])
-    # prévia: artigos em revisão (e os exemplos de layout só enquanto não houver artigo de verdade); --web: só publicados
-    return pub + ([] if web else (rev + (ex if not (pub or rev) else [])))
+    # prévia: em revisão (e exemplos só enquanto não houver artigo de verdade).
+    # --web: publicados e em revisão; os em revisão só aparecem no ambiente de teste (data-so-teste + redirecionamento no www)
+    return pub + (rev if web else (rev + (ex if not (pub or rev) else [])))
+
+def so_teste(p):
+    return WEB and p['status'] == 'revisao'
 
 def leitura(p):
     if p['status'] == 'exemplo':
@@ -52,7 +61,7 @@ def leitura(p):
     return f'{p["minutos"]} min de leitura' + (' · em revisão' if p['status'] == 'revisao' else '')
 
 def post_card(L, A, p, heading='h3'):
-    return (f'<li class="bl-card"><a href="{L("/blog/" + p["slug"] + "/")}">'
+    return (f'<li class="bl-card"{SO_TESTE if so_teste(p) else ""}><a href="{L("/blog/" + p["slug"] + "/")}">'
             f'<span class="bl-cover"><img src="{A("assets/blog/" + p["capa"])}" alt="{html.escape(p["alt"])}" width="960" height="600" loading="lazy" decoding="async"></span>'
             f'<span class="bl-body"><span class="bl-cat">{html.escape(p["categoria"])}</span>'
             f'<{heading} class="bl-t">{html.escape(p["titulo"])}</{heading}>'
@@ -69,7 +78,8 @@ def blog_section(L, A, posts, ico):
     dots = ''.join(f'<button type="button" class="bl-dot" data-i="{i}" aria-label="Ir para o artigo {i + 1} de {n}"'
                    f'{" aria-current=" + chr(34) + "true" + chr(34) if i == 0 else ""}></button>' for i in range(n))
     chev_r, chev_l = 'm9 6 6 6-6 6', 'm15 6-6 6 6 6'
-    return (f'<section class="bl" aria-labelledby="bl-t" data-rail>{head}'
+    so = SO_TESTE if all(so_teste(p) for p in vis) else ''
+    return (f'<section class="bl" aria-labelledby="bl-t" data-rail{so}>{head}'
             f'<a class="bl-more" href="{L("/blog/")}">Explorar o blog {ico(chev_r, 18)}</a></div>'
             f'<ol class="bl-track" aria-label="Artigos recentes do blog" tabindex="0">{cards}</ol>'
             f'<div class="bl-ctrl"><div class="bl-arrows">'
@@ -92,7 +102,8 @@ def p_post(p):
         if p['autor'] and not ex:
             meta.insert(0, 'Por ' + html.escape(p['autor']))
         aviso = ('<p class="bl-ex" role="note">Exemplo de layout na prévia. Este artigo não existe e não vai para o site publicado.</p>' if ex else
-                 '<p class="bl-ex" role="note">Em revisão: este artigo aparece só na prévia. Para publicar, troque o status para publicado e preencha a data.</p>' if rv else '')
+                 ('<p class="bl-ex" role="note">Em revisão: este artigo aparece só no ambiente de teste e ainda não foi aprovado para o site.</p>' if WEB else
+                  '<p class="bl-ex" role="note">Em revisão: este artigo aparece só na prévia. Para publicar, troque o status para publicado e preencha a data.</p>') if rv else '')
         meta_html = ('<p class="post-meta">' + ' · '.join(meta) + '</p>') if meta else ''
         return (f'<article class="post">'
                 f'<nav class="post-crumbs" aria-label="Caminho"><a href="{L("/")}">Início</a><span aria-hidden="true">/</span><a href="{L("/blog/")}">Blog</a></nav>'

@@ -27,10 +27,13 @@ const pages={};
   if(fs.statSync(p).isDirectory())walk(p);else if(f.endsWith('.html')){const rel='/'+path.relative(ROOT,p).replace(/\\/g,'/');pages[rel]=fs.readFileSync(p,'utf8');}}})(ROOT);
 const urlOf=f=>f==='/index.html'?'/':f.endsWith('/index.html')?f.slice(0,-10):f;
 const prob=[],ok=[];
+// endereços só do ambiente de teste (artigos em revisão): redirecionam no www de propósito
+const soTeste=(cfg.redirects||[]).filter(r=>(r.missing||[]).some(h=>h.type==='host'&&/^teste\./.test(h.value))).map(r=>new RegExp('^'+r.source+'$'));
+const ehTeste=u=>soTeste.some(re=>re.test(u));
 const meta=(t,re)=>{const m=re.exec(t);return m?m[1]:null};
 const idx=new Set();
 for(const [f,t] of Object.entries(pages)){
-  const u=urlOf(f); if(u==='/404.html') continue;
+  const u=urlOf(f); if(u==='/404.html'||ehTeste(u)) continue;
   const rob=meta(t,/<meta name="robots" content="([^"]*)"/), can=meta(t,/<link rel="canonical" href="([^"]*)"/);
   if(!rob) prob.push(`${u}: sem meta robots`);
   if(rob&&!rob.includes('noindex')) idx.add(u);
@@ -41,6 +44,7 @@ for(const [f,t] of Object.entries(pages)){
   // links internos
   for(const m of t.matchAll(/href="(\/[^"]*)"/g)){
     let h=m[1]; if(h.startsWith('//'))continue; const clean=h.split('#')[0].split('?')[0]||'/';
+    if(ehTeste(clean)) continue;
     const r=route('www.hypeapp.com.br',clean);
     if(r.hops.length) prob.push(`${u}: link ${h} redireciona (${r.hops.join(' → ')})`);
     else if(!r.file && !clean.startsWith('/backoffice') && !clean.startsWith('/api/')) prob.push(`${u}: link quebrado ${h}`);
@@ -62,7 +66,7 @@ if(!/^Sitemap: https:\/\/www\.hypeapp\.com\.br\/sitemap\.xml$/m.test(rb)) prob.p
 const dis=[...rb.matchAll(/^Disallow:\s*(\S+)/gm)].map(x=>x[1]); for(const d of dis) for(const u of idx) if(u.startsWith(d)) prob.push(`robots bloqueia página indexável ${u}`);
 // domínio, barra final e endereços antigos
 const testes=[['hypeapp.com.br','/marcas/'],['www.hypeapp.com.br','/marcas'],['www.hypeapp.com.br','/marcas/index.html'],['www.hypeapp.com.br','/index.html'],
- ['www.hypeapp.com.br','/politica-de-privacidade'],['www.hypeapp.com.br','/termos-de-uso/'],['www.hypeapp.com.br','/faq'],['assets.hypeapp.com.br','/'],['assets.hypeapp.com.br','/politica-de-privacidade'],['teste.hypeapp.com.br','/robots.txt'],['www.hypeapp.com.br','/robots.txt'],['www.hypeapp.com.br','/blog/index.html']];
+ ['www.hypeapp.com.br','/politica-de-privacidade'],['www.hypeapp.com.br','/termos-de-uso/'],['www.hypeapp.com.br','/faq'],['assets.hypeapp.com.br','/'],['assets.hypeapp.com.br','/politica-de-privacidade'],['teste.hypeapp.com.br','/robots.txt'],['www.hypeapp.com.br','/robots.txt'],['www.hypeapp.com.br','/blog/index.html'],['www.hypeapp.com.br','/blog/'],['teste.hypeapp.com.br','/blog/']];
 const out=testes.map(([h,p])=>{const r=route(h,p);return `${h}${p} → ${r.hops.length?r.hops.join(' → '):'200'}${r.file||r.hops.length?'':' (sem arquivo)'}`});
 console.log('PÁGINAS indexáveis:',idx.size,'| no sitemap:',locs.length);
 console.log('PROBLEMAS ('+prob.length+'):'); [...new Set(prob)].forEach(p=>console.log('  - '+p));

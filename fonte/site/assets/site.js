@@ -8,6 +8,8 @@
   if (window.name === 'iphone-sim') { var pvb = document.querySelector('.preview-bar'); if (pvb) pvb.hidden = true; }
   var ease = function (x) { return x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; };
   var clamp = function (v) { return Math.max(0, Math.min(1, v)); };
+  /* artigos do blog em revisao: aparecem so em teste.hypeapp.com.br (no www os enderecos redirecionam para a Inicio) */
+  if (/^teste\./.test(location.hostname)) $$('[data-so-teste]').forEach(function (el) { el.hidden = false; });
 
   /* ---------- Medicao: dataLayer, aviso de cookies e Google Tag Manager ----------
      Consent Mode v2, modo basico: tudo comeca negado e o GTM so e carregado depois do aceite.
