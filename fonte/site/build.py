@@ -455,7 +455,7 @@ TELA_ALT = {
     'app-G2': 'Tela do app para creators: carteira com saldo',
 }
 # ---------- Hero da home com rolagem (04/11) ----------
-# Palco fixo de ~500svh com quatro cenas: abertura (H1), APLICATIVO (iPhone), PLATAFORMA (MacBook) e final.
+# Palco fixo de ~400svh com duas cenas: APLICATIVO (iPhone) e PLATAFORMA (MacBook, com a tampa abrindo).
 # Todo o texto sai daqui, no HTML. O site.js só move e revela (transform e opacity); sem JavaScript ou com
 # prefers-reduced-motion, as cenas ficam empilhadas e legíveis. As máscaras por palavra e por letra já saem do build.
 HX_TELAS = {
@@ -491,7 +491,6 @@ def hero_scroll(L, A):
     h1b, n = hx_palavras('O painel de quem contrata.')
     capa, _ = hx_palavras('Sua carreira de creator, mais organizada.')
     capb, _ = hx_palavras('Sua campanha, do início ao resultado.')
-    fim, _ = hx_palavras('Do convite ao pagamento, tudo em um só lugar.')
     (sa, alt_a), (sb, alt_b) = HX_TELAS['app'], HX_TELAS['painel']
     wa, ha = _img_wh(sa)
     wb, hb = _img_wh(sb)
@@ -512,8 +511,8 @@ def hero_scroll(L, A):
     <div class="hx-sc hx-plat" data-sc="1">
       {hx_gigante('PLATAFORMA')}
       <figure class="hx-dev hx-mac"><div class="mb" data-dev>
-        <div class="mb-lid" data-lid><div class="mb-bez"><span class="mb-cam" aria-hidden="true"></span>
-          <div class="mb-scr"><img src="{A(sb)}" alt="{alt_b}" width="{wb}" height="{hb}" loading="lazy" decoding="async"><span class="mb-off" aria-hidden="true" data-off></span><span class="hx-glare" aria-hidden="true"></span></div>
+        <div class="mb-lid" data-lid><span class="mb-back" aria-hidden="true"></span><div class="mb-bez"><span class="mb-cam" aria-hidden="true"></span>
+          <div class="mb-scr"><img src="{A(sb)}" alt="{alt_b}" width="{wb}" height="{hb}" loading="lazy" decoding="async"><span class="mb-off" aria-hidden="true" data-off></span><span class="mb-sweep" aria-hidden="true" data-sweep></span><span class="hx-glare" aria-hidden="true"></span></div>
           <span class="mb-name" aria-hidden="true">MacBook Pro</span></div></div>
         <div class="mb-base" aria-hidden="true"><div class="mb-deck"><i class="mb-keys"></i><i class="mb-pad"></i></div><div class="mb-lip"><i></i></div></div>
       </div></figure>
@@ -521,11 +520,6 @@ def hero_scroll(L, A):
         <h2 class="hx-cap">{capb}</h2>
         {hx_lista(['Seleção de creators', 'Conteúdos e aprovações', 'Resultados em um só painel'], 'O que o painel reúne')}
       </div>
-    </div>
-    <div class="hx-sc hx-end" data-sc="2">
-      <span class="hx-m hx-logo-m"><img class="hx-w hx-logo" src="{A('assets/logo-hypeapp-branco.svg')}" alt="HypeApp" width="292" height="160" loading="lazy" decoding="async"></span>
-      <p class="hx-fim">{fim}</p>
-      <div class="hx-ctas"><a class="btn btn-cta btn-lg" href="{L('/criadores/')}">Sou creator</a><a class="btn hx-btn-w btn-lg" href="{L('/marcas/')}">Tenho uma marca</a></div>
     </div>
     <span class="hx-cue hx-cue1" aria-hidden="true">Role para explorar {seta}</span>
     <span class="hx-cue hx-cue2" aria-hidden="true">Continue explorando {seta}</span>

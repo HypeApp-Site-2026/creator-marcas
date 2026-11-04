@@ -459,27 +459,26 @@
 
   /* ---------- Hero da home: palco fixo com rolagem suavizada ----------
      O texto vem todo do HTML; aqui so se move e revela (transform e opacity).
-     A cena APLICATIVO ja abre montada (entrada por CSS ao carregar); a rolagem leva a PLATAFORMA e ao final.
+     A cena APLICATIVO ja abre montada (entrada por CSS ao carregar); a rolagem leva a PLATAFORMA, onde o
+     notebook sobe fechado e a tampa abre na dobradica.
      Sem JavaScript ou com movimento reduzido, a secao continua empilhada (CSS). */
   (function () {
     var hx = $('[data-hx]');
     if (!hx || reduced || !window.requestAnimationFrame) return;
-    var sc = $$('.hx-sc', hx), app = sc[0], plat = sc[1], end = sc[2];
+    var sc = $$('.hx-sc', hx), app = sc[0], plat = sc[1];
     var l1 = $('.hx-l1', hx), l2 = $('.hx-l2', hx), l2w = $$('.hx-w', l2);
     var parts = function (s) {
       return { ch: $$('.hx-word .hx-ch > span', s), w: $$('.hx-cap .hx-w', s), li: $$('.hx-list li', s), lt: $$('.hx-li', s), dev: $('[data-dev]', s) };
     };
     var AP = parts(app), PL = parts(plat);
-    var lid = $('[data-lid]', plat), off = $('[data-off]', plat);
-    var logo = $('.hx-logo', end), fimW = $$('.hx-fim .hx-w', end), ctas = $('.hx-ctas', end);
+    var lid = $('[data-lid]', plat), off = $('[data-off]', plat), sweep = $('[data-sweep]', plat);
     var cue1 = $('.hx-cue1', hx), cue2 = $('.hx-cue2', hx);
     var eoq = function (x) { x = clamp(x); return 1 - Math.pow(1 - x, 4); };
     var eio = function (x) { return ease(clamp(x)); };
     var seg = function (p, a, b) { return clamp((p - a) / (b - a)); };
     var y = function (v, u) { return 'translate3d(0,' + v.toFixed(3) + (u || '%') + ',0)'; };
-    /* Linha do tempo (0 a 1 ao longo da secao): saida do APLICATIVO, entrada e saida da PLATAFORMA, final */
-    var T = { appOut: 0.30, plat: 0.37, platOut: 0.76, end: 0.84 };
-    var HOLD = [0, 0.68, 0.97];
+    /* Linha do tempo (0 a 1 ao longo da secao): saida do APLICATIVO e entrada da PLATAFORMA, que fica ate o fim */
+    var T = { appOut: 0.28, plat: 0.35 };
     var top = 0, dist = 1, target = 0, cur = 0, raf = 0, onScreen = true, t0 = 0;
 
     var rise = function (els, p, a, step, dur) {
@@ -500,42 +499,32 @@
         var fl = Math.sin((now - t0) / 1000 * 1.25) * clamp((now - t0 - 1600) / 1200);
         AP.dev.style.transform = 'translate3d(0,' + (fl * 7).toFixed(2) + 'px,0) rotateZ(' + (21 + fl * 0.5).toFixed(2) + 'deg) rotateY(-12deg) rotateX(6deg)';
       }
-      /* PLATAFORMA: palavra, notebook (tampa abre), frase do H1, legenda e lista */
+      /* PLATAFORMA: palavra; o notebook sobe fechado (verso de aluminio para cima); a tampa abre na dobradica,
+         passa um pouco do ponto e assenta; a tela acende com um brilho; depois a frase do H1, a legenda e a lista */
       var a = T.plat;
-      o = out(p, T.platOut); on = p > a - 0.02 && p < T.platOut + 0.065;
-      leave(plat, o, on);
-      plat.style.pointerEvents = on && o < 0.5 ? '' : 'none';
-      l2.style.opacity = on ? String(1 - o) : '0';
-      l2.style.transform = o ? y(-o * 6, 'vh') : '';
+      on = p > a - 0.02;
+      plat.style.opacity = on ? '1' : '0';
+      plat.style.pointerEvents = on ? '' : 'none';
+      l2.style.opacity = on ? '1' : '0';
       if (on) {
         rise(PL.ch, p, a, 0.007, 0.06);
-        var m = eoq(seg(p, a + 0.03, a + 0.13)), L = eio(seg(p, a + 0.10, a + 0.21));
+        var m = eoq(seg(p, a + 0.03, a + 0.12));
+        var L = eio(seg(p, a + 0.11, a + 0.27)), back = eio(seg(p, a + 0.26, a + 0.31));
         PL.dev.style.opacity = String(clamp(m * 3));
-        PL.dev.style.transform = y((1 - m) * 70, 'vh');
-        lid.style.transform = 'rotateX(' + (-90 * (1 - L)).toFixed(2) + 'deg)';
-        off.style.opacity = String(1 - seg(p, a + 0.16, a + 0.22));
-        rise(l2w, p, a + 0.12, 0.006, 0.05);
-        rise(PL.w, p, a + 0.18, 0.005, 0.05);
+        PL.dev.style.transform = y((1 - m) * 60, 'vh') + ' scale(' + (0.9 + 0.1 * L).toFixed(4) + ')';
+        lid.style.transform = 'rotateX(' + (-90 + 96 * L - 6 * back).toFixed(2) + 'deg)';
+        off.style.opacity = String(1 - seg(p, a + 0.25, a + 0.30));
+        sweep.style.transform = 'translate3d(' + (-120 + 360 * eio(seg(p, a + 0.28, a + 0.38))).toFixed(1) + '%,0,0)';
+        rise(l2w, p, a + 0.27, 0.006, 0.05);
+        rise(PL.w, p, a + 0.32, 0.005, 0.05);
         for (var i = 0; i < PL.li.length; i++) {
-          var k = eoq(seg(p, a + 0.2 + i * 0.016, a + 0.26 + i * 0.016));
+          var k = eoq(seg(p, a + 0.34 + i * 0.016, a + 0.40 + i * 0.016));
           PL.lt[i].style.transform = y((1 - k) * 110);
           PL.li[i].style.setProperty('--k', k.toFixed(3));
         }
       }
-      /* Final */
-      a = T.end;
-      var ef = p > a - 0.02;
-      end.style.opacity = ef ? '1' : '0';
-      end.style.pointerEvents = p > a + 0.06 ? '' : 'none';
-      if (ef) {
-        logo.style.transform = y((1 - eoq(seg(p, a, a + 0.05))) * 115);
-        rise(fimW, p, a + 0.015, 0.006, 0.05);
-        var c = eoq(seg(p, a + 0.07, a + 0.11));
-        ctas.style.opacity = String(c);
-        ctas.style.transform = y((1 - c) * 24, 'px');
-      }
-      cue1.style.opacity = String(1 - seg(p, 0.24, 0.3));
-      cue2.style.opacity = String(seg(p, 0.56, 0.62) * (1 - seg(p, 0.72, 0.76)));
+      cue1.style.opacity = String(1 - seg(p, 0.22, 0.28));
+      cue2.style.opacity = String(seg(p, 0.76, 0.82));
     };
 
     var measure = function () {
@@ -562,13 +551,6 @@
     window.addEventListener('scroll', function () { read(); kick(); }, { passive: true });
     window.addEventListener('resize', function () { measure(); read(); kick(); });
     if (window.IntersectionObserver) new IntersectionObserver(function (es) { onScreen = es[0].isIntersecting; if (onScreen) kick(); }).observe(hx);
-    /* Teclado: ao focar algo de uma cena, a rolagem vai ate o ponto em que ela fica parada na tela */
-    hx.addEventListener('focusin', function (ev) {
-      var s = ev.target.closest && ev.target.closest('.hx-sc'), i = sc.indexOf(s);
-      if (i < 0) return;
-      var to = Math.round(top + dist * HOLD[i]);
-      if (Math.abs(window.pageYOffset - to) > 4) { window.scrollTo(0, to); read(); cur = target; render(cur, t0); }
-    });
   })();
 
   /* ---------- Como funciona: carrossel com clipes (so o card ativo toca) ---------- */

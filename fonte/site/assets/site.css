@@ -692,7 +692,7 @@ fieldset.invalid .choice > span { box-shadow: inset 0 0 0 2px #C4122F; }
 
 /* ---------- Hero da home com rolagem (04/11) ----------
    Sem JavaScript ou com prefers-reduced-motion: as cenas ficam empilhadas, no fundo escuro, cada uma já montada.
-   Com JavaScript, o site.js põe .hx-live: a seção ganha ~500svh e as cenas passam a um palco fixo (sticky).
+   Com JavaScript, o site.js põe .hx-live: a seção ganha ~400svh e as cenas passam a um palco fixo (sticky).
    A troca acontece abaixo da dobra: a abertura ocupa a primeira tela nos dois modos, então nada se desloca (CLS 0).
    Animações: só transform e opacity. */
 main.home { display: block; }
@@ -775,11 +775,22 @@ main.home > .home-body { padding-block: 120px 0; display: flex; flex-direction: 
 .ip-pw { right: calc(var(--w) * -.015); top: 28%; height: 13%; }
 
 /* MacBook Pro prata, de frente */
-.hx-mac { --w: min(56vw, 94svh); width: var(--w); transform: translate(-50%, -52%); perspective: 2400px; perspective-origin: 50% -20%; }
-.mb { position: relative; width: 100%; }
-.mb-lid { width: 80.5%; margin: 0 auto; transform-origin: 50% 100%; }
+.hx-mac { --w: min(56vw, 94svh); width: var(--w); transform: translate(-50%, -52%); }
+/* A perspectiva fica no pai direto da tampa, com a câmera um pouco acima: a tampa gira na dobradiça
+   (rotateX de -90deg, deitada sobre o teclado com o verso de alumínio para cima, até 0). */
+/* Câmera a ~43% da altura: com a tampa fechada (-90deg), a projeção dela cai sobre o teclado, do tamanho da base. */
+.mb { position: relative; width: 100%; perspective: 2200px; perspective-origin: 50% 43%; transform-origin: 50% 100%; }
+.mb-lid { position: relative; z-index: 1; width: 80.5%; margin: 0 auto; transform-origin: 50% 100%; transform-style: preserve-3d; }
+.mb-back {
+  position: absolute; inset: 0; transform: rotateY(180deg); backface-visibility: hidden; -webkit-backface-visibility: hidden;
+  border-radius: calc(var(--w) * .024) calc(var(--w) * .024) calc(var(--w) * .006) calc(var(--w) * .006);
+  background: linear-gradient(180deg, #dfe0e3 0%, #c6c8cc 55%, #a9abaf 100%);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .45), inset 0 -6px 14px rgba(0, 0, 0, .12);
+}
+.mb-sweep { position: absolute; top: 0; bottom: 0; left: 0; width: 45%; transform: translate3d(-120%, 0, 0); pointer-events: none;
+  background: linear-gradient(100deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, .28) 50%, rgba(255, 255, 255, 0) 100%); }
 .mb-bez {
-  position: relative; aspect-ratio: 1.585; background: #0a0a0b;
+  position: relative; aspect-ratio: 1.585; background: #0a0a0b; backface-visibility: hidden; -webkit-backface-visibility: hidden;
   border-radius: calc(var(--w) * .024) calc(var(--w) * .024) calc(var(--w) * .006) calc(var(--w) * .006);
   padding: calc(var(--w) * .014) calc(var(--w) * .014) calc(var(--w) * .028);
   box-shadow: 0 0 0 calc(var(--w) * .0035) #c9cbcf, 0 0 0 calc(var(--w) * .006) #8e9095, 0 -10px 40px rgba(0, 0, 0, .25);
@@ -820,24 +831,15 @@ main.home > .home-body { padding-block: 120px 0; display: flex; flex-direction: 
 .hx-list li::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 1px; background: rgba(255, 255, 255, .4); transform-origin: 0 50%; transform: scaleX(var(--k, 1)); }
 .hx-li { display: inline-block; }
 
-/* Final */
-.hx-end { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 28px; padding: 96px max(24px, 6vw); text-align: center; }
-.hx-logo-m { padding: 0; margin: 0; }
-.hx-logo { width: clamp(150px, 15vw, 240px); height: auto; }
-.hx-fim { margin: 0; max-width: 13em; color: #fff; font-size: clamp(30px, 4.2vw, 64px); font-weight: 600; line-height: 1.05; letter-spacing: -0.04em; }
-.hx-ctas { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; padding-top: 8px; }
-.hx-btn-w { background: #fff; color: var(--ink); }
-.hx-btn-w:hover { background: var(--hx-paper); color: var(--ink); }
-
 /* "Role para explorar" */
 .hx-cue { position: absolute; left: 50%; top: calc(100svh - 64px); transform: translateX(-50%); display: inline-flex; align-items: center; gap: 8px; color: #fff; font-size: 17px; white-space: nowrap; pointer-events: none; }
 .hx-cue2 { opacity: 0; }
 
 /* Modo com JavaScript: palco fixo */
-.hx.hx-live { height: 500vh; height: 500svh; }
+.hx.hx-live { height: 400vh; height: 400svh; }
 .hx-live .hx-pin { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; }
 .hx-live .hx-sc { position: absolute; inset: 0; min-height: 0; }
-.hx-live .hx-plat, .hx-live .hx-end, .hx-live .hx-l2 { opacity: 0; }
+.hx-live .hx-plat, .hx-live .hx-l2 { opacity: 0; }
 .hx-live .hx-l2 { transform: none; }
 .hx-live .hx-cue { top: auto; bottom: 3.2svh; }
 .hx-live [data-dev], .hx-live .hx-word .hx-ch > span { will-change: transform; }
