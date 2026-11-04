@@ -878,9 +878,9 @@ def p_criadores(L, A):
 <section id="para-quem" aria-labelledby="pq-h">
   <h2 id="pq-h" class="bt-h2">Isso é pra mim?</h2>
   <div class="bt-g bt-3">
-    <div class="bt bt-card">{ilu('assets/ilustracoes/creator-metricas.webp', 'Ilustração: creator com o celular e cartões de perfil e métricas')}<div class="bt-pad"><b class="bt-t3">Está começando</b><span class="bt-p">Não existe mínimo de seguidores. Cada campanha diz os critérios dela, e o app mostra se o seu perfil atende antes de você se inscrever.</span></div></div>
-    <div class="bt bt-card">{ilu('assets/ilustracoes/entregas-notebook.webp', 'Ilustração: lista de entregas marcada na tela do notebook')}<div class="bt-pad"><b class="bt-t3">Já faz publis</b><span class="bt-p">Tire as propostas do direct. Briefing, prazos, aprovações e pagamento ficam registrados em cada campanha.</span></div></div>
-    <div class="bt bt-card">{ilu('assets/ilustracoes/reels-valores.webp', 'Ilustração: celular com um vídeo e cartões de valor e uso de imagem')}<div class="bt-pad"><b class="bt-t3">Trabalha com UGC</b><span class="bt-p">Marque no cadastro que faz UGC e defina o seu valor para conteúdo que a marca usa nos canais dela.</span></div></div>
+    <div class="bt bt-card">{ilu('assets/ilustracoes/pq-comecando.webp', 'Ilustração: creator sorrindo com o celular e um cartão de perfil aprovado')}<div class="bt-pad"><b class="bt-t3">Está começando</b><span class="bt-p">Não existe mínimo de seguidores. Cada campanha diz os critérios dela, e o app mostra se o seu perfil atende antes de você se inscrever.</span></div></div>
+    <div class="bt bt-card">{ilu('assets/ilustracoes/pq-publis.webp', 'Ilustração: mãos no celular com a campanha e briefing, roteiro e entrega marcados')}<div class="bt-pad"><b class="bt-t3">Já faz publis</b><span class="bt-p">Tire as propostas do direct. Briefing, prazos, aprovações e pagamento ficam registrados em cada campanha.</span></div></div>
+    <div class="bt bt-card">{ilu('assets/ilustracoes/pq-ugc.webp', 'Ilustração: mãos posicionando um produto diante do celular no tripé, gravando')}<div class="bt-pad"><b class="bt-t3">Trabalha com UGC</b><span class="bt-p">Marque no cadastro que faz UGC e defina o seu valor para conteúdo que a marca usa nos canais dela.</span></div></div>
   </div>
 </section>
 
