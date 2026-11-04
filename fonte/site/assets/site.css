@@ -1193,3 +1193,114 @@ label.ck-op { cursor: pointer; }
 .tts-band { padding-top: 120px; }
 .tts-band + .site-footer { padding-top: 24px; }
 @media (max-width: 720px) { .tts-band { padding-top: 72px; } .tts-band + .site-footer { padding-top: 16px; } }
+
+/* ---------- Telas vivas da hero (hero_telas.py) ----------
+   Só com .hx-live. Cada tela é desenhada no tamanho real (iPhone 393 pt, painel 1920 px) e o site.js escala para a moldura
+   (--ls = escala, --lh = altura visível no tamanho real). O conteúdo anima só com transform e opacity. */
+.ls { display: none; }
+.hx-live .ls { display: block; position: absolute; inset: 0; overflow: hidden; font-family: var(--font); color: #050505; text-align: left; letter-spacing: normal; }
+.ls-in { position: absolute; left: 0; top: 0; height: var(--lh, 852px); transform: scale(var(--ls, 1)); transform-origin: 0 0; }
+.ls-art { display: block; width: 100%; height: 100%; }
+.ls-av { width: 46px; height: 46px; border-radius: 50%; flex: none; display: block; }
+.ls p, .ls b, .ls span { margin: 0; }
+/* iPhone */
+.ls-app { background: #EFEFEF; }
+.ls-app .ls-in { width: 393px; background: #EFEFEF; }
+.la-sb { height: 54px; display: flex; align-items: center; justify-content: space-between; padding: 6px 30px 0 34px; }
+.la-sb b { font-size: 17px; font-weight: 600; letter-spacing: -.2px; }
+.la-sb span { display: flex; gap: 6px; align-items: center; color: #050505; fill: #050505; }
+.la-t { font-size: 35px; font-weight: 750; letter-spacing: -1px; line-height: 1.15; margin: 8px 21px 0 !important; }
+.la-seg { margin: 18px 21px 0; height: 51px; background: #fff; border-radius: 26px; padding: 4px; display: flex; }
+.la-seg span { flex: 1; display: flex; align-items: center; justify-content: center; font-size: 14.5px; font-weight: 600; color: #8C8C8C; border-radius: 22px; }
+.la-seg span.on { background: #050505; color: #fff; flex: 1.05; }
+.la-chips { position: relative; display: flex; gap: 8px; margin: 13px 21px 0; }
+.la-chips span { height: 38px; padding: 0 15px; border-radius: 19px; background: #fff; display: flex; align-items: center; font-size: 14px; font-weight: 600; white-space: nowrap; }
+/* destaque roxo que desliza: leva por dentro uma cópia dos rótulos em branco, alinhada aos de baixo */
+.la-hl { position: absolute; left: 0; top: 0; height: 38px; width: 70px; border-radius: 19px; background: #9E2CFA; overflow: hidden; }
+.la-chips .la-hl-in { position: absolute; left: 0; top: 0; display: flex; gap: 8px; height: 38px; padding: 0; background: none; border-radius: 0; }
+.la-chips .la-hl-in span { background: none; color: #fff; }
+.la-lista { position: relative; margin: 37px 21px 0; }
+.la-pane { display: flex; flex-direction: column; gap: 19px; }
+.la-pane[data-p1] { position: absolute; left: 0; right: 0; top: 0; opacity: 0; }
+.la-cd { background: #fff; border-radius: 26px; padding: 13px 13px 15px; }
+.la-h { display: flex; align-items: center; gap: 12px; }
+.la-th { width: 61px; height: 61px; border-radius: 15px; overflow: hidden; flex: none; }
+.la-n { flex: 1; display: flex; flex-direction: column; gap: 1px; }
+.la-n b { font-size: 16.5px; font-weight: 700; letter-spacing: -.2px; }
+.la-n span { font-size: 13px; color: #7A7A7A; }
+.la-tg { align-self: flex-start; margin-top: 18px !important; height: 25px; padding: 0 10px; border-radius: 13px; background: #F1F1F1; font-size: 11.5px; font-weight: 700; display: flex; align-items: center; }
+.la-st { margin-top: 14px; background: #F0F0F0; border-radius: 15px; padding: 12px; display: flex; gap: 11px; align-items: center; }
+.la-sti { width: 34px; height: 34px; border-radius: 10px; background: #9E2CFA; color: #fff; display: flex; align-items: center; justify-content: center; flex: none; }
+.la-st div b { display: block; font-size: 14px; font-weight: 700; line-height: 1.3; }
+.la-st div span { display: block; font-size: 13px; line-height: 1.25; margin-top: 1px; }
+.la-f { display: flex; justify-content: space-between; align-items: baseline; margin-top: 14px; padding: 0 1px; }
+.la-f span { font-size: 13px; color: #7A7A7A; }
+.la-f b { font-size: 15.5px; font-weight: 700; }
+.la-nav { position: absolute; left: 16px; right: 16px; bottom: 19px; height: 69px; border-radius: 35px; background: #050505; box-shadow: 0 10px 24px rgba(0, 0, 0, .18); color: #A6A6A6; }
+.la-nav > span { position: absolute; top: 50%; transform: translate(-50%, -50%); display: flex; }
+.la-nav .on { left: 147.5px; width: 147px; height: 52px; border-radius: 26px; background: #9E2CFA; color: #fff; align-items: center; justify-content: center; gap: 8px; font-size: 14px; font-weight: 700; }
+/* painel */
+.ls-plat { background: #EEEEEE; }
+.ls-plat .ls-in { width: 1920px; background: #EEEEEE; }
+.lp-sd { position: absolute; left: 15px; top: 14px; bottom: 14px; width: 252px; background: #0A0A0A; border-radius: 26px; padding: 22px 14px 14px; display: flex; flex-direction: column; color: #D6D6D6; }
+.lp-lg { height: 36px; width: auto; align-self: flex-start; margin: 0 0 14px 10px; }
+.lp-ws { display: flex; align-items: center; gap: 12px; background: #1D1D1D; border-radius: 29px; padding: 10px 14px 10px 10px; color: #8A8A8A; }
+.lp-ws img { width: 36px; height: 36px; border-radius: 50%; }
+.lp-ws div, .lp-me div { flex: 1; }
+.lp-ws b, .lp-me b { display: block; color: #fff; font-size: 14px; font-weight: 600; }
+.lp-ws span, .lp-me span { font-size: 12px; color: #9A9A9A; }
+.lp-lb { font-size: 11px; font-weight: 700; letter-spacing: .1em; color: #8A8A8A; margin: 20px 14px 8px; }
+.lp-a { display: flex; align-items: center; gap: 12px; height: 40px; padding: 0 14px; border-radius: 20px; font-size: 14.5px; }
+.lp-a.on { background: #9E2CFA; color: #fff; font-weight: 600; }
+.lp-a span { flex: 1; }
+.lp-a em { font-style: normal; width: 22px; height: 22px; border-radius: 50%; background: #fff; color: #050505; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+.lp-sd hr { border: 0; border-top: 1px solid #262626; margin: 10px 0 0; }
+.lp-me { margin-top: auto; display: flex; align-items: center; gap: 12px; background: #1D1D1D; border-radius: 27px; padding: 9px 16px 9px 9px; color: #9A9A9A; }
+.lp-ini { width: 38px; height: 38px; border-radius: 50%; background: #050505; color: #fff !important; font-size: 13px !important; font-weight: 700; display: flex; align-items: center; justify-content: center; flex: none; }
+.lp-tp { position: absolute; top: 20px; right: 18px; display: flex; gap: 12px; }
+.lp-tp span { width: 44px; height: 44px; border-radius: 50%; background: #fff; display: flex; align-items: center; justify-content: center; }
+.lp-mn { position: absolute; left: 503px; top: 84px; width: 1180px; }
+.lp-t { font-size: 42px; font-weight: 750; letter-spacing: -1.2px; line-height: 1.2; }
+.lp-sub { font-size: 15px; color: #555; margin-top: 6px !important; }
+.lp-fl { display: flex; align-items: center; gap: 12px; margin-top: 28px; }
+.lp-tb { display: flex; gap: 4px; background: #fff; border-radius: 26px; padding: 5px; height: 52px; }
+.lp-tb span { display: flex; align-items: center; gap: 8px; padding: 0 14px; border-radius: 21px; font-size: 14.5px; font-weight: 500; color: #3A3A3A; }
+.lp-tb em { font-style: normal; min-width: 20px; height: 20px; padding: 0 6px; border-radius: 10px; background: #EFEFEF; font-size: 11.5px; font-weight: 700; color: #050505; display: flex; align-items: center; justify-content: center; }
+.lp-tb span.on { background: #050505; color: #fff; font-weight: 600; }
+.lp-tb span.on em { background: #9E2CFA; color: #fff; }
+.lp-bs { height: 52px; width: 228px; background: #fff; border-radius: 26px; display: flex; align-items: center; gap: 10px; padding: 0 18px; color: #9A9A9A; font-size: 14.5px; }
+.lp-so { margin-left: auto; height: 52px; background: #fff; border-radius: 26px; display: flex; align-items: center; gap: 8px; padding: 0 18px; font-size: 14.5px; font-weight: 600; }
+.lp-vw { height: 52px; background: #fff; border-radius: 26px; padding: 5px; display: flex; gap: 4px; }
+.lp-vw span { width: 42px; border-radius: 21px; display: flex; align-items: center; justify-content: center; color: #555; }
+.lp-vw span.on { background: #050505; color: #fff; }
+.lp-gr { display: grid; grid-template-columns: repeat(3, 379px); gap: 22px 21px; margin-top: 24px; }
+.lp-cd { background: #fff; border-radius: 24px; overflow: hidden; }
+.lp-cv { position: relative; height: 184px; }
+.lp-vaz { height: 100%; background: #E6E6E6; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; color: #8A8A8A; font-size: 13px; font-weight: 500; }
+.lp-ch, .lp-sp { position: absolute; top: 14px; height: 32px; padding: 0 11px; border-radius: 16px; font-size: 13px; font-weight: 600; display: flex; align-items: center; }
+.lp-ch { left: 14px; background: #fff; }
+.lp-sp { right: 14px; color: #fff; }
+.lp-bb { position: relative; margin-top: -18px; background: #fff; border-radius: 24px 24px 0 0; padding: 16px 18px 18px; }
+.lp-bh { display: flex; gap: 13px; align-items: center; }
+.lp-bh div { min-width: 0; }
+.lp-bh b { display: block; font-size: 15px; font-weight: 600; }
+.lp-bh span { display: block; font-size: 14px; color: #6A6A6A; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 2px !important; }
+.lp-pg { display: flex; justify-content: space-between; margin-top: 16px; font-size: 14px; color: #555; }
+.lp-pg b { color: #050505; font-size: 13.5px; }
+.lp-bar { height: 7px; background: #EAEAEA; border-radius: 4px; margin-top: 10px; overflow: hidden; }
+.lp-bar i { display: block; height: 100%; background: #9E2CFA; border-radius: 4px; transform-origin: 0 50%; }
+.lp-ks { display: grid; grid-template-columns: repeat(3, 1fr); background: #F2F2F2; border-radius: 16px; padding: 14px; margin-top: 16px; }
+.lp-ks span { display: block; font-size: 13.5px; color: #555; }
+.lp-ks b { display: flex; align-items: center; gap: 6px; font-size: 16px; font-weight: 700; margin-top: 4px; }
+.lp-ks b i { width: 7px; height: 7px; border-radius: 50%; background: #9E2CFA; }
+/* entrada do iPhone ao carregar: os cartões sobem junto com o aparelho */
+@media (prefers-reduced-motion: no-preference) {
+  .hx-live:not(.hx-skip) .la-pane[data-p0] .la-cd { animation: ls-up .9s var(--ease) calc(900ms + var(--i) * 140ms) backwards; }
+  .hx-live:not(.hx-skip) .la-chips, .hx-live:not(.hx-skip) .la-seg { animation: ls-up .8s var(--ease) 760ms backwards; }
+}
+@keyframes ls-up { from { opacity: 0; transform: translate3d(0, 40px, 0); } }
+/* a regra .mb-scr img (imagem da tela) não vale para as imagens de dentro da tela viva */
+.mb-scr .ls img { object-fit: fill; }
+.mb-scr .ls .ls-av { width: 46px; height: 46px; }
+.mb-scr .ls .lp-ws img { width: 36px; height: 36px; }
+.mb-scr .ls .lp-lg { width: auto; height: 36px; }

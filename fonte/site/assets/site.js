@@ -474,6 +474,44 @@
     var AP = parts(app), PL = parts(plat);
     var lid = $('[data-lid]', plat), off = $('[data-off]', plat), sweep = $('[data-sweep]', plat);
     var cue1 = $('.hx-cue1', hx), cue2 = $('.hx-cue2', hx);
+    /* Telas vivas (hero_telas.py): escala para a moldura e animacao do conteudo junto com a passagem */
+    var lsA = $('[data-ls="app"]', hx), lsP = $('[data-ls="plat"]', hx);
+    var hl = lsA && $('[data-hl]', lsA), hli = lsA && $('[data-hli]', lsA), c0 = lsA && $('[data-c0]', lsA), c1 = lsA && $('[data-c1]', lsA);
+    var p0 = lsA && $('[data-p0]', lsA), p1 = lsA && $('[data-p1]', lsA);
+    var cds = lsP ? $$('[data-cd]', lsP).map(function (c) {
+      var pct = $('[data-pct]', c);
+      return { el: c, bar: $('[data-bar]', c), pct: pct, v: pct ? +pct.getAttribute('data-pct') : 0, last: -1 };
+    }) : [];
+    var fitLs = function (ls, w) {
+      if (!ls) return;
+      var inn = ls.firstElementChild, k = ls.clientWidth / w;
+      if (!k) return;
+      inn.style.setProperty('--ls', k.toFixed(5));
+      inn.style.setProperty('--lh', (ls.clientHeight / k).toFixed(1) + 'px');
+    };
+    var fitAll = function () { fitLs(lsA, 393); fitLs(lsP, 1920); };
+    var telas = function (q) {
+      if (lsA && c0 && c1) {
+        var t = eio(seg(q, 0.03, 0.24));
+        var x = c0.offsetLeft + (c1.offsetLeft - c0.offsetLeft) * t, w = c0.offsetWidth + (c1.offsetWidth - c0.offsetWidth) * t;
+        hl.style.width = w.toFixed(2) + 'px';
+        hl.style.transform = 'translate3d(' + x.toFixed(2) + 'px,0,0)';
+        hli.style.transform = 'translate3d(' + (-x).toFixed(2) + 'px,0,0)';
+        p0.style.transform = t ? 'translate3d(' + (-t * 112).toFixed(2) + '%,0,0)' : '';
+        p0.style.opacity = String(1 - t);
+        p1.style.transform = 'translate3d(' + ((1 - t) * 112).toFixed(2) + '%,0,0)';
+        p1.style.opacity = String(t);
+      }
+      var r = seg(q, 0.86, 1);
+      for (var i = 0; i < cds.length; i++) {
+        var c = cds[i], k = eoq(seg(r, i * 0.09, 0.42 + i * 0.09)), b = eio(seg(r, 0.22 + i * 0.09, 0.72 + i * 0.09));
+        c.el.style.opacity = String(k);
+        c.el.style.transform = k < 1 ? 'translate3d(0,' + ((1 - k) * 34).toFixed(2) + 'px,0) scale(' + (0.96 + 0.04 * k).toFixed(4) + ')' : '';
+        if (c.bar) c.bar.style.transform = 'scaleX(' + b.toFixed(4) + ')';
+        var n = Math.round(c.v * b);
+        if (c.pct && n !== c.last) { c.pct.textContent = n + '%'; c.last = n; }
+      }
+    };
     var eoq = function (x) { x = clamp(x); return 1 - Math.pow(1 - x, 4); };
     var eio = function (x) { return ease(clamp(x)); };
     var seg = function (p, a, b) { return clamp((p - a) / (b - a)); };
@@ -487,6 +525,7 @@
     /* p: 0 a 1 ao longo da secao. q: a passagem, de 0 (app) a 1 (plataforma). */
     var render = function (p, now) {
       var q = seg(p, 0.04, 0.96);
+      telas(q);
       /* APLICATIVO: textos saem primeiro; o celular vem para perto da camera e some */
       var tx = eio(seg(q, 0, 0.18)), z = eio(seg(q, 0, 0.5)), fade = seg(q, 0.3, 0.5);
       l1.style.opacity = String(1 - tx);
@@ -552,6 +591,8 @@
     };
 
     hx.classList.add('hx-live');
+    fitAll();
+    if (window.ResizeObserver) [lsA, lsP].forEach(function (ls) { if (ls) new ResizeObserver(fitAll).observe(ls); });
     measure(); read(); cur = target; t0 = (window.performance && performance.now()) || 0;
     if (cur > 0.02) hx.classList.add('hx-skip');
     render(cur, t0);

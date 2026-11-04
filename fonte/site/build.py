@@ -483,6 +483,8 @@ def hx_lista(itens, label):
     li = ''.join(f'<li style="--i:{i}"><span class="hx-li">{t}</span></li>' for i, t in enumerate(itens))
     return f'<ul class="hx-list" aria-label="{label}">{li}</ul>'
 
+import hero_telas as _ht
+
 def hero_scroll(L, A):
     """Sem tela de abertura: a página já abre na cena APLICATIVO. O H1 é um só, com uma frase em cada cena
     (linha 1 sobre o celular, linha 2 sobre o notebook); as duas ficam no mesmo elemento para o texto do H1 não mudar."""
@@ -501,7 +503,7 @@ def hero_scroll(L, A):
     <div class="hx-sc hx-app" data-sc="0">
       {hx_gigante('APLICATIVO')}
       <figure class="hx-dev hx-iphone"><div class="ip" data-dev><div class="ip-body"><span class="ip-btns" aria-hidden="true">{ip_btns}</span>
-        <div class="ip-bez"><div class="ip-scr"><img src="{A(sa)}" alt="{alt_a}" width="{wa}" height="{ha}" fetchpriority="high" decoding="async"><span class="ip-di" aria-hidden="true"></span><span class="hx-glare" aria-hidden="true"></span></div></div>
+        <div class="ip-bez"><div class="ip-scr"><img src="{A(sa)}" alt="{alt_a}" width="{wa}" height="{ha}" fetchpriority="high" decoding="async">{_ht.tela_app()}<span class="ip-di" aria-hidden="true"></span><span class="hx-glare" aria-hidden="true"></span></div></div>
       </div></div></figure>
       <div class="hx-copy">
         <h2 class="hx-cap">{capa}</h2>
@@ -512,7 +514,7 @@ def hero_scroll(L, A):
       {hx_gigante('PLATAFORMA')}
       <figure class="hx-dev hx-mac"><div class="mb" data-dev>
         <div class="mb-lid" data-lid><span class="mb-back" aria-hidden="true"></span><div class="mb-bez"><span class="mb-cam" aria-hidden="true"></span>
-          <div class="mb-scr"><img src="{A(sb)}" alt="{alt_b}" width="{wb}" height="{hb}" loading="lazy" decoding="async"><span class="mb-off" aria-hidden="true" data-off></span><span class="mb-sweep" aria-hidden="true" data-sweep></span><span class="hx-glare" aria-hidden="true"></span></div>
+          <div class="mb-scr"><img src="{A(sb)}" alt="{alt_b}" width="{wb}" height="{hb}" loading="lazy" decoding="async">{_ht.tela_painel(A, A('assets/logo-hypeapp-branco.svg'))}<span class="mb-off" aria-hidden="true" data-off></span><span class="mb-sweep" aria-hidden="true" data-sweep></span><span class="hx-glare" aria-hidden="true"></span></div>
           <span class="mb-name" aria-hidden="true">MacBook Pro</span></div></div>
         <div class="mb-base" aria-hidden="true"><i class="mb-shadow"></i><div class="mb-deck"><i class="mb-spk mb-spk-l"></i><div class="mb-kb"><i></i><i></i><i></i><i></i><i></i><i></i></div><i class="mb-spk mb-spk-r"></i><i class="mb-pad"></i></div><i class="mb-lip"><i></i></i></div>
       </div></figure>
