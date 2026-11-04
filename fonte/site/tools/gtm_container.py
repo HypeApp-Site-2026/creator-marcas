@@ -1,6 +1,6 @@
 """Gera o contêiner do Google Tag Manager do site HypeApp para importar (Admin > Importar contêiner).
 
-Uso:  python3 tools/gtm_container.py [G-XXXXXXXXXX]
+Uso:  python3 tools/gtm_container.py [G-XXXXXXXXXX] [GTM-XXXXXXX]
 Saída: tools/gtm-container-hypeapp.json
 
 O que vai no contêiner:
@@ -13,7 +13,8 @@ Sem tags de HTML personalizado nem variáveis de JavaScript personalizado: a CSP
 import json, os, re, sys
 from datetime import datetime, timezone
 
-GA = sys.argv[1] if len(sys.argv) > 1 else 'G-XXXXXXXXXX'
+GA = sys.argv[1] if len(sys.argv) > 1 else 'G-3WD7HYT50C'
+GTM = sys.argv[2] if len(sys.argv) > 2 else 'GTM-KKF9JKK9'
 if not re.fullmatch(r'G-[A-Z0-9]{6,12}', GA):
     raise SystemExit('Use o ID de medição do GA4 no formato G-XXXXXXXXXX')
 
@@ -85,7 +86,7 @@ out = {
         'path': f'accounts/{ACC}/containers/{CON}/versions/0',
         'accountId': ACC, 'containerId': CON, 'containerVersionId': '0',
         'container': {'path': f'accounts/{ACC}/containers/{CON}', 'accountId': ACC, 'containerId': CON,
-                      'name': 'HypeApp site', 'publicId': 'GTM-XXXXXXX', 'usageContext': ['WEB']},
+                      'name': 'HypeApp site', 'publicId': GTM, 'usageContext': ['WEB']},
         'tag': tags, 'trigger': acionadores, 'variable': variaveis,
         'builtInVariable': [{'accountId': ACC, 'containerId': CON, 'type': t, 'name': n} for t, n in
                             [('PAGE_URL', 'Page URL'), ('PAGE_HOSTNAME', 'Page Hostname'), ('PAGE_PATH', 'Page Path'),

@@ -1,6 +1,6 @@
 {
   "exportFormatVersion": 2,
-  "exportTime": "2026-11-04 11:05:30",
+  "exportTime": "2026-11-04 11:16:36",
   "containerVersion": {
     "path": "accounts/0/containers/0/versions/0",
     "accountId": "0",
@@ -11,7 +11,7 @@
       "accountId": "0",
       "containerId": "0",
       "name": "HypeApp site",
-      "publicId": "GTM-XXXXXXX",
+      "publicId": "GTM-KKF9JKK9",
       "usageContext": [
         "WEB"
       ]
@@ -587,7 +587,7 @@
           {
             "type": "TEMPLATE",
             "key": "value",
-            "value": "G-XXXXXXXXXX"
+            "value": "G-3WD7HYT50C"
           }
         ]
       },

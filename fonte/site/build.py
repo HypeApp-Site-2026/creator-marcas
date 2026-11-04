@@ -22,7 +22,7 @@ CFG = {
     'preview': not WEB,      # faixa "Prévia" + noindex
     # Google Tag Manager: ID do contêiner (GTM-XXXXXXX). Vazio = nenhum script de análise e nenhum aviso de cookies.
     # O GTM só é carregado depois que a pessoa aceita os cookies de medição (Consent Mode v2, modo básico).
-    'gtm': os.environ.get('HH_GTM', ''),
+    'gtm': os.environ.get('HH_GTM', 'GTM-KKF9JKK9'),   # contêiner "www.hypeapp.com.br" (04/11); GA4 G-3WD7HYT50C fica dentro do GTM
 }
 if CFG['gtm'] and not re.fullmatch(r'GTM-[A-Z0-9]{4,12}', CFG['gtm']):
     raise SystemExit('CFG gtm inválido: use o formato GTM-XXXXXXX')
