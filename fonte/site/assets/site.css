@@ -712,19 +712,26 @@ main.home > .home-body { padding-block: 120px 0; display: flex; flex-direction: 
 .hx-ch { display: inline-block; margin-right: -.05em; clip-path: inset(-.3em -.3em 0 -.3em); }
 .hx-ch > span { display: inline-block; }
 
-/* Abertura */
-.hx-open { display: flex; align-items: center; justify-content: center; padding: 120px max(24px, 4vw) 120px; }
+/* H1: uma frase em cada cena. Linha 1 no alto da cena APLICATIVO, linha 2 no alto da cena PLATAFORMA.
+   Empilhado (sem JS), a linha 2 desce uma tela por transform; no palco fixo, o JS controla as duas. */
 .hx-h1 {
-  margin: 0; max-width: 15em; text-align: center; color: #fff;
-  font-size: clamp(40px, 6vw, 112px); font-weight: 600; line-height: 1.02; letter-spacing: -0.045em;
+  position: absolute; inset: 0; z-index: 2; margin: 0; pointer-events: none; color: #fff;
+  font-size: clamp(30px, 2.9vw, 48px); font-weight: 600; line-height: 1.06; letter-spacing: -0.035em;
 }
-.hx-l { display: block; }
-.hx-l2 { color: rgba(236, 234, 229, .58); }
+.hx-l { position: absolute; left: max(24px, 3.4vw); top: clamp(108px, 13svh, 140px); max-width: 12em; }
+.hx-l2 { transform: translate3d(0, 100svh, 0); }
 @media (prefers-reduced-motion: no-preference) {
-  .hx-open .hx-w { animation: hx-up 1s var(--ease) calc(160ms + var(--i) * 55ms) backwards; }
-  .hx-skip .hx-open .hx-w { animation: none; }
+  .hx-app .hx-ch > span { animation: hx-up 1s var(--ease) calc(80ms + var(--i) * 45ms) backwards; }
+  .hx-app [data-dev] { animation: hx-phone 1.4s var(--ease) 240ms backwards; }
+  .hx-l1 .hx-w { animation: hx-up 1s var(--ease) calc(420ms + var(--i) * 55ms) backwards; }
+  .hx-app .hx-cap .hx-w { animation: hx-up .9s var(--ease) calc(820ms + var(--i) * 40ms) backwards; }
+  .hx-app .hx-li { animation: hx-up .9s var(--ease) calc(980ms + var(--i) * 90ms) backwards; }
+  .hx-app .hx-list li::after { animation: hx-line .9s var(--ease) calc(980ms + var(--i) * 90ms) backwards; }
+  .hx-skip * { animation: none !important; }
 }
 @keyframes hx-up { from { transform: translate3d(0, 130%, 0); } }
+@keyframes hx-line { from { transform: scaleX(0); } }
+@keyframes hx-phone { from { opacity: 0; transform: translate3d(0, 85vh, 0) rotateZ(33deg) rotateY(-12deg) rotateX(6deg); } }
 
 /* Palavra gigante (decorativa): Inter 600, caixa alta, papel off-white com ruído leve */
 .hx-word {
@@ -830,19 +837,21 @@ main.home > .home-body { padding-block: 120px 0; display: flex; flex-direction: 
 .hx.hx-live { height: 500vh; height: 500svh; }
 .hx-live .hx-pin { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; }
 .hx-live .hx-sc { position: absolute; inset: 0; min-height: 0; }
-.hx-live .hx-sc:not(.hx-open) { opacity: 0; }
+.hx-live .hx-plat, .hx-live .hx-end, .hx-live .hx-l2 { opacity: 0; }
+.hx-live .hx-l2 { transform: none; }
 .hx-live .hx-cue { top: auto; bottom: 3.2svh; }
 .hx-live [data-dev], .hx-live .hx-word .hx-ch > span { will-change: transform; }
 
 /* Celular */
 @media (max-width: 760px) {
   main.home > .home-body { padding-block: 72px 0; gap: 72px; }
-  .hx-h1 { font-size: clamp(36px, 10.4vw, 56px); }
+  .hx-h1 { font-size: clamp(26px, 7.4vw, 34px); }
+  .hx-l { left: 20px; right: 20px; top: 96px; max-width: none; }
   .hx-app, .hx-plat { display: flex; flex-direction: column; justify-content: flex-end; padding: 24px 20px calc(64px + env(safe-area-inset-bottom, 0px)); }
-  .hx-word { font-size: 24vw; top: 38%; }
-  .hx-dev { top: 38%; }
-  .hx-mac { top: 42%; }
-  .hx-iphone { --w: min(21svh, 44vw); }
+  .hx-word { font-size: 24vw; top: 45%; }
+  .hx-dev { top: 45%; }
+  .hx-mac { top: 44%; }
+  .hx-iphone { --w: min(19svh, 40vw); }
   .hx-mac { --w: min(92vw, 70svh); }
   .hx-copy { position: relative; left: auto; right: auto; bottom: auto; flex-direction: column; align-items: stretch; gap: 16px; }
   .hx-cap { font-size: 26px; max-width: none; }

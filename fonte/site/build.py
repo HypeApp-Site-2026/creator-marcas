@@ -484,9 +484,11 @@ def hx_lista(itens, label):
     return f'<ul class="hx-list" aria-label="{label}">{li}</ul>'
 
 def hero_scroll(L, A):
+    """Sem tela de abertura: a página já abre na cena APLICATIVO. O H1 é um só, com uma frase em cada cena
+    (linha 1 sobre o celular, linha 2 sobre o notebook); as duas ficam no mesmo elemento para o texto do H1 não mudar."""
     seta = ico('m6 9 6 6 6-6', 18)
     h1a, n = hx_palavras('O app de quem cria conteúdo.')
-    h1b, n = hx_palavras('O painel de quem contrata.', n)
+    h1b, n = hx_palavras('O painel de quem contrata.')
     capa, _ = hx_palavras('Sua carreira de creator, mais organizada.')
     capb, _ = hx_palavras('Sua campanha, do início ao resultado.')
     fim, _ = hx_palavras('Do convite ao pagamento, tudo em um só lugar.')
@@ -496,20 +498,18 @@ def hero_scroll(L, A):
     ip_btns = ''.join(f'<span class="ip-btn ip-{k}"></span>' for k in ('act', 'vu', 'vd', 'pw'))
     return f'''<section class="hx" aria-labelledby="hero-t" data-hx>
   <div class="hx-pin">
-    <div class="hx-sc hx-open" data-sc="0">
-      <h1 id="hero-t" class="hx-h1"><span class="hx-l">{h1a}</span> <span class="hx-l hx-l2">{h1b}</span></h1>
-    </div>
-    <div class="hx-sc hx-app" data-sc="1">
+    <h1 id="hero-t" class="hx-h1"><span class="hx-l hx-l1">{h1a}</span> <span class="hx-l hx-l2">{h1b}</span></h1>
+    <div class="hx-sc hx-app" data-sc="0">
       {hx_gigante('APLICATIVO')}
       <figure class="hx-dev hx-iphone"><div class="ip" data-dev><div class="ip-body"><span class="ip-btns" aria-hidden="true">{ip_btns}</span>
-        <div class="ip-bez"><div class="ip-scr"><img src="{A(sa)}" alt="{alt_a}" width="{wa}" height="{ha}" decoding="async"><span class="ip-di" aria-hidden="true"></span><span class="hx-glare" aria-hidden="true"></span></div></div>
+        <div class="ip-bez"><div class="ip-scr"><img src="{A(sa)}" alt="{alt_a}" width="{wa}" height="{ha}" fetchpriority="high" decoding="async"><span class="ip-di" aria-hidden="true"></span><span class="hx-glare" aria-hidden="true"></span></div></div>
       </div></div></figure>
       <div class="hx-copy">
         <h2 class="hx-cap">{capa}</h2>
         {hx_lista(['Campanhas com marcas', 'Entregas e aprovações', 'Recebimentos no app'], 'O que o app organiza')}
       </div>
     </div>
-    <div class="hx-sc hx-plat" data-sc="2">
+    <div class="hx-sc hx-plat" data-sc="1">
       {hx_gigante('PLATAFORMA')}
       <figure class="hx-dev hx-mac"><div class="mb" data-dev>
         <div class="mb-lid" data-lid><div class="mb-bez"><span class="mb-cam" aria-hidden="true"></span>
@@ -522,7 +522,7 @@ def hero_scroll(L, A):
         {hx_lista(['Seleção de creators', 'Conteúdos e aprovações', 'Resultados em um só painel'], 'O que o painel reúne')}
       </div>
     </div>
-    <div class="hx-sc hx-end" data-sc="3">
+    <div class="hx-sc hx-end" data-sc="2">
       <span class="hx-m hx-logo-m"><img class="hx-w hx-logo" src="{A('assets/logo-hypeapp-branco.svg')}" alt="HypeApp" width="292" height="160" loading="lazy" decoding="async"></span>
       <p class="hx-fim">{fim}</p>
       <div class="hx-ctas"><a class="btn btn-cta btn-lg" href="{L('/criadores/')}">Sou creator</a><a class="btn hx-btn-w btn-lg" href="{L('/marcas/')}">Tenho uma marca</a></div>
@@ -1500,6 +1500,7 @@ def build_page(url, fn, kind):
 <meta name="twitter:image" content="{BASE}/{(m or {}).get('img', 'og/padrao.jpg')}">
 <meta name="theme-color" content="#EFEFEF">
 <link rel="preload" href="{A('assets/fonts/inter-latin-wght-normal.woff2')}" as="font" type="font/woff2" crossorigin>
+{f'<link rel="preload" as="image" type="image/webp" fetchpriority="high" href="{A(HX_TELAS["app"][0])}">' if url == '/' else ''}
 <link rel="icon" href="{A('favicon.ico')}" sizes="32x32">
 <link rel="icon" href="{A('favicon.svg')}" type="image/svg+xml">
 <link rel="apple-touch-icon" href="{A('apple-touch-icon.png')}">
