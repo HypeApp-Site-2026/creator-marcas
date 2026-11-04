@@ -21,15 +21,11 @@ Informações oficiais:
 
 Fonte: https://www.hypeapp.com.br/
 Título: HypeApp: app para influenciadores e plataforma de campanhas
-Atualizado em: 2026-11-03
+Atualizado em: 2026-11-04
 
 # O app de quem cria conteúdo. O painel de quem contrata.
 
 O app de gestão de carreira para creators e a plataforma de gestão de campanhas para marcas.
-
-## Agência parceira do TikTok Shop
-
-A Você no Hype, que desenvolve o HypeApp, é agência parceira do TikTok Shop. Se a sua marca vende ou quer vender no TikTok Shop, fale com nosso time.
 
 ## Como funciona
 
@@ -223,7 +219,7 @@ Depende do contrato da campanha, firmado entre você e a marca. Confira as condi
 
 Fonte: https://www.hypeapp.com.br/marcas/
 Título: Plataforma de marketing de influência para marcas | HypeApp
-Atualizado em: 2026-11-03
+Atualizado em: 2026-11-04
 
 # Campanhas com creators do jeito que sua equipe preferir.
 
@@ -266,10 +262,6 @@ Transmita ao vivo e acompanhe o saldo, o valor reservado e as movimentações.
 - Acompanhamento das entregas
 
 - Relatório de resultados
-
-## Vende no TikTok Shop?
-
-A Você no Hype é agência parceira do TikTok Shop. Conte para o nosso time como a sua marca usa a plataforma e montamos a proposta com creators.
 
 ## Do briefing ao resultado
 
@@ -317,7 +309,7 @@ Sim. Cada marca tem configurações próprias (marca, empresa e equipe), e a pes
 
 Fonte: https://www.hypeapp.com.br/sobre/
 Título: Sobre o HypeApp, da Você no Hype | Parceira TikTok Shop
-Atualizado em: 2026-11-03
+Atualizado em: 2026-11-04
 
 # Sobre o HypeApp
 
@@ -328,10 +320,6 @@ Um app para iPhone e Android com campanhas, convites, entregas, comunidade e car
 Um painel na web para encontrar creators, aprovar conteúdos e acompanhar resultados.
 
 Desenvolvido e operado pela Você no Hype Marketing e Entretenimento LTDA, CNPJ 43.442.408/0001-26. R. Joaquim Floriano, 243, cj. 71, Itaim Bibi, São Paulo/SP, CEP 04534-010.
-
-## Parcerias
-
-A Você no Hype, que desenvolve e opera o HypeApp, é agência parceira do TikTok Shop.
 
 ## Canais oficiais
 

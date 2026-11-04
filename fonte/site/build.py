@@ -651,17 +651,14 @@ def gestao_carreira(L, A):
   </figure>
 </section>'''
 
-def tiktok_shop(L, A, onde):
-    """Selo de agência parceira do TikTok Shop (logo oficial, sem alteração, sempre sobre fundo branco)."""
-    textos = {
-        'home': ('Agência parceira do TikTok Shop', 'A Você no Hype, que desenvolve o HypeApp, é agência parceira do TikTok Shop. Se a sua marca vende ou quer vender no TikTok Shop, fale com nosso time.'),
-        'marcas': ('Vende no TikTok Shop?', 'A Você no Hype é agência parceira do TikTok Shop. Conte para o nosso time como a sua marca usa a plataforma e montamos a proposta com creators.'),
-        'sobre': ('Parcerias', 'A Você no Hype, que desenvolve e opera o HypeApp, é agência parceira do TikTok Shop.'),
-    }
-    t, d = textos[onde]
-    cta = '' if onde == 'sobre' else f'<a class="btn btn-ink" href="{L("/contato/marcas/")}">Falar com nosso time</a>'
-    return (f'<section class="tts" aria-labelledby="tts-{onde}"><img src="{A("assets/parceiros/tiktok-shop-partner.webp")}" alt="TikTok Shop Partner" width="280" height="79" loading="lazy" decoding="async">'
-            f'<div class="stack" style="gap:6px;flex:1 1 320px"><h2 id="tts-{onde}" class="h4">{t}</h2><p style="margin:0;font-size:16px">{d}</p></div>{cta}</section>')
+def tiktok_shop(L, A, url):
+    """Selo de agência parceira do TikTok Shop (logo oficial, sem alteração, sempre sobre fundo branco).
+    Aparece em todas as páginas, logo acima do rodapé (decisão de 04/11)."""
+    onde = 'rodape'
+    t, d = ('Agência parceira do TikTok Shop', 'A Você no Hype, que desenvolve o HypeApp, é agência parceira do TikTok Shop. Se a sua marca vende ou quer vender no TikTok Shop, fale com nosso time.')
+    cta = '' if url.startswith('/contato/marcas/') else f'<a class="btn btn-ink" href="{L("/contato/marcas/")}">Falar com nosso time</a>'
+    return (f'<div class="wrap tts-band"><section class="tts" aria-labelledby="tts-{onde}"><img src="{A("assets/parceiros/tiktok-shop-partner.webp")}" alt="TikTok Shop Partner" width="280" height="79" loading="lazy" decoding="async">'
+            f'<div class="stack" style="gap:6px;flex:1 1 320px"><h2 id="tts-{onde}" class="h4">{t}</h2><p style="margin:0;font-size:16px">{d}</p></div>{cta}</section></div>')
 
 def p_home(L, A):
     steps_c = [('Crie sua conta no app', 'Baixe o HypeApp, crie seu perfil e conecte Instagram, TikTok ou YouTube.'),
@@ -691,8 +688,6 @@ def p_home(L, A):
   </div>
   {hero_scene(A)}
 </section>
-
-{tiktok_shop(L, A, 'home')}
 
 <section class="stack-lg cf-sec" aria-labelledby="como-t" data-tabs>
   <div class="cf-head">
@@ -893,8 +888,6 @@ def p_marcas(L, A):
   </div>
 </section>
 
-{tiktok_shop(L, A, 'marcas')}
-
 <section class="stack-lg" aria-labelledby="proc-t">
   <h2 id="proc-t" class="h2">Do briefing ao resultado</h2>
   <ol class="steps">{li}</ol>
@@ -1011,7 +1004,6 @@ def p_sobre(L, A):
   <div class="card stack"><span class="h4">Para marcas e agências</span><p class="small" style="font-size:15px">Um painel na web para encontrar creators, aprovar conteúdos e acompanhar resultados.</p><a class="link-strong" href="{L('/marcas/')}">Para marcas</a></div>
   <div class="card stack" style="background:var(--ink);color:var(--purple-ink)"><span class="h4">Quem opera</span><p class="small" style="font-size:15px">Desenvolvido e operado pela Você no Hype Marketing e Entretenimento LTDA, CNPJ 43.442.408/0001-26. R. Joaquim Floriano, 243, cj. 71, Itaim Bibi, São Paulo/SP, CEP 04534-010.</p></div>
 </section>
-{tiktok_shop(L, A, 'sobre')}
 <section class="band-white split" id="canais" aria-labelledby="canais-t">
   <div class="stack"><h2 id="canais-t" class="h2">Canais oficiais</h2><p class="body">Use só estes endereços. O HypeApp nunca pede senha, código de verificação ou chave PIX por mensagem.</p></div>
   <dl class="req" style="grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr))">
@@ -1505,7 +1497,7 @@ def build_page(url, fn, kind):
     canon = BASE + url if url not in ('/404', '/app') else ''  # /app é página de passagem, sem índice
     main = fn(L, A)
     cls = 'wrap' + (' tight' if kind == 'tight' else '')
-    body = header(url, L, A) + f'\n<main class="{cls}" id="conteudo">{main}</main>\n' + footer(L, A)
+    body = header(url, L, A) + f'\n<main class="{cls}" id="conteudo">{main}</main>\n' + tiktok_shop(L, A, url) + '\n' + footer(L, A)
     body = mark_ph(body)
     for p, _ in [('/criadores/', 0), ('/marcas/', 0), ('/perguntas-frequentes/', 0)]:
         pass
