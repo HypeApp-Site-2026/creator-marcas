@@ -503,7 +503,7 @@ def hero_scroll(L, A):
     <div class="hx-sc hx-app" data-sc="0">
       {hx_gigante('APLICATIVO')}
       <figure class="hx-dev hx-iphone"><div class="ip" data-dev><div class="ip-body"><span class="ip-btns" aria-hidden="true">{ip_btns}</span>
-        <div class="ip-bez"><div class="ip-scr"><img src="{A(sa)}" alt="{alt_a}" width="{wa}" height="{ha}" fetchpriority="high" decoding="async">{_ht.tela_app()}<span class="ip-di" aria-hidden="true"></span><span class="hx-glare" aria-hidden="true"></span></div></div>
+        <div class="ip-bez"><div class="ip-scr"><img src="{A(sa)}" alt="{alt_a}" width="{wa}" height="{ha}" fetchpriority="high" decoding="async">{_ht.tela_app(A)}<span class="ip-di" aria-hidden="true"></span><span class="hx-glare" aria-hidden="true"></span></div></div>
       </div></div></figure>
       <div class="hx-copy">
         <h2 class="hx-cap">{capa}</h2>

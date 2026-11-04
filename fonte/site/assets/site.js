@@ -474,10 +474,21 @@
     var AP = parts(app), PL = parts(plat);
     var lid = $('[data-lid]', plat), off = $('[data-off]', plat), sweep = $('[data-sweep]', plat);
     var cue1 = $('.hx-cue1', hx), cue2 = $('.hx-cue2', hx);
-    /* Telas vivas (hero_telas.py): escala para a moldura e animacao do conteudo junto com a passagem */
+    var eoq = function (x) { x = clamp(x); return 1 - Math.pow(1 - x, 4); };
+    var eio = function (x) { return ease(clamp(x)); };
+    var seg = function (p, a, b) { return clamp((p - a) / (b - a)); };
+    var y = function (v, u) { return 'translate3d(0,' + v.toFixed(3) + (u || '%') + ',0)'; };
+    var top = 0, dist = 1, target = 0, cur = 0, raf = 0, onScreen = true, t0 = 0, last = 0;
+
+    var rise = function (els, q, a, step, dur) {
+      for (var i = 0; i < els.length; i++) els[i].style.transform = y((1 - eoq(seg(q, a + i * step, a + i * step + dur))) * 130);
+    };
+
+    /* ---------- Telas vivas (hero_telas.py) ----------
+       Cada tela e escalada para a moldura. Com a cena parada e visivel, roda uma demonstracao em loop (DEMO_APP no
+       iPhone, DEMO_PLAT no MacBook). Ao sair da cena, a demonstracao volta ao inicio. Os cartoes do painel ainda entram
+       junto com a abertura da tampa (rolagem). */
     var lsA = $('[data-ls="app"]', hx), lsP = $('[data-ls="plat"]', hx);
-    var hl = lsA && $('[data-hl]', lsA), hli = lsA && $('[data-hli]', lsA), c0 = lsA && $('[data-c0]', lsA), c1 = lsA && $('[data-c1]', lsA);
-    var p0 = lsA && $('[data-p0]', lsA), p1 = lsA && $('[data-p1]', lsA);
     var cds = lsP ? $$('[data-cd]', lsP).map(function (c) {
       var pct = $('[data-pct]', c);
       return { el: c, bar: $('[data-bar]', c), pct: pct, v: pct ? +pct.getAttribute('data-pct') : 0, last: -1 };
@@ -491,17 +502,6 @@
     };
     var fitAll = function () { fitLs(lsA, 393); fitLs(lsP, 1920); };
     var telas = function (q) {
-      if (lsA && c0 && c1) {
-        var t = eio(seg(q, 0.03, 0.24));
-        var x = c0.offsetLeft + (c1.offsetLeft - c0.offsetLeft) * t, w = c0.offsetWidth + (c1.offsetWidth - c0.offsetWidth) * t;
-        hl.style.width = w.toFixed(2) + 'px';
-        hl.style.transform = 'translate3d(' + x.toFixed(2) + 'px,0,0)';
-        hli.style.transform = 'translate3d(' + (-x).toFixed(2) + 'px,0,0)';
-        p0.style.transform = t ? 'translate3d(' + (-t * 112).toFixed(2) + '%,0,0)' : '';
-        p0.style.opacity = String(1 - t);
-        p1.style.transform = 'translate3d(' + ((1 - t) * 112).toFixed(2) + '%,0,0)';
-        p1.style.opacity = String(t);
-      }
       var r = seg(q, 0.86, 1);
       for (var i = 0; i < cds.length; i++) {
         var c = cds[i], k = eoq(seg(r, i * 0.09, 0.42 + i * 0.09)), b = eio(seg(r, 0.22 + i * 0.09, 0.72 + i * 0.09));
@@ -512,17 +512,169 @@
         if (c.pct && n !== c.last) { c.pct.textContent = n + '%'; c.last = n; }
       }
     };
-    var eoq = function (x) { x = clamp(x); return 1 - Math.pow(1 - x, 4); };
-    var eio = function (x) { return ease(clamp(x)); };
-    var seg = function (p, a, b) { return clamp((p - a) / (b - a)); };
-    var y = function (v, u) { return 'translate3d(0,' + v.toFixed(3) + (u || '%') + ',0)'; };
-    var top = 0, dist = 1, target = 0, cur = 0, raf = 0, onScreen = true, t0 = 0, last = 0;
 
-    var rise = function (els, q, a, step, dur) {
-      for (var i = 0; i < els.length; i++) els[i].style.transform = y((1 - eoq(seg(q, a + i * step, a + i * step + dur))) * 130);
+    /* motor: passos [ms, fn] ou [ms, fn(k), duracao]; o relogio so anda com a cena ativa */
+    var Demo = function (steps, total, reset) {
+      var d = { t: 0, done: [] };
+      d.restart = function () { reset(); d.t = 0; d.done = []; };
+      d.tick = function (dt) {
+        d.t += dt;
+        for (var i = 0; i < steps.length; i++) {
+          var s = steps[i];
+          if (d.done[i] || d.t < s[0]) continue;
+          if (s[2]) { var k = clamp((d.t - s[0]) / s[2]); s[1](k); if (k >= 1) d.done[i] = 1; }
+          else { s[1](); d.done[i] = 1; }
+        }
+        if (d.t >= total) d.restart();
+      };
+      return d;
+    };
+    /* posicao do centro de um elemento no espaco da tela (antes da escala) */
+    var centro = function (el, root) {
+      var x = el.offsetWidth / 2, y = el.offsetHeight / 2;
+      while (el && el !== root) { x += el.offsetLeft; y += el.offsetTop; el = el.offsetParent; }
+      return [x, y];
+    };
+    var vai = function (ptr, el, root, dx, dy) {
+      var p = centro(el, root);
+      ptr.style.transform = 'translate3d(' + (p[0] + (dx || 0)).toFixed(1) + 'px,' + (p[1] + (dy || 0)).toFixed(1) + 'px,0)';
+      ptr.classList.add('on');
+    };
+    var aperta = function (ptr, el) {
+      ptr.classList.remove('press'); void ptr.offsetWidth; ptr.classList.add('press');
+      if (el) { el.classList.add('press-ok'); setTimeout(function () { el.classList.remove('press-ok'); ptr.classList.remove('press'); }, 220); }
+    };
+    var semTransicao = function (root, fn) { root.classList.add('notr'); fn(); void root.offsetWidth; root.classList.remove('notr'); };
+    var trocaTela = function (root, sel, nome) {
+      $$(sel, root).forEach(function (v) {
+        var on = v.getAttribute('data-v') === nome;
+        if (on) { v.classList.remove('prev'); v.classList.add('on'); }
+        else if (v.classList.contains('on')) { v.classList.remove('on'); v.classList.add('prev'); }
+        else v.classList.remove('prev');
+      });
+    };
+    var aviso = function (root, txt) {
+      var t = $('[data-toast]', root);
+      if (!t) return;
+      if (txt) { $('[data-toast-t]', t).textContent = txt; t.classList.add('on'); } else t.classList.remove('on');
     };
 
-    /* p: 0 a 1 ao longo da secao. q: a passagem, de 0 (app) a 1 (plataforma). */
+    /* iPhone: Descobrir > campanha > Quero participar > inscricao em analise > aprovada > roteiro > aguardando > concluida */
+    var DA = null;
+    if (lsA) (function () {
+      var R = lsA.firstElementChild, tap = $('[data-tap]', R), det = $('[data-v="detalhe"]', R);
+      var btn = $('[data-alvo="participar"]', R), sts = $('[data-alvo="status"]', R), lista = $('.la-lista', R);
+      var hl = $('[data-hl]', R), hli = $('[data-hli]', R), chips = $$('.la-chips > span[data-c]', R);
+      var ta = $('.la-ta', R), typed = $('[data-type]', R), valor = $('[data-valor]', R);
+      var TXT = 'Abro com a rotina da manh\u00e3, aplico o s\u00e9rum Glow em close e fecho com o resultado e a hashtag da campanha.';
+      var chip = function (i) {
+        var c = chips[i]; if (!c) return;
+        hl.style.width = c.offsetWidth + 'px';
+        hl.style.transform = 'translate3d(' + c.offsetLeft + 'px,0,0)';
+        hli.style.transform = 'translate3d(' + (-c.offsetLeft) + 'px,0,0)';
+        lista.classList.toggle('ativas', i === 1);
+      };
+      var estado = function (k) {
+        $$('.la-sk', R).forEach(function (s) { s.classList.toggle('on', s.getAttribute('data-k') === k); });
+      };
+      var nav = function (on) { lsA.classList.toggle('no-nav', !on); };
+      var reset = function () {
+        semTransicao(R, function () {
+          trocaTela(R, '.la-v', 'descobrir'); $$('.la-v', R).forEach(function (v) { v.classList.remove('prev'); });
+          tap.classList.remove('on', 'press'); btn.classList.remove('ok'); det.classList.remove('sheet');
+          typed.textContent = ''; ta.classList.remove('typing'); estado('analise'); chip(0); valor.classList.remove('up');
+          aviso(R, ''); nav(true);
+        });
+      };
+      var dest = $('[data-alvo="destaque"]', R), env = $('[data-alvo="enviar"]', R);
+      DA = Demo([
+        [500, function () { semTransicao(tap, function () { vai(tap, dest, R, 30, 90); tap.classList.remove('on'); }); }],
+        [560, function () { vai(tap, dest, R, 0, 40); }],
+        [1250, function () { aperta(tap, dest); }],
+        [1450, function () { tap.classList.remove('on'); trocaTela(R, '.la-v', 'detalhe'); nav(false); }],
+        [2500, function () { vai(tap, btn, R, 20, 10); }],
+        [3200, function () { aperta(tap, btn); btn.classList.add('ok'); }],
+        [3500, function () { aviso(R, 'Inscri\u00e7\u00e3o enviada'); tap.classList.remove('on'); }],
+        [4700, function () { aviso(R, ''); trocaTela(R, '.la-v', 'campanhas'); nav(true); }],
+        [6300, function () { estado('roteiro'); chip(1); aviso(R, 'Sua inscri\u00e7\u00e3o foi aprovada'); }],
+        [7600, function () { aviso(R, ''); vai(tap, sts, R, 40, 0); }],
+        [8300, function () { aperta(tap, sts); }],
+        [8500, function () { tap.classList.remove('on'); det.classList.add('sheet'); trocaTela(R, '.la-v', 'detalhe'); nav(false); }],
+        [9300, function (k) { ta.classList.add('typing'); typed.textContent = TXT.slice(0, Math.round(k * TXT.length)); }, 2600],
+        [12200, function () { vai(tap, env, R, 10, 6); }],
+        [12900, function () { aperta(tap, env); ta.classList.remove('typing'); }],
+        [13100, function () { tap.classList.remove('on'); det.classList.remove('sheet'); aviso(R, 'Roteiro enviado para aprova\u00e7\u00e3o'); }],
+        [14300, function () { aviso(R, ''); trocaTela(R, '.la-v', 'campanhas'); estado('aguarda'); nav(true); }],
+        [16200, function () { estado('concluida'); chip(2); valor.classList.add('up'); }],
+        [16900, function () { valor.classList.remove('up'); }],
+        [19000, function () { trocaTela(R, '.la-v', 'descobrir'); }]
+      ], 19700, reset);
+    })();
+
+    /* MacBook: Campanhas > Verao Glow (progresso e etapas) > Criadores > Convidar dois creators > Campanhas */
+    var DP = null;
+    if (lsP) (function () {
+      var R = lsP.firstElementChild, ptr = $('[data-cur]', R);
+      var card = $('[data-alvo="card"]', R), navC = $('[data-alvo="nav-criadores"]', R), navK = $('[data-alvo="nav-campanhas"]', R);
+      var conv = $$('[data-conv]', R), geral = $('[data-geral]', R), mbar = $('[data-mbar]', R), mpct = $('[data-mpct]', R);
+      var kps = $$('.lp-kp b[data-n]', R), ets = $$('[data-et]', R), acao = $('[data-acao]', R);
+      var navOn = function (k) { $$('[data-nav-k]', R).forEach(function (a) { a.classList.toggle('on', a.getAttribute('data-nav-k') === k); }); };
+      var fmt = function (v, dec) { return v.toFixed(dec).replace('.', ','); };
+      var conta = function (k) {
+        var e = eio(k);
+        geral.textContent = Math.round(68 * e) + '%'; mpct.textContent = Math.round(68 * e) + '%';
+        mbar.style.transform = 'scaleX(' + e.toFixed(3) + ')';
+        acao.textContent = String(Math.round(8 * e));
+        kps.forEach(function (b) {
+          var n = +b.getAttribute('data-n'), dec = +b.getAttribute('data-dec') || 0;
+          b.textContent = fmt(n * e, dec) + b.getAttribute('data-suf');
+        });
+      };
+      var etapa = function (n) { ets.forEach(function (e, i) { e.classList.toggle('done', i < n); e.classList.toggle('cur', i === n); }); };
+      var reset = function () {
+        semTransicao(R, function () {
+          trocaTela(R, '.lp-v', 'campanhas'); $$('.lp-v', R).forEach(function (v) { v.classList.remove('prev'); });
+          navOn('campanhas'); ptr.classList.remove('on', 'press'); conv.forEach(function (c) { c.classList.remove('ok'); });
+          conta(0); etapa(-1); aviso(R, '');
+        });
+      };
+      reset();
+      DP = Demo([
+        [700, function () { semTransicao(ptr, function () { ptr.style.transform = 'translate3d(1500px,980px,0)'; }); }],
+        [760, function () { vai(ptr, card, R, 40, -20); }],
+        [1700, function () { aperta(ptr, card); }],
+        [1900, function () { trocaTela(R, '.lp-v', 'campanha'); }],
+        [2300, conta, 1500],
+        [2500, function () { etapa(0); }],
+        [2850, function () { etapa(1); }],
+        [3200, function () { etapa(2); }],
+        [4700, function () { vai(ptr, navC, R, -40, 0); }],
+        [5400, function () { aperta(ptr, navC); navOn('criadores'); }],
+        [5600, function () { trocaTela(R, '.lp-v', 'criadores'); }],
+        [6600, function () { vai(ptr, conv[1], R, 10, 6); }],
+        [7300, function () { aperta(ptr, conv[1]); conv[1].classList.add('ok'); aviso(R, 'Convite enviado para Beatriz Nunes'); }],
+        [8500, function () { vai(ptr, conv[3], R, 10, 6); }],
+        [9200, function () { aperta(ptr, conv[3]); conv[3].classList.add('ok'); aviso(R, 'Convite enviado para Larissa Prado'); }],
+        [10500, function () { aviso(R, ''); vai(ptr, navK, R, -40, 0); }],
+        [11200, function () { aperta(ptr, navK); navOn('campanhas'); }],
+        [11400, function () { trocaTela(R, '.lp-v', 'campanhas'); }],
+        [12300, function () { ptr.classList.remove('on'); }]
+      ], 13600, reset);
+    })();
+
+    /* a demonstracao so anda com a cena parada, visivel e com a aba em primeiro plano */
+    var demoRaf = 0, demoLast = 0;
+    var demoLoop = function (now) {
+      demoRaf = 0;
+      var dt = demoLast ? Math.min(64, now - demoLast) : 16.7; demoLast = now;
+      var vivo = onScreen && !document.hidden;
+      if (DA) { if (vivo && cur < 0.012 && now - t0 > 2200) DA.tick(dt); else if (cur > 0.25 && DA.t) DA.restart(); }
+      if (DP) { if (vivo && cur > 0.985) DP.tick(dt); else if (cur < 0.9 && DP.t) DP.restart(); }
+      if (vivo) demoRaf = requestAnimationFrame(demoLoop); else demoLast = 0;
+    };
+    var demoKick = function () { if (!demoRaf) { demoLast = 0; demoRaf = requestAnimationFrame(demoLoop); } };
+    document.addEventListener('visibilitychange', demoKick);
+
     var render = function (p, now) {
       var q = seg(p, 0.04, 0.96);
       telas(q);
@@ -605,7 +757,8 @@
       clearTimeout(snapT); snapT = setTimeout(snap, 160);
     }, { passive: true });
     window.addEventListener('resize', function () { measure(); read(); kick(); });
-    if (window.IntersectionObserver) new IntersectionObserver(function (es) { onScreen = es[0].isIntersecting; if (onScreen) kick(); }).observe(hx);
+    if (window.IntersectionObserver) new IntersectionObserver(function (es) { onScreen = es[0].isIntersecting; if (onScreen) { kick(); demoKick(); } }).observe(hx);
+    demoKick();
   })();
 
   /* ---------- Como funciona: carrossel com clipes (so o card ativo toca) ---------- */

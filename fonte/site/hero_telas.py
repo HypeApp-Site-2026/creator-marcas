@@ -1,10 +1,12 @@
-"""Telas vivas da hero (04/11): a tela Campanhas do app no iPhone e a do painel no MacBook, em HTML.
+"""Telas vivas da hero: demonstrações em loop do app (iPhone) e do painel (MacBook), em HTML.
 
 Ficam por cima das imagens tela-app.webp e tela-painel.webp, que continuam no HTML (texto alternativo, sem JavaScript
-e movimento reduzido). Só aparecem com .hx-live; o site.js escala cada tela e anima o conteúdo junto com a rolagem:
-- iPhone: ao entrar, os cartões sobem; na passagem para a plataforma, o filtro vai de Ativas para Finalizadas.
-- MacBook: depois que a tampa abre e a tela acende, os cartões entram um a um e as barras de progresso enchem.
-Marcas e números são de exemplo (as mesmas campanhas fictícias do app). Estilos: bloco "Telas vivas" no site.css.
+e movimento reduzido). Só aparecem com .hx-live; o site.js escala cada tela e roda a demonstração só com a cena parada
+e visível na tela. Fluxos (apenas telas e textos que existem no app e no painel):
+- app: Descobrir > campanha > Quero participar > Minhas inscrições (em análise > aprovada) > Roteiro (digita e envia)
+  > aguardando aprovação > campanha concluída, pagamento liberado na carteira;
+- painel: Campanhas > Verão Glow (progresso e etapas) > Criadores > Convidar dois creators > Campanhas.
+Marcas, creators e números são de exemplo. Estilos: bloco "Telas vivas" no site.css; roteiro: DEMO_APP/DEMO_PLAT no site.js.
 """
 
 # ---------- ilustrações das campanhas (SVG, estilo chapado do app; ids com prefixo para não colidir) ----------
@@ -73,63 +75,170 @@ I = {
     'image': '<rect width="18" height="18" x="3" y="3" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/>',
 }
 
-# ---------- iPhone: Campanhas (393 x 852 pt) ----------
-def _cd_app(art, t, marca, tag, ico, st_t, st_d, rodape, valor, i):
-    return (f'<article class="la-cd" style="--i:{i}"><div class="la-h"><div class="la-th">{ART[art]}</div><div class="la-n"><b>{t}</b><span>{marca}</span></div>'
-            f'<span class="la-tg">{tag}</span></div><div class="la-st"><span class="la-sti">{_ic(I[ico], 19, 2.2)}</span><div><b>{st_t}</b><span>{st_d}</span></div></div>'
-            f'<div class="la-f"><span>{rodape}</span><b>{valor}</b></div></article>')
+I.update({
+    'back': '<path d="m12 19-7-7 7-7"/><path d="M19 12H5"/>',
+    'share': '<circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.59 13.51 6.83 3.98"/><path d="m15.41 6.51-6.82 3.98"/>',
+    'filter': '<path d="M22 3H2l8 9.46V19l4 2v-8.54z"/>',
+    'money': '<rect width="20" height="12" x="2" y="6" rx="2"/><circle cx="12" cy="12" r="2"/><path d="M6 12h.01M18 12h.01"/>',
+    'cal': '<rect width="18" height="18" x="3" y="4" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>',
+    'clip': '<path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l8.57-8.57A4 4 0 1 1 18 8.84l-8.59 8.57a2 2 0 0 1-2.83-2.83l8.49-8.48"/>',
+    'x': '<path d="M18 6 6 18M6 6l12 12"/>',
+    'heart': '<path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>',
+    'insta': '<rect width="20" height="20" x="2" y="2" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/>',
+    'tiktok': '<path d="M9 12a4 4 0 1 0 4 4V3c.5 2.5 2.5 4.5 5 5"/>',
+    'eye': '<path d="M2.06 12.35a1 1 0 0 1 0-.7 10.75 10.75 0 0 1 19.88 0 1 1 0 0 1 0 .7 10.75 10.75 0 0 1-19.88 0"/><circle cx="12" cy="12" r="3"/>',
+    'trend': '<path d="m22 7-8.5 8.5-5-5L2 17"/><path d="M16 7h6v6"/>',
+    'refresh': '<path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/>',
+    'edit': '<rect width="8" height="4" x="8" y="2" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M12 11h4M12 16h4M8 11h.01M8 16h.01"/>',
+    'arrowl': '<path d="m12 19-7-7 7-7"/><path d="M19 12H5"/>',
+})
 
-def tela_app():
+def _st(ico, t, d):
+    """Caixa de status do cartão (ícone roxo, título e descrição). data-st permite trocar o estado no site.js."""
+    return f'<div class="la-st"><span class="la-sti">{_ic(I[ico], 19, 2.2)}</span><div><b>{t}</b><span>{d}</span></div></div>'
+
+# Estados do cartão Verão Glow em "Campanhas" (textos do app). O site.js troca o estado pelo data-k.
+ESTADOS_APP = [
+    ('analise', 'clock', 'Inscrição em análise', 'Em breve você será notificada se a sua inscrição foi aprovada.', 'Inscrita em 04/11'),
+    ('roteiro', 'upload', 'Envie seus roteiros', 'Envie seus roteiros para aprovação até 24/10/2026.', 'Prazo 24/10'),
+    ('aguarda', 'clock', 'Aguardando aprovação dos roteiros', 'Aguarde a aprovação dos seus roteiros.', 'Prazo 24/10'),
+    ('concluida', 'check', 'Campanha concluída', 'Pagamento liberado na sua carteira.', 'Concluída em 30/10'),
+]
+
+def tela_app(A):
     status = ('<svg width="18" height="12" viewBox="0 0 18 12" aria-hidden="true"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="5.5" width="3" height="6.5" rx="1"/>'
               '<rect x="10" y="3" width="3" height="9" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg>'
               '<svg width="28" height="13" viewBox="0 0 28 13" aria-hidden="true"><rect x=".5" y=".5" width="24" height="12" rx="3.8" fill="none" stroke="currentColor" opacity=".4"/>'
               '<rect x="2.5" y="2.5" width="20" height="8" rx="2.2"/><path d="M26 4.5v4c.9-.3 1.5-1.1 1.5-2s-.6-1.7-1.5-2z" opacity=".45"/></svg>')
-    ativas = (_cd_app('lume', 'Verão Glow', 'Casa Lume', 'Beleza', 'upload', 'Envie seus roteiros', 'Envie seus roteiros para aprovação até 24/10/2026.', 'Prazo 24/10', 'R$ 1.800', 0)
-              + _cd_app('run', 'Run Club SP', 'Pace Running', 'Fitness', 'clock', 'Aguardando aprovação dos roteiros', 'Aguarde a aprovação dos seus roteiros.', 'Prazo 02/11', 'R$ 2.500', 1))
-    finalizadas = _cd_app('brisa', 'Brisa de Verão', 'Brisa Bebidas', 'Bebidas', 'check', 'Campanha concluída', 'Pagamento liberado na sua carteira.', 'Concluída em 30/09', 'R$ 950', 0)
+    av = f'<img class="la-av" src="{A("assets/hero/telas/av-lume.webp")}" alt="" width="46" height="46" loading="lazy" decoding="async">'
+    seg = lambda on: '<div class="la-seg">' + ''.join(f'<span class="{"on" if i == on else ""}">{t}</span>' for i, t in enumerate(('Descobrir', 'Campanhas', 'Convites'))) + '</div>'
+    estados = ''.join(f'<div class="la-sk" data-k="{k}">{_st(ic, t, d)}</div>' for k, ic, t, d, _ in ESTADOS_APP)
+    rodapes = ''.join(f'<span class="la-sk" data-k="{k}">{r}</span>' for k, _, _, _, r in ESTADOS_APP)
+    chips = ('Minhas inscrições', 'Ativas', 'Finalizadas')
+    chips_html = ''.join(f'<span data-c="{i}">{t}</span>' for i, t in enumerate(chips))
     return f'''<div class="ls ls-app" aria-hidden="true" data-ls="app"><div class="ls-in">
-<div class="la-sb"><b>9:41</b><span>{status}</span></div>
-<p class="la-t">Campanhas</p>
-<div class="la-seg"><span>Descobrir</span><span class="on">Campanhas</span><span>Convites</span></div>
-<div class="la-chips"><span>Minhas inscrições</span><span data-c0>Ativas</span><span data-c1>Finalizadas</span><i class="la-hl" data-hl><span class="la-hl-in" data-hli><span>Minhas inscrições</span><span>Ativas</span><span>Finalizadas</span></span></i></div>
-<div class="la-lista"><div class="la-pane" data-p0>{ativas}</div><div class="la-pane" data-p1>{finalizadas}</div></div>
-<div class="la-nav"><span style="left:34px">{_ic(I['home'], 22, 1.8)}</span><span class="on">{_ic(I['mega'], 20)}Campanhas</span>
+<div class="la-sb" data-sb><b>9:41</b><span>{status}</span></div>
+<div class="la-v on" data-v="descobrir">
+  <p class="la-t">Campanhas</p>{seg(0)}
+  <div class="la-busca"><span class="la-in">{_ic(I['search'], 18)}Buscar campanhas</span><span class="la-fi">{_ic(I['filter'], 18)}</span></div>
+  <p class="la-h2">Campanhas em destaque</p>
+  <div class="la-dest" data-alvo="destaque"><div class="la-dart">{ART['lume']}</div><span class="la-pill">Beleza</span><span class="la-pill la-pr">R$ 1.800</span>
+    <div class="la-dcap">{av}<div><b>Verão Glow</b><span>Rotina de verão com a linha Glow. 1 reels e 2 stories.</span></div></div></div>
+  <div class="la-dest la-dest2"><div class="la-dart">{ART['run']}</div><span class="la-pill">Fitness</span><span class="la-pill la-pr">R$ 2.500</span></div>
+</div>
+<div class="la-v la-det" data-v="detalhe">
+  <div class="la-hero">{ART['lume']}<span class="la-cb la-cb-l">{_ic(I['back'], 20)}</span><span class="la-cb la-cb-r">{_ic(I['share'], 18)}</span>
+    <span class="la-pill la-pb">Beleza</span><span class="la-pill la-pr la-pb2">R$ 1.800</span></div>
+  <div class="la-sheet0">
+    <div class="la-marca">{av}<div><b>Casa Lume</b><span>Beleza</span></div></div>
+    <p class="la-tt">Verão Glow</p><p class="la-desc">Rotina de verão com a linha Glow. 1 reels e 2 stories.</p>
+    <div class="la-tiles"><div>{_ic(I['money'], 20, 1.8)}<span>Ganho</span><b>R$ 1.800</b></div><div>{_ic(I['cal'], 20, 1.8)}<span>Duração</span><b>30 dias</b></div><div>{_ic(I['upload'], 20, 1.8)}<span>Entregas</span><b>1 reels, 2 stories</b></div></div>
+  </div>
+  <div class="la-cta"><div><span>Ganho</span><b>R$ 1.800</b></div><span class="la-btn" data-alvo="participar"><span data-btn="0">Quero participar</span><span data-btn="1">{_ic(I['check'], 18, 2.4)}Inscrição enviada</span></span></div>
+  <div class="la-dim" data-dim></div>
+  <div class="la-rot" data-rot>
+    <i class="la-grab"></i>
+    <div class="la-rh"><b>Roteiro: Reels</b><span class="la-x">{_ic(I['x'], 18)}</span></div>
+    <p class="la-rs">Vídeo vertical, até 90 segundos. Prazo 24/10.</p>
+    <span class="la-rl">Roteiro</span>
+    <div class="la-ta"><span class="la-ph" data-ph>Abertura, aplicação do produto e fechamento com a hashtag</span><span data-type></span><i class="la-caret" data-caret></i></div>
+    <span class="la-anx">{_ic(I['clip'], 18)}Anexar arquivo</span>
+    <div class="la-rb"><span>Salvar rascunho</span><span class="la-env" data-alvo="enviar">Enviar</span></div>
+  </div>
+</div>
+<div class="la-v" data-v="campanhas">
+  <p class="la-t">Campanhas</p>{seg(1)}
+  <div class="la-chips">{chips_html}<i class="la-hl" data-hl><span class="la-hl-in" data-hli>{''.join(f'<span>{t}</span>' for t in chips)}</span></i></div>
+  <div class="la-lista">
+    <article class="la-cd" data-cdv><div class="la-h"><div class="la-th">{ART['lume']}</div><div class="la-n"><b>Verão Glow</b><span>Casa Lume</span></div><span class="la-tg">Beleza</span></div>
+      <div class="la-sts" data-alvo="status">{estados}</div>
+      <div class="la-f"><span class="la-fs">{rodapes}</span><b data-valor>R$ 1.800</b></div></article>
+    <article class="la-cd la-cd2" data-cd2><div class="la-h"><div class="la-th">{ART['run']}</div><div class="la-n"><b>Run Club SP</b><span>Pace Running</span></div><span class="la-tg">Fitness</span></div>
+      {_st('clock', 'Aguardando aprovação dos roteiros', 'Aguarde a aprovação dos seus roteiros.')}<div class="la-f"><span>Prazo 02/11</span><b>R$ 2.500</b></div></article>
+  </div>
+</div>
+<div class="la-toast" data-toast>{_ic(I['check'], 16, 2.6)}<span data-toast-t></span></div>
+<div class="la-nav" data-nav><span style="left:34px">{_ic(I['home'], 22, 1.8)}</span><span class="on">{_ic(I['mega'], 20)}Campanhas</span>
 <span style="left:261px">{_ic(I['users'], 22, 1.8)}</span><span style="left:327px">{_ic(I['user'], 22, 1.8)}</span></div>
+<i class="ls-tap" data-tap></i>
 </div></div>'''
 
-# ---------- MacBook: painel Campanhas (1920 x 1152 px) ----------
-def _cd_bo(A, art, status, criadores, av, t, desc, prog, alc, pub, pend, i):
+# ---------- MacBook: painel (1920 x 1152 px) ----------
+def _cd_bo(A, art, status, criadores, av, t, desc, prog, alc, pub, pend, i, alvo=''):
     cor = {'Ativa': '#9E2CFA', 'Finalizada': '#050505', 'Rascunho': '#6B6B6B'}[status]
     cover = ART[art] if art else f'<div class="lp-vaz">{_ic(I["image"], 34, 1.6)}<span>Sem capa</span></div>'
     avh = AV_PACE if av == 'pace' else f'<img class="ls-av" src="{A("assets/hero/telas/" + av + ".webp")}" alt="" width="46" height="46" loading="lazy" decoding="async">'
     dot = '<i></i>' if pend not in ('0', '–') else ''
-    return (f'<article class="lp-cd" style="--i:{i}" data-cd><div class="lp-cv">{cover}<span class="lp-ch">{criadores}</span><span class="lp-sp" style="background:{cor}">{status}</span></div>'
+    return (f'<article class="lp-cd" style="--i:{i}" data-cd{f" data-alvo={alvo}" if alvo else ""}><div class="lp-cv">{cover}<span class="lp-ch">{criadores}</span><span class="lp-sp" style="background:{cor}">{status}</span></div>'
             f'<div class="lp-bb"><div class="lp-bh">{avh}<div><b>{t}</b><span>{desc}</span></div></div>'
             f'<div class="lp-pg"><span>Progresso de publicação</span><b data-pct="{prog}">{prog}%</b></div><div class="lp-bar"><i style="width:{prog}%" data-bar></i></div>'
             f'<div class="lp-ks"><div><span>Alcance</span><b>{alc}</b></div><div><span>Publicados</span><b>{pub}</b></div><div><span>Pendentes</span><b>{dot}{pend}</b></div></div></div></article>')
 
+# creators de exemplo (os mesmos nomes fictícios do app)
+CRIADORES = [
+    ('Marina Duarte', 'MD', '#F3D9FF', '#7A1FC2', 3, ['Beleza', 'Lifestyle'], [('insta', 'Instagram', '@marinaduarte', '28,7 mil', '4,1% eng.'), ('tiktok', 'TikTok', '@marinaduarte', '12,4 mil', '6,8% eng.')]),
+    ('Beatriz Nunes', 'BN', '#FFE3D6', '#B4461C', 2, ['Moda & Beleza', 'UGC'], [('insta', 'Instagram', '@beatriznunes', '16,6 mil', '3,2% eng.')]),
+    ('Caio Ferraz', 'CF', '#DDF3E4', '#1F7A44', 1, ['Fitness & Saúde'], [('insta', 'Instagram', '@caioferraz', '10,8 mil', '5,0% eng.')]),
+    ('Larissa Prado', 'LP', '#DCEBFF', '#1F57B4', 2, ['Casa & Decoração', '+2'], [('tiktok', 'TikTok', '@larissaprado', '43,4 mil', '7,9% eng.'), ('insta', 'Instagram', '@larissaprado', '21,3 mil', '2,7% eng.')]),
+]
+
+def _criador(c, i):
+    nome, ini, bg, fg, redes, tags, rs = c
+    tg = ''.join(f'<span>{t}</span>' for t in tags)
+    rows = ''.join(f'<div class="lp-rede">{_ic(I[ic], 18, 1.8)}<div><b>{n}</b><span>{h}</span></div><div class="lp-rn"><b>{s}</b><span>{e}</span></div></div>' for ic, n, h, s, e in rs)
+    return (f'<article class="lp-cr"><div class="lp-crh"><span class="lp-cav" style="background:{bg};color:{fg}">{ini}</span><div><b>{nome}</b><span>{redes} {"rede social" if redes == 1 else "redes sociais"}</span></div></div>'
+            f'<div class="lp-tags">{tg}</div><div class="lp-redes">{rows}</div>'
+            f'<div class="lp-crb"><span class="lp-vp">Ver perfil</span><span class="lp-conv" data-conv="{i}" data-alvo="conv{i}"><span data-btn="0">Convidar</span><span data-btn="1">{_ic(I["check"], 16, 2.6)}Convidado</span></span>'
+            f'<span class="lp-fav">{_ic(I["heart"], 18, 1.8)}</span></div></article>')
+
+ETAPAS = [('Seleção', '', '12 pessoas'), ('Roteiros', '', '12 de 12'), ('Conteúdos', 'até 27/11', '9 de 12'), ('Publicação', '01/12', '6 de 12'), ('Pagamento', 'após publicar', '0 de 12')]
+
 def tela_painel(A, logo_branco):
-    cards = (_cd_bo(A, 'lume', 'Ativa', '12 criadores', 'av-lume', 'Verão Glow', 'Rotina de skincare de verão com a linha Glow', 68, '1,2 mi', '17', '8', 0)
+    cards = (_cd_bo(A, 'lume', 'Ativa', '12 criadores', 'av-lume', 'Verão Glow', 'Rotina de skincare de verão com a linha Glow', 68, '1,2 mi', '17', '8', 0, 'card')
              + _cd_bo(A, 'run', 'Ativa', '8 criadores', 'pace', 'Run Club SP', 'Treinos de corrida com a comunidade de São Paulo', 35, '640 mil', '6', '11', 1)
              + _cd_bo(A, 'aurora', 'Ativa', '5 criadores', 'av-aurora', 'Casa Aurora', 'Decoração de mesa para receber em casa', 20, '210 mil', '2', '8', 2)
              + _cd_bo(A, 'brisa', 'Finalizada', '10 criadores', 'av-brisa', 'Brisa de Verão', 'Drinks sem álcool para os dias quentes', 100, '2,3 mi', '24', '0', 3)
              + _cd_bo(A, '', 'Rascunho', '0 criadores', 'av-lume', 'Pele de Seda', 'Lançamento do novo hidratante corporal', 0, '–', '0', '–', 4))
-    nav = lambda ico, txt, on=False, badge='': (f'<span class="lp-a{" on" if on else ""}">{_ic(I[ico], 20, 1.8)}<span>{txt}</span>'
-                                                + (f'<em>{badge}</em>' if badge else '') + '</span>')
+    nav = lambda ico, txt, k, badge='': (f'<span class="lp-a{" on" if k == "campanhas" else ""}" data-nav-k="{k}" data-alvo="nav-{k}">{_ic(I[ico], 20, 1.8)}<span>{txt}</span>'
+                                          + (f'<em>{badge}</em>' if badge else '') + '</span>')
     tabs = ''.join(f'<span class="{"on" if on else ""}">{t}<em>{n}</em></span>' for t, n, on in
                    [('Todas', '5', True), ('Ativas', '3', False), ('Rascunhos', '1', False), ('Finalizadas', '1', False)])
+    etapas = ''.join(f'<div class="lp-et" data-et="{i}"><span class="lp-etn"><i>{i + 1}</i>{_ic(I["check"], 14, 3)}</span><b>{t}</b><span class="lp-ets">{s}</span><span class="lp-etv">{v}</span></div>'
+                     for i, (t, s, v) in enumerate(ETAPAS))
+    kpis = [('users', 'Criadores na campanha', 12, '', 0), ('image', 'Conteúdos no ar', 17, ' de 24', 0), ('eye', 'Alcance total', 1.2, ' mi', 1), ('trend', 'Engajamento', 5.4, '%', 1)]
+    kp = ''.join(f'<div class="lp-kp">{_ic(I[ic], 20, 1.8)}<div><span>{t}</span><b data-n="{n}" data-suf="{suf}" data-dec="{dec}">{f"{n:.{dec}f}".replace(".", ",")}{suf}</b></div></div>'
+                 for ic, t, n, suf, dec in kpis)
+    filtros = ''.join(f'<span class="{"on" if i == 0 else ""}">{t}</span>' for i, t in enumerate(('Todos', 'Beleza', 'Moda', 'Fitness', 'Casa & Decoração', 'UGC')))
     return f'''<div class="ls ls-plat" aria-hidden="true" data-ls="plat"><div class="ls-in">
 <div class="lp-sd"><img class="lp-lg" src="{logo_branco}" alt="" width="64" height="36">
   <div class="lp-ws"><img src="{A('assets/hero/telas/vnh.webp')}" alt="" width="36" height="36" loading="lazy" decoding="async"><div><b>Você no Hype</b><span>Membro</span></div>{_ic(I['chev'], 16)}</div>
-  <div class="lp-lb">WORKSPACE</div>{nav('grid', 'Início')}<hr>
-  <div class="lp-lb">GESTÃO DE CAMPANHAS</div>{nav('mega', 'Campanhas', True, '3')}{nav('users', 'Criadores')}{nav('video', 'Lives')}<hr>
-  <div class="lp-lb">FINANCEIRO</div>{nav('wallet', 'Financeiro')}
+  <div class="lp-lb">WORKSPACE</div>{nav('grid', 'Início', 'inicio')}<hr>
+  <div class="lp-lb">GESTÃO DE CAMPANHAS</div>{nav('mega', 'Campanhas', 'campanhas', '3')}{nav('users', 'Criadores', 'criadores')}{nav('video', 'Lives', 'lives')}<hr>
+  <div class="lp-lb">FINANCEIRO</div>{nav('wallet', 'Financeiro', 'financeiro')}
   <div class="lp-me"><span class="lp-ini">AR</span><div><b>Ana Ribeiro</b><span>Membro</span></div>{_ic(I['logout'], 19, 1.8)}</div>
 </div>
 <div class="lp-tp"><span>{_ic(I['chat'], 19, 1.8)}</span><span>{_ic(I['bell'], 19, 1.8)}</span></div>
-<div class="lp-mn"><p class="lp-t">Campanhas</p><p class="lp-sub">Crie, acompanhe e aprove tudo em um só lugar.</p>
+<div class="lp-v on" data-v="campanhas"><div class="lp-mn"><p class="lp-t">Campanhas</p><p class="lp-sub">Crie, acompanhe e aprove tudo em um só lugar.</p>
   <div class="lp-fl"><div class="lp-tb">{tabs}</div><div class="lp-bs">{_ic(I['search'], 18)}Pesquisar</div>
     <div class="lp-so">{_ic(I['sort'], 17)}Mais recentes</div><div class="lp-vw"><span class="on">{_ic(I['grid'], 17)}</span><span>{_ic(I['list'], 17)}</span></div></div>
   <div class="lp-gr">{cards}</div>
-</div>
+</div></div>
+<div class="lp-v" data-v="campanha"><div class="lp-mn">
+  <span class="lp-voltar">{_ic(I['arrowl'], 17)}Campanhas</span>
+  <div class="lp-cab"><div class="lp-cabart">{ART['lume']}</div>
+    <div class="lp-cabtx"><div class="lp-meta"><span class="lp-pub">Publicado</span><b>12</b> criadores<i class="lp-mbar"><i data-mbar></i></i><b data-mpct>68%</b> concluído</div>
+      <p class="lp-ct">Verão Glow</p><p class="lp-cd2">Campanha de verão da Casa Lume com creators de beleza e lifestyle: a rotina da manhã com a linha Glow, em 1 reels e 2 stories.</p></div>
+    <div class="lp-cabb"><span class="lp-bk">{_ic(I['refresh'], 17)}Verificar publicações</span><span class="lp-bg">{_ic(I['edit'], 17)}Editar</span><span class="lp-lk">{_ic(I['eye'], 17)}Ver convite</span><span class="lp-lk">{_ic(I['share'], 16)}Compartilhar</span></div>
+    <div class="lp-abas"><span class="on">Visão geral</span><span>Gerenciamento<em>8</em></span><span>Gestão</span></div></div>
+  <div class="lp-prog"><div class="lp-pgl"><span>Progresso geral</span><div><b data-geral>68%</b><span>campanha em andamento</span></div></div><div class="lp-ets-w">{etapas}</div>
+    <div class="lp-kps">{kp}</div></div>
+  <div class="lp-acao"><p>Precisa da sua ação</p><span>8 itens aguardando</span><div class="lp-ac"><span class="lp-aci">{_ic(I['image'], 18)}</span><b data-acao>8</b><span>Conteúdos para aprovar</span><span class="lp-acb">Revisar {_ic(I['chev'], 14, 2.4)}</span></div></div>
+</div></div>
+<div class="lp-v" data-v="criadores"><div class="lp-mn">
+  <p class="lp-t">Criadores</p><p class="lp-sub">Encontre creators para as suas campanhas.</p>
+  <div class="lp-fl"><div class="lp-bs lp-bs2">{_ic(I['search'], 18)}Buscar por nome ou @</div><div class="lp-filt">{filtros}</div></div>
+  <div class="lp-crg">{''.join(_criador(c, i) for i, c in enumerate(CRIADORES))}</div>
+</div></div>
+<div class="lp-toast" data-toast>{_ic(I['check'], 18, 2.6)}<span data-toast-t></span></div>
+<i class="ls-cur" data-cur><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3l14 7-6 2-3 6z" fill="#050505" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/></svg></i>
 </div></div>'''
