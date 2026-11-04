@@ -1780,3 +1780,12 @@ label.ck-op { cursor: pointer; }
 @media (max-width: 640px) {
   .jc-b { --w: clamp(140px, 42vw, 190px); --sx: calc(var(--w) * .8); }
 }
+
+/* ---------- Baixe e crie seu perfil hoje (/criadores/): faixa roxa do modelo B ---------- */
+
+.bt-baixe { background: #9E2CFA; color: #fff; border-radius: clamp(30px, 3vw, 44px); padding: clamp(28px, 4.4vw, 64px); display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 420px); gap: clamp(24px, 3.4vw, 48px); align-items: center; }
+.bt-baixe-tx { display: flex; flex-direction: column; gap: 20px; }
+.bt-baixe-h { margin: 0; font-size: clamp(38px, 4.5vw, 64px); font-weight: 800; letter-spacing: -0.04em; line-height: 1; color: #fff; }
+.bt-baixe .store, .bt-baixe a.store:hover { background: #050505; color: #fff; }
+.bt-baixe .bt-baixe-v { width: 100%; height: auto; aspect-ratio: 7 / 5; object-fit: cover; border-radius: 28px; display: block; background: #F1EAFB; }
+@media (max-width: 860px) { .bt-baixe { grid-template-columns: 1fr; } }

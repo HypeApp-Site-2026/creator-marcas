@@ -942,17 +942,17 @@ def p_criadores(L, A):
 
 {cresca_carrossel(A)}
 
-<section class="bt-g bt-fim" aria-label="Dúvidas e download">
-  <div class="bt bt-branco bt-faq" aria-labelledby="faq-c">
-    <div class="between" style="align-items:baseline"><h2 id="faq-c" class="bt-h2" style="margin:0">Dúvidas de creators</h2><a class="link-strong" href="{L('/perguntas-frequentes/', '#creators')}">Ver todas</a></div>
-    <div class="faq">{faq_html(faq)}</div>
-  </div>
-  <div class="bt bt-preto bt-dl" aria-labelledby="baixar-c">
-    <h2 id="baixar-c" class="bt-t1">Baixe o HypeApp</h2>
-    <p class="bt-p">Grátis para iPhone e Android. Crie sua conta pelo app.</p>
-    <div class="qr bt-qr">{QR}</div>
+<section class="bt bt-branco bt-faqs" aria-labelledby="faq-c">
+  <div class="between" style="align-items:baseline"><h2 id="faq-c" class="bt-h2" style="margin:0">Dúvidas de creators</h2><a class="link-strong" href="{L('/perguntas-frequentes/', '#creators')}">Ver todas</a></div>
+  <div class="faq">{faq_html(faq)}</div>
+</section>
+
+<section class="bt-baixe" aria-labelledby="baixar-c">
+  <div class="bt-baixe-tx">
+    <h2 id="baixar-c" class="bt-baixe-h">Baixe e crie seu perfil hoje.</h2>
     <div class="row">{stores(L)}</div>
   </div>
+  {vid(1, 'Animação: creator com o celular', 'bt-baixe-v')}
 </section>'''
 
 def p_marcas(L, A):
