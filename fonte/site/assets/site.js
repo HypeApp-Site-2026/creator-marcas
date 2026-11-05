@@ -472,6 +472,38 @@
       function () { clearTimeout(timer); });
   });
 
+  /* ---------- Blog: topicos do menu lateral filtram a lista (#tema). Sem JS aparecem todos ---------- */
+  $$('[data-bh]').forEach(function (bh) {
+    var links = $$('.bh-tema', bh), cards = $$('.bh-todos .bl-card', bh), tit = $('[data-bh-titulo]', bh), vazio = $('[data-bh-vazio]', bh);
+    var aplica = function (t) {
+      if (!t || !links.some(function (a) { return a.getAttribute('data-tema') === t; })) t = 'todos';
+      var n = 0, nome = 'Todos os artigos';
+      links.forEach(function (a) {
+        var on = a.getAttribute('data-tema') === t;
+        a.setAttribute('aria-current', on ? 'true' : 'false');
+        if (on && t !== 'todos') nome = a.firstChild.textContent;
+      });
+      cards.forEach(function (c) {
+        var ok = t === 'todos' || c.getAttribute('data-tema') === t;
+        if (c.hasAttribute('data-so-teste') && !/^teste\./.test(location.hostname)) ok = false;
+        c.style.display = ok ? '' : 'none';
+        if (ok) n++;
+      });
+      if (tit) tit.textContent = nome;
+      if (vazio) vazio.hidden = n > 0;
+    };
+    links.forEach(function (a) {
+      a.addEventListener('click', function (e) {
+        e.preventDefault();
+        var t = a.getAttribute('data-tema');
+        try { history.replaceState(null, '', t === 'todos' ? location.pathname : '#' + t); } catch (err) {}
+        aplica(t);
+        var alvo = $('.bh-todos', bh); if (alvo && window.innerWidth < 1081) alvo.scrollIntoView({ block: 'start' });
+      });
+    });
+    aplica(location.hash.slice(1));
+  });
+
   /* ---------- Carteira viva (/criadores/): celular em HTML; Visao geral > Historico > Solicitar saque.
      A arte tem 580 x 910 px; mostramos a janela de 420 px em volta do celular (x 80 a 500). ---------- */
   $$('[data-cw]').forEach(function (cw) {

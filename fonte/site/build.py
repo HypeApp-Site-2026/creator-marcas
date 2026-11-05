@@ -2056,6 +2056,7 @@ def main():
     os.makedirs(os.path.join(OUT, 'assets', 'blog'))
     for _p in POSTS:
         shutil.copy(os.path.join(HERE, 'assets', 'blog', _p['capa']), os.path.join(OUT, 'assets', 'blog', _p['capa']))
+    shutil.copytree(os.path.join(HERE, 'assets', 'blog', 'autores'), os.path.join(OUT, 'assets', 'blog', 'autores'))  # fotos da equipe do blog
     # Ícones, manifest e imagens sociais ficam na raiz do site (gerados por make_media.py)
     for f in os.listdir(os.path.join(HERE, 'static')):
         src = os.path.join(HERE, 'static', f)

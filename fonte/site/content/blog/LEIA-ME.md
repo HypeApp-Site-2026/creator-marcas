@@ -11,7 +11,8 @@ status: publicado              # publicado | revisao | rascunho | exemplo
 capa: meu-artigo.webp          # arquivo em site/assets/blog/ (1600×1000, proporção 16:10)
 capa_alt: Creator segurando o celular, com cartões de perfil e métricas ao redor
 resumo: Uma frase com a resposta principal do artigo (vira a descrição de SEO).
-autor: Nome Sobrenome          # opcional; só preencha com a autoria real
+autor: lucas-ragnoni           # chave em equipe.json; sem autor, assina a Equipe HypeApp
+destaque: sim                  # opcional: vai para a capa do blog
 ---
 
 Texto do artigo em Markdown: parágrafos, ## subtítulos, listas, **negrito**, [links](https://...).
@@ -23,3 +24,15 @@ Texto do artigo em Markdown: parágrafos, ## subtítulos, listas, **negrito**, [
 - **exemplo**: aparece só na prévia, com o selo "Exemplo de layout". Nunca vai para a versão --web.
 - O tempo de leitura é calculado do texto (200 palavras por minuto). Não escreva o tempo à mão.
 - Enquanto não houver artigo publicado, a Início mostra "Novos conteúdos em breve." e o link do blog some da seção e do rodapé.
+
+## Equipe e participações (05/11)
+
+- Quem escreve fica em `equipe.json` (nome, foto em `site/assets/blog/autores/` e selo, hoje "Moderação"). Para incluir alguém, acrescente uma linha e a foto quadrada (320 × 320).
+- A equipe pode deixar participações no fim de um artigo. Elas aparecem em "Da equipe HypeApp", com foto, nome, selo e data:
+
+```
+:::comentario vinicius-duarte-garcia 2026-11-05
+Texto da participação, em Markdown.
+:::
+```
+- A página /blog/ mostra a capa (o artigo com `destaque: sim`, ou o primeiro), os tópicos no menu lateral (vêm do campo `categoria`), os destaques e todos os artigos.
