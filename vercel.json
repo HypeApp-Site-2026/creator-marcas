@@ -277,6 +277,46 @@
       "permanent": true
     },
     {
+      "source": "/Privacidade.html",
+      "destination": "/privacidade/",
+      "permanent": true
+    },
+    {
+      "source": "/privacidade.html",
+      "destination": "/privacidade/",
+      "permanent": true
+    },
+    {
+      "source": "/Privacidade",
+      "destination": "/privacidade/",
+      "permanent": true
+    },
+    {
+      "source": "/politica-de-privacidade.html",
+      "destination": "/privacidade/",
+      "permanent": true
+    },
+    {
+      "source": "/Termos.html",
+      "destination": "/termos/",
+      "permanent": true
+    },
+    {
+      "source": "/termos.html",
+      "destination": "/termos/",
+      "permanent": true
+    },
+    {
+      "source": "/Termos",
+      "destination": "/termos/",
+      "permanent": true
+    },
+    {
+      "source": "/termos-de-uso.html",
+      "destination": "/termos/",
+      "permanent": true
+    },
+    {
       "source": "/influenciadores(/.*)?",
       "destination": "/criadores/",
       "permanent": true
@@ -286,6 +326,10 @@
     {
       "source": "/((?!backoffice).*)",
       "headers": [
+        {
+          "key": "Strict-Transport-Security",
+          "value": "max-age=63072000"
+        },
         {
           "key": "X-Content-Type-Options",
           "value": "nosniff"
@@ -304,7 +348,7 @@
         },
         {
           "key": "Content-Security-Policy",
-          "value": "default-src 'self'; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com https://ssl.gstatic.com https://www.gstatic.com https://*.clarity.ms https://c.bing.com; style-src 'self' 'unsafe-inline' https://*.googletagmanager.com https://tagmanager.google.com https://fonts.googleapis.com; script-src 'self' https://*.googletagmanager.com https://tagmanager.google.com https://*.clarity.ms https://c.bing.com https://static.cloudflareinsights.com; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://*.clarity.ms https://c.bing.com https://cloudflareinsights.com; form-action 'self'; frame-ancestors 'none'; base-uri 'self'; object-src 'none'"
+          "value": "default-src 'self'; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com https://ssl.gstatic.com https://www.gstatic.com https://*.clarity.ms https://c.bing.com; style-src 'self' 'unsafe-inline' https://*.googletagmanager.com https://tagmanager.google.com https://fonts.googleapis.com; script-src 'self' https://*.googletagmanager.com https://tagmanager.google.com https://*.clarity.ms https://c.bing.com; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://*.clarity.ms https://c.bing.com; form-action 'self'; frame-ancestors 'none'; base-uri 'self'; object-src 'none'"
         }
       ]
     },

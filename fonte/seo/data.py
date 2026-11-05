@@ -284,7 +284,7 @@ for url, nome, title, desc, h1 in [
     ("/termos/", "Termos", "Termos de uso | HypeApp",
      "Regras para usar o site e o app do HypeApp: cadastro, responsabilidades, propriedade intelectual e direitos de creators, marcas e agências.", "Termos de uso"),
     ("/cookies/", "Cookies", "Política de cookies | HypeApp",
-     "Como o site do HypeApp usa cookies: só o necessário para funcionar e a medição agregada de visitas, sem cookies de publicidade ou rastreamento.", "Política de cookies"),
+     "Quais cookies o site do HypeApp usa: os necessários para funcionar e, só com o seu aceite, os de medição do Google Analytics e do Microsoft Clarity.", "Política de cookies"),
     ("/direitos-sobre-dados/", "Direitos sobre dados", "Direitos sobre seus dados | HypeApp",
      "Peça acesso, correção, exclusão ou outras informações sobre seus dados pessoais no HypeApp.", "Direitos sobre seus dados"),
     ("/exclusao-de-conta/", "Exclusão de conta", "Como excluir sua conta | HypeApp",

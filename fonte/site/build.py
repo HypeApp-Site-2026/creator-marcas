@@ -18,7 +18,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 CFG = {
     'ios': 'https://apps.apple.com/br/app/hype-app-influenciadores/id6778357608',
     'android': 'https://play.google.com/store/apps/details?id=br.com.hypeapp.v2',
-    'painel': 'https://www.hypeapp.com.br/backoffice/sign-up',   # backoffice das marcas (decisão de 30/10)
+    'painel': 'https://www.hypeapp.com.br/backoffice/sign-in',   # backoffice das marcas (decisão de 30/10; entrada pelo sign-in desde 04/11)
     'preview': not WEB,      # faixa "Prévia" + noindex
     # Google Tag Manager: ID do contêiner (GTM-XXXXXXX). Vazio = nenhum script de análise e nenhum aviso de cookies.
     # O GTM só é carregado depois que a pessoa aceita os cookies de medição (Consent Mode v2, modo básico).
@@ -31,7 +31,7 @@ if CFG['gtm'] and not re.fullmatch(r'GTM-[A-Z0-9]{4,12}', CFG['gtm']):
     raise SystemExit('CFG gtm inválido: use o formato GTM-XXXXXXX')
 ANALYTICS = WEB and bool(CFG['gtm'])
 META = {r['url']: r for r in R}
-PAINEL_URL = f"<span>{CFG['painel'].replace('https://', '').split('/sign-up')[0]}</span>" if CFG['painel'] else ''
+PAINEL_URL = f"<span>{CFG['painel'].replace('https://', '').split('/sign-')[0]}</span>" if CFG['painel'] else ''
 
 # ---------- Utilidades ----------
 def depth_of(url):
@@ -198,7 +198,7 @@ def header(cur, L, A):
                    f'<div class="mega-card"><span class="mega-label">{label}</span><ul>{lis}</ul></div>{art}</div>')
     painel = CFG['painel']
     marca_href = painel if painel else L('/entrar/', '#marcas')
-    marca_sub = 'Painel das marcas · ' + painel.replace('https://www.', '').split('/sign-up')[0] if painel else 'Painel das marcas'
+    marca_sub = 'Painel das marcas · ' + painel.replace('https://www.', '').split('/sign-')[0] if painel else 'Painel das marcas'
     menu = f'''
 <div class="entrar-menu" id="entrar-menu" role="menu" aria-label="Entrar como" hidden>
   <a role="menuitem" class="entrar-item" href="{L('/entrar/', '#creators')}">
@@ -253,7 +253,7 @@ def footer(L, A):
         ('Para marcas', [('Para marcas e agências', L('/marcas/')), ('Falar com nosso time', L('/contato/marcas/')), ('Entrar no painel', CFG['painel'] or L('/entrar/', '#marcas'))]),
         ('Ajuda', [('Perguntas frequentes', L('/perguntas-frequentes/')), ('Suporte', L('/suporte/'))]),
         ('Empresa', [('Sobre o HypeApp', L('/sobre/'))] + ([('Blog', L('/blog/'))] if BLOG_ON else []) + [('Contato', L('/contato/'))]),
-        ('Legal', [('Privacidade', L('/privacidade/')), ('Encarregado de dados', L('/privacidade/', '#encarregado')), ('Termos de uso', L('/termos/')), ('Cookies', L('/cookies/')), ('Regras da comunidade', L('/regras-da-comunidade/')), ('Exclusão de conta', L('/exclusao-de-conta/'))] + ([('Preferências de cookies', '#preferencias-cookies')] if ANALYTICS else [])),
+        ('Legal', [('Documentos legais', L('/legal/')), ('Privacidade', L('/privacidade/')), ('Encarregado de dados', L('/privacidade/', '#encarregado')), ('Termos de uso', L('/termos/')), ('Cookies', L('/cookies/')), ('Regras da comunidade', L('/regras-da-comunidade/')), ('Exclusão de conta', L('/exclusao-de-conta/'))] + ([('Preferências de cookies', '#preferencias-cookies')] if ANALYTICS else [])),
     ]
     c = ''.join(f'<nav aria-label="{t}"><span class="ftr-h">{t}</span>' + ''.join(f'<a href="{h}"{_blog.SO_TESTE if n == "Blog" and "/blog/" in SO_TESTE else ""}>{n}</a>' for n, h in ls) + '</nav>' for t, ls in cols)
     return f'''<footer class="site-footer wrap">
@@ -284,7 +284,7 @@ def pc(kind):
         return f'<div class="pc pc-steps">{rows}</div>'
     if kind == 'proximo':
         return ('<div class="pc pc-next"><span><i>Próximo passo</i><b>Enviar o conteúdo</b></span>'
-                '<span style="display:flex;justify-content:space-between;align-items:center"><i>Prazo: 10/11</i><span class="go">Enviar</span></span></div>')
+                f'<span style="display:flex;justify-content:space-between;align-items:center"><i>Prazo: {_ht.D(6)}</i><span class="go">Enviar</span></span></div>')
     rows = {
         'grupo1': ('', 'BE', 'Beleza e skincare', 'Grupo oficial', 'Entrar'),
         'live': ('dark', 'AO', 'Live: precificar Reels', 'Quinta, 19h', 'Agenda'),
@@ -415,7 +415,7 @@ def motion_painel(A):
         <div class="bo-video r1"><div><span>{ico('M8 5v14l11-7z', 24, fill=True)}</span></div></div>
         <div class="bo-panel r2">
           <span class="bo-who"><span class="av">C1</span><span style="display:flex;flex-direction:column"><b style="font-size:18px;font-weight:600">@bianca.alves</b><span style="font-size:14px">Reels · Skincare Pro</span></span><span class="bo-ok show">Aprovado</span></span>
-          <div class="bo-kv"><span><span>Roteiro</span><b>Aprovado</b></span><span><span>Versão do conteúdo</span><b>2 de 2</b></span><span><span>Prazo de publicação</span><b>10/11</b></span></div>
+          <div class="bo-kv"><span><span>Roteiro</span><b>Aprovado</b></span><span><span>Versão do conteúdo</span><b>2 de 2</b></span><span><span>Prazo de publicação</span><b>{_ht.D(6)}</b></span></div>
           <span style="font-size:15px">Ajuste feito: produto aparece nos primeiros segundos e o cupom está na legenda.</span>
           <div class="bo-acts"><span>Pedir ajuste</span><span class="ink press">Aprovar conteúdo</span></div>
         </div>
@@ -1452,15 +1452,15 @@ COOKIES_GA = [
     ('necessarios', 'Necessários', rev('Para funcionar, o site guarda no seu navegador a sua escolha sobre cookies (por até 12 meses) e, só enquanto a aba estiver aberta, '
         'a página de entrada e os parâmetros da campanha que trouxe você (utm, gclid e fbclid), que seguem junto com o formulário de contato. '
         'Isso não identifica você e não precisa de consentimento.')),
-    ('medicao', 'Medição de visitas', rev('Usamos o Cloudflare Web Analytics, que conta visitas de forma agregada e sem cookies. Se você aceitar os cookies de medição, '
-        'usamos também o Google Analytics 4, carregado pelo Google Tag Manager, para saber quais páginas são vistas, de onde vêm as visitas, '
+    ('medicao', 'Medição de visitas', rev('Se você aceitar os cookies de medição, '
+        'usamos o Google Analytics 4, carregado pelo Google Tag Manager, para saber quais páginas são vistas, de onde vêm as visitas, '
         'quais botões são clicados e quantos formulários são enviados, e o Microsoft Clarity, que registra cliques, rolagem e movimentos na página '
         'para gerar mapas de calor e gravações da navegação. Os campos de formulário ficam ocultos nas gravações. '
         'Não enviamos nome, e-mail, telefone nem o texto dos formulários ao Google ou à Microsoft.')),
-    ('google', 'Cookies do Google Analytics', rev('Os cookies _ga e _ga_ seguido do código da propriedade distinguem visitantes e visitas e duram até 2 anos. '
+    ('google-analytics', 'Cookies do Google Analytics', rev('Os cookies _ga e _ga_ seguido do código da propriedade distinguem visitantes e visitas e duram até 2 anos. '
         'Só são gravados depois do seu aceite. O Google atua como operador desses dados e pode tratá-los fora do Brasil, '
         'conforme a <a href="{{PRIVACIDADE}}">Política de Privacidade</a>.')),
-    ('clarity', 'Cookies do Microsoft Clarity', rev('Os cookies _clck (até 1 ano) e _clsk (1 dia) ligam as páginas de uma mesma visita. '
+    ('microsoft-clarity', 'Cookies do Microsoft Clarity', rev('Os cookies _clck (até 1 ano) e _clsk (1 dia) ligam as páginas de uma mesma visita. '
         'Só são gravados depois do seu aceite. A Microsoft atua como operadora desses dados e pode tratá-los fora do Brasil, '
         'conforme a <a href="{{PRIVACIDADE}}">Política de Privacidade</a>.')),
     ('publicidade', 'Publicidade', rev('O site não usa cookies de publicidade. Se isso mudar, esta política será atualizada e o site vai pedir a sua escolha antes de ativá-los.')),
@@ -1487,7 +1487,7 @@ LEGAL = {
         ('alteracoes', 'Alterações', 'Versão [número], de [data].')]),
     '/cookies/': ('Política de cookies', 'Quais tecnologias o site usa, para quê e como mudar sua escolha.', COOKIES_GA) if ANALYTICS else ('Política de cookies', 'Quais tecnologias o site usa e para quê.', [
         ('necessarios', 'Cookies necessários', 'O site não usa cookies de publicidade nem de rastreamento. Usa apenas o necessário para funcionar.'),
-        ('medicao', 'Medição de visitas', 'Usamos o Cloudflare Web Analytics para contar visitas de forma agregada. Ele não usa cookies e não identifica quem visita.'),
+        ('medicao', 'Medição de visitas', 'O site não usa ferramentas de medição de visitas.'),
         ('opcionais', 'Cookies opcionais', 'Se alguma ferramenta de publicidade ou de análise com cookies for adicionada, o site vai pedir sua escolha antes de carregá-la.')]),
     '/exclusao-de-conta/': ('Exclusão de conta', 'Como pedir a exclusão da sua conta do HypeApp e dos dados associados.', [
         ('app', 'Pelo app', '[Caminho no app a confirmar, por exemplo: Perfil, Configurações, Excluir conta.]'),
@@ -1849,6 +1849,14 @@ http://hypeapp.com.br/*         https://www.hypeapp.com.br/:splat   301!
 
 # Endereços do site antigo (omnes-tech/hype-site): política e termos acima; demais páginas
 /murais-campanhas/*  /criadores/              301
+/Privacidade.html    /privacidade/            301
+/privacidade.html    /privacidade/            301
+/Privacidade         /privacidade/            301
+/politica-de-privacidade.html  /privacidade/  301
+/Termos.html         /termos/                 301
+/termos.html         /termos/                 301
+/Termos              /termos/                 301
+/termos-de-uso.html  /termos/                 301
 /influenciadores/*   /criadores/              301
 '''
 
@@ -1869,11 +1877,12 @@ def csp_ga(h):
     return h
 
 HEADERS = '''/*
+  Strict-Transport-Security: max-age=63072000
   X-Content-Type-Options: nosniff
   X-Frame-Options: DENY
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=(), interest-cohort=()
-  Content-Security-Policy: default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' https://static.cloudflareinsights.com; font-src 'self'; connect-src 'self' https://cloudflareinsights.com; form-action 'self'; frame-ancestors 'none'; base-uri 'self'; object-src 'none'
+  Content-Security-Policy: default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self'; font-src 'self'; connect-src 'self'; form-action 'self'; frame-ancestors 'none'; base-uri 'self'; object-src 'none'
 
 /assets/fonts/*
   Cache-Control: public, max-age=31536000, immutable

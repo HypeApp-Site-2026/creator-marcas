@@ -2078,3 +2078,9 @@ a.mvb-aglk:hover .bt-lk { text-decoration: underline; }
 .cf-card.is-active .cf-top { background: var(--surface); }
 .cf-card.is-active .cf-top::before { opacity: 1; }
 @media (prefers-reduced-motion: reduce) { .cf-top, .cf-top::before { transition: none; } }
+/* Indicadores do carrossel do blog: área de toque de 44 x 24 px, com a barrinha de 6 px desenhada dentro (04/11) */
+.bl-dots { gap: 0; }
+.bl-dot { width: 44px; height: 24px; background: transparent; display: flex; align-items: center; justify-content: center; transition: width 460ms cubic-bezier(.32,.72,0,1); }
+.bl-dot::before { content: ""; width: 28px; height: 6px; border-radius: 3px; background: #D6D6D6; transition: background-color 460ms cubic-bezier(.32,.72,0,1), width 460ms cubic-bezier(.32,.72,0,1); }
+.bl-dot[aria-current] { background: transparent; width: 52px; }
+.bl-dot[aria-current]::before { background: #9E2CFA; width: 36px; }

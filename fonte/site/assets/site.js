@@ -35,7 +35,7 @@
   var clarityOn = false;
   var carregaClarity = function () {
     if (clarityOn || !CLARITY) return; clarityOn = true;
-    window.clarity = window.clarity || function () { (window.clarity.q = window.clarity.q || []).push(arguments); };
+    if (typeof window.clarity !== 'function') window.clarity = function () { (window.clarity.q = window.clarity.q || []).push(arguments); };
     window.clarity('consentv2', { ad_Storage: 'denied', analytics_Storage: 'granted' });
     window.clarity('set', 'ambiente', /^teste\./.test(location.hostname) ? 'teste' : 'producao');
     var sc = document.createElement('script'); sc.async = true;
@@ -61,7 +61,7 @@
       gtag('consent', 'update', { analytics_storage: c.medicao ? 'granted' : 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
       if (c.medicao) { carregaGTM(); carregaClarity(); }
       else if (antes && antes.medicao) {
-        if (window.clarity) window.clarity('consentv2', { ad_Storage: 'denied', analytics_Storage: 'denied' });
+        if (typeof window.clarity === 'function') window.clarity('consentv2', { ad_Storage: 'denied', analytics_Storage: 'denied' });
         apagaCookiesGA();
       }
     };
@@ -968,6 +968,15 @@
     window.addEventListener('resize', function () { measure(); read(); kick(); });
     if (window.IntersectionObserver) new IntersectionObserver(function (es) { onScreen = es[0].isIntersecting; if (onScreen) { kick(); demoKick(); } }).observe(hx);
     demoKick();
+  })();
+
+  /* ---------- Datas das demonstracoes relativas a hoje (data-dd = dias a partir de hoje) ---------- */
+  (function () {
+    var hoje = new Date(), z = function (n) { return (n < 10 ? '0' : '') + n; };
+    $$('[data-dd]').forEach(function (el) {
+      var d = new Date(hoje.getFullYear(), hoje.getMonth(), hoje.getDate() + (+el.getAttribute('data-dd')));
+      el.textContent = z(d.getDate()) + '/' + z(d.getMonth() + 1) + (el.hasAttribute('data-ano') ? '/' + d.getFullYear() : '');
+    });
   })();
 
   /* ---------- Como funciona: carrossel com clipes (so o card ativo toca) ---------- */

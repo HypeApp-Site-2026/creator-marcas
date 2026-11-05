@@ -24,7 +24,7 @@ Um jeito rápido de separar: existe obrigação de postar? Se não, é recebido.
 
 ## O que o CONAR diz sobre cada caso
 
-O CONAR é o órgão de autorregulamentação da publicidade no Brasil. O [Código Brasileiro de Autorregulamentação Publicitária](https://www.migalhas.com.br/depeso/281406/publicidade-velada-nas-redes-sociais) diz que "o anúncio deve ser claramente distinguido como tal, seja qual for a sua forma ou meio de veiculação" (art. 28). Na lei, o [Código de Defesa do Consumidor, art. 36](https://www.planalto.gov.br/ccivil_03/leis/l8078compilado.htm), vai na mesma linha: a publicidade deve ser veiculada de forma que o consumidor, "fácil e imediatamente", a identifique como tal.
+O CONAR é o órgão de autorregulamentação da publicidade no Brasil. O [Código Brasileiro de Autorregulamentação Publicitária](http://www.conar.org.br/pdf/Codigo-CONAR-2024.pdf) diz que "o anúncio deve ser claramente distinguido como tal, seja qual for a sua forma ou meio de veiculação" (art. 28). Na lei, o [Código de Defesa do Consumidor, art. 36](https://www.planalto.gov.br/ccivil_03/leis/l8078compilado.htm), vai na mesma linha: a publicidade deve ser veiculada de forma que o consumidor, "fácil e imediatamente", a identifique como tal.
 
 Para influenciadores, o CONAR tem um guia próprio. A [primeira versão, lançada no fim de 2020](https://static.poder360.com.br/2020/12/Guia-influenciadores.pdf), considera que a compensação pode ser "ainda que não financeira". Em maio de 2026, saiu uma [nova edição, o Guia de Marketing e Publicidade por Influenciadores Digitais](https://www.meioemensagem.com.br/midia/conar-atualiza-guia-para-influenciadores-digitais). Segundo [análise do escritório TozziniFreire](https://tozzinifreire.com.br/en/boletins/novo-guia-do-conar-o-que-muda-para-campanhas-com-influenciadores-digitais), contrapartidas "financeiras ou não financeiras" podem ser decisivas para que um conteúdo seja tratado como publicidade.
 
@@ -120,6 +120,7 @@ Depende do valor do que você recebe, do esforço das entregas e de quanto a mar
 - [TozziniFreire: Novo guia do Conar, o que muda para campanhas com influenciadores](https://tozzinifreire.com.br/en/boletins/novo-guia-do-conar-o-que-muda-para-campanhas-com-influenciadores-digitais)
 - [Cescon Barrieu: Novas diretrizes do CONAR para marketing de influência](https://cesconbarrieu.com.br/novas-diretrizes-do-conar-para-marketing-de-influencia-o-que-muda/)
 - [Migalhas: Guia Conar 2026, o que todo influenciador precisa saber](https://www.migalhas.com.br/depeso/456124/guia-conar-2026-o-que-todo-influenciador-precisa-saber-agora)
+- [CONAR: Código Brasileiro de Autorregulamentação Publicitária, edição 2024](http://www.conar.org.br/pdf/Codigo-CONAR-2024.pdf)
 - [Migalhas: Publicidade velada nas redes sociais (Código do CONAR, art. 28)](https://www.migalhas.com.br/depeso/281406/publicidade-velada-nas-redes-sociais)
 - [Propmark: Conar atualiza guia de publicidade com influenciadores](https://propmark.com.br/digital/conar-atualiza-guia-de-publicidade-com-influenciadores-e-inclui-regras-sobre-ia/)
 - [Código de Defesa do Consumidor (Lei 8.078/1990), Planalto](https://www.planalto.gov.br/ccivil_03/leis/l8078compilado.htm)

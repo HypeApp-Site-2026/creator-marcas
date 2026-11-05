@@ -483,7 +483,7 @@ Pedidos sobre seus dados pessoais seguem pela política de privacidade. Marcas n
 
 Fonte: https://www.hypeapp.com.br/privacidade/
 Título: Política de privacidade (LGPD) | HypeApp
-Atualizado em: 2026-11-03
+Atualizado em: 2026-11-04
 
 # Política de Privacidade
 
@@ -491,7 +491,7 @@ Quais dados pessoais o HypeApp coleta, como usa, com quem compartilha e como voc
 
 Esta política explica quais dados pessoais o HypeApp coleta no app, no painel das marcas e no site, como os usamos, com quem os compartilhamos e como você exerce seus direitos, em conformidade com a Lei Geral de Proteção de Dados Pessoais (LGPD, Lei nº 13.709/2018) e com as regras das lojas de aplicativos e das plataformas conectadas.
 
-Versão 2.0 · Última atualização: 3 de novembro de 2026.
+Versão 2.1 · Última atualização: 4 de novembro de 2026.
 
 ## Resumo rápido
 
@@ -603,7 +603,7 @@ Dar acesso ao painel, operar as campanhas, controlar permissões e cumprir o con
 
 Formulário "Fale com nosso time"
 
-Nome, cargo, e-mail corporativo, WhatsApp, empresa, site ou Instagram, segmento, cidade, uso de influenciadores, verba estimada, objetivos e as demais respostas do formulário, além da página de origem e dos parâmetros de campanha (UTM)
+Nome, cargo, e-mail corporativo, WhatsApp, empresa, site ou Instagram, segmento, cidade, uso de influenciadores, verba estimada, objetivos e as demais respostas do formulário, além da página de origem e dos parâmetros de campanha (utm, gclid e fbclid)
 
 Responder ao pedido, preparar uma proposta e entrar em contato por e-mail ou WhatsApp
 
@@ -615,9 +615,9 @@ Atender o chamado
 
 Navegação no site
 
-Endereço IP e dados técnicos da conexão nos registros do servidor; contagem agregada de visitas, sem cookies
+Endereço IP e dados técnicos da conexão nos registros do servidor. Se você aceitar os cookies de medição: páginas vistas, origem da visita, botões clicados, formulários enviados, cliques, rolagem e gravações da navegação, coletados pelo Google Analytics 4 (carregado pelo Google Tag Manager) e pelo Microsoft Clarity, com os campos de formulário ocultos nas gravações
 
-Segurança, prevenção de abuso e medição agregada de audiência
+Segurança e prevenção de abuso e, com o seu aceite, medir e melhorar o uso do site
 
 ## 5. Como usamos os dados e bases legais
 
@@ -644,6 +644,10 @@ Legítimo interesse (inciso IX). Você pode cancelar o recebimento quando quiser
 Segurança, prevenção a fraudes, moderação e melhoria do serviço com dados agregados
 
 Legítimo interesse (inciso IX)
+
+Medir o uso do site com o Google Analytics e o Microsoft Clarity
+
+Consentimento (inciso I), dado no aviso de cookies e revogável a qualquer momento em Preferências de cookies
 
 Cumprir obrigações legais, fiscais e regulatórias e atender ordens de autoridades
 
@@ -703,7 +707,7 @@ Você pode revogar o acesso desconectando o YouTube no HypeApp, excluindo sua co
 
 - Creators: quando uma marca publica uma campanha, os creators veem as informações da campanha e da marca exibidas no mural.
 
-- Fornecedores de tecnologia: hospedagem e infraestrutura em nuvem, rede de distribuição e segurança do site, Firebase/Google (notificações, análise e relatórios de falhas), Google e Apple (login e lojas), e instituições de pagamento que processam os PIX. Todos com obrigações contratuais de proteção de dados.
+- Fornecedores de tecnologia: hospedagem e infraestrutura em nuvem, rede de distribuição e segurança do site, Firebase/Google (notificações, análise e relatórios de falhas), Google e Apple (login e lojas), Google (Google Analytics e Google Tag Manager) e Microsoft (Clarity) para a medição do site, só com o seu aceite, e instituições de pagamento que processam os PIX. Todos com obrigações contratuais de proteção de dados.
 
 - Plataformas conectadas por você: Instagram, TikTok e YouTube, conforme as conexões que você ativar.
 
@@ -721,7 +725,7 @@ Alguns fornecedores de tecnologia, como provedores de nuvem, de notificações e
 
 No iOS, antes de qualquer rastreamento entre apps e sites de outras empresas, o app exibe a solicitação de permissão do sistema (App Tracking Transparency). O rastreamento é usado apenas para atribuição de campanhas de parceiros, como a integração com o TikTok. Se você não autorizar, o app continua funcionando normalmente; só não fazemos essa atribuição.
 
-No site, usamos apenas o necessário para funcionar e uma medição agregada de visitas que não usa cookies. Os detalhes estão na Política de cookies.
+No site, usamos cookies necessários para funcionar e, só se você aceitar no aviso de cookies, cookies de medição do Google Analytics 4 (carregado pelo Google Tag Manager) e do Microsoft Clarity, que registra cliques, rolagem e gravações da navegação com os campos de formulário ocultos. Você pode mudar a escolha a qualquer momento em Preferências de cookies, no rodapé. Os detalhes estão na Política de cookies.
 
 ## 11. Por quanto tempo guardamos
 
@@ -1105,7 +1109,7 @@ Para funcionar, o site guarda no seu navegador a sua escolha sobre cookies (por 
 
 ## Medição de visitas
 
-Usamos o Cloudflare Web Analytics, que conta visitas de forma agregada e sem cookies. Se você aceitar os cookies de medição, usamos também o Google Analytics 4, carregado pelo Google Tag Manager, para saber quais páginas são vistas, de onde vêm as visitas, quais botões são clicados e quantos formulários são enviados, e o Microsoft Clarity, que registra cliques, rolagem e movimentos na página para gerar mapas de calor e gravações da navegação. Os campos de formulário ficam ocultos nas gravações. Não enviamos nome, e-mail, telefone nem o texto dos formulários ao Google ou à Microsoft.
+Se você aceitar os cookies de medição, usamos o Google Analytics 4, carregado pelo Google Tag Manager, para saber quais páginas são vistas, de onde vêm as visitas, quais botões são clicados e quantos formulários são enviados, e o Microsoft Clarity, que registra cliques, rolagem e movimentos na página para gerar mapas de calor e gravações da navegação. Os campos de formulário ficam ocultos nas gravações. Não enviamos nome, e-mail, telefone nem o texto dos formulários ao Google ou à Microsoft.
 
 ## Cookies do Google Analytics
 

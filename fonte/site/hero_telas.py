@@ -97,12 +97,20 @@ def _st(ico, t, d):
     """Caixa de status do cartão (ícone roxo, título e descrição). data-st permite trocar o estado no site.js."""
     return f'<div class="la-st"><span class="la-sti">{_ic(I[ico], 19, 2.2)}</span><div><b>{t}</b><span>{d}</span></div></div>'
 
+
+# Datas da demonstração relativas a hoje (04/11): o build escreve as datas do dia e o site.js as atualiza no navegador,
+# para a ordem inscrição < prazo do roteiro < conclusão valer sempre. data-dd = dias a partir de hoje; data-ano = com ano.
+import datetime as _dt
+def D(off, ano=False):
+    d = _dt.date.today() + _dt.timedelta(days=off)
+    return f'<span data-dd="{off}"{" data-ano" if ano else ""}>{d.strftime("%d/%m/%Y" if ano else "%d/%m")}</span>'
+
 # Estados do cartão Verão Glow em "Campanhas" (textos do app). O site.js troca o estado pelo data-k.
 ESTADOS_APP = [
-    ('analise', 'clock', 'Inscrição em análise', 'Em breve você será notificada se a sua inscrição foi aprovada.', 'Inscrita em 04/11'),
-    ('roteiro', 'upload', 'Envie seus roteiros', 'Envie seus roteiros para aprovação até 24/10/2026.', 'Prazo 24/10'),
-    ('aguarda', 'clock', 'Aguardando aprovação dos roteiros', 'Aguarde a aprovação dos seus roteiros.', 'Prazo 24/10'),
-    ('concluida', 'check', 'Campanha concluída', 'Pagamento liberado na sua carteira.', 'Concluída em 30/10'),
+    ('analise', 'clock', 'Inscrição em análise', 'Em breve você será notificada se a sua inscrição foi aprovada.', 'Inscrita em ' + D(0)),
+    ('roteiro', 'upload', 'Envie seus roteiros', 'Envie seus roteiros para aprovação até ' + D(7, True) + '.', 'Prazo ' + D(7)),
+    ('aguarda', 'clock', 'Aguardando aprovação dos roteiros', 'Aguarde a aprovação dos seus roteiros.', 'Prazo ' + D(7)),
+    ('concluida', 'check', 'Campanha concluída', 'Pagamento liberado na sua carteira.', 'Concluída em ' + D(21)),
 ]
 
 def tela_app(A):
@@ -139,7 +147,7 @@ def tela_app(A):
   <div class="la-rot" data-rot>
     <i class="la-grab"></i>
     <div class="la-rh"><b>Roteiro: Reels</b><span class="la-x">{_ic(I['x'], 18)}</span></div>
-    <p class="la-rs">Vídeo vertical, até 90 segundos. Prazo 24/10.</p>
+    <p class="la-rs">Vídeo vertical, até 90 segundos. Prazo {D(7)}.</p>
     <span class="la-rl">Roteiro</span>
     <div class="la-ta"><span class="la-ph" data-ph>Abertura, aplicação do produto e fechamento com a hashtag</span><span data-type></span><i class="la-caret" data-caret></i></div>
     <span class="la-anx">{_ic(I['clip'], 18)}Anexar arquivo</span>
@@ -154,7 +162,7 @@ def tela_app(A):
       <div class="la-sts" data-alvo="status">{estados}</div>
       <div class="la-f"><span class="la-fs">{rodapes}</span><b data-valor>R$ 1.800</b></div></article>
     <article class="la-cd la-cd2" data-cd2><div class="la-h"><div class="la-th">{ART['run']}</div><div class="la-n"><b>Run Club SP</b><span>Pace Running</span></div><span class="la-tg">Fitness</span></div>
-      {_st('clock', 'Aguardando aprovação dos roteiros', 'Aguarde a aprovação dos seus roteiros.')}<div class="la-f"><span>Prazo 02/11</span><b>R$ 2.500</b></div></article>
+      {_st('clock', 'Aguardando aprovação dos roteiros', 'Aguarde a aprovação dos seus roteiros.')}<div class="la-f"><span>Prazo {D(9)}</span><b>R$ 2.500</b></div></article>
   </div>
 </div>
 <div class="la-toast" data-toast>{_ic(I['check'], 16, 2.6)}<span data-toast-t></span></div>
@@ -191,7 +199,7 @@ def _criador(c, i):
             f'<div class="lp-crb"><span class="lp-vp">Ver perfil</span><span class="lp-conv" data-conv="{i}" data-alvo="conv{i}"><span data-btn="0">Convidar</span><span data-btn="1">{_ic(I["check"], 16, 2.6)}Convidado</span></span>'
             f'<span class="lp-fav">{_ic(I["heart"], 18, 1.8)}</span></div></article>')
 
-ETAPAS = [('Seleção', '', '12 pessoas'), ('Roteiros', '', '12 de 12'), ('Conteúdos', 'até 27/11', '9 de 12'), ('Publicação', '01/12', '6 de 12'), ('Pagamento', 'após publicar', '0 de 12')]
+ETAPAS = [('Seleção', '', '12 pessoas'), ('Roteiros', '', '12 de 12'), ('Conteúdos', 'até ' + D(14), '9 de 12'), ('Publicação', D(21), '6 de 12'), ('Pagamento', 'após publicar', '0 de 12')]
 
 def tela_painel(A, logo_branco):
     cards = (_cd_bo(A, 'lume', 'Ativa', '12 criadores', 'av-lume', 'Verão Glow', 'Rotina de skincare de verão com a linha Glow', 68, '1,2 mi', '17', '8', 0, 'card')
@@ -242,3 +250,17 @@ def tela_painel(A, logo_branco):
 <div class="lp-toast" data-toast>{_ic(I['check'], 18, 2.6)}<span data-toast-t></span></div>
 <i class="ls-cur" data-cur><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3l14 7-6 2-3 6z" fill="#050505" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/></svg></i>
 </div></div>'''
+
+# ---------- ids únicos: a mesma ilustração aparece várias vezes na página (04/11) ----------
+import re as _re
+_N = [0]
+def _uniq(html):
+    def svg(m):
+        _N[0] += 1
+        return _re.sub(r'ls-g(\d+)', lambda g: f'ls-g{g.group(1)}-{_N[0]}', m.group(0))
+    return _re.sub(r'<svg class="ls-art".*?</svg>', svg, html, flags=_re.S)
+_tela_app, _tela_painel = tela_app, tela_painel
+def tela_app(A):
+    return _uniq(_tela_app(A))
+def tela_painel(A, logo_branco):
+    return _uniq(_tela_painel(A, logo_branco))
