@@ -34,6 +34,14 @@ const SEGURANCA = 'O HypeApp nunca pede senha, código de verificação ou chave
 const PRAZO_SUP = 'A primeira resposta chega em até 2 dias úteis, de segunda a sexta, das 10h às 18h, no e-mail que você informou.';
 
 // Suporte: o que dizer e que dicas dar em cada assunto, para creators (app) e para marcas (painel).
+// Imagem do topo de cada situação (site: /assets/email/*.jpg, 960 x 640, até ~70 KB)
+const IMG = {
+  app: { conta: 'creator-conta', redes: 'creator-redes', campanha: 'creator-campanha', pagamento: 'creator-pagamento',
+         erro: 'creator-erro', denuncia: 'fantasma', exclusao: 'creator-comunidade', outro: 'creator-comunidade' },
+  painel: { conta: 'marca-painel', redes: 'marca-resultados', campanha: 'marca-campanha', pagamento: 'marca-resultados',
+            erro: 'marca-painel', denuncia: 'fantasma', exclusao: 'marca-painel', outro: 'lead-marca' },
+};
+
 const SUP = {
   conta: {
     app: { titulo: 'Vamos resolver o seu acesso', dicas: [
@@ -116,6 +124,7 @@ function situacao(tipo, d, rot) {
     const link = SUP[ass].link || (quem === 'painel' ? ['Dúvidas de marcas', '/perguntas-frequentes/#marcas'] : ['Perguntas frequentes', '/perguntas-frequentes/#creators']);
     return {
       chave: `suporte-${quem}-${ass}`,
+      img: IMG[quem][ass],
       assunto: `${s.titulo} · HypeApp`,
       tag: quem === 'painel' ? 'Suporte · Marcas e agências' : 'Suporte · Creators',
       ola, titulo: s.titulo,
@@ -132,6 +141,7 @@ function situacao(tipo, d, rot) {
   const resumo = [['Empresa', empresa], ['Segmento', r('segmento', d.segmento)], ['Objetivo', r('objetivo', d.objetivo)], ['Para quando', r('inicio', d.inicio)]];
   return {
     chave: agencia ? 'lead-agencia' : 'lead-marca',
+    img: agencia ? 'lead-agencia' : 'lead-marca',
     assunto: agencia ? 'Recebemos o contato da sua agência · HypeApp' : 'Recebemos o seu contato · HypeApp',
     tag: agencia ? 'Comercial · Agências' : 'Comercial · Marcas',
     ola,
@@ -154,47 +164,40 @@ function situacao(tipo, d, rot) {
   };
 }
 
-// ---------- HTML (tabelas e estilos inline, para funcionar nos leitores de e-mail) ----------
+// ---------- HTML leve (05/11): uma imagem, texto curto, até 3 dicas e um botão; tabelas e estilos inline ----------
+// Menos blocos e menos imagens ajudam a não cair no spam; a versão em texto puro vai junto.
 function html(s, base) {
   const p = (t) => `<p style="margin:0 0 14px;font-size:16px;line-height:1.55;color:${C.preto}">${esc(t)}</p>`;
-  const resumo = s.resumo.length ? `
-    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:${C.fundo};border-radius:14px;margin:6px 0 22px">
-      <tr><td style="padding:16px 18px">
-        <div style="font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:${C.cinza};margin-bottom:8px">Você nos contou</div>
-        ${s.resumo.map(([k, v]) => `<div style="font-size:14px;line-height:1.6;color:${C.preto}"><span style="color:${C.cinza}">${esc(k)}:</span> <b>${esc(v)}</b></div>`).join('')}
-      </td></tr></table>` : '';
-  const dicas = s.dicas.map((t) => `
-      <tr><td valign="top" width="26" style="padding:0 0 10px"><div style="width:18px;height:18px;border-radius:9px;background:${C.roxo};color:#fff;font-size:12px;line-height:18px;text-align:center;font-weight:700">&#10003;</div></td>
-          <td style="padding:0 0 10px;font-size:15px;line-height:1.5;color:${C.preto}">${esc(t)}</td></tr>`).join('');
-  const alerta = s.alerta ? `<div style="margin:4px 0 18px;padding:12px 14px;border-radius:12px;background:#FFF6CC;font-size:14px;line-height:1.5;color:${C.preto}"><b>Atenção:</b> ${esc(s.alerta)}</div>` : '';
+  const dicas = s.dicas.slice(0, 3).map((t) => `<li style="margin:0 0 8px">${esc(t)}</li>`).join('');
+  const alerta = s.alerta ? `<p style="margin:0 0 18px;font-size:14px;line-height:1.5;color:${C.preto}"><b>Atenção:</b> ${esc(s.alerta)}</p>` : '';
   return `<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><title>${esc(s.assunto)}</title></head>
-<body style="margin:0;padding:0;background:${C.fundo};font-family:Inter,Helvetica,Arial,sans-serif">
+<body style="margin:0;padding:0;background:#ffffff;font-family:Inter,Helvetica,Arial,sans-serif">
 <div style="display:none;max-height:0;overflow:hidden;opacity:0">${esc(s.texto[0])}</div>
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:${C.fundo}"><tr><td align="center" style="padding:24px 12px">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr><td align="center">
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:600px">
-    <tr><td style="background:${C.preto};border-radius:24px 24px 0 0;padding:26px 28px">
-      <img src="${base}/assets/email/logo-branco.png" width="81" height="44" alt="HypeApp" style="display:block;border:0;height:44px;width:auto">
+    <tr><td style="background:${C.preto};padding:22px 28px">
+      <img src="${base}/assets/email/logo-branco.png" width="66" height="36" alt="HypeApp" style="display:block;border:0;height:36px;width:auto">
     </td></tr>
-    <tr><td style="background:${C.roxo};height:6px;line-height:6px;font-size:0">&nbsp;</td></tr>
-    <tr><td style="background:#ffffff;padding:30px 28px 10px;border-radius:0 0 24px 24px">
-      <div style="display:inline-block;font-size:12px;font-weight:700;color:${C.roxoTx};background:${C.lilas};border-radius:999px;padding:6px 12px;margin-bottom:16px">${esc(s.tag)}</div>
+    <tr><td style="padding:0;line-height:0">
+      <img src="${base}/assets/email/${s.img}.jpg" width="600" alt="" style="display:block;width:100%;max-width:600px;height:auto;border:0">
+    </td></tr>
+    <tr><td style="padding:28px 28px 8px">
+      <div style="font-size:12px;font-weight:700;color:${C.roxoTx};margin-bottom:10px">${esc(s.tag)}</div>
       <h1 style="margin:0 0 16px;font-size:26px;line-height:1.15;letter-spacing:-.02em;color:${C.preto}">${esc(s.titulo)}</h1>
       ${p(s.ola)}
       ${s.texto.map(p).join('')}
-      ${resumo}
-      <div style="font-size:17px;font-weight:700;color:${C.preto};margin:0 0 12px">${esc(s.dicasTitulo)}</div>
-      <table role="presentation" cellpadding="0" cellspacing="0" style="margin:0 0 8px">${dicas}</table>
+      <div style="font-size:16px;font-weight:700;color:${C.preto};margin:6px 0 8px">${esc(s.dicasTitulo)}</div>
+      <ul style="margin:0 0 16px;padding-left:20px;font-size:15px;line-height:1.5;color:${C.preto}">${dicas}</ul>
       ${alerta}
-      <table role="presentation" cellpadding="0" cellspacing="0" style="margin:8px 0 24px"><tr><td style="border-radius:999px;background:${C.preto}">
-        <a href="${base}${s.botao[1]}" style="display:inline-block;padding:14px 24px;font-size:15px;font-weight:700;color:#ffffff;text-decoration:none;border-radius:999px">${esc(s.botao[0])} &rarr;</a>
+      <table role="presentation" cellpadding="0" cellspacing="0" style="margin:6px 0 22px"><tr><td style="border-radius:999px;background:${C.roxo}">
+        <a href="${base}${s.botao[1]}" style="display:inline-block;padding:13px 24px;font-size:15px;font-weight:700;color:#ffffff;text-decoration:none;border-radius:999px">${esc(s.botao[0])}</a>
       </td></tr></table>
-      <p style="margin:0 0 22px;font-size:14px;line-height:1.55;color:${C.cinza}">${esc(s.fecho)}</p>
+      <p style="margin:0 0 24px;font-size:14px;line-height:1.55;color:${C.cinza}">${esc(s.fecho)}</p>
     </td></tr>
-    <tr><td style="padding:22px 28px 8px;font-size:12px;line-height:1.6;color:${C.cinza}">
-      <b style="color:${C.preto}">${esc(SEGURANCA)}</b><br>
-      Este é um e-mail automático, enviado porque você preencheu um formulário em hypeapp.com.br. Respostas a este endereço não são lidas.<br>
-      Você no Hype Marketing e Entretenimento LTDA · CNPJ 43.442.408/0001-26 · ${esc(CONTATO)} · ${esc(FONE)}<br>
-      <a href="${base}/privacidade/" style="color:${C.cinza}">Política de Privacidade</a>
+    <tr><td style="background:${C.preto};padding:22px 28px;font-size:12px;line-height:1.6;color:#BDBDBD">
+      ${esc(SEGURANCA)}<br>
+      E-mail automático, enviado porque você preencheu um formulário em hypeapp.com.br. Respostas a este endereço não são lidas.<br>
+      Você no Hype · CNPJ 43.442.408/0001-26 · ${esc(CONTATO)} · <a href="${base}/privacidade/" style="color:#BDBDBD">Privacidade</a>
     </td></tr>
   </table>
 </td></tr></table></body></html>`;
