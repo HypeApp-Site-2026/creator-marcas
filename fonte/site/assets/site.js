@@ -978,7 +978,29 @@
     var prev = $('[data-cf-prev]', sec), next = $('[data-cf-next]', sec), pauseBtn = $('[data-cf-pause]', cf);
     var idx = 0, paused = false, onScreen = false, prog = false, progT = null, scrollT = null;
     var canPlay = function () { return !reduced && !paused && onScreen && !cf.hidden && !document.hidden; };
+    /* avanco automatico (04/11): um card a cada 2,8 s; depois do ultimo, passa para a outra aba e recomeca.
+       Para com o mouse em cima, com o foco dentro, no botao Pausar e fora da tela. */
+    var autoT = null, hold = false, AUTO = 2800;
+    var auto = function () {
+      clearTimeout(autoT);
+      if (!canPlay() || hold) return;
+      autoT = setTimeout(function () {
+        if (!canPlay() || hold) return;
+        if (idx < cards.length - 1) { setActive(idx + 1, true); return; }
+        var tabs = $$('[role="tab"]', sec), cur = tabs.filter(function (t) { return t.getAttribute('aria-controls') === cf.id; })[0];
+        var nx = tabs[(tabs.indexOf(cur) + 1) % tabs.length], other = nx && document.getElementById(nx.getAttribute('aria-controls'));
+        if (!nx || other === cf) { setActive(0, true); return; }
+        if (other && other._cfReset) other._cfReset();
+        nx.click();
+      }, AUTO);
+    };
+    cf._cfReset = function () { idx = 0; };
+    track.addEventListener('mouseenter', function () { hold = true; clearTimeout(autoT); });
+    track.addEventListener('mouseleave', function () { hold = false; auto(); });
+    track.addEventListener('focusin', function () { hold = true; clearTimeout(autoT); });
+    track.addEventListener('focusout', function (e) { if (!track.contains(e.relatedTarget)) { hold = false; auto(); } });
     var sync = function () {
+      auto();
       cf.classList.toggle('is-playing', canPlay());
       vids.forEach(function (v, j) {
         if (!v) return;
