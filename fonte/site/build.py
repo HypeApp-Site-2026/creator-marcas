@@ -568,10 +568,10 @@ COMO_FUNCIONA_C = [
 ]
 
 COMO_FUNCIONA_M = [
-    ('01 · Comercial', 'Vamos falar sobre sua marca', 'Conte seus objetivos e conheça as condições de acesso.', 'Ilustração: profissional com headset atendendo pelo computador'),
-    ('02 · Campanha', 'Sua campanha começa aqui', 'Defina briefing, remuneração, critérios e fases.', 'Ilustração: monitor com a tela Nova campanha do painel'),
-    ('03 · Aprovações', 'Escolha creators. Aprove entregas.', 'Receba inscrições e revise roteiros e conteúdos.', 'Ilustração: notebook com a tela Aprovações do painel'),
-    ('04 · Resultados', 'Acompanhe cada resultado', 'Veja publicações, métricas e pagamentos no painel.', 'Ilustração: tablet com a tela Resultados do painel'),
+    ('01 · Comercial', 'Vamos falar sobre sua marca', 'Conte seus objetivos e conheça as condições de acesso.', 'Ilustração: profissional sorrindo com headset, atendendo pelo notebook'),
+    ('02 · Campanha', 'Sua campanha começa aqui', 'Defina briefing, remuneração, critérios e fases.', 'Monitor com a campanha Lançamento Verão aberta no painel: visão geral e etapas'),
+    ('03 · Aprovações', 'Escolha creators. Aprove entregas.', 'Receba inscrições e revise roteiros e conteúdos.', 'Notebook com o painel: Precisa da sua ação, com inscrições novas para triar'),
+    ('04 · Resultados', 'Acompanhe cada resultado', 'Veja publicações, métricas e pagamentos no painel.', 'Monitor com o Início do painel: campanhas, tarefas e aprovações e métricas do workspace'),
 ]
 
 def como_funciona(A, pid, tab, label, items, media, hidden=False, img_prefix='marca'):
