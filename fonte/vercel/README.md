@@ -144,7 +144,7 @@ O resultado esperado é "PROBLEMAS (0)".
 Depois de gravar o lead no CRM (resposta 201 do webhook), `api/lead.js` chama `api/_email.js`, que manda um e-mail
 para quem preencheu o formulário, pelo SMTP do Purelymail (o mesmo do backoffice).
 
-- **Remetente:** `HypeApp <noreply@hypeapp.com.br>`; **respostas** (Reply-To) vão para `contato@vocenohype.com.br`.
+- **Remetente:** `HypeApp <noreply@hypeapp.com.br>`, com aviso de "Não responda a este e-mail" (o retorno é pelo WhatsApp ou dentro do app; os chamados vão para uma aba de suporte no backoffice).
 - **18 situações:** lead de marca ou de agência ("Fale com nosso time") e suporte de creator (app) ou de marca (painel)
   para cada assunto (conta, redes, campanha, pagamento, erro, denúncia, exclusão, outro). Textos, dicas, botão e imagem
   de cada uma ficam em `SUP`, `IMG` e `situacao()` no `_email.js`. Só fatos publicados no site (prazo de 2 dias úteis,

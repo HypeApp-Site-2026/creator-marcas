@@ -1424,7 +1424,7 @@ def p_sup_enviado(L, A):
   <span class="tag ink">Chamado aberto</span>
   <h1 id="ok-h" class="display" style="font-size:clamp(36px,5vw,56px)">Seu chamado foi aberto</h1>
   <p class="lead">A primeira resposta chega em até 2 dias úteis, de segunda a sexta, das 10h às 18h.</p>
-  <p class="small">A confirmação automática não é a resposta da equipe. Se precisar complementar, responda ao e-mail do chamado.</p>
+  <p class="small">Você vai receber uma confirmação automática por e-mail. Não responda a ela: se precisar complementar, abra um novo chamado.</p>
   <div class="row"><a class="btn btn-ink" href="{L('/')}">Voltar ao início</a><a class="btn btn-grey" href="{L('/perguntas-frequentes/')}">Perguntas frequentes</a></div>
 </section>'''
 
