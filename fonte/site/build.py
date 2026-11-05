@@ -98,6 +98,11 @@ def qr_svg():
 QR = qr_svg()
 
 def rev(s):
+    """Textos que estavam em rascunho. Aprovados em 04/11 (textos de produto, políticas e regras): saem sem marcação.
+    Para marcar um texto novo como rascunho, use rascunho(s)."""
+    return s
+
+def rascunho(s):
     """Texto em rascunho (aguarda o ok de quem cuida do tema): marcado em amarelo só na prévia."""
     return s if WEB else f'<span class="rv" title="Rascunho: aguarda revisão">{s}</span>'
 
@@ -1526,7 +1531,7 @@ def p_legal(url):
             extra = f'<p><a class="btn btn-ink" href="{L("/suporte/")}">Abrir pedido de exclusão</a></p>'
         return f'''
 <section class="page-hero" aria-labelledby="lg-h"><h1 id="lg-h" class="display" style="font-size:clamp(36px,5vw,56px)">{t}</h1><p class="lead">{d}</p>
-  {'<p class="small muted">Rascunho para revisão. O texto final depende da aprovação do jurídico.</p>' if not WEB else ''}</section>
+</section>
 <div class="doc-layout"><nav class="toc" aria-label="Nesta página">{toc}</nav><article class="prose card">{body}{extra}</article></div>'''
     return f
 
@@ -1545,8 +1550,7 @@ def p_regras(L, A):
     return f'''
 <section class="page-hero" aria-labelledby="rc-h"><h1 id="rc-h" class="display" style="font-size:clamp(36px,5vw,56px)">Regras da comunidade</h1>
   <p class="lead">Como manter a comunidade do HypeApp segura para creators e marcas, e o que fazer quando algo passar do limite.</p></section>
-{rv}
-<div class="doc-layout"><nav class="toc" aria-label="Nesta página">{toc}</nav><article class="prose card legal">{body if WEB else '<div class="rv">' + body + '</div>'}</article></div>'''
+<div class="doc-layout"><nav class="toc" aria-label="Nesta página">{toc}</nav><article class="prose card legal">{body}</article></div>'''
 
 def p_legal_hub(L, A):
     docs = [('Política de privacidade', 'Como tratamos dados pessoais no site, no app e no painel, e os seus direitos.', L('/privacidade/')),
@@ -1598,7 +1602,7 @@ def p_legal_file(url):
         body = body.replace('{{PRIVACIDADE}}', L('/privacidade/')).replace('{{EXCLUSAO}}', L('/exclusao-de-conta/')).replace('{{COOKIES}}', L('/cookies/')).replace('{{REGRAS}}', L('/regras-da-comunidade/'))
         toc = ''.join('<a href="#%s">%s</a>' % (i, re.sub('<[^>]+>', '', x)) for i, x in re.findall(r'<h2 id="([^"]+)">(.*?)</h2>', body))
         rev = ''
-        if CFG['preview'] and notes:
+        if False and CFG['preview'] and notes:  # políticas aprovadas em 04/11: sem a lista de pontos para o jurídico
             rev = ('<aside class="legal-review" aria-label="Pontos para o jurídico"><b>Só na prévia · pontos para o jurídico revisar</b><ul>'
                    + ''.join('<li>%s</li>' % n for n in notes) + '</ul></aside>')
         return ('<section class="page-hero" aria-labelledby="lg-h"><h1 id="lg-h" class="display" style="font-size:clamp(36px,5vw,56px)">%s</h1><p class="lead">%s</p></section>\n%s\n'
