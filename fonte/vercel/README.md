@@ -138,3 +138,15 @@ O resultado esperado é "PROBLEMAS (0)".
   - os dois formulários têm `data-clarity-mask="true"`, então nada do que é digitado aparece nas gravações;
   - se a pessoa revogar o aceite, o site apaga `_clck` e `_clsk`.
 - **Não crie no GTM** tags de HTML personalizado nem variáveis de JavaScript personalizado: a CSP bloqueia. Para outra ferramenta (Google Ads, Meta), use os modelos da galeria e libere o domínio dela na CSP (`csp_ga()` no build.py).
+
+## E-mail após o formulário (pausado em 04/11)
+
+Ideia: depois de gravar o lead no CRM, a função `api/lead.js` manda um e-mail pelo SMTP que o backoffice já usa (Purelymail).
+Nada foi implementado ainda. Dados já confirmados (não são segredo):
+
+- Servidor: `smtp.purelymail.com`
+- Porta: `465` (TLS direto)
+
+Falta definir: usuário do SMTP e remetente; se o domínio do remetente tem SPF e DKIM para o Purelymail; quem recebe
+(a pessoa, o time ou os dois) e os textos. A senha vai só em Vercel → Settings → Environment Variables (ex.: `SMTP_PASS`),
+nunca no código, no chat ou nos logs. Se o e-mail falhar, o lead continua gravado e o visitante vê a confirmação normal.
