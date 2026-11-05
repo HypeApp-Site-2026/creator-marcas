@@ -11,6 +11,8 @@
 // - o navegador recebe só "ok" ou uma mensagem genérica de erro;
 // - nunca reenvia sozinho após erro ou timeout (o webhook não deduplica).
 
+const { confirma } = require('./_email');
+
 const WEBHOOK_URL = 'https://plataforma.vocenohype.com.br/api/public/leads';
 const TIMEOUT_MS = 10000;
 const MAX_BODY = 16 * 1024;
@@ -245,7 +247,11 @@ async function handler(req, res) {
     clearTimeout(timer);
   }
 
-  if (r.status === 201) return resp(200, true);
+  if (r.status === 201) {
+    // lead gravado: e-mail de confirmação para quem enviou (só com SMTP_USER e SMTP_PASS; falha não afeta o envio)
+    await confirma(tipo, d, tipo === 'suporte' ? OPCOES_SUPORTE : OPCOES_COMERCIAL);
+    return resp(200, true);
+  }
   if (r.status === 400) { console.error('[lead] webhook recusou os dados (400).'); return resp(400, false, MSG.invalido); }
   if (r.status === 401) { console.error('[lead] webhook respondeu 401: segredo ausente ou errado. Confira PLATAFORMA_WEBHOOK_SECRET no Vercel.'); return resp(502, false, MSG.temporario); }
   if (r.status === 429) { console.error('[lead] webhook respondeu 429: limite de envios.'); return resp(429, false, MSG.limite); }

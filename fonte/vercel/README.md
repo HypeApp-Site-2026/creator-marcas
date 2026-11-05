@@ -139,14 +139,15 @@ O resultado esperado é "PROBLEMAS (0)".
   - se a pessoa revogar o aceite, o site apaga `_clck` e `_clsk`.
 - **Não crie no GTM** tags de HTML personalizado nem variáveis de JavaScript personalizado: a CSP bloqueia. Para outra ferramenta (Google Ads, Meta), use os modelos da galeria e libere o domínio dela na CSP (`csp_ga()` no build.py).
 
-## E-mail após o formulário (pausado em 04/11)
+## E-mail de confirmação após o formulário (04/11)
 
-Ideia: depois de gravar o lead no CRM, a função `api/lead.js` manda um e-mail pelo SMTP que o backoffice já usa (Purelymail).
-Nada foi implementado ainda. Dados já confirmados (não são segredo):
+Depois de gravar o lead no CRM (resposta 201 do webhook), `api/lead.js` chama `api/_email.js`, que manda um e-mail de
+confirmação para quem preencheu o formulário (marcas: "Recebemos seu pedido"; suporte: "Recebemos seu chamado"),
+pelo SMTP do Purelymail, o mesmo do backoffice. Remetente: `noreply@hypeapp.com.br`.
 
-- Servidor: `smtp.purelymail.com`
-- Porta: `465` (TLS direto)
+Variáveis (Vercel → Settings → Environment Variables, marcar Production e Preview):
+- `SMTP_USER` e `SMTP_PASS` (obrigatórias: sem elas nada é enviado);
+- `SMTP_HOST` (padrão `smtp.purelymail.com`), `SMTP_PORT` (padrão `465`), `SMTP_FROM` (padrão `noreply@hypeapp.com.br`).
 
-Falta definir: usuário do SMTP e remetente; se o domínio do remetente tem SPF e DKIM para o Purelymail; quem recebe
-(a pessoa, o time ou os dois) e os textos. A senha vai só em Vercel → Settings → Environment Variables (ex.: `SMTP_PASS`),
-nunca no código, no chat ou nos logs. Se o e-mail falhar, o lead continua gravado e o visitante vê a confirmação normal.
+Se o e-mail falhar, o lead continua gravado e o visitante vê a confirmação normal; o log da função mostra só
+`[email] confirmação não enviada (...)`, sem senha, nome ou e-mail. Os textos ficam em `textos()` no `_email.js`.
