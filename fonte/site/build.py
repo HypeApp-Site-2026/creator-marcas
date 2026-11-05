@@ -1739,6 +1739,18 @@ except Exception:
 def og_alt(img, title):
     return OG_TXT.get(img) or f'{title.split(" | ")[0]} · HypeApp'
 
+# Imagens e vídeos com ?v=<hash do arquivo>: trocar uma imagem com o mesmo nome invalida o cache do navegador (04/11).
+_VH = {}
+def versiona(page):
+    import hashlib
+    def rep(m):
+        rel = m.group(2)
+        f = os.path.join(HERE, rel)
+        if rel not in _VH:
+            _VH[rel] = hashlib.md5(open(f, 'rb').read()).hexdigest()[:8] if os.path.isfile(f) else ''
+        return m.group(1) + rel + (('?v=' + _VH[rel]) if _VH[rel] else '')
+    return re.sub(r'((?:src|poster|href|srcset)="(?:/|(?:\.\./)*))(assets/[\w./-]+\.(?:webp|png|jpg|jpeg|svg|mp4))(?=")', rep, page)
+
 def build_page(url, fn, kind):
     L, A = make_link(url)
     m = META.get(url) or POST_META.get(url)
@@ -2046,8 +2058,9 @@ def main():
         p = os.path.join(OUT, path)
         os.makedirs(os.path.dirname(p), exist_ok=True)
         page = build_page(url if not (url == '/404' and not WEB) else '/404', fn, kind)
-        open(p, 'w', encoding='utf-8').write(page)
         used.update(re.findall(r'assets/telas/([\w-]+\.webp)', page))
+        page = versiona(page)
+        open(p, 'w', encoding='utf-8').write(page)
     for f in sorted(used):  # só as telas usadas nas páginas
         shutil.copy(os.path.join(HERE, 'assets', 'telas', f), os.path.join(OUT, 'assets', 'telas', f))
     if WEB:
