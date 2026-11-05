@@ -173,15 +173,16 @@ function html(s, base) {
   return `<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><title>${esc(s.assunto)}</title></head>
 <body style="margin:0;padding:0;background:#ffffff;font-family:Inter,Helvetica,Arial,sans-serif">
 <div style="display:none;max-height:0;overflow:hidden;opacity:0">${esc(s.texto[0])}</div>
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr><td align="center">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr><td align="center" style="padding:16px 12px">
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:600px">
-    <tr><td style="background:${C.preto};padding:22px 28px">
+    <tr><td style="background:${C.preto};padding:20px 24px;border-radius:20px">
       <img src="${base}/assets/email/logo-branco.png" width="66" height="36" alt="HypeApp" style="display:block;border:0;height:36px;width:auto">
     </td></tr>
+    <tr><td style="height:12px;line-height:12px;font-size:0">&nbsp;</td></tr>
     <tr><td style="padding:0;line-height:0">
-      <img src="${base}/assets/email/${s.img}.jpg" width="600" alt="" style="display:block;width:100%;max-width:600px;height:auto;border:0">
+      <img src="${base}/assets/email/${s.img}.jpg" width="600" alt="" style="display:block;width:100%;max-width:600px;height:auto;border:0;border-radius:20px">
     </td></tr>
-    <tr><td style="padding:28px 28px 8px">
+    <tr><td style="padding:26px 8px 8px">
       <div style="font-size:12px;font-weight:700;color:${C.roxoTx};margin-bottom:10px">${esc(s.tag)}</div>
       <h1 style="margin:0 0 16px;font-size:26px;line-height:1.15;letter-spacing:-.02em;color:${C.preto}">${esc(s.titulo)}</h1>
       ${p(s.ola)}
@@ -194,7 +195,7 @@ function html(s, base) {
       </td></tr></table>
       <p style="margin:0 0 24px;font-size:14px;line-height:1.55;color:${C.cinza}">${esc(s.fecho)}</p>
     </td></tr>
-    <tr><td style="background:${C.preto};padding:22px 28px;font-size:12px;line-height:1.6;color:#BDBDBD">
+    <tr><td style="background:${C.preto};padding:22px 24px;border-radius:20px;font-size:12px;line-height:1.6;color:#BDBDBD">
       ${esc(SEGURANCA)}<br>
       E-mail automático, enviado porque você preencheu um formulário em hypeapp.com.br. Respostas a este endereço não são lidas.<br>
       Você no Hype · CNPJ 43.442.408/0001-26 · ${esc(CONTATO)} · <a href="${base}/privacidade/" style="color:#BDBDBD">Privacidade</a>
