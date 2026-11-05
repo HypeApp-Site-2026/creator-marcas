@@ -5,6 +5,11 @@
   "installCommand": "",
   "outputDirectory": ".",
   "trailingSlash": true,
+  "functions": {
+    "api/lead.js": {
+      "maxDuration": 30
+    }
+  },
   "rewrites": [],
   "redirects": [
     {

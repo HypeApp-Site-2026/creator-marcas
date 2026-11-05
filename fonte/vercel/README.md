@@ -139,15 +139,21 @@ O resultado esperado é "PROBLEMAS (0)".
   - se a pessoa revogar o aceite, o site apaga `_clck` e `_clsk`.
 - **Não crie no GTM** tags de HTML personalizado nem variáveis de JavaScript personalizado: a CSP bloqueia. Para outra ferramenta (Google Ads, Meta), use os modelos da galeria e libere o domínio dela na CSP (`csp_ga()` no build.py).
 
-## E-mail de confirmação após o formulário (04/11)
+## E-mail de confirmação após o formulário (04/11, personalizado em 05/11)
 
-Depois de gravar o lead no CRM (resposta 201 do webhook), `api/lead.js` chama `api/_email.js`, que manda um e-mail de
-confirmação para quem preencheu o formulário (marcas: "Recebemos seu pedido"; suporte: "Recebemos seu chamado"),
-pelo SMTP do Purelymail, o mesmo do backoffice. Remetente: `noreply@hypeapp.com.br`.
+Depois de gravar o lead no CRM (resposta 201 do webhook), `api/lead.js` chama `api/_email.js`, que manda um e-mail
+para quem preencheu o formulário, pelo SMTP do Purelymail (o mesmo do backoffice).
 
-Variáveis (Vercel → Settings → Environment Variables, marcar Production e Preview):
-- `SMTP_USER` e `SMTP_PASS` (obrigatórias: sem elas nada é enviado);
-- `SMTP_HOST` (padrão `smtp.purelymail.com`), `SMTP_PORT` (padrão `465`), `SMTP_FROM` (padrão `noreply@hypeapp.com.br`).
-
-Se o e-mail falhar, o lead continua gravado e o visitante vê a confirmação normal; o log da função mostra só
-`[email] confirmação não enviada (...)`, sem senha, nome ou e-mail. Os textos ficam em `textos()` no `_email.js`.
+- **Remetente:** `HypeApp <noreply@hypeapp.com.br>`; **respostas** (Reply-To) vão para `contato@vocenohype.com.br`.
+- **18 situações:** lead de marca ou de agência ("Fale com nosso time") e suporte de creator (app) ou de marca (painel)
+  para cada assunto (conta, redes, campanha, pagamento, erro, denúncia, exclusão, outro). Textos, dicas, botão e imagem
+  de cada uma ficam em `SUP`, `IMG` e `situacao()` no `_email.js`. Só fatos publicados no site (prazo de 2 dias úteis,
+  horário do suporte, regras do PIX).
+- **Formato:** HTML leve (logo, uma imagem, texto curto, até 3 dicas, um botão) + texto puro. O logo e a imagem vão
+  anexados no próprio e-mail (`cid:`), a partir de `site/assets/email/`; o `make_vercel.py` gera `api/_imagens.js`.
+- **Variáveis:** `SMTP_USER` e `SMTP_PASS` (obrigatórias, Production e Preview); opcionais `SMTP_HOST`
+  (padrão `smtp.purelymail.com`), `SMTP_PORT` (`465`), `SMTP_FROM` (`noreply@hypeapp.com.br`).
+- **Falhas:** se o e-mail falhar, o lead continua gravado e o visitante vê a confirmação normal; o log mostra só
+  `[email] confirmação não enviada (situação): motivo`, sem senha, nome ou e-mail. Tempo máximo da função: 30 s.
+- **Entregabilidade:** o domínio `hypeapp.com.br` precisa de SPF, DKIM e DMARC válidos para o Purelymail
+  (confira em "Mostrar original" no Gmail: SPF, DKIM e DMARC devem aparecer como PASS).

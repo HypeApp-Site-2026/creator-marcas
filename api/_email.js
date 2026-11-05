@@ -97,10 +97,10 @@ const SUP = {
   exclusao: {
     app: { titulo: 'Recebemos o seu pedido de exclusão', dicas: [
       'Veja o que acontece com campanhas em andamento, saldo e dados na página Exclusão de conta.',
-      'Se mudar de ideia, escreva para o suporte pelo e-mail informado logo abaixo.'] },
+      'Se mudar de ideia, responda a este e-mail antes da exclusão.'] },
     painel: { titulo: 'Recebemos o seu pedido de exclusão', dicas: [
       'Veja o que acontece com campanhas, saldo e dados na página Exclusão de conta.',
-      'Se mudar de ideia, escreva para o suporte pelo e-mail informado logo abaixo.'] },
+      'Se mudar de ideia, responda a este e-mail antes da exclusão.'] },
     link: ['Exclusão de conta', '/exclusao-de-conta/'],
   },
   outro: {
@@ -110,7 +110,8 @@ const SUP = {
 };
 
 function situacao(tipo, d, rot) {
-  const nome = limpa(d.nome).split(' ')[0] || '';
+  const n0 = limpa(d.nome).split(' ')[0] || '';
+  const nome = n0 ? n0.charAt(0).toLocaleUpperCase('pt-BR') + n0.slice(1).toLocaleLowerCase('pt-BR') : '';
   const ola = nome ? `Olá, ${nome}!` : 'Olá!';
   const r = (campo, v) => (rot[campo] && rot[campo][v]) || '';
   if (tipo === 'suporte') {
@@ -133,7 +134,7 @@ function situacao(tipo, d, rot) {
       dicasTitulo: 'Enquanto isso',
       dicas: s.dicas, alerta: s.alerta || '',
       botao: link,
-      fecho: `Precisa complementar? Escreva para ${CONTATO} citando este chamado.`,
+      fecho: `Precisa complementar? Responda a este e-mail ou escreva para ${CONTATO}.`,
     };
   }
   const agencia = d.agencia === 'sim';
@@ -145,7 +146,7 @@ function situacao(tipo, d, rot) {
     assunto: agencia ? 'Recebemos o contato da sua agência · HypeApp' : 'Recebemos o seu contato · HypeApp',
     tag: agencia ? 'Comercial · Agências' : 'Comercial · Marcas',
     ola,
-    titulo: agencia ? 'Vamos conversar sobre as marcas que você atende' : `Vamos conversar sobre a ${empresa || 'sua marca'}`,
+    titulo: agencia ? 'Vamos conversar sobre as marcas que você atende' : 'Vamos conversar sobre a sua marca',
     texto: [
       `Recebemos as suas respostas no formulário "Fale com nosso time". O nosso time comercial retorna em até 2 dias úteis, pelo e-mail ou WhatsApp que você informou.`,
       agencia
@@ -160,7 +161,7 @@ function situacao(tipo, d, rot) {
       'Os valores são sob consulta e dependem do escopo, do volume e da forma de trabalho.'],
     alerta: '',
     botao: agencia ? ['Ver o painel para agências', '/marcas/#agencias'] : ['Conhecer o painel das marcas', '/marcas/'],
-    fecho: `Quer adiantar alguma informação? Escreva para ${CONTATO}.`,
+    fecho: `Quer adiantar alguma informação? Responda a este e-mail ou escreva para ${CONTATO}.`,
   };
 }
 
@@ -197,7 +198,7 @@ function html(s, base, src = (n, e) => `${base}/assets/email/${n}.${e}`) {
     </td></tr>
     <tr><td style="background:${C.preto};padding:22px 24px;border-radius:20px;font-size:12px;line-height:1.6;color:#BDBDBD">
       ${esc(SEGURANCA)}<br>
-      E-mail automático, enviado porque você preencheu um formulário em hypeapp.com.br. Respostas a este endereço não são lidas.<br>
+      E-mail automático, enviado porque você preencheu um formulário em hypeapp.com.br. As respostas vão para ${esc(CONTATO)}.<br>
       Você no Hype · CNPJ 43.442.408/0001-26 · ${esc(CONTATO)} · <a href="${base}/privacidade/" style="color:#BDBDBD">Privacidade</a>
     </td></tr>
   </table>
@@ -206,11 +207,10 @@ function html(s, base, src = (n, e) => `${base}/assets/email/${n}.${e}`) {
 
 function texto(s, base) {
   const linhas = [s.ola, '', s.titulo, '', ...s.texto.flatMap((t) => [t, ''])];
-  if (s.resumo.length) linhas.push('Você nos contou:', ...s.resumo.map(([k, v]) => `- ${k}: ${v}`), '');
-  linhas.push(`${s.dicasTitulo}:`, ...s.dicas.map((t) => `- ${t}`), '');
+  linhas.push(`${s.dicasTitulo}:`, ...s.dicas.slice(0, 3).map((t) => `- ${t}`), '');
   if (s.alerta) linhas.push(`Atenção: ${s.alerta}`, '');
   linhas.push(`${s.botao[0]}: ${base}${s.botao[1]}`, '', s.fecho, '', '--', SEGURANCA,
-    'Este é um e-mail automático, enviado porque você preencheu um formulário em hypeapp.com.br. Respostas a este endereço não são lidas.',
+    `E-mail automático, enviado porque você preencheu um formulário em hypeapp.com.br. As respostas vão para ${CONTATO}.`,
     `Você no Hype · ${CONTATO} · ${FONE}`);
   return linhas.join('\r\n');
 }
@@ -277,9 +277,11 @@ async function confirma(tipo, d, rot = {}, base = 'https://www.hypeapp.com.br') 
   const partes = [
     `From: HypeApp <${from}>`,
     `To: <${to}>`,
+    `Reply-To: <${CONTATO}>`,
     `Subject: ${enc(s.assunto)}`,
     `Date: ${new Date().toUTCString()}`,
     `Message-ID: <${id()}@hypeapp.com.br>`,
+    'X-Auto-Response-Suppress: All',
     'MIME-Version: 1.0',
     'Auto-Submitted: auto-generated',
     `Content-Type: multipart/related; type="multipart/alternative"; boundary="${rel}"`,

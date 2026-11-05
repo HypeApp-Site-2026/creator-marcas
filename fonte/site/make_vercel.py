@@ -150,6 +150,7 @@ def main():
         '$schema': 'https://openapi.vercel.sh/vercel.json',
         'framework': None, 'buildCommand': '', 'installCommand': '', 'outputDirectory': '.',
         'trailingSlash': True,
+        'functions': {'api/lead.js': {'maxDuration': 30}},  # webhook (até 10 s) + e-mail de confirmação (até 6 s)
         'rewrites': rewrites,
         'redirects': assets_host() + teste_host() + so_teste() + sem_index_html() + redirects(),
         'headers': headers() + [{'source': '/(.*)', 'has': [{'type': 'host', 'value': TESTE_HOST}],
