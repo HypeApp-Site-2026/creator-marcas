@@ -1092,7 +1092,7 @@ def p_marcas_b(L, A):
     <a class="btn btn-cta btn-lg" href="{L('/contato/marcas/')}">Falar com nosso time</a>
   </div>
   <div class="ag-arte">
-    <div class="ag-pers ag-p1"><img src="{A('assets/ilustracoes/agencia-1.webp')}" alt="Ilustração: profissional de agência de óculos, com caderno e caneta" width="600" height="1188" loading="lazy" decoding="async"></div>
+    <div class="ag-pers ag-p1"><img src="{A('assets/ilustracoes/agencia-1.webp')}" alt="Ilustração: profissional de agência de óculos, de braços cruzados com o caderno" width="600" height="1208" loading="lazy" decoding="async"></div>
     <div class="ag-pers ag-p2"><img src="{A('assets/ilustracoes/agencia-2.webp')}" alt="Ilustração: profissional de agência sorrindo, com o notebook embaixo do braço" width="600" height="1215" loading="lazy" decoding="async"></div>
     <div class="ag-sel" aria-hidden="true">
       <span class="ag-sel-h">Trocar de marca</span>
