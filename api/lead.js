@@ -250,7 +250,8 @@ async function handler(req, res) {
   if (r.status === 201) {
     // lead gravado: e-mail de confirmação para quem enviou (só com SMTP_USER e SMTP_PASS; falha não afeta o envio)
     const host = String(req.headers['x-forwarded-host'] || req.headers.host || '');
-    const base = /^(teste|www)\.hypeapp\.com\.br$/.test(host) ? `https://${host}` : 'https://www.hypeapp.com.br';
+    const base = /^(teste|www)\.hypeapp\.com\.br$/.test(host) ? `https://${host}`
+      : (process.env.VERCEL_ENV === 'production' ? 'https://www.hypeapp.com.br' : 'https://teste.hypeapp.com.br');
     await confirma(tipo, d, tipo === 'suporte' ? OPCOES_SUPORTE : OPCOES_COMERCIAL, base);
     return resp(200, true);
   }

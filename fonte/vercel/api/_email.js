@@ -268,9 +268,14 @@ async function confirma(tipo, d, rot = {}, base = 'https://www.hypeapp.com.br') 
   const from = process.env.SMTP_FROM || 'noreply@hypeapp.com.br';
   const s = situacao(tipo, d, rot);
   // imagens dentro do próprio e-mail (cid): não dependem do site estar no ar nem do leitor baixar imagens de fora
-  const IMGS = require('./_imagens');
+  // Imagens (05/11): por padrão vão como link para o site (não aparecem como anexo). O endereço das imagens não depende
+  // de quem recebeu o formulário: no teste (Preview) usa teste.hypeapp.com.br; em produção, www.hypeapp.com.br.
+  // EMAIL_IMAGENS=anexo volta a mandar as imagens dentro do e-mail (cid), que aparecem mesmo sem baixar imagens de fora.
+  const anexo = process.env.EMAIL_IMAGENS === 'anexo';
+  const imgBase = process.env.EMAIL_IMG_BASE || (process.env.VERCEL_ENV === 'production' ? 'https://www.hypeapp.com.br' : 'https://teste.hypeapp.com.br');
+  const IMGS = anexo ? require('./_imagens') : {};
   const usadas = ['logo-branco', s.img].filter((n) => IMGS[n]);
-  const h = html(s, base, (n, e) => (IMGS[n] ? `cid:${n}@hypeapp` : `${base}/assets/email/${n}.${e}`));
+  const h = html(s, base, (n, e) => (IMGS[n] ? `cid:${n}@hypeapp` : `${imgBase}/assets/email/${n}.${e}`));
   const t = texto(s, base);
   const id = () => `${Date.now().toString(36)}${Math.random().toString(36).slice(2)}`;
   const rel = `hh-rel-${id()}`, alt = `hh-alt-${id()}`;
