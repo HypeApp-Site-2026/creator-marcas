@@ -166,7 +166,7 @@ function situacao(tipo, d, rot) {
 
 // ---------- HTML leve (05/11): uma imagem, texto curto, até 3 dicas e um botão; tabelas e estilos inline ----------
 // Menos blocos e menos imagens ajudam a não cair no spam; a versão em texto puro vai junto.
-function html(s, base) {
+function html(s, base, src = (n, e) => `${base}/assets/email/${n}.${e}`) {
   const p = (t) => `<p style="margin:0 0 14px;font-size:16px;line-height:1.55;color:${C.preto}">${esc(t)}</p>`;
   const dicas = s.dicas.slice(0, 3).map((t) => `<li style="margin:0 0 8px">${esc(t)}</li>`).join('');
   const alerta = s.alerta ? `<p style="margin:0 0 18px;font-size:14px;line-height:1.5;color:${C.preto}"><b>Atenção:</b> ${esc(s.alerta)}</p>` : '';
@@ -176,11 +176,11 @@ function html(s, base) {
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr><td align="center" style="padding:16px 12px">
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:600px">
     <tr><td style="background:${C.preto};padding:20px 24px;border-radius:20px">
-      <img src="${base}/assets/email/logo-branco.png" width="66" height="36" alt="HypeApp" style="display:block;border:0;height:36px;width:auto">
+      <img src="${src('logo-branco', 'png')}" width="66" height="36" alt="HypeApp" style="display:block;border:0;height:36px;width:auto">
     </td></tr>
     <tr><td style="height:12px;line-height:12px;font-size:0">&nbsp;</td></tr>
     <tr><td style="padding:0;line-height:0">
-      <img src="${base}/assets/email/${s.img}.jpg" width="600" alt="" style="display:block;width:100%;max-width:600px;height:auto;border:0;border-radius:20px">
+      <img src="${src(s.img, 'jpg')}" width="600" alt="" style="display:block;width:100%;max-width:600px;height:auto;border:0;border-radius:20px">
     </td></tr>
     <tr><td style="padding:26px 8px 8px">
       <div style="font-size:12px;font-weight:700;color:${C.roxoTx};margin-bottom:10px">${esc(s.tag)}</div>
@@ -266,30 +266,46 @@ async function confirma(tipo, d, rot = {}, base = 'https://www.hypeapp.com.br') 
   const to = String(d.email || '').trim();
   if (!emailValido(to)) return false;
   const from = process.env.SMTP_FROM || 'noreply@hypeapp.com.br';
-  const { s, html: h, texto: t } = monta(tipo, d, rot, base);
-  const fronteira = `hh-${Date.now().toString(36)}-${Math.random().toString(36).slice(2)}`;
-  const msg = [
+  const s = situacao(tipo, d, rot);
+  // imagens dentro do próprio e-mail (cid): não dependem do site estar no ar nem do leitor baixar imagens de fora
+  const IMGS = require('./_imagens');
+  const usadas = ['logo-branco', s.img].filter((n) => IMGS[n]);
+  const h = html(s, base, (n, e) => (IMGS[n] ? `cid:${n}@hypeapp` : `${base}/assets/email/${n}.${e}`));
+  const t = texto(s, base);
+  const id = () => `${Date.now().toString(36)}${Math.random().toString(36).slice(2)}`;
+  const rel = `hh-rel-${id()}`, alt = `hh-alt-${id()}`;
+  const partes = [
     `From: HypeApp <${from}>`,
     `To: <${to}>`,
     `Subject: ${enc(s.assunto)}`,
     `Date: ${new Date().toUTCString()}`,
-    `Message-ID: <${Date.now().toString(36)}.${Math.random().toString(36).slice(2)}@hypeapp.com.br>`,
+    `Message-ID: <${id()}@hypeapp.com.br>`,
     'MIME-Version: 1.0',
     'Auto-Submitted: auto-generated',
-    `Content-Type: multipart/alternative; boundary="${fronteira}"`,
+    `Content-Type: multipart/related; type="multipart/alternative"; boundary="${rel}"`,
     '',
-    `--${fronteira}`,
+    `--${rel}`,
+    `Content-Type: multipart/alternative; boundary="${alt}"`,
+    '',
+    `--${alt}`,
     'Content-Type: text/plain; charset=UTF-8',
     'Content-Transfer-Encoding: base64',
     '',
     linhas76(t),
-    `--${fronteira}`,
+    `--${alt}`,
     'Content-Type: text/html; charset=UTF-8',
     'Content-Transfer-Encoding: base64',
     '',
     linhas76(h),
-    `--${fronteira}--`,
-  ].join('\r\n');
+    `--${alt}--`,
+  ];
+  for (const n of usadas) {
+    partes.push(`--${rel}`, `Content-Type: ${IMGS[n].tipo}; name="${n}.${IMGS[n].ext}"`, 'Content-Transfer-Encoding: base64',
+      `Content-ID: <${n}@hypeapp>`, `Content-Disposition: inline; filename="${n}.${IMGS[n].ext}"`, '',
+      IMGS[n].b64.replace(/.{76}/g, '$&\r\n'));
+  }
+  partes.push(`--${rel}--`);
+  const msg = partes.join('\r\n');
   try {
     await smtp({ host: process.env.SMTP_HOST || 'smtp.purelymail.com', port: +(process.env.SMTP_PORT || 465), user, pass, from, to, msg });
     return true;
