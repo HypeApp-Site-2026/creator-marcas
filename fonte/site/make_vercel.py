@@ -128,6 +128,15 @@ def main():
             continue
         s = os.path.join(DIST, f)
         (shutil.copytree if os.path.isdir(s) else shutil.copy)(s, os.path.join(OUT, f))
+    # imagens dos e-mails de confirmação, embutidas na função (site/assets/email → vercel/api/_imagens.js)
+    import base64, glob as _g, json as _j
+    imgs = {}
+    for f in sorted(_g.glob(os.path.join(ROOT, 'site', 'assets', 'email', '*'))):
+        nome, ext = os.path.splitext(os.path.basename(f))
+        imgs[nome] = {'tipo': 'image/png' if ext == '.png' else 'image/jpeg', 'ext': ext[1:], 'b64': base64.b64encode(open(f, 'rb').read()).decode()}
+    open(os.path.join(ROOT, 'vercel', 'api', '_imagens.js'), 'w').write(
+        '// Gerado pelo make_vercel.py a partir de site/assets/email: imagens dos e-mails de confirmação, anexadas no próprio e-mail (cid).\n'
+        'module.exports = ' + _j.dumps(imgs) + ';\n')
     shutil.copytree(os.path.join(ROOT, 'vercel', 'api'), os.path.join(OUT, 'api'))
     # /backoffice continua no projeto do painel (mesma conta do Vercel): repassa para o endereço dele.
     # Preencha vercel/backoffice_origem.txt com o endereço do projeto do backoffice, ex.: https://hypeapp-backoffice.vercel.app
