@@ -2052,6 +2052,7 @@ def main():
     shutil.copytree(os.path.join(HERE, 'assets', 'parceiros'), os.path.join(OUT, 'assets', 'parceiros'))
     shutil.copytree(os.path.join(HERE, 'assets', 'ilustracoes'), os.path.join(OUT, 'assets', 'ilustracoes'))  # biblioteca roxa (página de creators)
     shutil.copytree(os.path.join(HERE, 'assets', 'comunidade'), os.path.join(OUT, 'assets', 'comunidade'))  # avatares do chat da comunidade
+    shutil.copytree(os.path.join(HERE, 'assets', 'email'), os.path.join(OUT, 'assets', 'email'))  # logo em PNG para os e-mails de confirmação
     os.makedirs(os.path.join(OUT, 'assets', 'blog'))
     for _p in POSTS:
         shutil.copy(os.path.join(HERE, 'assets', 'blog', _p['capa']), os.path.join(OUT, 'assets', 'blog', _p['capa']))
