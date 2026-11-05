@@ -2070,3 +2070,11 @@ a.mvb-aglk:hover .bt-lk { text-decoration: underline; }
 @media (max-width: 1080px) { .ag { grid-template-columns: 1fr; } .ag-arte { margin-bottom: 36px; width: min(620px, 100%); justify-self: center; height: clamp(420px, 66vw, 680px); } }
 .ag-m { white-space: nowrap; }
 @media (max-width: 640px) { .ag-sel { width: 92%; padding: 10px; } .ag-m { font-size: 14px; } .ag { border-radius: 30px; } .ag-arte { height: auto; gap: 10px; margin-bottom: 0; } .ag-pers { height: 340px; } .ag-sel { position: static; transform: none; width: 100%; grid-column: 1 / -1; box-sizing: border-box; } }
+
+/* Como funciona (04/11): passagem suave do roxo de um card para o próximo.
+   O roxo some devagar no card anterior e aparece no novo ao mesmo tempo, com o texto trocando de cor junto. */
+.cf-top { position: relative; isolation: isolate; background: var(--surface); transition: color 900ms cubic-bezier(.45,0,.55,1); }
+.cf-top::before { content: ""; position: absolute; inset: 0; z-index: -1; background: #9E2CFA; opacity: 0; transition: opacity 900ms cubic-bezier(.45,0,.55,1); }
+.cf-card.is-active .cf-top { background: var(--surface); }
+.cf-card.is-active .cf-top::before { opacity: 1; }
+@media (prefers-reduced-motion: reduce) { .cf-top, .cf-top::before { transition: none; } }
