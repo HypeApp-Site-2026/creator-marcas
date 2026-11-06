@@ -177,8 +177,8 @@ function html(s, base, src = (n, e) => `${base}/assets/email/${n}.${e}`) {
 <div style="display:none;max-height:0;overflow:hidden;opacity:0">${esc(s.texto[0])}</div>
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr><td align="center" style="padding:16px 12px">
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:600px">
-    <tr><td style="background:${C.preto};padding:20px 24px;border-radius:20px">
-      <img src="${src('logo-branco', 'png')}" width="66" height="36" alt="HypeApp" style="display:block;border:0;height:36px;width:auto">
+    <tr><td bgcolor="${C.preto}" style="background:${C.preto};padding:20px 24px;border-radius:20px">
+      <img src="${src('logo-hypeapp', 'jpg')}" width="66" height="36" alt="HypeApp" style="display:block;border:0;width:66px;height:36px">
     </td></tr>
     <tr><td style="height:12px;line-height:12px;font-size:0">&nbsp;</td></tr>
     <tr><td style="padding:0;line-height:0">
@@ -275,7 +275,7 @@ async function confirma(tipo, d, rot = {}, base = 'https://www.hypeapp.com.br') 
   const anexo = process.env.EMAIL_IMAGENS === 'anexo';
   const imgBase = process.env.EMAIL_IMG_BASE || (process.env.VERCEL_ENV === 'production' ? 'https://www.hypeapp.com.br' : 'https://teste.hypeapp.com.br');
   const IMGS = anexo ? require('./_imagens') : {};
-  const usadas = ['logo-branco', s.img].filter((n) => IMGS[n]);
+  const usadas = ['logo-hypeapp', s.img].filter((n) => IMGS[n]);
   const h = html(s, base, (n, e) => (IMGS[n] ? `cid:${n}@hypeapp` : `${imgBase}/assets/email/${n}.${e}`));
   const t = texto(s, base);
   const id = () => `${Date.now().toString(36)}${Math.random().toString(36).slice(2)}`;
