@@ -979,7 +979,7 @@ def p_criadores(L, A):
     <h2 id="baixar-c" class="bt-baixe-h">Baixe e crie seu perfil hoje.</h2>
     <div class="row">{stores(L)}</div>
   </div>
-  <img class="bt-baixe-v" src="{A('assets/ilustracoes/creator-metricas.webp')}" alt="Ilustração: creator segura o celular ao lado do cartão do perfil e de um gráfico de resultados" width="960" height="600" loading="lazy" decoding="async">
+  <img class="bt-baixe-v" src="{A('assets/ilustracoes/baixe-perfil.webp')}" alt="Ilustração: mãos segurando o celular com a tela Crie seu perfil, com os campos Nome e Seu @ e o botão Criar perfil" width="1100" height="786" loading="lazy" decoding="async">
 </section>'''
 
 def p_marcas(L, A):
