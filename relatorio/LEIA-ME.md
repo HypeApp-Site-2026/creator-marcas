@@ -19,3 +19,13 @@ A chave fica só no GitHub. Ela nunca vai para o código, o chat ou os logs.
 - **Automático (GA4 e Search Console):** usuários, sessões, canais, campanhas (UTM), eventos de conversão, páginas, cliques e impressões na busca, consultas e páginas da busca.
 - **Manual por enquanto:** instalações (Play Console e App Store Connect), cadastros concluídos (backoffice), leads qualificados (CRM) e chamados (backoffice). O relatório deixa esses campos marcados para preencher.
 - **Dimensões personalizadas:** CTAs por página, lojas por página e erros de formulário só aparecem depois de criadas no GA4 (veja a página Medição HypeApp).
+
+## E-mail do relatório
+
+Depois de publicar o relatório, o agente dispara o workflow **Relatório semanal (e-mail)**, que envia o resumo, os indicadores principais, os alertas e as ações por e-mail, com o botão para o relatório completo.
+
+No GitHub, em Settings → Secrets and variables → Actions:
+- *Variables* → `RELATORIO_EMAILS`: destinatários separados por vírgula, ex.: `contato@vocenohype.com.br,lucas@vocenohype.com.br`. Só quem está aqui recebe; o agente não escolhe destinatário.
+- *Secrets* → `SMTP_USER` e `SMTP_PASS`: os mesmos usados no Vercel para os e-mails de confirmação (noreply@hypeapp.com.br no Purelymail).
+
+Para testar, rode Actions → Relatório semanal (e-mail) → Run workflow com um relatório em JSON, por exemplo `{"semana":{"inicio":"2026-11-02","fim":"2026-11-08"},"resumo":["Teste de envio."],"indicadores":[]}`.
