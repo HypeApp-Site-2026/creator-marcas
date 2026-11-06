@@ -551,7 +551,7 @@ def hero_scroll(L, A):
       {hx_gigante('PLATAFORMA')}
       <figure class="hx-dev hx-mac"><div class="mb" data-dev>
         <div class="mb-lid" data-lid><span class="mb-back" aria-hidden="true"></span><div class="mb-bez"><span class="mb-cam" aria-hidden="true"></span>
-          <div class="mb-scr"><img src="{A(sb)}" alt="{alt_b}" width="{wb}" height="{hb}" loading="lazy" decoding="async">{_ht.tela_painel(A, A('assets/logo-hypeapp-branco.svg'))}<span class="mb-off" aria-hidden="true" data-off></span><span class="mb-sweep" aria-hidden="true" data-sweep></span><span class="hx-glare" aria-hidden="true"></span></div>
+          <div class="mb-scr"><img src="{A(sb)}" srcset="{A(sb.replace('.webp', '-800.webp'))} 800w, {A(sb)} 1600w" sizes="(max-width: 760px) 280px, 660px" alt="{alt_b}" width="{wb}" height="{hb}" loading="lazy" decoding="async">{_ht.tela_painel(A, A('assets/logo-hypeapp-branco.svg'))}<span class="mb-off" aria-hidden="true" data-off></span><span class="mb-sweep" aria-hidden="true" data-sweep></span><span class="hx-glare" aria-hidden="true"></span></div>
           <span class="mb-name" aria-hidden="true">MacBook Pro</span></div></div>
         <div class="mb-base" aria-hidden="true"><i class="mb-shadow"></i><div class="mb-deck"><i class="mb-spk mb-spk-l"></i>{mb_teclado()}<i class="mb-spk mb-spk-r"></i><i class="mb-pad"></i></div><i class="mb-lip"><i></i></i></div>
       </div></figure>
@@ -590,7 +590,9 @@ def como_funciona(A, pid, tab, label, items, media, hidden=False, img_prefix='ma
             m = (f'<video muted playsinline loop preload="{"metadata" if i == 0 else "none"}" width="720" height="720" '
                  f'poster="{A(f"assets/como-funciona/cena{n}.webp")}" aria-label="{alt}"><source src="{A(f"assets/como-funciona/cena{n}.mp4")}" type="video/mp4"></video>')
         else:
-            m = f'<img class="cf-anim cf-anim-{n}" src="{A(f"assets/como-funciona/{img_prefix}{n}.webp")}" alt="{alt}" width="720" height="720" loading="lazy" decoding="async">'
+            base = f'assets/como-funciona/{img_prefix}{n}'
+            m = (f'<img class="cf-anim cf-anim-{n}" src="{A(base + ".webp")}" srcset="{A(base + "-640.webp")} 640w, {A(base + ".webp")} 960w" '
+                 f'sizes="(max-width: 760px) 300px, 345px" alt="{alt}" width="720" height="720" loading="lazy" decoding="async">')
         cards += (f'<li class="cf-card{" is-active" if i == 0 else ""}" data-i="{i}" style="--d:{i * 110}ms">'
                   f'<div class="cf-top"><span class="cf-tag">{tg}</span><h3 class="cf-t">{t}</h3><p class="cf-d">{d}</p></div>'
                   f'<div class="cf-media">{m}</div></li>')
@@ -1754,7 +1756,10 @@ def versiona(page):
         if rel not in _VH:
             _VH[rel] = hashlib.md5(open(f, 'rb').read()).hexdigest()[:8] if os.path.isfile(f) else ''
         return m.group(1) + rel + (('?v=' + _VH[rel]) if _VH[rel] else '')
-    return re.sub(r'((?:src|poster|href|srcset)="(?:/|(?:\.\./)*))(assets/[\w./-]+\.(?:webp|png|jpg|jpeg|svg|mp4))(?=")', rep, page)
+    page = re.sub(r'((?:src|poster|href|srcset)="(?:/|(?:\.\./)*))(assets/[\w./-]+\.(?:webp|png|jpg|jpeg|svg|mp4))(?=")', rep, page)
+    # srcset com várias larguras: versiona cada endereço da lista
+    item = re.compile(r'((?:^|,\s*)(?:/|(?:\.\./)*))(assets/[\w./-]+\.(?:webp|png|jpg|jpeg))(?=\s)')
+    return re.sub(r'srcset="([^"]+)"', lambda m: 'srcset="' + item.sub(rep, m.group(1)) + '"', page)
 
 def build_page(url, fn, kind):
     L, A = make_link(url)
@@ -1899,22 +1904,31 @@ HEADERS = '''/*
   Cache-Control: public, max-age=31536000, immutable
 
 /assets/telas/*
-  Cache-Control: public, max-age=604800
+  Cache-Control: public, max-age=31536000, immutable
 
 /assets/hero/*
-  Cache-Control: public, max-age=604800
+  Cache-Control: public, max-age=31536000, immutable
 
 /assets/como-funciona/*
-  Cache-Control: public, max-age=604800
+  Cache-Control: public, max-age=31536000, immutable
 
 /assets/carreira/*
-  Cache-Control: public, max-age=604800
+  Cache-Control: public, max-age=31536000, immutable
 
 /assets/menu/*
-  Cache-Control: public, max-age=604800
+  Cache-Control: public, max-age=31536000, immutable
 
 /assets/blog/*
-  Cache-Control: public, max-age=604800
+  Cache-Control: public, max-age=31536000, immutable
+
+/assets/ilustracoes/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/assets/comunidade/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/assets/parceiros/*
+  Cache-Control: public, max-age=31536000, immutable
 
 /og/*
   Cache-Control: public, max-age=86400
