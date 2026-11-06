@@ -18,7 +18,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 CFG = {
     'ios': 'https://apps.apple.com/br/app/hype-app-influenciadores/id6778357608',
     'android': 'https://play.google.com/store/apps/details?id=br.com.hypeapp.v2',
-    'painel': 'https://backoffice-v2.hypeapp.com.br/sign-in',   # backoffice das marcas (Lucas, 06/11: direto no endereço do painel; /backoffice do www redireciona para lá)
+    'painel': 'https://www.hypeapp.com.br/backoffice/',   # painel das marcas (Lucas, 06/11): endereço oficial no www, que redireciona para o backoffice-v2
     'preview': not WEB,      # faixa "Prévia" + noindex
     # Google Tag Manager: ID do contêiner (GTM-XXXXXXX). Vazio = nenhum script de análise e nenhum aviso de cookies.
     # O GTM só é carregado depois que a pessoa aceita os cookies de medição (Consent Mode v2, modo básico).
@@ -37,7 +37,7 @@ if CFG['gtm'] and not re.fullmatch(r'GTM-[A-Z0-9]{4,12}', CFG['gtm']):
     raise SystemExit('CFG gtm inválido: use o formato GTM-XXXXXXX')
 ANALYTICS = WEB and bool(CFG['gtm'] or CFG['ga4'])
 META = {r['url']: r for r in R}
-PAINEL_URL = f"<span>{CFG['painel'].replace('https://', '').split('/sign-')[0]}</span>" if CFG['painel'] else ''
+PAINEL_URL = f"<span>{CFG['painel'].replace('https://', '').rstrip('/').split('/sign-')[0]}</span>" if CFG['painel'] else ''
 
 # ---------- Utilidades ----------
 def depth_of(url):
@@ -209,7 +209,7 @@ def header(cur, L, A):
                    f'<div class="mega-card"><span class="mega-label">{label}</span><ul>{lis}</ul></div>{art}</div>')
     painel = CFG['painel']
     marca_href = painel if painel else L('/entrar/', '#marcas')
-    marca_sub = 'Painel das marcas · ' + painel.replace('https://', '').replace('www.', '').split('/sign-')[0] if painel else 'Painel das marcas'
+    marca_sub = 'Painel das marcas · ' + painel.replace('https://', '').rstrip('/').split('/sign-')[0] if painel else 'Painel das marcas'
     menu = f'''
 <div class="entrar-menu" id="entrar-menu" role="menu" aria-label="Entrar como" hidden>
   <a role="menuitem" class="entrar-item" href="{L('/entrar/', '#creators')}">

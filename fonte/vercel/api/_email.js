@@ -49,7 +49,7 @@ const SUP = {
       'Entre com o mesmo e-mail e a mesma senha do cadastro.',
       'Esqueceu a senha? Use "Esqueci a senha" na tela de entrada do app.'] },
     painel: { titulo: 'Vamos resolver o seu acesso ao painel', dicas: [
-      'O painel funciona no navegador, em www.hypeapp.com.br/backoffice/sign-in.',
+      'O painel funciona no navegador, em www.hypeapp.com.br/backoffice/.',
       'O acesso de marcas e agências é liberado pelo comercial depois do primeiro contato.',
       'Use o e-mail cadastrado pela sua empresa no painel.'] },
   },

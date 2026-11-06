@@ -22,13 +22,13 @@
   ],
   "redirects": [
     {
-      "source": "/backoffice",
+      "source": "/backoffice(/)?",
       "destination": "https://backoffice-v2.hypeapp.com.br/sign-in",
       "permanent": false
     },
     {
-      "source": "/backoffice/:path*",
-      "destination": "https://backoffice-v2.hypeapp.com.br/:path*",
+      "source": "/backoffice/:path+",
+      "destination": "https://backoffice-v2.hypeapp.com.br/:path+",
       "permanent": false
     },
     {

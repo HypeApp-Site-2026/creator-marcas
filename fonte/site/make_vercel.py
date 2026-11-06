@@ -229,8 +229,8 @@ def main():
     # Sem origem (decisão de 06/11): o painel fica no próprio endereço; links antigos de www/backoffice/... vão para lá.
     PAINEL = 'https://backoffice-v2.hypeapp.com.br'
     painel_redir = [] if origem else [
-        {'source': '/backoffice', 'destination': PAINEL + '/sign-in', 'permanent': False},
-        {'source': '/backoffice/:path*', 'destination': PAINEL + '/:path*', 'permanent': False}]
+        {'source': '/backoffice(/)?', 'destination': PAINEL + '/sign-in', 'permanent': False},
+        {'source': '/backoffice/:path+', 'destination': PAINEL + '/:path+', 'permanent': False}]
     # Perfis públicos da versão anterior (/u/<nome>, /pt-BR/<nome>): mostram o aviso de /perfil-antigo/, sem índice (06/11)
     # Padrões com a barra final opcional, como os outros redirecionamentos (trailingSlash ligado)
     rewrites = rewrites + [{'source': '/u/(.+)', 'destination': '/perfil-antigo/'}, {'source': '/pt-BR/(.+)', 'destination': '/perfil-antigo/'}]
