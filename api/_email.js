@@ -322,4 +322,4 @@ async function confirma(tipo, d, rot = {}, base = 'https://www.hypeapp.com.br') 
   }
 }
 
-module.exports = { confirma, monta, situacao, SUP };
+module.exports = { confirma, monta, situacao, SUP, smtp, enc, emailValido, C };

@@ -1,0 +1,31 @@
+name: Relatório semanal (e-mail)
+# Envia o relatório da semana por e-mail. Disparado pelo agente de análise com o relatório em JSON.
+# Destinatários fixos na variável RELATORIO_EMAILS; SMTP nos segredos SMTP_USER e SMTP_PASS.
+on:
+  workflow_dispatch:
+    inputs:
+      relatorio:
+        description: Relatório da semana em JSON
+        required: true
+permissions:
+  contents: read
+jobs:
+  email:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            relatorio
+            api
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Enviar
+        env:
+          RELATORIO_JSON: ${{ inputs.relatorio }}
+          RELATORIO_EMAILS: ${{ vars.RELATORIO_EMAILS }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASS: ${{ secrets.SMTP_PASS }}
+        run: node relatorio/envia-email.mjs

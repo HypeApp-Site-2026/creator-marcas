@@ -86,6 +86,39 @@ def headers():
             cur['headers'].append({'key': k.strip(), 'value': v.strip()})
     return out
 
+RELATORIO_EMAIL_YML = """name: Relatório semanal (e-mail)
+# Envia o relatório da semana por e-mail. Disparado pelo agente de análise com o relatório em JSON.
+# Destinatários fixos na variável RELATORIO_EMAILS; SMTP nos segredos SMTP_USER e SMTP_PASS.
+on:
+  workflow_dispatch:
+    inputs:
+      relatorio:
+        description: Relatório da semana em JSON
+        required: true
+permissions:
+  contents: read
+jobs:
+  email:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            relatorio
+            api
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Enviar
+        env:
+          RELATORIO_JSON: ${{ inputs.relatorio }}
+          RELATORIO_EMAILS: ${{ vars.RELATORIO_EMAILS }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASS: ${{ secrets.SMTP_PASS }}
+        run: node relatorio/envia-email.mjs
+"""
+
 RELATORIO_YML = """name: Relatório semanal (coleta)
 # Coleta GA4 e Search Console da última semana fechada (segunda a domingo) e das 4 anteriores.
 # Resultado: dados/AAAA-MM-DD.json e dados/ultimo.json no ramo "dados-relatorio" (JSON só com contagens),
@@ -216,6 +249,7 @@ def main():
     # Relatório semanal: coleta de GA4 e Search Console toda segunda (08h de Brasília), lida pelo agente de análise
     shutil.copytree(os.path.join(ROOT, 'relatorio'), os.path.join(OUT, 'relatorio'))
     open(os.path.join(wf, 'relatorio-semanal.yml'), 'w', encoding='utf-8').write(RELATORIO_YML)
+    open(os.path.join(wf, 'relatorio-email.yml'), 'w', encoding='utf-8').write(RELATORIO_EMAIL_YML)
     open(os.path.join(OUT, '.gitignore'), 'w').write('.vercel\n.env\n.env.*\nfonte/site/dist/\nfonte/site/dist-web/\n__pycache__/\n.DS_Store\n')
     # código-fonte
     fonte = os.path.join(OUT, 'fonte')
