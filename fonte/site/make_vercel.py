@@ -144,15 +144,18 @@ def main():
     origem = open(origem_f).read().strip().rstrip('/') if os.path.exists(origem_f) else ''
     rewrites = [{'source': '/backoffice', 'destination': origem + '/backoffice'},
                 {'source': '/backoffice/:path*', 'destination': origem + '/backoffice/:path*'}] if origem else []
-    if not origem:
-        print('ATENÇÃO: sem vercel/backoffice_origem.txt. Não ligue o domínio neste projeto antes de preencher: /backoffice daria 404.')
+    # Sem origem (decisão de 06/11): o painel fica no próprio endereço; links antigos de www/backoffice/... vão para lá.
+    PAINEL = 'https://backoffice-v2.hypeapp.com.br'
+    painel_redir = [] if origem else [
+        {'source': '/backoffice', 'destination': PAINEL + '/sign-in', 'permanent': False},
+        {'source': '/backoffice/:path*', 'destination': PAINEL + '/:path*', 'permanent': False}]
     cfg = {
         '$schema': 'https://openapi.vercel.sh/vercel.json',
         'framework': None, 'buildCommand': '', 'installCommand': '', 'outputDirectory': '.',
         'trailingSlash': True,
         'functions': {'api/lead.js': {'maxDuration': 30}},  # webhook (até 10 s) + e-mail de confirmação (até 6 s)
         'rewrites': rewrites,
-        'redirects': assets_host() + teste_host() + so_teste() + sem_index_html() + redirects(),
+        'redirects': painel_redir + assets_host() + teste_host() + so_teste() + sem_index_html() + redirects(),
         'headers': headers() + [{'source': '/(.*)', 'has': [{'type': 'host', 'value': TESTE_HOST}],
                                  'headers': [{'key': 'X-Robots-Tag', 'value': 'noindex, nofollow'}]}],
     }

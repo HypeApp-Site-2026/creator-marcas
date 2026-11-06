@@ -18,7 +18,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 CFG = {
     'ios': 'https://apps.apple.com/br/app/hype-app-influenciadores/id6778357608',
     'android': 'https://play.google.com/store/apps/details?id=br.com.hypeapp.v2',
-    'painel': 'https://www.hypeapp.com.br/backoffice/sign-in',   # backoffice das marcas (decisão de 30/10; entrada pelo sign-in desde 04/11)
+    'painel': 'https://backoffice-v2.hypeapp.com.br/sign-in',   # backoffice das marcas (Lucas, 06/11: direto no endereço do painel; /backoffice do www redireciona para lá)
     'preview': not WEB,      # faixa "Prévia" + noindex
     # Google Tag Manager: ID do contêiner (GTM-XXXXXXX). Vazio = nenhum script de análise e nenhum aviso de cookies.
     # O GTM só é carregado depois que a pessoa aceita os cookies de medição (Consent Mode v2, modo básico).
@@ -203,7 +203,7 @@ def header(cur, L, A):
                    f'<div class="mega-card"><span class="mega-label">{label}</span><ul>{lis}</ul></div>{art}</div>')
     painel = CFG['painel']
     marca_href = painel if painel else L('/entrar/', '#marcas')
-    marca_sub = 'Painel das marcas · ' + painel.replace('https://www.', '').split('/sign-')[0] if painel else 'Painel das marcas'
+    marca_sub = 'Painel das marcas · ' + painel.replace('https://', '').replace('www.', '').split('/sign-')[0] if painel else 'Painel das marcas'
     menu = f'''
 <div class="entrar-menu" id="entrar-menu" role="menu" aria-label="Entrar como" hidden>
   <a role="menuitem" class="entrar-item" href="{L('/entrar/', '#creators')}">
