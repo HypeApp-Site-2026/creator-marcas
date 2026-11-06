@@ -1454,6 +1454,45 @@ def p_entrar(L, A):
 </section>
 <section class="card-mid between" style="align-items:center" aria-label="Problemas para entrar"><span class="h4">Problemas para entrar?</span><a class="btn btn-grey" href="{L('/suporte/')}">Falar com o suporte</a></section>'''
 
+def p_links(L, A):
+    """Página de links da bio (06/11), no lugar de um Linktree: no próprio domínio, com a medição do site.
+    Use com UTM, ex.: /links/?utm_source=instagram&utm_medium=social&utm_campaign=2026-11_geral_bio&utm_content=bio"""
+    def item(txt, sub, href, cta, ext=False, destaque=False):
+        alvo = ' target="_blank" rel="noopener"' if ext else ''
+        return (f'<a class="lk-a{" lk-dest" if destaque else ""}" href="{href}" data-cta="{cta}"{alvo}><span class="lk-t"><b>{txt}</b>'
+                f'{f"<small>{sub}</small>" if sub else ""}</span>{ico(I_ARROW, 18)}</a>')
+    redes = ''.join(f'<a class="lk-rede" href="{u}" target="_blank" rel="noopener" aria-label="{n}" data-cta="links-{n.lower()}"><svg width="24" height="24" viewBox="{vb}" aria-hidden="true">{path}</svg></a>'
+                    for n, u, vb, path in SOCIAL)
+    return f'''
+<div class="lk">
+  <header class="lk-top">
+    <img class="lk-logo" src="{A('assets/logo-hypeapp-branco.svg')}" alt="HypeApp" width="132" height="48">
+    <h1 class="lk-h">Do convite ao pagamento, tudo em um só lugar.</h1>
+    <p class="lk-sub">O app de quem cria conteúdo. O painel de quem contrata.</p>
+    <div class="lk-redes">{redes}</div>
+  </header>
+  <section class="lk-sec" aria-labelledby="lk-c">
+    <h2 id="lk-c" class="lk-sh">Sou creator</h2>
+    <div class="lk-stores">{stores(L)}</div>
+    {item('Como funciona para creators', 'Campanhas, entregas, carteira e comunidade', L('/criadores/'), 'links-creators', destaque=True)}
+    {item('Já tenho conta', 'Abra o app e entre com seu e-mail', L('/entrar/', '#creators'), 'links-entrar-app')}
+  </section>
+  <section class="lk-sec" aria-labelledby="lk-m">
+    <h2 id="lk-m" class="lk-sh">Sou marca ou agência</h2>
+    {item('Falar com nosso time', 'Resposta em até 2 dias úteis', L('/contato/marcas/'), 'links-falar-time', destaque=True)}
+    {item('Conhecer a plataforma', 'Creators, aprovações, lives e pagamentos num só painel', L('/marcas/'), 'links-marcas')}
+    {item('Entrar no painel', '', CFG['painel'], 'links-painel')}
+  </section>
+  <section class="lk-sec" aria-labelledby="lk-a">
+    <h2 id="lk-a" class="lk-sh">Ajuda</h2>
+    {item('Perguntas frequentes', '', L('/perguntas-frequentes/'), 'links-faq')}
+    {item('Suporte', 'Abra um chamado', L('/suporte/'), 'links-suporte')}
+    {item('Conheça a Você no Hype', 'Quem está por trás do HypeApp', L('/sobre/'), 'links-sobre')}
+  </section>
+  <div class="lk-tts"><img src="{A('assets/parceiros/tiktok-shop-partner.webp')}" alt="TikTok Shop Partner" width="280" height="79" loading="lazy" decoding="async"><span>Agência parceira do TikTok Shop</span></div>
+  <footer class="lk-foot"><a href="{L('/')}">hypeapp.com.br</a><span aria-hidden="true">·</span><a href="{L('/privacidade/')}">Privacidade</a>{'<span aria-hidden="true">·</span><a href="#preferencias-cookies">Cookies</a>' if ANALYTICS else ''}</footer>
+</div>'''
+
 def p_app(L, A):
     return f'''
 <section class="band-white split" data-app-redirect data-ios="{CFG['ios']}" data-android="{CFG['android']}" aria-labelledby="app-h">
@@ -1632,7 +1671,7 @@ PAGES = [
     ('/baixar/', p_baixar, 'tight'), ('/perguntas-frequentes/', p_faq, 'mid'), ('/sobre/', p_sobre, 'mid'),
     ('/contato/', p_contato, 'mid'), ('/contato/marcas/', p_contato_marcas, 'mid'), ('/contato/enviado/', p_enviado, 'mid'),
     ('/suporte/', p_suporte, 'mid'), ('/suporte/enviado/', p_sup_enviado, 'mid'), ('/entrar/', p_entrar, 'mid'),
-    ('/app', p_app, 'mid'),
+    ('/app', p_app, 'mid'), ('/links/', p_links, 'links'),
     ('/privacidade/', p_legal_file('/privacidade/'), 'mid'), ('/termos/', p_legal_file('/termos/'), 'mid'),
     ('/cookies/', p_legal('/cookies/'), 'mid'), ('/exclusao-de-conta/', p_legal_file('/exclusao-de-conta/'), 'mid'),
     ('/legal/', p_legal_hub, 'mid'), ('/regras-da-comunidade/', p_regras, 'mid'),
@@ -1645,6 +1684,7 @@ if BLOG_ON:
 FALLBACK = {
     '/entrar/': ('Entrar no HypeApp', 'Creators entram pelo app. Marcas e agências entram pelo painel.'),
     '/app': ('Baixar o HypeApp', 'Leva à loja certa para o seu celular.'),
+    '/links/': ('HypeApp · Links', 'Baixe o app do HypeApp, conheça a plataforma para marcas e fale com nosso time.'),
     '/404': ('Página não encontrada | HypeApp', 'O endereço pode ter mudado.'),
     '/marcas/versao-a/': ('Para marcas · versão A (estudo) | HypeApp', 'Estudo da página de marcas: produto primeiro.'),
     '/marcas/versao-b/': ('Para marcas · versão B (estudo) | HypeApp', 'Estudo da página de marcas: bento.'),
@@ -1722,7 +1762,7 @@ def datas_da(url, conteudo):
     return d
 
 def jsonld(url, title, desc, d):
-    if url in ('/404', '/app'):
+    if url in ('/404', '/app', '/links/'):
         return []
     pag = {'@context': 'https://schema.org', '@type': TIPO_PAGINA.get(url, 'WebPage'), '@id': BASE + url + '#pagina', 'url': BASE + url,
            'name': title, 'description': desc, 'inLanguage': 'pt-BR', 'isPartOf': {'@id': SITE_ID}, 'publisher': {'@id': ORG_ID},
@@ -1777,7 +1817,8 @@ def build_page(url, fn, kind):
     canon = (BASE + '/marcas/' if url.startswith('/marcas/versao-') else BASE + url) if url not in ('/404', '/app') else ''  # /app é página de passagem, sem índice
     main = fn(L, A)
     cls = 'home' if url == '/' else 'wrap' + (' tight' if kind == 'tight' else '')
-    body = header(url, L, A) + f'\n<main class="{cls}" id="conteudo">{main}</main>\n' + tiktok_shop(L, A, url) + '\n' + footer(L, A)
+    body = (header(url, L, A) + f'\n<main class="{cls}" id="conteudo">{main}</main>\n' + tiktok_shop(L, A, url) + '\n' + footer(L, A)) if kind != 'links' \
+        else f'<main class="lk-main" id="conteudo">{main}</main>'   # página de links da bio: sem cabeçalho e rodapé do site
     body = mark_ph(body)
     for p, _ in [('/criadores/', 0), ('/marcas/', 0), ('/perguntas-frequentes/', 0)]:
         pass
