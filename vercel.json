@@ -152,17 +152,6 @@
       "permanent": false
     },
     {
-      "source": "/blog(/.*)?",
-      "missing": [
-        {
-          "type": "host",
-          "value": "teste.hypeapp.com.br"
-        }
-      ],
-      "destination": "/",
-      "permanent": false
-    },
-    {
       "source": "/blog/quanto-cobrar-por-reels(/.*)?",
       "missing": [
         {

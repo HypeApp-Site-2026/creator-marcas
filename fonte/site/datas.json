@@ -2,7 +2,7 @@
  "/": {
   "publicado": "2026-10-30",
   "alterado": "2026-11-06",
-  "hash": "7b6772b3e3506f5fe3afcf930ab5bb74"
+  "hash": "1957fb7591d27f51ed4ff94c985a1265"
  },
  "/404": {
   "publicado": "2026-10-30",
@@ -21,8 +21,18 @@
  },
  "/blog/": {
   "publicado": "2026-11-04",
-  "alterado": "2026-11-05",
-  "hash": "b779e0ee0045815bc05597321dadd337"
+  "alterado": "2026-11-06",
+  "hash": "a9a2fd3cb1bfd4af946873fb652b49aa"
+ },
+ "/blog/como-conseguir-parcerias-com-marcas/": {
+  "publicado": "2026-11-06",
+  "alterado": "2026-11-06",
+  "hash": "77cd80dccb703f986787cd0113b2766b"
+ },
+ "/blog/como-organizar-rotina-criador-de-conteudo/": {
+  "publicado": "2026-11-06",
+  "alterado": "2026-11-06",
+  "hash": "d4be83ee4222a5fa6e09ac29b7cf1194"
  },
  "/blog/media-kit-link-ou-pdf/": {
   "publicado": "2026-11-04",
@@ -38,6 +48,11 @@
   "publicado": "2026-11-04",
   "alterado": "2026-11-06",
   "hash": "e820c12b18c7612fbcc333c5944e8a06"
+ },
+ "/blog/quanto-cobrar-por-uma-publi/": {
+  "publicado": "2026-11-06",
+  "alterado": "2026-11-06",
+  "hash": "a700414b61f4f6d17e2b81c48b6bd744"
  },
  "/contato/": {
   "publicado": "2026-10-30",

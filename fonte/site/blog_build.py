@@ -55,7 +55,7 @@ def load_posts(here, web):
         texto = re.sub(r'\]\([^)]*\)', ']', body)          # tira o endereço dos links
         texto = re.sub(r'[#*_>`\[\]()|-]', ' ', texto)
         palavras = len(texto.split())
-        posts.append(dict(ordem=int(meta.get('ordem', 99)), slug=slug, status=st, titulo=meta['titulo'], categoria=meta['categoria'], capa=meta['capa'],
+        posts.append(dict(ordem=int(meta.get('ordem', 99)), slug=slug, status=st, titulo=meta['titulo'], titulo_seo=meta.get('titulo_seo', ''), categoria=meta['categoria'], capa=meta['capa'],
                           alt=meta['capa_alt'], resumo=meta['resumo'], autor=autor, comentarios=coms, data=data, destaque=meta.get('destaque', '') == 'sim',
                           minutos=max(1, math.ceil(palavras / 200)),
                           html=_md.markdown(body, extensions=['extra', 'sane_lists'])))
@@ -144,7 +144,7 @@ def p_blog(posts):
         for p in posts:
             temas.setdefault(p['categoria'], []).append(p)
         so_t = lambda ps: SO_TESTE if ps and all(so_teste(x) for x in ps) else ''
-        menu = ''.join(f'<li><a class="bh-tema" href="#{tema_slug(c)}" data-tema="{tema_slug(c)}"{so_t(ps)}>{html.escape(c)}<span>{len(ps)}</span></a></li>'
+        menu = ''.join(f'<li><a class="bh-tema" href="#{tema_slug(c)}" data-tema="{tema_slug(c)}"{so_t(ps)}>{html.escape(c)}<span>{sum(1 for x in ps if not so_teste(x)) or len(ps)}</span></a></li>'
                        for c, ps in sorted(temas.items()))
         equipe = ''.join(f'<li>{autor_linha(A, k, "", 36)}</li>' for k in EQUIPE if k != 'equipe-hypeapp')
         cap_so = SO_TESTE if so_teste(capa) else ''
@@ -165,7 +165,7 @@ def p_blog(posts):
 <div class="bh-g" data-bh>
   <aside class="bh-side" aria-label="Navegação do blog">
     <nav aria-labelledby="bh-temas-h"><span id="bh-temas-h" class="bh-side-h">Tópicos</span>
-      <ul class="bh-temas"><li><a class="bh-tema" href="#todos" data-tema="todos" aria-current="true">Todos os artigos<span>{len(posts)}</span></a></li>{menu}</ul></nav>
+      <ul class="bh-temas"><li><a class="bh-tema" href="#todos" data-tema="todos" aria-current="true">Todos os artigos<span>{sum(1 for x in posts if not so_teste(x)) or len(posts)}</span></a></li>{menu}</ul></nav>
     <div class="bh-eq"><span class="bh-side-h">Quem escreve</span><ul class="bh-eq-l">{equipe}</ul>
       <p class="bh-eq-p">Artigos e respostas da equipe aparecem com o selo de Moderação.</p></div>
     <a class="bh-side-cta" href="{L("/baixar/")}"><b>Faça parte da comunidade</b><span>Grupos, feed e lives com outros creators, no app.</span></a>
@@ -211,7 +211,7 @@ def post_meta(posts, base):
             ld['datePublished'] = p['data'].isoformat()
         a = EQUIPE[p['autor']]
         ld['author'] = {'@type': 'Organization' if p['autor'] == 'equipe-hypeapp' else 'Person', 'name': a['nome']}
-        out[u] = dict(title=p['titulo'] + (' | Blog HypeApp' if len(p['titulo']) <= 45 else ' | HypeApp'), desc=p['resumo'],
+        out[u] = dict(title=(p['titulo_seo'] or p['titulo']) + (' | Blog HypeApp' if len(p['titulo_seo'] or p['titulo']) <= 45 else ' | HypeApp'), desc=p['resumo'],
                       robots='index, follow' if p['status'] == 'publicado' else 'noindex, follow',
                       img='og/blog/' + p['slug'] + '.jpg', pagina=p['titulo'], ld=ld)  # 1200×630 gerada por make_media.py com a capa e o título
     return out
