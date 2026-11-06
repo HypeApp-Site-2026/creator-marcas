@@ -1548,14 +1548,16 @@ COOKIES_GA = [
         'a página de entrada e os parâmetros da campanha que trouxe você (utm, gclid e fbclid), que seguem junto com o formulário de contato. '
         'Isso não identifica você e não precisa de consentimento.')),
     ('medicao', 'Medição de visitas', rev('Se você aceitar os cookies de medição, '
-        'usamos o Google Analytics 4, carregado pelo Google Tag Manager, para saber quais páginas são vistas, de onde vêm as visitas, '
+        'usamos o Google Analytics 4, pela tag do Google, para saber quais páginas são vistas, de onde vêm as visitas, '
         'quais botões são clicados e quantos formulários são enviados, e o Microsoft Clarity, que registra cliques, rolagem e movimentos na página '
         'para gerar mapas de calor e gravações da navegação. Os campos de formulário ficam ocultos nas gravações. '
         'Não enviamos nome, e-mail, telefone nem o texto dos formulários ao Google ou à Microsoft.')),
     ('google-analytics', 'Cookies do Google Analytics', rev('Os cookies _ga e _ga_ seguido do código da propriedade distinguem visitantes e visitas e duram até 2 anos. '
+        'No Google Analytics, os dados detalhados das visitas ficam guardados por 14 meses. '
         'Só são gravados depois do seu aceite. O Google atua como operador desses dados e pode tratá-los fora do Brasil, '
         'conforme a <a href="{{PRIVACIDADE}}">Política de Privacidade</a>.')),
     ('microsoft-clarity', 'Cookies do Microsoft Clarity', rev('Os cookies _clck (até 1 ano) e _clsk (1 dia) ligam as páginas de uma mesma visita. '
+        'As gravações ficam guardadas por 30 dias; os mapas de calor e os dados agregados, por até 9 meses. '
         'Só são gravados depois do seu aceite. A Microsoft atua como operadora desses dados e pode tratá-los fora do Brasil, '
         'conforme a <a href="{{PRIVACIDADE}}">Política de Privacidade</a>.')),
     ('publicidade', 'Publicidade', rev('O site não usa cookies de publicidade. Se isso mudar, esta política será atualizada e o site vai pedir a sua escolha antes de ativá-los.')),

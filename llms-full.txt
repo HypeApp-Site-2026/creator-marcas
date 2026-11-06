@@ -507,7 +507,7 @@ Quais dados pessoais o HypeApp coleta, como usa, com quem compartilha e como voc
 
 Esta política explica quais dados pessoais o HypeApp coleta no app, no painel das marcas e no site, como os usamos, com quem os compartilhamos e como você exerce seus direitos, em conformidade com a Lei Geral de Proteção de Dados Pessoais (LGPD, Lei nº 13.709/2018) e com as regras das lojas de aplicativos e das plataformas conectadas.
 
-Versão 2.2 · Última atualização: 6 de novembro de 2026.
+Versão 2.3 · Última atualização: 6 de novembro de 2026.
 
 ## Resumo rápido
 
@@ -631,7 +631,7 @@ Atender o chamado
 
 Navegação no site
 
-Endereço IP e dados técnicos da conexão nos registros do servidor. Se você aceitar os cookies de medição: páginas vistas, origem da visita, botões clicados, formulários enviados, cliques, rolagem e gravações da navegação, coletados pelo Google Analytics 4 (carregado pelo Google Tag Manager) e pelo Microsoft Clarity, com os campos de formulário ocultos nas gravações
+Endereço IP e dados técnicos da conexão nos registros do servidor. Se você aceitar os cookies de medição: páginas vistas, origem da visita, botões clicados, formulários enviados, cliques, rolagem e gravações da navegação, coletados pelo Google Analytics 4 (pela tag do Google) e pelo Microsoft Clarity, com os campos de formulário ocultos nas gravações
 
 Segurança e prevenção de abuso e, com o seu aceite, medir e melhorar o uso do site
 
@@ -755,7 +755,7 @@ Essas transferências seguem o art. 33 da LGPD. Usamos as cláusulas-padrão con
 
 No iOS, antes de qualquer rastreamento entre apps e sites de outras empresas, o app exibe a solicitação de permissão do sistema (App Tracking Transparency). O rastreamento é usado apenas para atribuição de campanhas de parceiros, como a integração com o TikTok. Se você não autorizar, o app continua funcionando normalmente; só não fazemos essa atribuição.
 
-No site, usamos cookies necessários para funcionar e, só se você aceitar no aviso de cookies, cookies de medição do Google Analytics 4 (carregado pelo Google Tag Manager) e do Microsoft Clarity, que registra cliques, rolagem e gravações da navegação com os campos de formulário ocultos. Você pode mudar a escolha a qualquer momento em Preferências de cookies, no rodapé. Os detalhes estão na Política de cookies.
+No site, usamos cookies necessários para funcionar e, só se você aceitar no aviso de cookies, cookies de medição do Google Analytics 4 (pela tag do Google) e do Microsoft Clarity, que registra cliques, rolagem e gravações da navegação com os campos de formulário ocultos. Você pode mudar a escolha a qualquer momento em Preferências de cookies, no rodapé. Os detalhes estão na Política de cookies.
 
 ## 11. Por quanto tempo guardamos
 
@@ -768,6 +768,22 @@ No site, usamos cookies necessários para funcionar e, só se você aceitar no a
 - Clientes (marcas e agências): durante o contrato e por até 5 anos após o encerramento, conforme obrigações legais.
 
 - Registros de acesso: pelo prazo mínimo exigido pelo Marco Civil da Internet (6 meses) e no máximo 12 meses, salvo ordem judicial.
+
+- Dados das redes conectadas (perfil, seguidores e tokens de acesso): enquanto a rede estiver conectada. São removidos quando você desconecta a rede ou exclui a conta.
+
+- Métricas das publicações de campanhas: junto com o registro da campanha, por até 5 anos após o encerramento dela, para comprovar entregas e pagamentos.
+
+- Conteúdo enviado e mensagens do chat da campanha (roteiros, anexos e conversas): por até 5 anos após o encerramento da campanha, como registro do que foi combinado e entregue.
+
+- Comunidade (posts, comentários e participação em grupos): enquanto a conta existir ou até você apagar. Na exclusão da conta, são removidos ou anonimizados.
+
+- Denúncias e decisões de moderação: por 12 meses após a decisão.
+
+- Hype Points (convites e histórico de pontos): enquanto a conta existir. São apagados com a conta.
+
+- Chamados de suporte: por 2 anos após o fechamento do chamado. Chamados sobre pagamentos seguem o prazo dos dados fiscais (5 anos).
+
+- Medição do site: no Google Analytics, os dados detalhados de eventos e de usuários ficam guardados por 14 meses. No Microsoft Clarity, as gravações da navegação ficam por 30 dias, e os mapas de calor e dados agregados, por até 9 meses, conforme a política da Microsoft.
 
 Ao fim de cada prazo, os dados são excluídos de forma segura ou anonimizados (art. 16 da LGPD).
 
@@ -1127,7 +1143,7 @@ Estes Termos são regidos pela legislação brasileira. Sempre que possível, as
 
 Fonte: https://www.hypeapp.com.br/cookies/
 Título: Política de cookies | HypeApp
-Atualizado em: 2026-11-04
+Atualizado em: 2026-11-06
 
 # Política de cookies
 
@@ -1139,15 +1155,15 @@ Para funcionar, o site guarda no seu navegador a sua escolha sobre cookies (por 
 
 ## Medição de visitas
 
-Se você aceitar os cookies de medição, usamos o Google Analytics 4, carregado pelo Google Tag Manager, para saber quais páginas são vistas, de onde vêm as visitas, quais botões são clicados e quantos formulários são enviados, e o Microsoft Clarity, que registra cliques, rolagem e movimentos na página para gerar mapas de calor e gravações da navegação. Os campos de formulário ficam ocultos nas gravações. Não enviamos nome, e-mail, telefone nem o texto dos formulários ao Google ou à Microsoft.
+Se você aceitar os cookies de medição, usamos o Google Analytics 4, pela tag do Google, para saber quais páginas são vistas, de onde vêm as visitas, quais botões são clicados e quantos formulários são enviados, e o Microsoft Clarity, que registra cliques, rolagem e movimentos na página para gerar mapas de calor e gravações da navegação. Os campos de formulário ficam ocultos nas gravações. Não enviamos nome, e-mail, telefone nem o texto dos formulários ao Google ou à Microsoft.
 
 ## Cookies do Google Analytics
 
-Os cookies _ga e _ga_ seguido do código da propriedade distinguem visitantes e visitas e duram até 2 anos. Só são gravados depois do seu aceite. O Google atua como operador desses dados e pode tratá-los fora do Brasil, conforme a Política de Privacidade.
+Os cookies _ga e _ga_ seguido do código da propriedade distinguem visitantes e visitas e duram até 2 anos. No Google Analytics, os dados detalhados das visitas ficam guardados por 14 meses. Só são gravados depois do seu aceite. O Google atua como operador desses dados e pode tratá-los fora do Brasil, conforme a Política de Privacidade.
 
 ## Cookies do Microsoft Clarity
 
-Os cookies _clck (até 1 ano) e _clsk (1 dia) ligam as páginas de uma mesma visita. Só são gravados depois do seu aceite. A Microsoft atua como operadora desses dados e pode tratá-los fora do Brasil, conforme a Política de Privacidade.
+Os cookies _clck (até 1 ano) e _clsk (1 dia) ligam as páginas de uma mesma visita. As gravações ficam guardadas por 30 dias; os mapas de calor e os dados agregados, por até 9 meses. Só são gravados depois do seu aceite. A Microsoft atua como operadora desses dados e pode tratá-los fora do Brasil, conforme a Política de Privacidade.
 
 ## Publicidade
 
