@@ -24,12 +24,15 @@ CFG = {
     # O GTM só é carregado depois que a pessoa aceita os cookies de medição (Consent Mode v2, modo básico).
     'gtm': os.environ.get('HH_GTM', 'GTM-KKF9JKK9'),   # contêiner "www.hypeapp.com.br" (04/11); GA4 G-3WD7HYT50C fica dentro do GTM
 }
+CFG['ga4'] = os.environ.get('HH_GA4', 'G-3WD7HYT50C')   # tag do Google (gtag.js) direto no site (06/11); só carrega com o aceite de medição
+if CFG['ga4'] and not re.fullmatch(r'G-[A-Z0-9]{6,12}', CFG['ga4']):
+    raise SystemExit('CFG ga4 inválido: use o formato G-XXXXXXX')
 CFG['clarity'] = os.environ.get('HH_CLARITY', 'z8cuz3l4nn')   # Microsoft Clarity (04/11); só carrega com o aceite de medição
 if CFG['clarity'] and not re.fullmatch(r'[a-z0-9]{6,16}', CFG['clarity']):
     raise SystemExit('CFG clarity inválido')
 if CFG['gtm'] and not re.fullmatch(r'GTM-[A-Z0-9]{4,12}', CFG['gtm']):
     raise SystemExit('CFG gtm inválido: use o formato GTM-XXXXXXX')
-ANALYTICS = WEB and bool(CFG['gtm'])
+ANALYTICS = WEB and bool(CFG['gtm'] or CFG['ga4'])
 META = {r['url']: r for r in R}
 PAINEL_URL = f"<span>{CFG['painel'].replace('https://', '').split('/sign-')[0]}</span>" if CFG['painel'] else ''
 
@@ -1804,13 +1807,14 @@ def build_page(url, fn, kind):
 <meta name="theme-color" content="#EFEFEF">
 <link rel="preload" href="{A('assets/fonts/inter-latin-wght-normal.woff2')}" as="font" type="font/woff2" crossorigin>
 {f'<link rel="preload" as="image" type="image/webp" fetchpriority="high" href="{A(HX_TELAS["app"][0])}">' if url == '/' else ''}
-<link rel="icon" href="{A('favicon.ico')}" sizes="32x32">
+<link rel="icon" href="{A('favicon.ico')}" sizes="48x48">
+<link rel="icon" href="{A('icon-192.png')}" type="image/png" sizes="192x192">
 <link rel="icon" href="{A('favicon.svg')}" type="image/svg+xml">
 <link rel="apple-touch-icon" href="{A('apple-touch-icon.png')}">
 <link rel="manifest" href="{A('site.webmanifest')}">
 {f'<link rel="alternate" type="application/rss+xml" title="Blog HypeApp" href="{BASE}/blog/feed.xml">' if WEB and BLOG_ON and any(_p['status'] == 'publicado' for _p in POSTS) else ''}
 <link rel="stylesheet" href="{A('assets/site.css')}?v={VER['site.css']}">
-{f'<meta name="hh-gtm" content="{CFG["gtm"]}">' if ANALYTICS else ''}{f'<meta name="hh-clarity" content="{CFG["clarity"]}">' if ANALYTICS and CFG['clarity'] else ''}
+{f'<meta name="hh-gtm" content="{CFG["gtm"]}">' if ANALYTICS and CFG['gtm'] else ''}{f'<meta name="hh-ga4" content="{CFG["ga4"]}">' if ANALYTICS and CFG['ga4'] else ''}{f'<meta name="hh-clarity" content="{CFG["clarity"]}">' if ANALYTICS and CFG['clarity'] else ''}
 {ld}'''
     if url == '/app' and WEB:
         pass

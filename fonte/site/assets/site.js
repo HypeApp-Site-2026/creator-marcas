@@ -31,6 +31,18 @@
     sc.src = 'https://www.googletagmanager.com/gtm.js?id=' + encodeURIComponent(GTM);
     document.head.appendChild(sc);
   };
+  /* GA4 pela tag do Google (gtag.js), so depois do aceite. Se o conteiner do GTM tambem tiver uma tag GA4 com
+     este ID, desative a do GTM para nao contar em dobro. */
+  var GA4 = ($('meta[name="hh-ga4"]') || {}).content || '';
+  var ga4On = false;
+  var carregaGA4 = function () {
+    if (ga4On || !GA4) return; ga4On = true;
+    gtag('js', new Date());
+    gtag('config', GA4);
+    var sc = document.createElement('script'); sc.async = true;
+    sc.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(GA4);
+    document.head.appendChild(sc);
+  };
   var CLARITY = ($('meta[name="hh-clarity"]') || {}).content || '';
   var clarityOn = false;
   var carregaClarity = function () {
@@ -50,7 +62,7 @@
       if (/^(_ga|_gid|_gat|_gcl|_clck|_clsk)/.test(n)) doms.forEach(function (d) { document.cookie = n + '=; Max-Age=0; path=/' + (d ? '; domain=' + d : ''); });
     });
   };
-  if (GTM) {
+  if (GTM || GA4) {
     gtag('consent', 'default', { analytics_storage: 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', functionality_storage: 'granted', security_storage: 'granted' });
     dl.push({ ambiente: /^teste\./.test(location.hostname) ? 'teste' : (/hypeapp\.com\.br$/.test(location.hostname) ? 'producao' : 'local') });
     var ck = $('#ck'), ckPref = $('#ck-pref'), ckMed = $('#ck-med');
@@ -59,7 +71,7 @@
       var antes = lerEscolha();
       if (salvar) { try { localStorage.setItem(CK, JSON.stringify({ v: 1, medicao: !!c.medicao, t: Date.now() })); } catch (e) {} }
       gtag('consent', 'update', { analytics_storage: c.medicao ? 'granted' : 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
-      if (c.medicao) { carregaGTM(); carregaClarity(); }
+      if (c.medicao) { carregaGA4(); carregaGTM(); carregaClarity(); }
       else if (antes && antes.medicao) {
         if (typeof window.clarity === 'function') window.clarity('consentv2', { ad_Storage: 'denied', analytics_Storage: 'denied' });
         apagaCookiesGA();
@@ -94,7 +106,14 @@
     if (escolha) aplica(escolha, false); else abre(false, false);
     if (location.hash === '#preferencias-cookies') abre(true, true);
   }
-  var evento = function (o) { dl.push(o); };
+  /* eventos: no dataLayer (GTM) e, com o GA4 direto, tambem como evento do gtag (sem dados pessoais) */
+  var evento = function (o) {
+    dl.push(o);
+    if (GA4 && o && o.event) {
+      var p = {}; Object.keys(o).forEach(function (k) { if (k !== 'event' && o[k] !== undefined) p[k] = o[k]; });
+      gtag('event', o.event, p);
+    }
+  };
   /* conversao dos formularios: guardada antes de sair da pagina e enviada na pagina de confirmacao */
   (function () {
     var c = null;
@@ -114,7 +133,7 @@
     var h = a.href || '';
     if (/^https:\/\/apps\.apple\.com\//.test(h)) evento({ event: 'app_store_click', store: 'app_store', link_local: onde(a) });
     else if (/^https:\/\/play\.google\.com\//.test(h)) evento({ event: 'app_store_click', store: 'google_play', link_local: onde(a) });
-    else if (/\/backoffice\//.test(h)) evento({ event: 'painel_click', painel_destino: /sign-up/.test(h) ? 'cadastro' : 'entrar', link_local: onde(a) });
+    else if (/\/backoffice\/|\/\/backoffice[\w-]*\.hypeapp\.com\.br/.test(h)) evento({ event: 'painel_click', painel_destino: /sign-up/.test(h) ? 'cadastro' : 'entrar', link_local: onde(a) });
   }, true);
 
   /* Barra inferior do app no mockup */
