@@ -1,6 +1,6 @@
 // Coleta semanal de dados do HypeApp (GA4 + Search Console) para o relatório de análise.
 // Roda no GitHub Actions (workflow "Relatório semanal: coleta"), toda segunda às 8h de Brasília.
-// Não grava nada no repositório: o resultado vai como artefato do workflow (dados-semana.json), que o agente lê.
+// Não grava nada no repositório: o resultado vai para o ramo dados-relatorio (dados/ultimo.json), que o agente lê.
 //
 // Segredos e variáveis do repositório (Settings → Secrets and variables → Actions):
 //   secret GA_SA_JSON       chave JSON da conta de serviço do Google Cloud (nunca no código, no chat ou nos logs)

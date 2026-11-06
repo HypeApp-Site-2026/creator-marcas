@@ -1,13 +1,14 @@
 name: Relatório semanal (coleta)
 # Coleta GA4 e Search Console da última semana fechada (segunda a domingo) e das 4 anteriores.
-# Resultado: artefato "dados-semana" (JSON só com contagens), lido pelo agente que escreve o relatório.
+# Resultado: dados/AAAA-MM-DD.json e dados/ultimo.json no ramo "dados-relatorio" (JSON só com contagens),
+# lidos pelo agente que escreve o relatório. Esse ramo tem deploy desligado no Vercel.
 # Precisa de: secret GA_SA_JSON e variáveis GA4_PROPERTY_ID e GSC_SITE (veja relatorio/LEIA-ME.md).
 on:
   schedule:
     - cron: '7 11 * * 1'   # segunda, 08h07 de Brasília
   workflow_dispatch:
 permissions:
-  contents: read
+  contents: write
 jobs:
   coleta:
     runs-on: ubuntu-latest
@@ -25,8 +26,23 @@ jobs:
           GA4_PROPERTY_ID: ${{ vars.GA4_PROPERTY_ID }}
           GSC_SITE: ${{ vars.GSC_SITE }}
         run: node relatorio/coleta.mjs > dados-semana.json
-      - uses: actions/upload-artifact@v4
-        with:
-          name: dados-semana
-          path: dados-semana.json
-          retention-days: 90
+      - name: Guardar no ramo dados-relatorio
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          SEMANA=$(jq -r '.semanas[-1].inicio' dados-semana.json)
+          mkdir -p /tmp/dr && cd /tmp/dr
+          git init -q
+          git config user.name "relatorio-semanal"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          if git fetch -q origin dados-relatorio; then git checkout -q -b dados-relatorio FETCH_HEAD; else git checkout -q --orphan dados-relatorio; fi
+          mkdir -p dados
+          cp "$GITHUB_WORKSPACE/dados-semana.json" "dados/$SEMANA.json"
+          cp "$GITHUB_WORKSPACE/dados-semana.json" dados/ultimo.json
+          echo '{"git":{"deploymentEnabled":false}}' > vercel.json
+          printf 'Dados do relatório semanal (gerados pelo GitHub Actions). Não editar.
+' > README.md
+          git add -A
+          git commit -q -m "Dados da semana de $SEMANA" || echo "sem mudanças"
+          git push -q origin dados-relatorio
