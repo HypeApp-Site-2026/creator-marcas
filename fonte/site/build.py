@@ -1455,43 +1455,67 @@ def p_entrar(L, A):
 <section class="card-mid between" style="align-items:center" aria-label="Problemas para entrar"><span class="h4">Problemas para entrar?</span><a class="btn btn-grey" href="{L('/suporte/')}">Falar com o suporte</a></section>'''
 
 def p_links(L, A):
-    """Página de links da bio (06/11), no lugar de um Linktree: no próprio domínio, com a medição do site.
+    """Página de links da bio (06/11), modelo 2 "Abas do app" escolhido no canvas: fundo do app, abas Sou creator / Sou marca.
+    No próprio domínio, com a medição do site. Abre na aba de marcas com #marcas.
     Use com UTM, ex.: /links/?utm_source=instagram&utm_medium=social&utm_campaign=2026-11_geral_bio&utm_content=bio"""
-    def item(txt, sub, href, cta, ext=False, destaque=False):
+    def ic(path):
+        return f'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">{path}</svg>'
+    I = dict(camp=ic('<path d="M4 10 18 4v16L4 14zM4 10v4M8 14.5l1.5 5h3l-1.5-5"/>'),
+             cart=ic('<rect x="3" y="6" width="18" height="13" rx="3"/><path d="M16 12.5h2M3 10h18"/>'),
+             com=ic('<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-4 3.5-5.5 6.5-5.5s5.7 1.5 6.5 5.5M16 4.5a3.5 3.5 0 0 1 0 7M18 14.6c2 .6 3.2 2.3 3.5 5.4"/>'),
+             user=ic('<circle cx="12" cy="8" r="4"/><path d="M4 21c1-4.5 4-6.5 8-6.5s7 2 8 6.5"/>'),
+             brief=ic('<rect x="3" y="7" width="18" height="13" rx="3"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>'),
+             panel=ic('<rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/>'),
+             team=ic('<circle cx="8" cy="9" r="3"/><circle cx="16" cy="9" r="3"/><path d="M2.5 19c.7-3 2.8-4.5 5.5-4.5s4.8 1.5 5.5 4.5M12.5 15.2c1-.5 2.2-.7 3.5-.7 2.7 0 4.8 1.5 5.5 4.5"/>'),
+             app=ic('<rect x="6" y="2.5" width="12" height="19" rx="3"/><path d="M11 18.5h2"/>'))
+    chev = '<svg class="lk2-chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>'
+    def card(t, sub, href, icone, cta, escuro=False, ext=False):
         alvo = ' target="_blank" rel="noopener"' if ext else ''
-        return (f'<a class="lk-a{" lk-dest" if destaque else ""}" href="{href}" data-cta="{cta}"{alvo}><span class="lk-t"><b>{txt}</b>'
-                f'{f"<small>{sub}</small>" if sub else ""}</span>{ico(I_ARROW, 18)}</a>')
-    redes = ''.join(f'<a class="lk-rede" href="{u}" target="_blank" rel="noopener" aria-label="{n}" data-cta="links-{n.lower()}"><svg width="24" height="24" viewBox="{vb}" aria-hidden="true">{path}</svg></a>'
+        return (f'<a class="lk2-card{" lk2-dark" if escuro else ""}" href="{href}" data-cta="{cta}"{alvo}><span class="lk2-disc">{icone}</span>'
+                f'<span class="lk2-t"><b>{t}</b><small>{sub}</small></span>{chev}</a>')
+    redes = ''.join(f'<a class="lk2-rede" href="{u}" target="_blank" rel="noopener" aria-label="{n}" data-cta="links-{n.lower()}"><svg width="22" height="18" viewBox="{vb}" aria-hidden="true">{path}</svg></a>'
                     for n, u, vb, path in SOCIAL)
-    return f'''
-<div class="lk">
-  <header class="lk-top">
-    <img class="lk-logo" src="{A('assets/logo-hypeapp-branco.svg')}" alt="HypeApp" width="132" height="48">
-    <h1 class="lk-h">Do convite ao pagamento, tudo em um só lugar.</h1>
-    <p class="lk-sub">O app de quem cria conteúdo. O painel de quem contrata.</p>
-    <div class="lk-redes">{redes}</div>
+    return f"""
+<div class="lk2" data-lk2>
+  <header class="lk2-top">
+    <a href="{L('/')}" aria-label="HypeApp, página inicial"><img class="lk2-logo" src="{A('assets/logo-hypeapp.svg')}" alt="HypeApp" width="104" height="38"></a>
+    <div class="lk2-redes">{redes}</div>
   </header>
-  <section class="lk-sec" aria-labelledby="lk-c">
-    <h2 id="lk-c" class="lk-sh">Sou creator</h2>
-    <div class="lk-stores">{stores(L)}</div>
-    {item('Como funciona para creators', 'Campanhas, entregas, carteira e comunidade', L('/criadores/'), 'links-creators', destaque=True)}
-    {item('Já tenho conta', 'Abra o app e entre com seu e-mail', L('/entrar/', '#creators'), 'links-entrar-app')}
+  <h1 class="lk2-h">Links</h1>
+  <p class="lk2-sub">Escolha por onde começar.</p>
+  <div class="lk2-tabs" role="tablist" aria-label="Para quem">
+    <button type="button" role="tab" id="lk2-tab-c" aria-controls="lk2-c" aria-selected="true" data-lk2-tab="creators">Sou creator</button>
+    <button type="button" role="tab" id="lk2-tab-m" aria-controls="lk2-m" aria-selected="false" tabindex="-1" data-lk2-tab="marcas">Sou marca</button>
+  </div>
+  <section class="lk2-panel" id="lk2-c" role="tabpanel" aria-labelledby="lk2-tab-c">
+    <div class="lk2-hero">
+      <span class="lk2-pill">Grátis para iPhone e Android</span>
+      <h2 class="lk2-hh">Baixe e crie seu perfil hoje.</h2>
+      <img class="lk2-img" src="{A('assets/ilustracoes/baixe-perfil.webp')}" alt="Ilustração: mãos segurando o celular com a tela Crie seu perfil" width="1100" height="786">
+      <div class="lk2-stores">{stores(L)}</div>
+    </div>
+    {card('Campanhas para o seu nicho', 'Inscreva-se ou aceite convites', L('/criadores/', '#como-funciona'), I['camp'], 'links-campanhas')}
+    {card('Carteira e saque por PIX', 'Veja o que libera e quando', L('/criadores/', '#dinheiro'), I['cart'], 'links-carteira')}
+    {card('Comunidade', 'Grupos, posts e lives com creators', L('/criadores/', '#comunidade'), I['com'], 'links-comunidade')}
+    {card('Já tenho conta', 'Abra o app e entre com seu e-mail', L('/entrar/', '#creators'), I['user'], 'links-entrar-app')}
+    {card('Tenho uma marca', 'Falar com nosso time', L('/contato/marcas/'), I['brief'], 'links-marca-cruzado', escuro=True)}
   </section>
-  <section class="lk-sec" aria-labelledby="lk-m">
-    <h2 id="lk-m" class="lk-sh">Sou marca ou agência</h2>
-    {item('Falar com nosso time', 'Resposta em até 2 dias úteis', L('/contato/marcas/'), 'links-falar-time', destaque=True)}
-    {item('Conhecer a plataforma', 'Creators, aprovações, lives e pagamentos num só painel', L('/marcas/'), 'links-marcas')}
-    {item('Entrar no painel', '', CFG['painel'], 'links-painel')}
+  <section class="lk2-panel" id="lk2-m" role="tabpanel" aria-labelledby="lk2-tab-m" data-lk2-oculto>
+    <div class="lk2-hero lk2-hero-m">
+      <span class="lk2-pill">Marcas e agências</span>
+      <h2 class="lk2-hh">Creators, aprovações e pagamentos num só painel.</h2>
+      <img class="lk2-img lk2-img-m" src="{A('assets/ilustracoes/agencia-1.webp')}" alt="Ilustração: pessoa de braços cruzados, pronta para gerir campanhas" width="600" height="1208" loading="lazy">
+      <a class="lk2-btn" href="{L('/contato/marcas/')}" data-cta="links-falar-time">Falar com nosso time</a>
+      <small class="lk2-note">Resposta em até 2 dias úteis</small>
+    </div>
+    {card('Conhecer a plataforma', 'Seleção, roteiros, conteúdos e pagamentos', L('/marcas/'), I['panel'], 'links-marcas')}
+    {card('Para agências', 'Várias marcas e a equipe num só painel', L('/marcas/', '#agencias'), I['team'], 'links-agencias')}
+    {card('Entrar no painel', 'Para quem já tem conta', CFG['painel'], I['brief'], 'links-painel')}
+    {card('Sou creator', 'Baixar o app', L('/baixar/'), I['app'], 'links-creator-cruzado', escuro=True)}
   </section>
-  <section class="lk-sec" aria-labelledby="lk-a">
-    <h2 id="lk-a" class="lk-sh">Ajuda</h2>
-    {item('Perguntas frequentes', '', L('/perguntas-frequentes/'), 'links-faq')}
-    {item('Suporte', 'Abra um chamado', L('/suporte/'), 'links-suporte')}
-    {item('Conheça a Você no Hype', 'Quem está por trás do HypeApp', L('/sobre/'), 'links-sobre')}
-  </section>
-  <div class="lk-tts"><img src="{A('assets/parceiros/tiktok-shop-partner.webp')}" alt="TikTok Shop Partner" width="280" height="79" loading="lazy" decoding="async"><span>Agência parceira do TikTok Shop</span></div>
-  <footer class="lk-foot"><a href="{L('/')}">hypeapp.com.br</a><span aria-hidden="true">·</span><a href="{L('/privacidade/')}">Privacidade</a>{'<span aria-hidden="true">·</span><a href="#preferencias-cookies">Cookies</a>' if ANALYTICS else ''}</footer>
-</div>'''
+  <div class="lk2-tts"><img src="{A('assets/parceiros/tiktok-shop-partner.webp')}" alt="TikTok Shop Partner" width="280" height="79" loading="lazy" decoding="async"><span>Agência parceira do TikTok Shop</span></div>
+  <footer class="lk2-foot"><a href="{L('/perguntas-frequentes/')}">Perguntas frequentes</a><a href="{L('/suporte/')}">Suporte</a><a href="{L('/')}">hypeapp.com.br</a>{'<a href="#preferencias-cookies">Cookies</a>' if ANALYTICS else ''}</footer>
+</div>"""
 
 def p_app(L, A):
     return f'''

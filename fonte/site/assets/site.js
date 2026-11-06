@@ -387,6 +387,34 @@
     $('[data-pedido-n]', box).textContent = m[1]; box.hidden = false;
   })();
 
+  /* Links da bio (/links/): abas Sou creator / Sou marca; #marcas abre a aba de marcas */
+  (function () {
+    var box = $('[data-lk2]'); if (!box) return;
+    var tabs = $$('[data-lk2-tab]', box);
+    box.classList.add('lk2-on');
+    var mostra = function (nome, foco) {
+      tabs.forEach(function (t) {
+        var on = t.getAttribute('data-lk2-tab') === nome, pn = document.getElementById(t.getAttribute('aria-controls'));
+        t.setAttribute('aria-selected', on ? 'true' : 'false'); t.tabIndex = on ? 0 : -1;
+        if (pn) { if (on) pn.removeAttribute('data-lk2-oculto'); else pn.setAttribute('data-lk2-oculto', ''); }
+        if (on && foco) t.focus();
+      });
+    };
+    tabs.forEach(function (t, i) {
+      t.addEventListener('click', function () {
+        var n = t.getAttribute('data-lk2-tab'); mostra(n);
+        try { history.replaceState(null, '', n === 'marcas' ? '#marcas' : location.pathname + location.search); } catch (e) {}
+        evento({ event: 'cta_click', cta_id: 'links-aba-' + n, cta_texto: t.textContent, cta_destino: 'aba', link_local: 'pagina', cta_secao: 'links', pagina: 'links' });
+      });
+      t.addEventListener('keydown', function (e) {
+        if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+        e.preventDefault(); var k = tabs[(i + (e.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length];
+        mostra(k.getAttribute('data-lk2-tab'), true);
+      });
+    });
+    if (location.hash === '#marcas') mostra('marcas');
+  })();
+
   $$('form[data-form]').forEach(function (f) {
     // campos condicionais
     var sync = function () {
