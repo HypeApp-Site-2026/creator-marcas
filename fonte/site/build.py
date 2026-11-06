@@ -27,6 +27,9 @@ CFG = {
 CFG['ga4'] = os.environ.get('HH_GA4', 'G-3WD7HYT50C')   # tag do Google (gtag.js) direto no site (06/11); só carrega com o aceite de medição
 if CFG['ga4'] and not re.fullmatch(r'G-[A-Z0-9]{6,12}', CFG['ga4']):
     raise SystemExit('CFG ga4 inválido: use o formato G-XXXXXXX')
+CFG['ios_pt'] = os.environ.get('HH_IOS_PT', '')   # token do provedor no App Store Connect (links de campanha da App Store); vazio = sem
+if CFG['ios_pt'] and not re.fullmatch(r'[0-9]{4,12}', CFG['ios_pt']):
+    raise SystemExit('CFG ios_pt inválido')
 CFG['clarity'] = os.environ.get('HH_CLARITY', 'z8cuz3l4nn')   # Microsoft Clarity (04/11); só carrega com o aceite de medição
 if CFG['clarity'] and not re.fullmatch(r'[a-z0-9]{6,16}', CFG['clarity']):
     raise SystemExit('CFG clarity inválido')
@@ -1816,7 +1819,7 @@ def build_page(url, fn, kind):
 <link rel="manifest" href="{A('site.webmanifest')}">
 {f'<link rel="alternate" type="application/rss+xml" title="Blog HypeApp" href="{BASE}/blog/feed.xml">' if WEB and BLOG_ON and any(_p['status'] == 'publicado' for _p in POSTS) else ''}
 <link rel="stylesheet" href="{A('assets/site.css')}?v={VER['site.css']}">
-{f'<meta name="hh-gtm" content="{CFG["gtm"]}">' if ANALYTICS and CFG['gtm'] else ''}{f'<meta name="hh-ga4" content="{CFG["ga4"]}">' if ANALYTICS and CFG['ga4'] else ''}{f'<meta name="hh-clarity" content="{CFG["clarity"]}">' if ANALYTICS and CFG['clarity'] else ''}
+{f'<meta name="hh-gtm" content="{CFG["gtm"]}">' if ANALYTICS and CFG['gtm'] else ''}{f'<meta name="hh-ga4" content="{CFG["ga4"]}">' if ANALYTICS and CFG['ga4'] else ''}{f'<meta name="hh-clarity" content="{CFG["clarity"]}">' if ANALYTICS and CFG['clarity'] else ''}{f'<meta name="hh-ios-pt" content="{CFG["ios_pt"]}">' if WEB and CFG['ios_pt'] else ''}
 {ld}'''
     if url == '/app' and WEB:
         pass

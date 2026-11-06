@@ -128,12 +128,54 @@
     if (o) { try { sessionStorage.setItem('hh_conv', JSON.stringify(o)); } catch (e) { evento(o); } }
   };
   var onde = function (a) { return a.closest('#mmenu') ? 'menu' : a.closest('header') ? 'cabecalho' : a.closest('footer') ? 'rodape' : 'pagina'; };
+  var secao = function (a) { var sc = a.closest('section'); return sc ? (sc.getAttribute('aria-labelledby') || sc.id || '').slice(0, 40) : ''; };
+  var pagina = location.pathname.replace(/^\/|\/$/g, '') || 'inicio';
+  /* Lojas com origem (padrao de UTM do HypeApp): repassa as UTMs da visita; sem elas, marca o site como origem.
+     Google Play: parametro referrer (aparece no Play Console e no Firebase).
+     App Store: so com o token do provedor (meta hh-ios-pt), que liga a campanha no App Store Connect. */
+  var origemLoja = function (sec) {
+    var o = attr();
+    return {
+      utm_source: o.utm_source || 'site', utm_medium: o.utm_medium || 'web',
+      utm_campaign: o.utm_campaign || ('site-' + pagina.replace(/\//g, '-')), utm_content: o.utm_content || sec || ''
+    };
+  };
+  var IOS_PT = ($('meta[name="hh-ios-pt"]') || {}).content || '';
+  var comOrigem = function (url, sec) {
+    try {
+      var u = new URL(url), o = origemLoja(sec);
+      if (u.host === 'play.google.com') {
+        var r = Object.keys(o).filter(function (k) { return o[k]; }).map(function (k) { return k + '=' + encodeURIComponent(o[k]); }).join('&');
+        u.searchParams.set('referrer', r);
+      } else if (u.host === 'apps.apple.com' && IOS_PT) {
+        u.searchParams.set('pt', IOS_PT);
+        u.searchParams.set('ct', (o.utm_source + '_' + o.utm_campaign).slice(0, 40));
+        u.searchParams.set('mt', '8');
+      }
+      return u.toString();
+    } catch (e) { return url; }
+  };
   document.addEventListener('click', function (ev) {
     var a = ev.target.closest && ev.target.closest('a[href]'); if (!a) return;
     var h = a.href || '';
-    if (/^https:\/\/apps\.apple\.com\//.test(h)) evento({ event: 'app_store_click', store: 'app_store', link_local: onde(a) });
-    else if (/^https:\/\/play\.google\.com\//.test(h)) evento({ event: 'app_store_click', store: 'google_play', link_local: onde(a) });
-    else if (/\/backoffice\/|\/\/backoffice[\w-]*\.hypeapp\.com\.br/.test(h)) evento({ event: 'painel_click', painel_destino: /sign-up/.test(h) ? 'cadastro' : 'entrar', link_local: onde(a) });
+    var loja = /^https:\/\/apps\.apple\.com\//.test(h) ? 'app_store' : /^https:\/\/play\.google\.com\//.test(h) ? 'google_play' : '';
+    if (loja) {
+      a.href = comOrigem(h, secao(a));
+      /* cadastro iniciado (creator): o cadastro acontece no app, depois da loja */
+      evento({ event: 'app_store_click', store: loja, link_local: onde(a), cta_secao: secao(a), pagina: pagina });
+      return;
+    }
+    /* CTAs: botoes e links marcados com data-cta (sem texto livre de quem visita) */
+    if (/\/backoffice\/|\/\/backoffice[\w-]*\.hypeapp\.com\.br/.test(h)) {
+      evento({ event: 'painel_click', painel_destino: /sign-up/.test(h) ? 'cadastro' : 'entrar', link_local: onde(a), cta_secao: secao(a), pagina: pagina });
+      return;
+    }
+    if (a.matches('a.btn, a.gc-link, a.link-strong, a.entrar-item, a[data-cta]')) {
+      var txt = (a.textContent || '').replace(/\s+/g, ' ').trim().slice(0, 60);
+      var dest = a.host === location.host ? a.pathname + a.hash : a.host;
+      evento({ event: 'cta_click', cta_id: a.getAttribute('data-cta') || txt.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''),
+        cta_texto: txt, cta_destino: dest.slice(0, 100), link_local: onde(a), cta_secao: secao(a), pagina: pagina });
+    }
   }, true);
 
   /* Barra inferior do app no mockup */
@@ -356,6 +398,13 @@
       });
     };
     f.addEventListener('change', sync); f.addEventListener('input', sync); sync();
+    /* inicio do preenchimento (cadastro iniciado, para marcas): uma vez por formulario e por pagina */
+    var fn = f.getAttribute('name') || '', iniciou = false;
+    var inicio = function () {
+      if (iniciou || !fn) return; iniciou = true;
+      evento({ event: fn === 'comercial' ? 'lead_form_start' : fn === 'suporte' ? 'support_form_start' : 'form_start_' + fn, form_name: fn });
+    };
+    f.addEventListener('input', inicio); f.addEventListener('change', inicio);
     $$('input, select, textarea', f).forEach(function (el) {
       el.addEventListener('blur', function () { if (el.type !== 'radio' && !el.hasAttribute('data-group')) setErr(el, check(el)); });
       el.addEventListener('change', function () { setErr(el, check(el)); });
@@ -382,6 +431,7 @@
       var summary = $('.form-erros', f);
       if (firstBad) {
         if (summary) { summary.hidden = false; summary.textContent = (nomes.length === 1 ? 'Falta ajustar: ' : 'Faltam ' + nomes.length + ' campos: ') + nomes.join(', ') + '.'; }
+        evento({ event: 'form_error', form_name: fn, error_tipo: 'validacao', campos_com_erro: nomes.length });
         try { firstBad.focus({ preventScroll: true }); } catch (e) {}
         (firstBad.closest('.field') || firstBad).scrollIntoView({ block: 'center' });
         return;
@@ -422,6 +472,7 @@
           });
         })
         .catch(function (e) {
+          evento({ event: 'form_error', form_name: fn, error_tipo: 'envio' });
           f.removeAttribute('data-sending');
           if (btn) { btn.disabled = false; btn.textContent = btn.getAttribute('data-label') || 'Enviar'; }
           if (summary) {
@@ -687,7 +738,8 @@
   (function () {
     var q = new URLSearchParams(location.search), novo = {}, tem = false;
     ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'gclid', 'fbclid'].forEach(function (k) {
-      var v = q.get(k); if (v) { novo[k] = v.slice(0, 300); tem = true; }
+      var v = q.get(k);
+      if (v) { novo[k] = (/^utm_/.test(k) ? v.trim().toLowerCase().replace(/\s+/g, '-') : v).slice(0, 300); tem = true; }
     });
     var atual = attr();
     if (!tem && atual.landing) return;
@@ -709,7 +761,7 @@
     if (dest) {
       msg.textContent = ios ? 'Abrindo a App Store\u2026' : 'Abrindo o Google Play\u2026';
       evento({ event: 'app_store_click', store: ios ? 'app_store' : 'google_play', link_local: 'redirecionamento_app' });
-      setTimeout(function () { location.href = dest; }, 600);
+      setTimeout(function () { location.href = typeof comOrigem === 'function' ? comOrigem(dest, 'qr-code') : dest; }, 600);
     } else {
       msg.textContent = 'Voc\u00ea est\u00e1 no computador. Escolha a loja ou aponte a c\u00e2mera do celular para o QR code.';
     }
