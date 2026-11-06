@@ -947,6 +947,8 @@
       AP.word.style.transform = 'translateY(-50%) scale(' + (1 + z * 0.12).toFixed(4) + ')';
       var fl = Math.sin((now - t0) / 1000 * 1.25) * clamp((now - t0 - 1600) / 1200) * (1 - z);
       AP.dev.style.opacity = String(1 - fade);
+      /* Safari no iPhone pode ignorar a opacidade do aparelho em 3D (preserve-3d): esconde de vez quando ja sumiu */
+      AP.dev.style.visibility = fade > 0.97 ? 'hidden' : 'visible';
       AP.dev.style.transform = 'translate3d(' + (-z * 4).toFixed(2) + 'vw,' + (fl * 7 - z * 8 * innerHeight / 100).toFixed(2) + 'px,0) scale(' + (1 + z * (nar ? 0.9 : 1.9)).toFixed(4) + ')' +
         ' rotateZ(' + (21 - z * 15 + fl * 0.5).toFixed(2) + 'deg) rotateY(' + (-12 + z * 12).toFixed(2) + 'deg) rotateX(' + (6 - z * 6).toFixed(2) + 'deg)';
       cue1.style.opacity = String(1 - seg(q, 0, 0.12));
