@@ -129,7 +129,7 @@ jobs:
           cp "$GITHUB_WORKSPACE/dados-semana.json" "dados/$SEMANA.json"
           cp "$GITHUB_WORKSPACE/dados-semana.json" dados/ultimo.json
           echo '{"git":{"deploymentEnabled":false}}' > vercel.json
-          printf 'Dados do relatório semanal (gerados pelo GitHub Actions). Não editar.\n' > README.md
+          echo 'Dados do relatório semanal (gerados pelo GitHub Actions). Não editar.' > README.md
           git add -A
           git commit -q -m "Dados da semana de $SEMANA" || echo "sem mudanças"
           git push -q origin dados-relatorio
