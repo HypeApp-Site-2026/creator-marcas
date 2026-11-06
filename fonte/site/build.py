@@ -1078,10 +1078,11 @@ def p_marcas_b(L, A):
 
 <section id="modalidades" aria-labelledby="mvb-mod">
   <h2 id="mvb-mod" class="bt-h2">Quem opera a campanha?</h2>
-  <div class="bt-g bt-3">
+  <div class="bt-g mvb-mod4">
     <div class="bt bt-branco"><span class="bt-n">Self-service</span><b class="bt-t2">Sua equipe, no painel</b><span class="bt-p">Monta o mural, seleciona as inscrições, convida creators, aprova roteiros e conteúdos e acompanha as métricas.</span></div>
     <div class="bt bt-preto"><span class="bt-n bt-n-l">Gerenciada</span><b class="bt-t2">A Você no Hype, por você</b><span class="bt-p">Estratégia, curadoria de creators, negociação, contratos, acompanhamento das entregas e relatório de resultados.</span></div>
     <a class="bt bt-lima mvb-aglk" href="#agencias"><span class="bt-n">Agências</span><b class="bt-t2">Várias marcas, um painel</b><span class="bt-p">Sua equipe gerencia as campanhas de cada cliente em espaços separados.</span><span class="bt-lk">Ver como funciona</span></a>
+    <div class="bt mvb-foto"><img src="{A('assets/ilustracoes/painel-notebook.webp')}" alt="Ilustração: mãos no notebook com o painel do HypeApp aberto na lista de creators, com o botão Convidar em cada perfil" width="1200" height="751" loading="lazy" decoding="async"></div>
   </div>
 </section>
 
@@ -1504,7 +1505,7 @@ def p_links(L, A):
     <div class="lk2-hero lk2-hero-m">
       <span class="lk2-pill">Marcas e agências</span>
       <h2 class="lk2-hh">Creators, aprovações e pagamentos num só painel.</h2>
-      <img class="lk2-img lk2-img-m" src="{A('assets/ilustracoes/agencia-1.webp')}" alt="Ilustração: pessoa de braços cruzados, pronta para gerir campanhas" width="600" height="1208" loading="lazy">
+      <img class="lk2-img lk2-img-m" src="{A('assets/ilustracoes/painel-notebook.webp')}" alt="Ilustração: mãos no notebook com o painel do HypeApp aberto na lista de creators" width="1200" height="751" loading="lazy">
       <a class="lk2-btn" href="{L('/contato/marcas/')}" data-cta="links-falar-time">Falar com nosso time</a>
       <small class="lk2-note">Resposta em até 2 dias úteis</small>
     </div>
