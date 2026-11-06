@@ -1,0 +1,36 @@
+{
+  "gerado_em": "2026-11-06T05:41:14.758Z",
+  "fuso": "America/Sao_Paulo",
+  "semanas": [
+    {
+      "inicio": "2026-09-28",
+      "fim": "2026-10-04",
+      "iso": "202640"
+    },
+    {
+      "inicio": "2026-10-05",
+      "fim": "2026-10-11",
+      "iso": "202641"
+    },
+    {
+      "inicio": "2026-10-12",
+      "fim": "2026-10-18",
+      "iso": "202642"
+    },
+    {
+      "inicio": "2026-10-19",
+      "fim": "2026-10-25",
+      "iso": "202643"
+    },
+    {
+      "inicio": "2026-10-26",
+      "fim": "2026-11-01",
+      "iso": "202644"
+    }
+  ],
+  "ga4": null,
+  "search_console": null,
+  "erros": [
+    "GA_SA_JSON ausente ou inválido nos segredos do repositório"
+  ]
+}
