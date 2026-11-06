@@ -1952,6 +1952,10 @@ http://hypeapp.com.br/*         https://www.hypeapp.com.br/:splat   301!
 
 # Endereços do site antigo (omnes-tech/hype-site): política e termos acima; demais páginas
 /murais-campanhas/*  /criadores/              301
+# Artigos removidos do blog (06/11): o de Reels vira o guia de publi; os outros vão para o blog
+/blog/quanto-cobrar-por-reels/*  /blog/quanto-cobrar-por-uma-publi/  301
+/blog/media-kit-link-ou-pdf/*  /blog/  301
+/blog/permuta-recebido-ou-campanha-paga/*  /blog/  301
 /Privacidade.html    /privacidade/            301
 /privacidade.html    /privacidade/            301
 /Privacidade         /privacidade/            301
