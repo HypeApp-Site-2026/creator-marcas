@@ -1,7 +1,10 @@
 // Recebe os formulários do site e cria o registro no CRM Comercial da plataforma Você no Hype, pelo webhook:
 //   comercial  "Fale com nosso time" (marcas e agências)  → lead
-//   suporte    chamado de suporte                          → registro marcado como SUPORTE nas notas
+//   suporte    chamado de suporte → API de chamados do HypeApp (POST /api/public/support/tickets), que devolve o número
+//              do pedido. Se a API estiver fora do ar, o chamado vai ao CRM (como antes) para não se perder.
 // Função do Vercel (Node), roda só no servidor.
+//
+// Variável opcional: SUPPORT_TICKETS_URL (padrão: https://api-v2.hypeapp.com.br/api/public/support/tickets).
 //
 // Variável de ambiente obrigatória (somente servidor, nunca exposta ao navegador):
 //   PLATAFORMA_WEBHOOK_SECRET   segredo enviado no cabeçalho X-Webhook-Secret
@@ -14,6 +17,12 @@
 const { confirma } = require('./_email');
 
 const WEBHOOK_URL = 'https://plataforma.vocenohype.com.br/api/public/leads';
+const TICKETS_URL = process.env.SUPPORT_TICKETS_URL || 'https://api-v2.hypeapp.com.br/api/public/support/tickets';
+// Assunto do formulário → category da API de chamados
+const CATEGORIA = { conta: 'account', exclusao: 'account', redes: 'account', campanha: 'campaign', pagamento: 'billing',
+  erro: 'bug', denuncia: 'other', outro: 'other' };
+// Campo da API → campo do formulário (para marcar o campo certo quando a API recusar)
+const CAMPO_API = { name: 'nome', email: 'email', subject: 'assunto', message: 'descricao' };
 const TIMEOUT_MS = 10000;
 const MAX_BODY = 16 * 1024;
 
@@ -93,10 +102,11 @@ const rotulo = (campo, v) => {
   return (m && m[v]) || v;
 };
 
-function responder(req, res, status, ok, erro, campos, proxima = '/contato/enviado/') {
+function responder(req, res, status, ok, erro, campos, proxima = '/contato/enviado/', numero) {
   const querJson = (req.headers.accept || '').includes('application/json');
-  if (querJson) return res.status(status).json(ok ? { ok: true } : campos ? { ok: false, erro, campos } : { ok: false, erro });
-  if (ok) { res.setHeader('Location', proxima); return res.status(303).end(); }
+  const n = numero != null && /^\d{1,12}$/.test(String(numero)) ? Number(numero) : null;
+  if (querJson) return res.status(status).json(ok ? (n != null ? { ok: true, numero: n } : { ok: true }) : campos ? { ok: false, erro, campos } : { ok: false, erro });
+  if (ok) { res.setHeader('Location', proxima + (n != null ? `?pedido=${n}` : '')); return res.status(303).end(); }
   res.setHeader('Content-Type', 'text/html; charset=utf-8');
   return res.status(status).send(`<!doctype html><meta charset="utf-8"><title>Não foi possível enviar</title>
 <p style="font-family:sans-serif;max-width:560px;margin:60px auto">${esc(erro)}
@@ -186,13 +196,92 @@ function montaLead(d, agora, tipo = 'comercial') {
   return corpo;
 }
 
+// Monta o corpo do chamado para a API de suporte (limites da API: name 2-100, subject 3-120, message 10-5000).
+function montaChamado(d, base, teste) {
+  const r = (campo, v) => (OPCOES_SUPORTE[campo] && OPCOES_SUPORTE[campo][v]) || v || '';
+  const linha = (p, v) => (v ? `${p}: ${v}` : null);
+  const uso = d.uso === 'painel' ? 'Painel (marca ou agência)' : 'App (creator)';
+  let subject = `${r('assunto', d.assunto) || 'Suporte'} · ${uso}`;
+  if (d.assunto === 'campanha' && d.campanha_nome) subject += ` · ${d.campanha_nome}`;
+  if (teste) subject = `[TESTE] ${subject}`;
+  const detalhes = [
+    linha('Usa', uso),
+    linha('Assunto', r('assunto', d.assunto)),
+    linha('E-mail da conta', d.email_conta),
+    linha('Rede', r('rede', d.rede)),
+    linha('@ na rede', d.arroba),
+    linha('Mensagem de erro da rede', d.erro_rede),
+    linha('Campanha', d.campanha_nome),
+    linha('Etapa', r('etapa', d.etapa)),
+    linha('Data da solicitação de saque', d.data_saque),
+    linha('Valor', d.valor),
+    linha('Aparelho e sistema', d.aparelho),
+    linha('Versão do app', d.versao),
+    linha('Link ou @ denunciado', d.alvo),
+  ].filter(Boolean);
+  const blocos = teste ? ['AMBIENTE DE TESTE (teste.hypeapp.com.br): não é um chamado real.', d.descricao] : [d.descricao];
+  if (d.passos) blocos.push(`O que fez até o erro aparecer:\n${d.passos}`);
+  if (detalhes.length) blocos.push(detalhes.join('\n'));
+  const corpo = {
+    name: corta(d.nome, 100),
+    email: d.email,
+    subject: corta(subject, 120),
+    message: corta(blocos.join('\n\n'), 5000),
+    category: CATEGORIA[d.assunto] || 'other',
+  };
+  const pag = String(d.pagina || '');
+  corpo.page_url = /^https:\/\//.test(pag) ? corta(pag, 500) : `${base}/suporte/`;
+  return corpo;
+}
+
+// Lê a lista de problemas do 400 sem depender do formato exato: procura os nomes dos campos da API no JSON.
+function camposRecusados(j) {
+  const txt = JSON.stringify(j || {});
+  return Object.keys(CAMPO_API).filter((k) => new RegExp(`"${k}"|\\b${k}\\b`).test(txt)).map((k) => CAMPO_API[k]);
+}
+
+// Envia à API de chamados. Devolve { ok, numero } | { status, campos } | { falha } (fora do ar: cai no CRM).
+async function enviaChamado(corpo, req) {
+  const ctrl = new AbortController();
+  const timer = setTimeout(() => ctrl.abort(), TIMEOUT_MS);
+  const ip = String(req.headers['x-forwarded-for'] || '').split(',')[0].trim();
+  let r;
+  try {
+    r = await fetch(TICKETS_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json', ...(ip ? { 'X-Forwarded-For': ip } : {}) },
+      body: JSON.stringify(corpo),
+      signal: ctrl.signal,
+    });
+  } catch (e) {
+    const timeout = e && e.name === 'AbortError';
+    console.error('[chamado] falha ao chamar a API de chamados:', timeout ? 'timeout de 10 s' : (e && e.message) || 'erro de rede');
+    return { falha: true, timeout };
+  } finally {
+    clearTimeout(timer);
+  }
+  const j = await r.json().catch(() => ({}));
+  if (r.status === 201) {
+    const numero = j && j.data && j.data.number;
+    return { ok: true, numero: numero != null && /^\d{1,12}$/.test(String(numero)) ? Number(numero) : null };
+  }
+  if (r.status === 400) {
+    const campos = camposRecusados(j);
+    console.error('[chamado] API recusou os dados (400), campos:', campos.join(', ') || 'não identificados');
+    return { status: 400, campos };
+  }
+  if (r.status === 429) { console.error('[chamado] API respondeu 429: mais de 5 envios por minuto do mesmo IP.'); return { status: 429 }; }
+  console.error(`[chamado] API de chamados respondeu ${r.status}.`);
+  return { falha: true };
+}
+
 async function handler(req, res) {
   if (req.method !== 'POST') { res.setHeader('Allow', 'POST'); return res.status(405).end(); }
 
   const d = normaliza(lerCorpo(req));
   const tipo = d['form-name'] === 'suporte' ? 'suporte' : 'comercial';
   const form = FORMS[tipo];
-  const resp = (status, ok, erro, campos) => responder(req, res, status, ok, erro, campos, form.proxima);
+  const resp = (status, ok, erro, campos, numero) => responder(req, res, status, ok, erro, campos, form.proxima, numero);
   if (d['bot-field']) return resp(200, true); // robô: finge que deu certo, não chama o webhook
 
   // Validação no servidor (espelha a do formulário) e limite de tamanho por campo.
@@ -202,6 +291,12 @@ async function handler(req, res) {
   if (!d.nome) ruins.add('nome');
   if (!d.email && !d.whatsapp) { ruins.add('email'); ruins.add('whatsapp'); }
   if (d.email && !emailOk(d.email)) ruins.add('email');
+  if (tipo === 'suporte') { // limites da API de chamados
+    if (!d.email) ruins.add('email');
+    if (d.nome && d.nome.length < 2) ruins.add('nome');
+    if (d.nome && d.nome.length > 100) ruins.add('nome');
+    if (d.descricao && d.descricao.length < 10) ruins.add('descricao');
+  }
   for (const [k, v] of Object.entries(d)) {
     const lim = LIMITES[k] || LIMITE_PADRAO;
     const partes = Array.isArray(v) ? v : [v];
@@ -216,14 +311,39 @@ async function handler(req, res) {
     return resp(400, false, MSG.invalido, [...ruins]);
   }
 
+  const host = String(req.headers['x-forwarded-host'] || req.headers.host || '');
+  const teste = /^teste\./.test(host);
+  const base = /^(teste|www)\.hypeapp\.com\.br$/.test(host) ? `https://${host}`
+    : (process.env.VERCEL_ENV === 'production' ? 'https://www.hypeapp.com.br' : 'https://teste.hypeapp.com.br');
+
+  let aviso = '';
+  if (tipo === 'suporte') {
+    const c = await enviaChamado(montaChamado(d, base, teste), req);
+    if (c.ok) {
+      // e-mail de confirmação com o número do pedido (falha no e-mail não afeta o chamado)
+      await confirma(tipo, { ...d, pedido: c.numero }, OPCOES_SUPORTE, base);
+      return resp(200, true, '', null, c.numero);
+    }
+    if (c.status === 400) return resp(400, false, MSG.invalido, c.campos.length ? c.campos : undefined);
+    if (c.status === 429) return resp(429, false, MSG.limite);
+    // API fora do ar: o chamado segue para o CRM, como antes, para não se perder
+    aviso = c.timeout
+      ? 'ATENÇÃO: a API de chamados não respondeu em 10 s. Confira se o chamado já existe lá antes de abrir de novo.'
+      : 'ATENÇÃO: a API de chamados estava indisponível. Abrir o chamado manualmente.';
+  }
+
   const segredo = process.env.PLATAFORMA_WEBHOOK_SECRET;
   if (!segredo) {
     console.error('[lead] PLATAFORMA_WEBHOOK_SECRET não configurada: lead não enviado ao CRM.');
     return resp(503, false, MSG.temporario);
   }
 
-  const teste = /^teste\./.test(String(req.headers['x-forwarded-host'] || req.headers.host || ''));
   let corpo = montaLead(d, new Date(), tipo);
+  if (aviso) {
+    const lead = JSON.parse(corpo);
+    lead.notes = (aviso + '\n' + lead.notes).slice(0, 5000);
+    corpo = JSON.stringify(lead);
+  }
   if (teste) { // enviado pelo endereço de teste da equipe: marca nome e notas
     const lead = JSON.parse(corpo);
     lead.name = ('[TESTE] ' + lead.name).slice(0, 200);
@@ -249,9 +369,6 @@ async function handler(req, res) {
 
   if (r.status === 201) {
     // lead gravado: e-mail de confirmação para quem enviou (só com SMTP_USER e SMTP_PASS; falha não afeta o envio)
-    const host = String(req.headers['x-forwarded-host'] || req.headers.host || '');
-    const base = /^(teste|www)\.hypeapp\.com\.br$/.test(host) ? `https://${host}`
-      : (process.env.VERCEL_ENV === 'production' ? 'https://www.hypeapp.com.br' : 'https://teste.hypeapp.com.br');
     await confirma(tipo, d, tipo === 'suporte' ? OPCOES_SUPORTE : OPCOES_COMERCIAL, base);
     return resp(200, true);
   }

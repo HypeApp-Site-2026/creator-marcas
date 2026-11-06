@@ -1,8 +1,8 @@
 {
  "/": {
   "publicado": "2026-10-30",
-  "alterado": "2026-11-05",
-  "hash": "1405429cba09bf9293fb787f4711747a"
+  "alterado": "2026-11-06",
+  "hash": "af7ecb96117aecef100ad961d1f583c3"
  },
  "/404": {
   "publicado": "2026-10-30",
@@ -81,8 +81,8 @@
  },
  "/marcas/": {
   "publicado": "2026-10-30",
-  "alterado": "2026-11-05",
-  "hash": "0f00cf5fc1187e6176f5040e7bf38a28"
+  "alterado": "2026-11-06",
+  "hash": "4f49f888092fb109c59156e95c710a29"
  },
  "/marcas/versao-a/": {
   "publicado": "2026-11-04",
@@ -121,13 +121,13 @@
  },
  "/suporte/": {
   "publicado": "2026-10-30",
-  "alterado": "2026-11-04",
-  "hash": "4bf3d09d0db07ab14b7d2fd61aeb83ee"
+  "alterado": "2026-11-06",
+  "hash": "e537b00facfe5c0d87a58e313179e56a"
  },
  "/suporte/enviado/": {
   "publicado": "2026-10-30",
-  "alterado": "2026-11-05",
-  "hash": "96121f906eda1a5fd63cdbca3237c2d8"
+  "alterado": "2026-11-06",
+  "hash": "49e80e5836b9056437aa63573a6fb5cc"
  },
  "/termos/": {
   "publicado": "2026-10-30",

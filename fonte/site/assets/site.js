@@ -314,9 +314,18 @@
     var v = el.value.trim();
     if (el.required && !v) return el.getAttribute('data-msg') || 'Preencha este campo.';
     if (v && el.type === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)) return 'Confira o e-mail. Exemplo: nome@empresa.com.br';
+    var mn = +(el.getAttribute('data-min') || 0);
+    if (v && mn && v.length < mn) return 'Escreva pelo menos ' + mn + ' caracteres.';
     if (v && el.getAttribute('data-kind') === 'tel' && v.replace(/\D/g, '').length < 10) return 'Informe DDD e n\u00famero.';
     return '';
   };
+  // Numero do pedido de suporte (/suporte/enviado/?pedido=1042): so digitos, texto puro
+  (function () {
+    var box = $('[data-pedido]'); if (!box) return;
+    var m = /[?&]pedido=(\d{1,12})(?:&|$)/.exec(location.search); if (!m) return;
+    $('[data-pedido-n]', box).textContent = m[1]; box.hidden = false;
+  })();
+
   $$('form[data-form]').forEach(function (f) {
     // campos condicionais
     var sync = function () {
@@ -379,7 +388,13 @@
       var falha = 'N\u00e3o foi poss\u00edvel enviar agora, tente novamente em instantes.';
       fetch(f.getAttribute('action'), { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded', 'Accept': 'application/json' }, body: body })
         .then(function (r) {
-          if (r.ok) { guardaConversao(f); location.href = next; return; }
+          if (r.ok) {
+            guardaConversao(f);
+            return r.json().catch(function () { return {}; }).then(function (j) {
+              var n = j && j.numero != null ? String(j.numero) : '';
+              location.href = next + (/^\d{1,12}$/.test(n) ? '?pedido=' + n : '');
+            });
+          }
           return r.json().catch(function () { return {}; }).then(function (j) {
             var cs = (j && j.campos) || [], ns = [];
             cs.forEach(function (c) { var el = f.elements[c]; el = el && el.length && !el.tagName ? el[0] : el; if (el) { setErr(el, 'Confira este campo.'); ns.push(nomeDo(el)); } });

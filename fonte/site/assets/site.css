@@ -2142,3 +2142,7 @@ a.mvb-aglk:hover .bt-lk { text-decoration: underline; }
   .bh-eq, .bh-side-cta { display: none; }
 }
 @media (max-width: 640px) { .bh-capa { border-radius: 30px; } }
+
+/* Numero do pedido de suporte (06/11) */
+.sup-num{margin:0;font-size:clamp(20px,2.4vw,26px);font-weight:700;letter-spacing:-.4px;background:#D2F51A;color:#050505;border-radius:999px;padding:10px 20px}
+.sup-num b{font-weight:800}

@@ -1409,8 +1409,8 @@ def p_suporte(L, A):
     {cond('erro', '<div class="cols-2">' + field('aparelho', 'Aparelho e sistema', ph='Ex.: iPhone 13, iOS 18') + field('versao', 'Versão do app', req=False, ph='Ex.: 2.0.1') + '</div>' + field('passos', 'O que você fez até o erro aparecer', 'textarea'))}
     {cond('denuncia', field('alvo', 'Link ou @ denunciado'))}
     {cond('exclusao', '<p class="form-note">Antes de excluir, veja o que acontece com campanhas, saldo e dados na página <a href="' + L('/exclusao-de-conta/') + '">Exclusão de conta</a>.</p>')}
-    <div class="cols-2">{field('nome', 'Nome', extra=' autocomplete="name"')}{field('email', 'E-mail para resposta', 'email', extra=' autocomplete="email"', ph='nome@email.com')}</div>
-    {field('descricao', 'Descreva o que aconteceu', 'textarea')}
+    <div class="cols-2">{field('nome', 'Nome', extra=' autocomplete="name" data-min="2" maxlength="100"')}{field('email', 'E-mail para resposta', 'email', extra=' autocomplete="email"', ph='nome@email.com')}</div>
+    {field('descricao', 'Descreva o que aconteceu', 'textarea', extra=' data-min="10" maxlength="3000"')}
     {privacy_check(L, 'aceite')}
     <p class="err form-erros" role="alert" hidden></p>
     {preview_note()}
@@ -1423,8 +1423,9 @@ def p_sup_enviado(L, A):
 <section class="band-white stack" style="align-items:flex-start;gap:20px;max-width:820px" aria-labelledby="ok-h">
   <span class="tag ink">Chamado aberto</span>
   <h1 id="ok-h" class="display" style="font-size:clamp(36px,5vw,56px)">Seu chamado foi aberto</h1>
+  <p class="sup-num" data-pedido hidden>Pedido <b>#<span data-pedido-n></span></b> enviado</p>
   <p class="lead">A primeira resposta chega em até 2 dias úteis, de segunda a sexta, das 10h às 18h.</p>
-  <p class="small">Você vai receber uma confirmação automática por e-mail. Não responda a ela: se precisar complementar, abra um novo chamado.</p>
+  <p class="small">Você vai receber uma confirmação automática por e-mail com o número do pedido. Não responda a ela: se precisar complementar, abra um novo chamado.</p>
   <div class="row"><a class="btn btn-ink" href="{L('/')}">Voltar ao início</a><a class="btn btn-grey" href="{L('/perguntas-frequentes/')}">Perguntas frequentes</a></div>
 </section>'''
 

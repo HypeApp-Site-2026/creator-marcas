@@ -118,7 +118,8 @@ function situacao(tipo, d, rot) {
     const ass = SUP[d.assunto] ? d.assunto : 'outro';
     const quem = d.uso === 'painel' ? 'painel' : 'app';
     const s = SUP[ass][quem];
-    const resumo = [['Assunto', r('assunto', d.assunto)], ['Você usa', quem === 'painel' ? 'O painel (marca ou agência)' : 'O app (creator)']];
+    const pedido = d.pedido != null && /^\d{1,12}$/.test(String(d.pedido)) ? `#${d.pedido}` : '';
+    const resumo = [['Pedido', pedido], ['Assunto', r('assunto', d.assunto)], ['Você usa', quem === 'painel' ? 'O painel (marca ou agência)' : 'O app (creator)']];
     if (ass === 'campanha') resumo.push(['Campanha', limpa(d.campanha_nome, 80)], ['Etapa', r('etapa', d.etapa)]);
     if (ass === 'redes') resumo.push(['Rede', r('rede', d.rede)], ['Perfil', limpa(d.arroba, 60)]);
     if (ass === 'erro') resumo.push(['Aparelho', limpa(d.aparelho, 60)], ['Versão do app', limpa(d.versao, 20)]);
@@ -126,10 +127,10 @@ function situacao(tipo, d, rot) {
     return {
       chave: `suporte-${quem}-${ass}`,
       img: IMG[quem][ass],
-      assunto: `${s.titulo} · HypeApp`,
+      assunto: pedido ? `Pedido ${pedido} · ${s.titulo} · HypeApp` : `${s.titulo} · HypeApp`,
       tag: quem === 'painel' ? 'Suporte · Marcas e agências' : 'Suporte · Creators',
       ola, titulo: s.titulo,
-      texto: [`Recebemos o seu chamado e ele já está com a nossa equipe de suporte. ${PRAZO_SUP}`],
+      texto: [`Recebemos o seu chamado${pedido ? ` (pedido ${pedido})` : ''} e ele já está com a nossa equipe de suporte. ${PRAZO_SUP}`],
       resumo: resumo.filter(([, v]) => v),
       dicasTitulo: 'Enquanto isso',
       dicas: s.dicas, alerta: s.alerta || '',

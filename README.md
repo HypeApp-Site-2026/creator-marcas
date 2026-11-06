@@ -67,9 +67,18 @@ Mapeamento:
   - senão `site`.
 - **`source_form`:** sempre `Site-HypeApp`.
 
-### Suporte → mesmo webhook
+### Suporte → API de chamados do HypeApp (06/11)
 
-O formulário de `/suporte/` também vai para o `api/lead.js`, com o mesmo segredo, e chega ao CRM Comercial como registro com `source_form` `Site-HypeApp`. As notas começam com "Tipo: CHAMADO DE SUPORTE (não é lead comercial)", seguidas do assunto e das respostas do chamado.
+O formulário de `/suporte/` vai para o `api/lead.js`, que abre o chamado em `POST https://api-v2.hypeapp.com.br/api/public/support/tickets` (troque com a variável `SUPPORT_TICKETS_URL`, se precisar). A chamada sai do servidor do Vercel, então a CSP do site não muda.
+
+- **Campos enviados:** `name` (Nome, 2 a 100), `email`, `subject` (assunto + "App (creator)" ou "Painel (marca ou agência)", e o nome da campanha quando houver, até 120), `message` (a descrição, os passos do erro e os detalhes do assunto, até 5000), `category` e `page_url` (a página de onde veio o envio).
+- **category por assunto:** Conta e acesso, Excluir minha conta e Redes sociais → `account`; Campanha ou entrega → `campaign`; Pagamento ou saque → `billing`; Erro no app → `bug`; Denúncia e Outro → `other`. Ajuste em `CATEGORIA` no `lead.js`.
+- **Armadilha de robôs:** o campo escondido do formulário (`bot-field`) é conferido antes; se vier preenchido, o site responde "ok" e não chama a API. O `website` não é enviado.
+- **Sucesso (201):** o visitante vai para `/suporte/enviado/?pedido=1042` e vê "Pedido #1042 enviado". O número também vai no assunto e no corpo do e-mail de confirmação.
+- **400:** o site marca os campos recusados (nome, e-mail, assunto ou descrição). **429:** "Muitos envios em pouco tempo".
+- **Limite por IP:** como a chamada sai do servidor, todos os envios chegam à API com IPs do Vercel. O `lead.js` manda o IP do visitante em `X-Forwarded-For`; a API precisa usar esse cabeçalho no limite de 5 por minuto (vindo só do Vercel), senão o limite vale para o site inteiro.
+- **API fora do ar (5xx, erro de rede ou 10 s sem resposta):** o chamado vai para o CRM Comercial pelo webhook antigo, com um aviso no começo das notas, para não se perder. Nesse caso não há número de pedido.
+- **Envios pelo teste.hypeapp.com.br** chegam com `[TESTE]` no assunto e o aviso "AMBIENTE DE TESTE" no começo da mensagem.
 
 O Resend não é mais usado: `api/contato.js` foi removido e a variável `RESEND_API_KEY` pode ser apagada do Vercel.
 
