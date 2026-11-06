@@ -935,7 +935,10 @@
       var q = seg(p, 0.04, 0.96);
       telas(q);
       /* APLICATIVO: textos saem primeiro; o celular vem para perto da camera e some */
-      var tx = eio(seg(q, 0, 0.18)), z = eio(seg(q, 0, 0.5)), fade = seg(q, 0.3, 0.5);
+      /* celular (tela estreita): o aparelho ocupa a tela ao aproximar, entao cresce menos e some antes
+         de a PLATAFORMA e o MacBook entrarem (06/11) */
+      var nar = window.innerWidth < 760;
+      var tx = eio(seg(q, 0, 0.18)), z = eio(seg(q, 0, nar ? 0.3 : 0.5)), fade = nar ? eio(seg(q, 0.14, 0.3)) : seg(q, 0.3, 0.5);
       l1.style.opacity = String(1 - tx);
       l1.style.transform = tx ? y(-tx * 40, 'px') : '';
       AP.copy.style.opacity = String(1 - tx);
@@ -944,15 +947,15 @@
       AP.word.style.transform = 'translateY(-50%) scale(' + (1 + z * 0.12).toFixed(4) + ')';
       var fl = Math.sin((now - t0) / 1000 * 1.25) * clamp((now - t0 - 1600) / 1200) * (1 - z);
       AP.dev.style.opacity = String(1 - fade);
-      AP.dev.style.transform = 'translate3d(' + (-z * 4).toFixed(2) + 'vw,' + (fl * 7 - z * 8 * innerHeight / 100).toFixed(2) + 'px,0) scale(' + (1 + z * 1.9).toFixed(4) + ')' +
+      AP.dev.style.transform = 'translate3d(' + (-z * 4).toFixed(2) + 'vw,' + (fl * 7 - z * 8 * innerHeight / 100).toFixed(2) + 'px,0) scale(' + (1 + z * (nar ? 0.9 : 1.9)).toFixed(4) + ')' +
         ' rotateZ(' + (21 - z * 15 + fl * 0.5).toFixed(2) + 'deg) rotateY(' + (-12 + z * 12).toFixed(2) + 'deg) rotateX(' + (6 - z * 6).toFixed(2) + 'deg)';
       cue1.style.opacity = String(1 - seg(q, 0, 0.12));
       /* PLATAFORMA */
-      var vis = q > 0.3;
+      var vis = q > (nar ? 0.32 : 0.3);
       plat.style.opacity = vis ? '1' : '0';
       l2.style.opacity = vis ? '1' : '0';
       if (vis) {
-        rise(PL.ch, q, 0.34, 0.012, 0.16);
+        rise(PL.ch, q, nar ? 0.36 : 0.34, 0.012, 0.16);
         var m = eoq(seg(q, 0.42, 0.66));
         var L = eio(seg(q, 0.58, 0.88)), back = eio(seg(q, 0.86, 0.95));
         PL.dev.style.opacity = String(clamp(m * 2.5));
