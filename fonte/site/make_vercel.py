@@ -232,8 +232,9 @@ def main():
         {'source': '/backoffice', 'destination': PAINEL + '/sign-in', 'permanent': False},
         {'source': '/backoffice/:path*', 'destination': PAINEL + '/:path*', 'permanent': False}]
     # Perfis públicos da versão anterior (/u/<nome>, /pt-BR/<nome>): mostram o aviso de /perfil-antigo/, sem índice (06/11)
-    rewrites = rewrites + [{'source': '/u/:nome+', 'destination': '/perfil-antigo/'}, {'source': '/pt-BR/:nome+', 'destination': '/perfil-antigo/'}]
-    perfis_redir = [{'source': '/u', 'destination': '/', 'permanent': True}, {'source': '/pt-BR', 'destination': '/', 'permanent': True}]
+    # Padrões com a barra final opcional, como os outros redirecionamentos (trailingSlash ligado)
+    rewrites = rewrites + [{'source': '/u/(.+)', 'destination': '/perfil-antigo/'}, {'source': '/pt-BR/(.+)', 'destination': '/perfil-antigo/'}]
+    perfis_redir = [{'source': '/u(/)?', 'destination': '/', 'permanent': True}, {'source': '/pt-BR(/)?', 'destination': '/', 'permanent': True}]
     perfis_hdr = [{'source': '/(u|pt-BR|perfil-antigo)/(.*)', 'headers': [{'key': 'X-Robots-Tag', 'value': 'noindex'}]}]
     cfg = {
         '$schema': 'https://openapi.vercel.sh/vercel.json',

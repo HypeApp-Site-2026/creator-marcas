@@ -12,11 +12,11 @@
   },
   "rewrites": [
     {
-      "source": "/u/:nome+",
+      "source": "/u/(.+)",
       "destination": "/perfil-antigo/"
     },
     {
-      "source": "/pt-BR/:nome+",
+      "source": "/pt-BR/(.+)",
       "destination": "/perfil-antigo/"
     }
   ],
@@ -32,12 +32,12 @@
       "permanent": false
     },
     {
-      "source": "/u",
+      "source": "/u(/)?",
       "destination": "/",
       "permanent": true
     },
     {
-      "source": "/pt-BR",
+      "source": "/pt-BR(/)?",
       "destination": "/",
       "permanent": true
     },
