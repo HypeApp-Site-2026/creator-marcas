@@ -359,7 +359,7 @@ Escreva para contato@vocenohype.com.br com o assunto e o prazo do pedido.
 
 Fonte: https://www.hypeapp.com.br/perguntas-frequentes/
 Título: Perguntas frequentes: campanhas, pagamento e conta | HypeApp
-Atualizado em: 2026-11-03
+Atualizado em: 2026-11-06
 
 # Perguntas frequentes
 
@@ -369,7 +369,7 @@ Respostas rápidas sobre o app, campanhas, pagamentos, valores para marcas e seg
 
 **P:** Quem pode participar?
 
-Qualquer pessoa com 18 anos ou mais, ou emancipada, sem mínimo de seguidores. Cada campanha tem critérios próprios.
+Qualquer pessoa com 18 anos ou mais, sem mínimo de seguidores. Cada campanha tem critérios próprios.
 
 **P:** Como eu começo?
 
@@ -499,7 +499,7 @@ Pedidos sobre seus dados pessoais seguem pela política de privacidade. Marcas n
 
 Fonte: https://www.hypeapp.com.br/privacidade/
 Título: Política de privacidade (LGPD) | HypeApp
-Atualizado em: 2026-11-04
+Atualizado em: 2026-11-06
 
 # Política de Privacidade
 
@@ -507,7 +507,7 @@ Quais dados pessoais o HypeApp coleta, como usa, com quem compartilha e como voc
 
 Esta política explica quais dados pessoais o HypeApp coleta no app, no painel das marcas e no site, como os usamos, com quem os compartilhamos e como você exerce seus direitos, em conformidade com a Lei Geral de Proteção de Dados Pessoais (LGPD, Lei nº 13.709/2018) e com as regras das lojas de aplicativos e das plataformas conectadas.
 
-Versão 2.1 · Última atualização: 4 de novembro de 2026.
+Versão 2.2 · Última atualização: 6 de novembro de 2026.
 
 ## Resumo rápido
 
@@ -645,17 +645,25 @@ Criar e manter sua conta, operar campanhas, entregas, carteira e pagamentos
 
 Execução de contrato (inciso V)
 
-Conectar redes sociais, usar localização e, no iOS, o identificador de publicidade
+Usar as redes sociais exigidas por uma campanha em que você se inscreveu ou que aceitou
+
+Execução de contrato (inciso V), porque a rede é condição daquela campanha
+
+Conectar redes sociais por escolha própria, fora dessa exigência, usar localização e, no iOS, o identificador de publicidade
 
 Consentimento (inciso I), que você pode revogar a qualquer momento
+
+Dar acesso ao painel às pessoas da equipe de uma marca ou agência cliente
+
+Legítimo interesse (inciso IX) da marca ou agência e da Você no Hype em operar o contrato com o cliente, já que essas pessoas não são parte dele
 
 Responder ao formulário "Fale com nosso time" e preparar uma proposta
 
 Procedimentos preliminares a contrato, a pedido do titular (inciso V), e consentimento para o contato por e-mail e WhatsApp (inciso I)
 
-Enviar comunicações sobre campanhas, novidades e serviços
+Enviar a quem já usa o HypeApp comunicações sobre campanhas, novidades e serviços
 
-Legítimo interesse (inciso IX). Você pode cancelar o recebimento quando quiser.
+Legítimo interesse (inciso IX), por haver relação prévia com você. Você pode cancelar o recebimento quando quiser. Para quem ainda não é usuário, como no formulário comercial, pedimos consentimento.
 
 Segurança, prevenção a fraudes, moderação e melhoria do serviço com dados agregados
 
@@ -664,6 +672,10 @@ Legítimo interesse (inciso IX)
 Medir o uso do site com o Google Analytics e o Microsoft Clarity
 
 Consentimento (inciso I), dado no aviso de cookies e revogável a qualquer momento em Preferências de cookies
+
+Medir o uso do app e corrigir falhas com o Firebase (análise e relatórios de falhas), com dados de uso e do aparelho
+
+Legítimo interesse (inciso IX) em manter o app funcionando e melhorá-lo. É diferente do site porque não usa cookies de terceiros no navegador. Você pode se opor escrevendo para contato@vocenohype.com.br.
 
 Cumprir obrigações legais, fiscais e regulatórias e atender ordens de autoridades
 
@@ -681,7 +693,7 @@ Hype Points não são dinheiro: não podem ser comprados, vendidos, transferidos
 
 ## 7. Redes sociais conectadas
 
-Conectar redes sociais é opcional, mas algumas campanhas exigem redes específicas. Em todas as conexões, o acesso é somente de leitura: o HypeApp não publica, não altera e não exclui nada nas suas redes, e não usa esses dados para publicidade personalizada. Você pode desconectar qualquer rede no app, em Perfil › Redes sociais conectadas › Desconectar.
+Conectar redes sociais é opcional. Algumas campanhas exigem redes específicas: nesse caso, a rede é condição para participar daquela campanha, e o uso dos dados dela segue a execução do contrato (veja a seção 5). Em todas as conexões, o acesso é somente de leitura: o HypeApp não publica, não altera e não exclui nada nas suas redes, e não usa esses dados para publicidade personalizada. Você pode desconectar qualquer rede no app, em Perfil › Redes sociais conectadas › Desconectar.
 
 ### 7.1 Instagram
 
@@ -735,7 +747,9 @@ Não vendemos, não alugamos e não cedemos seus dados pessoais para fins comerc
 
 ## 9. Transferência internacional
 
-Alguns fornecedores de tecnologia, como provedores de nuvem, de notificações e de análise, armazenam ou processam dados fora do Brasil. Nesses casos, adotamos as salvaguardas previstas na LGPD, como cláusulas contratuais específicas ou a verificação de nível adequado de proteção do país de destino.
+Alguns fornecedores de tecnologia, como provedores de nuvem e hospedagem, de notificações e de análise (entre eles Google, Firebase e Microsoft), armazenam ou processam dados fora do Brasil, principalmente nos Estados Unidos.
+
+Essas transferências seguem o art. 33 da LGPD. Usamos as cláusulas-padrão contratuais aprovadas pela ANPD (Resolução CD/ANPD nº 19/2024) nos contratos com esses fornecedores ou, quando houver, a decisão da ANPD que reconheça o nível de proteção adequado do país de destino.
 
 ## 10. Rastreamento e cookies
 
@@ -787,13 +801,13 @@ Pela LGPD, você pode pedir:
 
 A exclusão da conta pode ser feita no app (Perfil › Configurações › Excluir conta) ou pela página dedicada:
 
-Excluir conta e dados contato@vocenohype.com.br
+Excluir conta e dados
 
-Para os demais pedidos, escreva para contato@vocenohype.com.br. Respondemos em até 15 dias úteis. Se a resposta não for satisfatória, você pode recorrer à Autoridade Nacional de Proteção de Dados (ANPD).
+Para os demais pedidos, escreva para contato@vocenohype.com.br. A confirmação de que tratamos seus dados e o acesso a eles em formato simplificado são respondidos de imediato. A declaração completa, com a origem dos dados, os critérios usados e a finalidade, é enviada em até 15 dias corridos a partir do seu pedido (art. 19 da LGPD). Se a resposta não for satisfatória, você pode recorrer à Autoridade Nacional de Proteção de Dados (ANPD).
 
 ## 14. Crianças e adolescentes
 
-O HypeApp é destinado a pessoas com 18 anos ou mais, ou emancipadas, e a pessoas jurídicas. Não coletamos intencionalmente dados de menores. Se identificarmos uma conta nessas condições, ela será removida e os dados, excluídos.
+O HypeApp é destinado a pessoas com 18 anos ou mais e a pessoas jurídicas. A emancipação não basta: menores de 18 anos não podem criar conta, mesmo emancipados. Não coletamos intencionalmente dados de menores. Se identificarmos uma conta nessas condições, ela será removida e os dados, excluídos.
 
 ## 15. Alterações nesta política
 
@@ -805,7 +819,7 @@ Podemos atualizar esta política para refletir mudanças no HypeApp, nas nossas 
 
 Fonte: https://www.hypeapp.com.br/termos/
 Título: Termos de uso | HypeApp
-Atualizado em: 2026-11-03
+Atualizado em: 2026-11-06
 
 # Termos de Uso
 
@@ -813,7 +827,7 @@ Termos e condições gerais de uso do HypeApp para creators, marcas e agências.
 
 Termos e condições gerais de uso do HypeApp
 
-Versão 2.0 · Última atualização: 3 de novembro de 2026.
+Versão 2.1 · Última atualização: 6 de novembro de 2026.
 
 Seja bem-vindo(a) ao HypeApp.
 
@@ -907,7 +921,7 @@ Toda pessoa que navega ou de qualquer forma usa a Plataforma, seja Creator, Marc
 
 4.2 O acesso das Marcas e Agências ao Painel é liberado pelo nosso time comercial, conforme proposta e contrato. Os valores são sob consulta.
 
-4.3 O cadastro deve ser feito por pessoas com 18 (dezoito) anos ou mais, ou regularmente emancipadas.
+4.3 O cadastro deve ser feito por pessoas com 18 (dezoito) anos ou mais. A emancipação não autoriza o cadastro de menores de 18 anos.
 
 4.4 O Usuário deve informar um e-mail válido, que será o canal das comunicações. As mensagens enviadas a esse endereço serão consideradas recebidas, e o Usuário se compromete a consultá-lo regularmente.
 

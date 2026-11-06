@@ -126,13 +126,13 @@
  },
  "/perguntas-frequentes/": {
   "publicado": "2026-10-30",
-  "alterado": "2026-11-03",
-  "hash": "7bf1a3176673c965b199fe5128e8cd54"
+  "alterado": "2026-11-06",
+  "hash": "524a9c78b519e52a4b19eb080bf52c34"
  },
  "/privacidade/": {
   "publicado": "2026-10-30",
-  "alterado": "2026-11-04",
-  "hash": "3f1f1ece6d995a7ed88fecea634bd053"
+  "alterado": "2026-11-06",
+  "hash": "ece456bec7f0412c32b884ab97527694"
  },
  "/regras-da-comunidade/": {
   "publicado": "2026-11-03",
@@ -156,7 +156,7 @@
  },
  "/termos/": {
   "publicado": "2026-10-30",
-  "alterado": "2026-11-03",
-  "hash": "e073830b299254732937a47927cf07cb"
+  "alterado": "2026-11-06",
+  "hash": "7dd579d0b9c80a7b5ce0c8b3379e95ff"
  }
 }

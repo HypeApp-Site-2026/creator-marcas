@@ -1198,7 +1198,7 @@ def p_baixar(L, A):
 
 FAQ_GROUPS = [
     ('creators', 'Para creators', [
-        ('Quem pode participar?', 'Qualquer pessoa com 18 anos ou mais, ou emancipada, sem mínimo de seguidores. Cada campanha tem critérios próprios.'),
+        ('Quem pode participar?', 'Qualquer pessoa com 18 anos ou mais, sem mínimo de seguidores. Cada campanha tem critérios próprios.'),
         ('Como eu começo?', 'Baixe o HypeApp na App Store ou no Google Play, crie sua conta e conecte suas redes. Não há mínimo de seguidores.'),
         ('O cadastro garante participação em campanhas?', 'Não. Cada campanha tem critérios próprios e a marca ou a curadoria seleciona quem participa.'),
         ('Quanto custa para creators?', 'Nada. O HypeApp é gratuito para creators: não há mensalidade nem taxa sobre o valor que você recebe das campanhas.'),
