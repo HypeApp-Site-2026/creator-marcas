@@ -1082,7 +1082,7 @@ def p_marcas_b(L, A):
     <div class="bt bt-branco"><span class="bt-n">Self-service</span><b class="bt-t2">Sua equipe, no painel</b><span class="bt-p">Monta o mural, seleciona as inscrições, convida creators, aprova roteiros e conteúdos e acompanha as métricas.</span></div>
     <div class="bt bt-preto"><span class="bt-n bt-n-l">Gerenciada</span><b class="bt-t2">A Você no Hype, por você</b><span class="bt-p">Estratégia, curadoria de creators, negociação, contratos, acompanhamento das entregas e relatório de resultados.</span></div>
     <a class="bt bt-lima mvb-aglk" href="#agencias"><span class="bt-n">Agências</span><b class="bt-t2">Várias marcas, um painel</b><span class="bt-p">Sua equipe gerencia as campanhas de cada cliente em espaços separados.</span><span class="bt-lk">Ver como funciona</span></a>
-    <div class="bt mvb-foto"><img src="{A('assets/ilustracoes/painel-notebook.webp')}" alt="Ilustração: mãos no notebook com o painel do HypeApp aberto na lista de creators, com o botão Convidar em cada perfil" width="1200" height="751" loading="lazy" decoding="async"></div>
+    <div class="bt mvb-foto"><img src="{A('assets/ilustracoes/painel-notebook-quadrado.webp')}" alt="Ilustração: mãos no notebook com o painel do HypeApp aberto na lista de creators, com o botão Convidar em cada perfil" width="900" height="900" loading="lazy" decoding="async"></div>
   </div>
 </section>
 

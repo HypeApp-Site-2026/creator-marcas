@@ -2195,6 +2195,6 @@ body:has(.lk-main) { background: var(--ground); }
 
 /* Marcas · Quem opera a campanha: 4 quadrados, o último com a ilustração do painel (06/11) */
 .mvb-foto { min-height: 260px; background: #E9DDFB; }
-.mvb-foto img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; }
-@media (max-width: 760px) { .mvb-foto { min-height: 0; aspect-ratio: 16 / 10; } }
+.mvb-foto img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; }
+@media (max-width: 760px) { .mvb-foto { min-height: 0; aspect-ratio: 1 / 1; } }
 .lk2-img-m { object-position: 50% 30%; background: #E9DDFB; }
