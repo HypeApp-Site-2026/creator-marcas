@@ -10,7 +10,16 @@
       "maxDuration": 30
     }
   },
-  "rewrites": [],
+  "rewrites": [
+    {
+      "source": "/u/:nome+",
+      "destination": "/perfil-antigo/"
+    },
+    {
+      "source": "/pt-BR/:nome+",
+      "destination": "/perfil-antigo/"
+    }
+  ],
   "redirects": [
     {
       "source": "/backoffice",
@@ -21,6 +30,16 @@
       "source": "/backoffice/:path*",
       "destination": "https://backoffice-v2.hypeapp.com.br/:path*",
       "permanent": false
+    },
+    {
+      "source": "/u",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-BR",
+      "destination": "/",
+      "permanent": true
     },
     {
       "source": "/politica-de-privacidade(/.*)?",
@@ -481,6 +500,15 @@
         {
           "key": "Cache-Control",
           "value": "public, max-age=86400"
+        }
+      ]
+    },
+    {
+      "source": "/(u|pt-BR|perfil-antigo)/(.*)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex"
         }
       ]
     },

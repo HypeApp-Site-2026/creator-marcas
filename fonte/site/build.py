@@ -1518,6 +1518,23 @@ def p_links(L, A):
   <footer class="lk2-foot"><a href="{L('/perguntas-frequentes/')}">Perguntas frequentes</a><a href="{L('/suporte/')}">Suporte</a><a href="{L('/')}">hypeapp.com.br</a>{'<a href="#preferencias-cookies">Cookies</a>' if ANALYTICS else ''}</footer>
 </div>"""
 
+def p_perfil_antigo(L, A):
+    """Perfis públicos da versão anterior (/u/<nome> e /pt-BR/<nome>, 06/11): a V2 não tem perfil público.
+    Esses endereços mostram este aviso (rewrite no vercel.json), com noindex, para saírem do Google sem deixar quem clica num link antigo num erro."""
+    return f'''
+<section class="band-white split" aria-labelledby="pa-h">
+  <div class="stack" style="gap:20px">
+    <h1 id="pa-h" class="display" style="font-size:clamp(34px,5vw,54px)">Este perfil não fica mais aqui</h1>
+    <p class="lead">Os perfis públicos da versão anterior do HypeApp saíram do ar. O link que você abriu era de um desses perfis.</p>
+    <div class="stack" style="gap:12px">
+      <p><b>É creator?</b> Baixe o app novo e entre com o mesmo e-mail e a mesma senha da sua conta.</p>
+      <div class="row">{stores(L)}</div>
+      <p style="margin-top:12px"><b>É marca ou agência e procura creators?</b> No painel do HypeApp você encontra e convida creators para as suas campanhas.</p>
+      <div class="row"><a class="btn btn-ink" href="{L('/contato/marcas/')}">Falar com nosso time</a><a class="btn btn-soft" href="{L('/marcas/')}">Conhecer a plataforma</a></div>
+    </div>
+  </div>
+</section>'''
+
 def p_app(L, A):
     return f'''
 <section class="band-white split" data-app-redirect data-ios="{CFG['ios']}" data-android="{CFG['android']}" aria-labelledby="app-h">
@@ -1696,7 +1713,7 @@ PAGES = [
     ('/baixar/', p_baixar, 'tight'), ('/perguntas-frequentes/', p_faq, 'mid'), ('/sobre/', p_sobre, 'mid'),
     ('/contato/', p_contato, 'mid'), ('/contato/marcas/', p_contato_marcas, 'mid'), ('/contato/enviado/', p_enviado, 'mid'),
     ('/suporte/', p_suporte, 'mid'), ('/suporte/enviado/', p_sup_enviado, 'mid'), ('/entrar/', p_entrar, 'mid'),
-    ('/app', p_app, 'mid'), ('/links/', p_links, 'links'),
+    ('/app', p_app, 'mid'), ('/links/', p_links, 'links'), ('/perfil-antigo/', p_perfil_antigo, 'mid'),
     ('/privacidade/', p_legal_file('/privacidade/'), 'mid'), ('/termos/', p_legal_file('/termos/'), 'mid'),
     ('/cookies/', p_legal('/cookies/'), 'mid'), ('/exclusao-de-conta/', p_legal_file('/exclusao-de-conta/'), 'mid'),
     ('/legal/', p_legal_hub, 'mid'), ('/regras-da-comunidade/', p_regras, 'mid'),
@@ -1709,6 +1726,7 @@ if BLOG_ON:
 FALLBACK = {
     '/entrar/': ('Entrar no HypeApp', 'Creators entram pelo app. Marcas e agências entram pelo painel.'),
     '/app': ('Baixar o HypeApp', 'Leva à loja certa para o seu celular.'),
+    '/perfil-antigo/': ('Perfil da versão anterior | HypeApp', 'Os perfis públicos da versão anterior do HypeApp saíram do ar. Baixe o app novo ou fale com nosso time.'),
     '/links/': ('HypeApp · Links', 'Baixe o app do HypeApp, conheça a plataforma para marcas e fale com nosso time.'),
     '/404': ('Página não encontrada | HypeApp', 'O endereço pode ter mudado.'),
     '/marcas/versao-a/': ('Para marcas · versão A (estudo) | HypeApp', 'Estudo da página de marcas: produto primeiro.'),
@@ -1787,7 +1805,7 @@ def datas_da(url, conteudo):
     return d
 
 def jsonld(url, title, desc, d):
-    if url in ('/404', '/app', '/links/'):
+    if url in ('/404', '/app', '/links/', '/perfil-antigo/'):
         return []
     pag = {'@context': 'https://schema.org', '@type': TIPO_PAGINA.get(url, 'WebPage'), '@id': BASE + url + '#pagina', 'url': BASE + url,
            'name': title, 'description': desc, 'inLanguage': 'pt-BR', 'isPartOf': {'@id': SITE_ID}, 'publisher': {'@id': ORG_ID},

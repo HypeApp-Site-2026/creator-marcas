@@ -231,14 +231,18 @@ def main():
     painel_redir = [] if origem else [
         {'source': '/backoffice', 'destination': PAINEL + '/sign-in', 'permanent': False},
         {'source': '/backoffice/:path*', 'destination': PAINEL + '/:path*', 'permanent': False}]
+    # Perfis públicos da versão anterior (/u/<nome>, /pt-BR/<nome>): mostram o aviso de /perfil-antigo/, sem índice (06/11)
+    rewrites = rewrites + [{'source': '/u/:nome+', 'destination': '/perfil-antigo/'}, {'source': '/pt-BR/:nome+', 'destination': '/perfil-antigo/'}]
+    perfis_redir = [{'source': '/u', 'destination': '/', 'permanent': True}, {'source': '/pt-BR', 'destination': '/', 'permanent': True}]
+    perfis_hdr = [{'source': '/(u|pt-BR|perfil-antigo)/(.*)', 'headers': [{'key': 'X-Robots-Tag', 'value': 'noindex'}]}]
     cfg = {
         '$schema': 'https://openapi.vercel.sh/vercel.json',
         'framework': None, 'buildCommand': '', 'installCommand': '', 'outputDirectory': '.',
         'trailingSlash': True,
         'functions': {'api/lead.js': {'maxDuration': 30}},  # webhook (até 10 s) + e-mail de confirmação (até 6 s)
         'rewrites': rewrites,
-        'redirects': painel_redir + assets_host() + teste_host() + so_teste() + sem_index_html() + redirects(),
-        'headers': headers() + [{'source': '/(.*)', 'has': [{'type': 'host', 'value': TESTE_HOST}],
+        'redirects': painel_redir + perfis_redir + assets_host() + teste_host() + so_teste() + sem_index_html() + redirects(),
+        'headers': headers() + perfis_hdr + [{'source': '/(.*)', 'has': [{'type': 'host', 'value': TESTE_HOST}],
                                  'headers': [{'key': 'X-Robots-Tag', 'value': 'noindex, nofollow'}]}],
     }
     json.dump(cfg, open(os.path.join(OUT, 'vercel.json'), 'w', encoding='utf-8'), ensure_ascii=False, indent=2)
