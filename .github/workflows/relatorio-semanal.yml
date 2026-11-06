@@ -1,0 +1,32 @@
+name: Relatório semanal (coleta)
+# Coleta GA4 e Search Console da última semana fechada (segunda a domingo) e das 4 anteriores.
+# Resultado: artefato "dados-semana" (JSON só com contagens), lido pelo agente que escreve o relatório.
+# Precisa de: secret GA_SA_JSON e variáveis GA4_PROPERTY_ID e GSC_SITE (veja relatorio/LEIA-ME.md).
+on:
+  schedule:
+    - cron: '7 11 * * 1'   # segunda, 08h07 de Brasília
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  coleta:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: relatorio
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Coletar dados
+        env:
+          GA_SA_JSON: ${{ secrets.GA_SA_JSON }}
+          GA4_PROPERTY_ID: ${{ vars.GA4_PROPERTY_ID }}
+          GSC_SITE: ${{ vars.GSC_SITE }}
+        run: node relatorio/coleta.mjs > dados-semana.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dados-semana
+          path: dados-semana.json
+          retention-days: 90

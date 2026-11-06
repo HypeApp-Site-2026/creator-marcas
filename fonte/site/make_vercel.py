@@ -86,6 +86,40 @@ def headers():
             cur['headers'].append({'key': k.strip(), 'value': v.strip()})
     return out
 
+RELATORIO_YML = """name: Relatório semanal (coleta)
+# Coleta GA4 e Search Console da última semana fechada (segunda a domingo) e das 4 anteriores.
+# Resultado: artefato "dados-semana" (JSON só com contagens), lido pelo agente que escreve o relatório.
+# Precisa de: secret GA_SA_JSON e variáveis GA4_PROPERTY_ID e GSC_SITE (veja relatorio/LEIA-ME.md).
+on:
+  schedule:
+    - cron: '7 11 * * 1'   # segunda, 08h07 de Brasília
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  coleta:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: relatorio
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Coletar dados
+        env:
+          GA_SA_JSON: ${{ secrets.GA_SA_JSON }}
+          GA4_PROPERTY_ID: ${{ vars.GA4_PROPERTY_ID }}
+          GSC_SITE: ${{ vars.GSC_SITE }}
+        run: node relatorio/coleta.mjs > dados-semana.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dados-semana
+          path: dados-semana.json
+          retention-days: 90
+"""
+
 INDEXNOW_YML = r"""name: Avisar buscadores (IndexNow)
 # Envia as URLs do sitemap ao IndexNow (Bing, Yandex, Seznam, Naver e outros).
 # Rode manualmente depois de publicar mudanças: Actions > Avisar buscadores (IndexNow) > Run workflow.
@@ -160,10 +194,13 @@ def main():
                                  'headers': [{'key': 'X-Robots-Tag', 'value': 'noindex, nofollow'}]}],
     }
     json.dump(cfg, open(os.path.join(OUT, 'vercel.json'), 'w', encoding='utf-8'), ensure_ascii=False, indent=2)
-    open(os.path.join(OUT, '.vercelignore'), 'w').write('fonte\nREADME.md\n.github\n')
+    open(os.path.join(OUT, '.vercelignore'), 'w').write('fonte\nREADME.md\n.github\nrelatorio\n')
     # IndexNow: envio manual pelo GitHub (Actions → Avisar buscadores → Run workflow), depois que o site estiver no ar
     wf = os.path.join(OUT, '.github', 'workflows'); os.makedirs(wf, exist_ok=True)
     open(os.path.join(wf, 'indexnow.yml'), 'w', encoding='utf-8').write(INDEXNOW_YML)
+    # Relatório semanal: coleta de GA4 e Search Console toda segunda (08h de Brasília), lida pelo agente de análise
+    shutil.copytree(os.path.join(ROOT, 'relatorio'), os.path.join(OUT, 'relatorio'))
+    open(os.path.join(wf, 'relatorio-semanal.yml'), 'w', encoding='utf-8').write(RELATORIO_YML)
     open(os.path.join(OUT, '.gitignore'), 'w').write('.vercel\n.env\n.env.*\nfonte/site/dist/\nfonte/site/dist-web/\n__pycache__/\n.DS_Store\n')
     # código-fonte
     fonte = os.path.join(OUT, 'fonte')
@@ -171,6 +208,7 @@ def main():
     shutil.copytree(os.path.join(ROOT, 'seo'), os.path.join(fonte, 'seo'), ignore=ign)
     shutil.copytree(HERE, os.path.join(fonte, 'site'), ignore=ign)
     shutil.copytree(os.path.join(ROOT, 'vercel'), os.path.join(fonte, 'vercel'))
+    shutil.copytree(os.path.join(ROOT, 'relatorio'), os.path.join(fonte, 'relatorio'))
     shutil.copy(os.path.join(ROOT, 'vercel', 'README.md'), os.path.join(OUT, 'README.md'))
     n = sum(len(fs) for _, _, fs in os.walk(OUT))
     print('ok', OUT, n, 'arquivos;', len(cfg['redirects']), 'redirecionamentos')
