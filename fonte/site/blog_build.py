@@ -211,7 +211,7 @@ def post_meta(posts, base):
             ld['datePublished'] = p['data'].isoformat()
         a = EQUIPE[p['autor']]
         ld['author'] = {'@type': 'Organization' if p['autor'] == 'equipe-hypeapp' else 'Person', 'name': a['nome']}
-        out[u] = dict(title=p['titulo'] + ' | Blog HypeApp', desc=p['resumo'],
+        out[u] = dict(title=p['titulo'] + (' | Blog HypeApp' if len(p['titulo']) <= 45 else ' | HypeApp'), desc=p['resumo'],
                       robots='index, follow' if p['status'] == 'publicado' else 'noindex, follow',
                       img='og/blog/' + p['slug'] + '.jpg', pagina=p['titulo'], ld=ld)  # 1200×630 gerada por make_media.py com a capa e o título
     return out

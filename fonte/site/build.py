@@ -1667,8 +1667,10 @@ FONE = '+55 11 3834-5221'
 ENDERECO = {'@type': 'PostalAddress', 'streetAddress': 'R. Joaquim Floriano, 243, cj. 71, Itaim Bibi', 'addressLocality': 'São Paulo',
             'addressRegion': 'SP', 'postalCode': '04534-010', 'addressCountry': 'BR'}
 ORG_ID, SITE_ID, APP_ID = BASE + '/#organizacao', BASE + '/#site', BASE + '/#app'
-ORG = {'@context': 'https://schema.org', '@type': 'Organization', '@id': ORG_ID, 'name': 'HypeApp',
-       'legalName': EMPRESA, 'taxID': CNPJ, 'url': BASE + '/', 'logo': BASE + '/assets/logo-hypeapp.svg',
+ORG = {'@context': 'https://schema.org', '@type': 'Organization', '@id': ORG_ID, 'name': 'HypeApp', 'alternateName': 'Hype App',
+       'legalName': EMPRESA, 'taxID': CNPJ, 'url': BASE + '/',
+       # logo em PNG quadrado (o Google não garante SVG no logo da organização)
+       'logo': {'@type': 'ImageObject', 'url': BASE + '/icon-512.png', 'width': 512, 'height': 512},
        'email': EMAIL, 'telephone': FONE, 'address': ENDERECO,
        'contactPoint': [
            {'@type': 'ContactPoint', 'contactType': 'customer support', 'email': EMAIL, 'telephone': FONE, 'url': BASE + '/suporte/',
@@ -1677,7 +1679,7 @@ ORG = {'@context': 'https://schema.org', '@type': 'Organization', '@id': ORG_ID,
            {'@type': 'ContactPoint', 'contactType': 'sales', 'email': EMAIL, 'url': BASE + '/contato/marcas/', 'areaServed': 'BR', 'availableLanguage': 'pt-BR'},
            {'@type': 'ContactPoint', 'contactType': 'encarregado de dados pessoais (LGPD)', 'email': EMAIL, 'url': BASE + '/privacidade/#encarregado', 'availableLanguage': 'pt-BR'}],
        'sameAs': [u for _, u, _, _ in SOCIAL]}
-WEBSITE = {'@context': 'https://schema.org', '@type': 'WebSite', '@id': SITE_ID, 'name': 'HypeApp', 'url': BASE + '/',
+WEBSITE = {'@context': 'https://schema.org', '@type': 'WebSite', '@id': SITE_ID, 'name': 'HypeApp', 'alternateName': ['Hype App', 'hypeapp.com.br'], 'url': BASE + '/',
            'inLanguage': 'pt-BR', 'publisher': {'@id': ORG_ID}}
 APP = {'@context': 'https://schema.org', '@type': 'MobileApplication', '@id': APP_ID, 'name': 'HypeApp',
        'description': 'App para creators participarem de campanhas com marcas: inscrição, entregas, chat com a marca e pagamentos na carteira.',
@@ -1786,7 +1788,7 @@ def build_page(url, fn, kind):
     ld = ''.join(f'<script type="application/ld+json">{json.dumps(j, ensure_ascii=False)}</script>' for j in jl)
     bar = (f'<div class="preview-bar"><strong>Prévia do site</strong> · conteúdo em revisão. Textos entre colchetes aguardam aprovação; trechos em amarelo são rascunhos em revisão. Envios de formulário são simulados. <a href="{A("iphone/index.html")}">Ver no iPhone</a></div>' if CFG['preview'] else '')
     head = f'''<title>{html.escape(title)}</title>
-<meta name="claude:viewport-fit-sides" content="cover">
+{'' if WEB else '<meta name="claude:viewport-fit-sides" content="cover">'}
 <meta name="description" content="{html.escape(desc)}">
 <meta name="robots" content="{robots}">
 {f'<link rel="canonical" href="{canon}">' if canon else ''}

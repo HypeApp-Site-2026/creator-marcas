@@ -337,7 +337,7 @@ ORG_JSONLD = """{
   "@type": "Organization",
   "name": "HypeApp",
   "url": "https://www.hypeapp.com.br/",
-  "logo": "https://www.hypeapp.com.br/assets/logo-hypeapp.svg",
+  "logo": "https://www.hypeapp.com.br/icon-512.png",
   "description": "Plataforma da Você no Hype que conecta creators e marcas em campanhas de marketing de influência.",
   "parentOrganization": {
     "@type": "Organization",
