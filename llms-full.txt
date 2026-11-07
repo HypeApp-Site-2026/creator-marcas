@@ -195,7 +195,7 @@ Nenhum mínimo para criar a conta. Cada campanha tem critérios próprios, e o a
 
 **P:** Como e quando recebo?
 
-O valor entra como "A liberar" e fica disponível 30 dias depois do encerramento da campanha. A partir daí você saca via PIX, sem taxa e sem valor máximo; o mínimo é R$ 1,00. O saque é processado em até 2 horas úteis, e a chave PIX precisa estar no seu nome, com o mesmo CPF da conta.
+O valor entra como "A liberar" e fica disponível 30 dias depois do encerramento da campanha. A partir daí você saca via PIX, sem taxa e sem valor máximo; o mínimo é R$ 1,00. O saque é processado em até 2 horas úteis, e a chave PIX precisa estar no seu nome, com o mesmo CPF ou CNPJ da conta.
 
 **P:** Quem escolhe quem participa?
 
@@ -219,7 +219,7 @@ Depende do contrato da campanha, firmado entre você e a marca. Confira as condi
 
 **P:** Como funciona a comunidade?
 
-Feed, grupos e lives com outros creators dentro do app. A comunidade tem tolerância zero a conteúdo censurável e comportamento abusivo: qualquer publicação, comentário ou mensagem pode ser denunciada pelo próprio app, e você também pode bloquear outro usuário.
+Feed, grupos e lives com outros creators dentro do app. Conteúdo censurável e comportamento abusivo não são aceitos: qualquer publicação, comentário ou mensagem pode ser denunciada pelo próprio app, e o que viola as regras é removido. Para bloquear outro usuário, fale com o suporte.
 
 ## Baixe e crie seu perfil hoje.
 
@@ -385,7 +385,7 @@ Nada. O HypeApp é gratuito para creators: não há mensalidade nem taxa sobre o
 
 **P:** Como recebo o pagamento?
 
-O valor entra como "A liberar" e fica disponível 30 dias depois do encerramento da campanha. A partir daí você saca via PIX, sem taxa e sem valor máximo; o mínimo é R$ 1,00. O saque é processado em até 2 horas úteis, e a chave PIX precisa estar no seu nome, com o mesmo CPF da conta.
+O valor entra como "A liberar" e fica disponível 30 dias depois do encerramento da campanha. A partir daí você saca via PIX, sem taxa e sem valor máximo; o mínimo é R$ 1,00. O saque é processado em até 2 horas úteis, e a chave PIX precisa estar no seu nome, com o mesmo CPF ou CNPJ da conta.
 
 **P:** Preciso emitir nota fiscal?
 
@@ -401,7 +401,7 @@ Depende do contrato da campanha, firmado entre você e a marca. Confira as condi
 
 **P:** Como funciona a comunidade?
 
-Feed, grupos e lives com outros creators dentro do app. A comunidade tem tolerância zero a conteúdo censurável e comportamento abusivo: qualquer publicação, comentário ou mensagem pode ser denunciada pelo próprio app, e você também pode bloquear outro usuário.
+Feed, grupos e lives com outros creators dentro do app. Conteúdo censurável e comportamento abusivo não são aceitos: qualquer publicação, comentário ou mensagem pode ser denunciada pelo próprio app, e o que viola as regras é removido. Para bloquear outro usuário, fale com o suporte.
 
 ## Para marcas e agências
 
@@ -849,7 +849,7 @@ Termos e condições gerais de uso do HypeApp para creators, marcas e agências.
 
 Termos e condições gerais de uso do HypeApp
 
-Versão 2.5 · Última atualização: 6 de novembro de 2026.
+Versão 2.6 · Última atualização: 6 de novembro de 2026.
 
 Seja bem-vindo(a) ao HypeApp.
 
@@ -969,7 +969,7 @@ b) causar dano ou prejuízo a terceiros no uso da Plataforma;
 
 c) descumprir qualquer disposição destes Termos.
 
-4.10 O Usuário pode, a qualquer tempo e sem justificativa, excluir sua conta pelo Aplicativo ou pela página Exclusão de conta. A exclusão segue o disposto na Política de Privacidade, incluindo os registros que precisam ser mantidos por obrigação legal.
+4.10 O Usuário pode, a qualquer tempo e sem justificativa, excluir sua conta pelo Aplicativo ou pela página Exclusão de conta. Antes de excluir, o Creator deve sacar todo o saldo disponível na Carteira. A exclusão segue o disposto na Política de Privacidade, incluindo os registros que precisam ser mantidos por obrigação legal.
 
 ## 5. Campanhas, entregas e aprovação
 
@@ -1027,7 +1027,7 @@ c) descumprir qualquer disposição destes Termos.
 
 9.1 O Aplicativo oferece feed, grupos, lives e chat com as Marcas. O Usuário deve tratar os demais com respeito e seguir estes Termos, as Regras da comunidade e as regras de participação de cada grupo.
 
-9.2 Podemos moderar, ocultar ou remover publicações, mensagens e transmissões que violem estes Termos ou a lei, e suspender os responsáveis.
+9.2 Removemos publicações, comentários, mensagens e transmissões que violem estes Termos, as Regras da comunidade ou a lei. Conforme a gravidade e a repetição, também podemos suspender ou encerrar a conta dos responsáveis. Quem discordar de uma decisão pode pedir a revisão ao suporte, como explicado nas Regras da comunidade.
 
 ## 10. Disponibilidade da plataforma
 

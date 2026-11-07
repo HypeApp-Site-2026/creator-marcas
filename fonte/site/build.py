@@ -113,14 +113,14 @@ def rascunho(s):
     return s if WEB else f'<span class="rv" title="Rascunho: aguarda revisão">{s}</span>'
 
 PIX_TXT = ('O valor entra como "A liberar" e fica disponível 30 dias depois do encerramento da campanha. A partir daí você saca via PIX, '
-           'sem taxa e sem valor máximo; o mínimo é R$ 1,00. O saque é processado em até 2 horas úteis, e a chave PIX precisa estar no seu nome, com o mesmo CPF da conta.')
+           'sem taxa e sem valor máximo; o mínimo é R$ 1,00. O saque é processado em até 2 horas úteis, e a chave PIX precisa estar no seu nome, com o mesmo CPF ou CNPJ da conta.')
 CURADORIA_TXT = rev('Os creators se inscrevem pelo mural da campanha. No self-service, a marca escolhe quem participa e pode filtrar por rede, nicho, estado, '
                     'gênero, seguidores, engajamento e proximidade. Na campanha gerenciada, quem seleciona e indica os nomes é a curadoria da Você no Hype.')
 METRICAS_TXT = rev('Por campanha: alcance, visualizações, engajamento médio, interações (incluindo salvamentos), cliques e conteúdos no ar, com a divisão por rede '
                    'e os creators com mais visualizações. Por publicação: alcance, curtidas e comentários.')
 AGENCIAS_TXT = rev('Sim. Cada marca tem configurações próprias (marca, empresa e equipe), e a pessoa alterna entre as marcas pelo seletor no topo do menu. A equipe é convidada por marca.')
-COMUNIDADE_TXT = rev('Feed, grupos e lives com outros creators dentro do app. A comunidade tem tolerância zero a conteúdo censurável e comportamento abusivo: '
-                     'qualquer publicação, comentário ou mensagem pode ser denunciada pelo próprio app, e você também pode bloquear outro usuário.')
+COMUNIDADE_TXT = rev('Feed, grupos e lives com outros creators dentro do app. Conteúdo censurável e comportamento abusivo não são aceitos: '
+                     'qualquer publicação, comentário ou mensagem pode ser denunciada pelo próprio app, e o que viola as regras é removido. Para bloquear outro usuário, fale com o suporte.')
 
 def faq_html(items):
     out = []
@@ -915,7 +915,7 @@ def p_criadores(L, A):
   <div class="bt-g bt-din">
     <div class="bt bt-preto bt-d1"><b class="bt-t2">Do post ao PIX</b><ol class="bt-pix"><li><b>1 · Publicou</b>A publicação é identificada.</li><li><b>2 · A liberar</b>O valor aparece na carteira.</li><li><b>3 · Disponível</b>30 dias após o encerramento da campanha.</li><li><b class="bt-lime">4 · PIX</b>Processado em até 2 horas úteis.</li></ol></div>
     <div class="bt bt-d2 bt-cwt">{_cv.carteira_viva()}</div>
-    <div class="bt bt-lima bt-d3"><b class="bt-big">Sem taxa</b><span class="bt-p">no saque, a partir de R$ 1,00, com a chave PIX no seu nome e no mesmo CPF da conta.</span></div>
+    <div class="bt bt-lima bt-d3"><b class="bt-big">Sem taxa</b><span class="bt-p">no saque, a partir de R$ 1,00, com a chave PIX no seu nome, com o mesmo CPF ou CNPJ da conta.</span></div>
     <div class="bt bt-branco bt-d4"><b class="bt-t3">Como as campanhas pagam</b><ul class="bt-formas"><li><b>Valor fixo</b>o mesmo para cada creator</li><li><b>O seu preço</b>os valores do seu perfil</li><li><b>Proposta</b>você propõe; a marca aceita ou negocia</li><li><b>Permuta</b>produtos, com envio acompanhado no app</li></ul></div>
     <div class="bt bt-media bt-d5">{ilu('assets/ilustracoes/din-permuta.webp', 'Ilustração: caixa aberta com um produto, como numa permuta')}</div>
   </div>

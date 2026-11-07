@@ -77,7 +77,7 @@
  "/criadores/": {
   "publicado": "2026-10-30",
   "alterado": "2026-11-06",
-  "hash": "17305e6d4e3b5e79b52189601a62c51c"
+  "hash": "a94a89aaa8529e297b09f4bd7c657f05"
  },
  "/entrar/": {
   "publicado": "2026-10-30",
@@ -127,7 +127,7 @@
  "/perguntas-frequentes/": {
   "publicado": "2026-10-30",
   "alterado": "2026-11-06",
-  "hash": "e4f39357322fd6b535a8ca633559a302"
+  "hash": "caf9941fc7acaf18eebe5fcd163af5bc"
  },
  "/privacidade/": {
   "publicado": "2026-10-30",
@@ -162,6 +162,6 @@
  "/termos/": {
   "publicado": "2026-10-30",
   "alterado": "2026-11-06",
-  "hash": "496c6413a4f2789e87b9285cb29b81d0"
+  "hash": "1bd5713214a153e9eba4268e69dcf566"
  }
 }
