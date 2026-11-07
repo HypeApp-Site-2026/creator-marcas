@@ -502,7 +502,7 @@ Quais dados pessoais o HypeApp coleta, como usa, com quem compartilha e como voc
 
 Esta política explica quais dados pessoais o HypeApp coleta no app, no painel das marcas e no site, como os usamos, com quem os compartilhamos e como você exerce seus direitos, em conformidade com a Lei Geral de Proteção de Dados Pessoais (LGPD, Lei nº 13.709/2018) e com as regras das lojas de aplicativos e das plataformas conectadas.
 
-Versão 3.0 · Última atualização: 6 de novembro de 2026.
+Versão 3.1 · Última atualização: 6 de novembro de 2026.
 
 ## Resumo rápido
 
@@ -575,6 +575,12 @@ Carteira e pagamentos
 Saldo, reservas de pagamento por participação, histórico de liberações e saques, chave PIX e dados fiscais informados por você
 
 Reservar, liberar e pagar os valores das campanhas e cumprir obrigações legais e fiscais
+
+Carteira de Hype Points
+
+Endereço da carteira, rede, operações realizadas e data do último uso. A chave privada é gerada no nosso servidor e guardada criptografada (AES-256-GCM)
+
+Guardar e movimentar Hype Points. A carteira só é criada quando você a solicita ou quando recebe uma transferência. Veja Hype Points.
 
 Indicações e Hype Points
 
@@ -680,6 +686,8 @@ Hype Points são pontos de participação na comunidade do HypeApp. Você ganha 
 
 Hype Points não são dinheiro: não podem ser comprados, vendidos, transferidos nem trocados por dinheiro, e não se misturam com o saldo da carteira. Para creditar os pontos, registramos o convite usado no cadastro, quem convidou quem e o histórico de pontos de cada conta.
 
+O app pode criar uma carteira custodial para guardar e movimentar seus Hype Points. Ela só é criada quando você a solicita ou quando recebe uma transferência. A chave privada é gerada e guardada por nós, criptografada (AES-256-GCM), e guardamos também o endereço da carteira, a rede, as operações e a data do último uso. Hoje, a carteira não é apagada automaticamente quando você exclui a conta: para pedir a exclusão dela, fale com o suporte.
+
 ## 7. Redes sociais conectadas
 
 Conectar redes sociais é opcional. Algumas campanhas exigem redes específicas: nesse caso, a rede é condição para participar daquela campanha, e o uso dos dados dela segue a execução do contrato (veja a seção 5). Em todas as conexões, o acesso é somente de leitura: o HypeApp não publica, não altera e não exclui nada nas suas redes, e não usa esses dados para publicidade personalizada. Você pode desconectar o TikTok e o YouTube no app, em Perfil › Redes sociais conectadas › Desconectar. Os dados do Instagram são atualizados enquanto a conta existir (veja 7.1).
@@ -698,7 +706,7 @@ Conectar redes sociais é opcional. Algumas campanhas exigem redes específicas:
 
 - Somente leitura: o HypeApp não tem nenhum acesso de escrita à sua conta do Instagram.
 
-- Como encerrar: exclua a sua conta. Os dados do perfil deixam de ser atualizados e são removidos, ressalvados os registros de campanhas concluídas que precisem ser mantidos por obrigação legal ou contratual.
+- Como encerrar: exclua a sua conta. Os dados deixam de ser atualizados e os seus dados pessoais e tokens de acesso são removidos. Hoje, as informações públicas da rede (@, nome, foto, bio e métricas) continuam guardadas no workspace em que a rede foi conectada, inclusive quando ele é compartilhado com uma marca (veja a seção 11).
 
 ### 7.2 TikTok
 
@@ -770,7 +778,7 @@ No site, usamos cookies necessários para funcionar e, só se você aceitar no a
 
 - Registros de acesso: pelo prazo mínimo exigido pelo Marco Civil da Internet (6 meses) e no máximo 12 meses, salvo ordem judicial.
 
-- Dados das redes conectadas (perfil, seguidores, métricas e tokens de acesso): enquanto a rede estiver conectada; no Instagram, enquanto a conta existir. São removidos quando você desconecta a rede ou exclui a conta.
+- Dados das redes conectadas (perfil, seguidores, métricas e tokens de acesso): enquanto a rede estiver conectada; no Instagram, enquanto a conta existir. Os tokens de acesso são removidos quando você desconecta a rede ou exclui a conta. As redes pertencem ao workspace em que foram conectadas, e não à conta: hoje, na exclusão da conta, as informações públicas da rede (@, nome, foto, bio e métricas) continuam guardadas nesse workspace, inclusive quando ele é compartilhado com uma marca, mesmo depois que o workspace é fechado. Para pedir que sejam apagadas, fale com o suporte.
 
 - Métricas das publicações de campanhas: junto com o registro da campanha, por até 5 anos após o encerramento dela, para comprovar entregas e pagamentos.
 
@@ -781,6 +789,8 @@ No site, usamos cookies necessários para funcionar e, só se você aceitar no a
 - Denúncias e decisões de moderação: por 12 meses após a decisão.
 
 - Hype Points (convites e histórico de pontos): enquanto a conta existir. São apagados com a conta.
+
+- Carteira de Hype Points (endereço, rede, operações e chave criptografada): hoje não é apagada automaticamente na exclusão da conta. Você pode pedir a exclusão ao suporte.
 
 - Chamados de suporte: por 2 anos após o fechamento do chamado. Chamados sobre pagamentos seguem o prazo dos dados fiscais (5 anos).
 
@@ -1186,7 +1196,7 @@ Atualizado em: 2026-11-06
 
 Como excluir sua conta no HypeApp e o que acontece com os seus dados.
 
-Versão 2.2 · Última atualização: 6 de novembro de 2026.
+Versão 2.3 · Última atualização: 6 de novembro de 2026.
 
 Esta página explica como excluir a sua conta no HypeApp e o que acontece com os seus dados: o que é apagado, o que fica guardado sem identificar você e o que precisa ser mantido por obrigação legal, conforme a LGPD (Lei nº 13.709/2018).
 
@@ -1228,9 +1238,9 @@ Se você acessa o painel como parte da equipe de uma marca ou agência, peça a 
 
 - Endereço e localização
 
-- Chave PIX e endereço da carteira
+- Chave PIX
 
-- Redes sociais conectadas e as autorizações de acesso a elas
+- Autorizações de acesso às redes sociais conectadas (tokens)
 
 - Texto e mídia dos seus posts e comentários na comunidade, e a sua participação em grupos
 
@@ -1257,6 +1267,14 @@ Se você acessa o painel como parte da equipe de uma marca ou agência, peça a 
 - Chamados de suporte sobre pagamentos: pelo mesmo prazo dos dados fiscais
 
 Esses dados continuam ligados a você porque a lei exige (art. 16, inciso I, da LGPD). Eles não são usados para nenhuma outra finalidade e são apagados ao fim de cada prazo.
+
+### Ainda guardado hoje
+
+- Informações públicas das redes conectadas (@, nome, foto, bio e métricas): as redes pertencem ao workspace em que foram conectadas, e não à sua conta. Por isso, continuam guardadas nesse workspace, inclusive quando ele é compartilhado com uma marca, mesmo depois que ele é fechado.
+
+- Carteira de Hype Points, se você tiver uma: endereço, rede, operações e chave criptografada.
+
+Estamos ajustando o sistema para apagar esses dados junto com a conta. Enquanto isso, você pode pedir a exclusão deles pelo formulário de suporte.
 
 Os prazos completos estão na Política de Privacidade.
 
