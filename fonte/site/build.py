@@ -1216,6 +1216,7 @@ FAQ_GROUPS = [
         ('Quais métricas eu acompanho?', METRICAS_TXT),
            ('Como os creators são selecionados?', CURADORIA_TXT),
         ('E se o creator não entregar?', 'O valor reservado para aquela participação volta ao saldo da campanha.'),
+        ('E se sobrar saldo na conta da marca?', 'O saldo depositado e não usado não é devolvido e não expira: fica disponível para campanhas futuras enquanto a conta estiver ativa.'),
         ('Agências podem gerir várias marcas?', AGENCIAS_TXT),
     ]),
     ('conta', 'Conta, acesso e segurança', [

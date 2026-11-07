@@ -433,6 +433,10 @@ Os creators se inscrevem pelo mural da campanha. No self-service, a marca escolh
 
 O valor reservado para aquela participação volta ao saldo da campanha.
 
+**P:** E se sobrar saldo na conta da marca?
+
+O saldo depositado e não usado não é devolvido e não expira: fica disponível para campanhas futuras enquanto a conta estiver ativa.
+
 **P:** Agências podem gerir várias marcas?
 
 Sim. Cada marca tem configurações próprias (marca, empresa e equipe), e a pessoa alterna entre as marcas pelo seletor no topo do menu. A equipe é convidada por marca.
@@ -845,7 +849,7 @@ Termos e condições gerais de uso do HypeApp para creators, marcas e agências.
 
 Termos e condições gerais de uso do HypeApp
 
-Versão 2.3 · Última atualização: 6 de novembro de 2026.
+Versão 2.4 · Última atualização: 6 de novembro de 2026.
 
 Seja bem-vindo(a) ao HypeApp.
 
@@ -992,6 +996,12 @@ c) descumprir qualquer disposição destes Termos.
 6.5 Todo Creator deve emitir nota fiscal dos valores recebidos pelas Campanhas e é responsável pelos tributos incidentes sobre eles. O Aplicativo informa como enviar a nota antes do pagamento.
 
 6.6 O valor permanece "A liberar" enquanto houver contestação da Marca ou denúncia em análise. Também podemos reter valores em caso de suspeita de fraude, de descumprimento destes Termos ou de ordem judicial, até a conclusão da análise.
+
+6.7 Não há prazo nem aprovação automática para a Marca autorizar um pagamento. Se a Marca não autorizar, o suporte da Você no Hype analisa o caso.
+
+6.8 A Marca pode contestar um pagamento em até 15 (quinze) dias corridos após a data de conclusão da Campanha. A contestação é analisada pelo suporte da Você no Hype. Depois desse prazo, o pagamento não pode mais ser contestado.
+
+6.9 O saldo aportado pela Marca e não usado não é devolvido e não expira: fica disponível para Campanhas futuras enquanto a conta da Marca estiver ativa.
 
 ## 7. Redes sociais conectadas
 
