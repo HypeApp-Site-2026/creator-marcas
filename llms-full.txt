@@ -502,7 +502,7 @@ Quais dados pessoais o HypeApp coleta, como usa, com quem compartilha e como voc
 
 Esta política explica quais dados pessoais o HypeApp coleta no app, no painel das marcas e no site, como os usamos, com quem os compartilhamos e como você exerce seus direitos, em conformidade com a Lei Geral de Proteção de Dados Pessoais (LGPD, Lei nº 13.709/2018) e com as regras das lojas de aplicativos e das plataformas conectadas.
 
-Versão 2.8 · Última atualização: 6 de novembro de 2026.
+Versão 2.9 · Última atualização: 6 de novembro de 2026.
 
 ## Resumo rápido
 
@@ -748,7 +748,7 @@ Não vendemos, não alugamos e não cedemos seus dados pessoais para fins comerc
 
 ## 9. Transferência internacional
 
-Alguns fornecedores de tecnologia, como provedores de nuvem e hospedagem, de notificações e de análise (entre eles Google, Microsoft, Expo e Sentry), armazenam ou processam dados fora do Brasil, principalmente nos Estados Unidos.
+Alguns fornecedores de tecnologia, como provedores de nuvem e hospedagem, de notificações e de análise (entre eles Google, Microsoft, Expo e Sentry), armazenam ou processam dados fora do Brasil, principalmente nos Estados Unidos. A HikerAPI, que faz a leitura dos dados públicos do Instagram (seção 7.1), processa esses dados no Cazaquistão.
 
 Essas transferências seguem o art. 33 da LGPD. Usamos as cláusulas-padrão contratuais aprovadas pela ANPD (Resolução CD/ANPD nº 19/2024) nos contratos com esses fornecedores ou, quando houver, a decisão da ANPD que reconheça o nível de proteção adequado do país de destino.
 
