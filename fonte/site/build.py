@@ -117,7 +117,8 @@ PIX_TXT = ('O valor entra como "A liberar" e fica disponível 30 dias depois do 
 CURADORIA_TXT = rev('Os creators se inscrevem pelo mural da campanha. No self-service, a marca escolhe quem participa e pode filtrar por rede, nicho, estado, '
                     'gênero, seguidores, engajamento e proximidade. Na campanha gerenciada, quem seleciona e indica os nomes é a curadoria da Você no Hype.')
 METRICAS_TXT = rev('Por campanha: alcance, visualizações, engajamento médio, interações (incluindo salvamentos), cliques e conteúdos no ar, com a divisão por rede '
-                   'e os creators com mais visualizações. Por publicação: alcance, curtidas e comentários.')
+                   'e os creators com mais visualizações. Por publicação: alcance, curtidas e comentários. As métricas dependem do que cada rede informa: '
+                   'no Instagram, o painel usa só dados públicos (curtidas, comentários e engajamento estimado), sem alcance nem impressões.')
 AGENCIAS_TXT = rev('Sim. Cada marca tem configurações próprias (marca, empresa e equipe), e a pessoa alterna entre as marcas pelo seletor no topo do menu. A equipe é convidada por marca.')
 COMUNIDADE_TXT = rev('Feed, grupos e lives com outros creators dentro do app. Conteúdo censurável e comportamento abusivo não são aceitos: '
                      'qualquer publicação, comentário ou mensagem pode ser denunciada pelo próprio app, e o que viola as regras é removido. Para bloquear outro usuário, fale com o suporte.')

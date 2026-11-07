@@ -275,7 +275,7 @@ Os valores são sob consulta e dependem do escopo, do volume e da forma de traba
 
 **P:** Quais métricas eu acompanho?
 
-Por campanha: alcance, visualizações, engajamento médio, interações (incluindo salvamentos), cliques e conteúdos no ar, com a divisão por rede e os creators com mais visualizações. Por publicação: alcance, curtidas e comentários.
+Por campanha: alcance, visualizações, engajamento médio, interações (incluindo salvamentos), cliques e conteúdos no ar, com a divisão por rede e os creators com mais visualizações. Por publicação: alcance, curtidas e comentários. As métricas dependem do que cada rede informa: no Instagram, o painel usa só dados públicos (curtidas, comentários e engajamento estimado), sem alcance nem impressões.
 
 **P:** Como os creators são selecionados?
 
@@ -423,7 +423,7 @@ No self-service sua equipe opera tudo no painel. Na gerenciada, a Você no Hype 
 
 **P:** Quais métricas eu acompanho?
 
-Por campanha: alcance, visualizações, engajamento médio, interações (incluindo salvamentos), cliques e conteúdos no ar, com a divisão por rede e os creators com mais visualizações. Por publicação: alcance, curtidas e comentários.
+Por campanha: alcance, visualizações, engajamento médio, interações (incluindo salvamentos), cliques e conteúdos no ar, com a divisão por rede e os creators com mais visualizações. Por publicação: alcance, curtidas e comentários. As métricas dependem do que cada rede informa: no Instagram, o painel usa só dados públicos (curtidas, comentários e engajamento estimado), sem alcance nem impressões.
 
 **P:** Como os creators são selecionados?
 
@@ -511,7 +511,7 @@ Quais dados pessoais o HypeApp coleta, como usa, com quem compartilha e como voc
 
 Esta política explica quais dados pessoais o HypeApp coleta no app, no painel das marcas e no site, como os usamos, com quem os compartilhamos e como você exerce seus direitos, em conformidade com a Lei Geral de Proteção de Dados Pessoais (LGPD, Lei nº 13.709/2018) e com as regras das lojas de aplicativos e das plataformas conectadas.
 
-Versão 2.6 · Última atualização: 6 de novembro de 2026.
+Versão 2.7 · Última atualização: 6 de novembro de 2026.
 
 ## Resumo rápido
 
@@ -571,7 +571,7 @@ Redes sociais
 
 Dados de perfil, estatísticas e publicações de Instagram, TikTok e YouTube que você conectar. O detalhe por plataforma está em Redes sociais conectadas.
 
-Exibir seu alcance e engajamento, comprovar resultados das campanhas e indicar campanhas compatíveis
+Exibir suas métricas e seu engajamento, comprovar resultados das campanhas e indicar campanhas compatíveis
 
 Campanhas e conteúdo
 
@@ -697,7 +697,11 @@ Conectar redes sociais é opcional. Algumas campanhas exigem redes específicas:
 
 - Como conecta: a conexão não usa o login da Meta e não pede sua senha nem acesso à sua conta. Você informa o seu @ e comprova que o perfil é seu colando na bio um código temporário gerado pelo app (válido por 30 minutos). Depois da verificação, o código pode ser apagado da bio.
 
-- Dados usados: informações do perfil (nome de usuário, nome, foto e número de seguidores) e as publicações feitas para as campanhas, com as métricas delas, incluindo alcance e impressões.
+- Dados usados: só dados públicos: informações do perfil (nome de usuário, nome, foto e número de seguidores) e as publicações públicas, com as curtidas e os comentários. A partir delas, estimamos a taxa de engajamento do perfil.
+
+- O que não coletamos: alcance, impressões, dados demográficos do público e outras estatísticas internas da conta, que o Instagram só mostra ao dono do perfil.
+
+- Fornecedor: a leitura dos dados públicos é feita por um fornecedor especializado (HikerAPI), que atua como operador e não recebe sua senha nem acesso à sua conta.
 
 - Atualização: esses dados são atualizados automaticamente pelo sistema enquanto a sua conta existir. Eles só deixam de ser atualizados quando a conta é excluída.
 
@@ -735,7 +739,7 @@ Você pode revogar o acesso desconectando o YouTube no HypeApp, excluindo sua co
 
 - Creators: quando uma marca publica uma campanha, os creators veem as informações da campanha e da marca exibidas no mural.
 
-- Fornecedores de tecnologia: hospedagem e infraestrutura em nuvem, rede de distribuição e segurança do site, Firebase/Google (notificações, análise e relatórios de falhas), Google e Apple (login e lojas), Google (Google Analytics e Google Tag Manager) e Microsoft (Clarity) para a medição do site, só com o seu aceite, e instituições de pagamento que processam os PIX. Todos com obrigações contratuais de proteção de dados.
+- Fornecedores de tecnologia: hospedagem e infraestrutura em nuvem, rede de distribuição e segurança do site, Firebase/Google (notificações, análise e relatórios de falhas), HikerAPI (leitura dos dados públicos do Instagram), Google e Apple (login e lojas), Google (Google Analytics e Google Tag Manager) e Microsoft (Clarity) para a medição do site, só com o seu aceite, e instituições de pagamento que processam os PIX. Todos com obrigações contratuais de proteção de dados.
 
 - Plataformas conectadas por você: Instagram, TikTok e YouTube, conforme as conexões que você ativar.
 
