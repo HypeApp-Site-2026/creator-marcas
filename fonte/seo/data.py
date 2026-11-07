@@ -290,7 +290,9 @@ for url, nome, title, desc, h1 in [
     ("/exclusao-de-conta/", "Exclusão de conta", "Como excluir sua conta | HypeApp",
      "Passo a passo para excluir sua conta no app do HypeApp ou pedir a exclusão por e-mail, com o que é apagado e o que fica guardado por obrigação legal.", "Como excluir sua conta"),
     ("/regras-da-comunidade/", "Regras da comunidade", "Regras da comunidade | HypeApp",
-     "O que não é permitido na comunidade do HypeApp, como denunciar publicações, comentários e mensagens e o que acontece com quem viola as regras.", "Regras da comunidade")]:
+     "O que não é permitido na comunidade do HypeApp, como denunciar publicações, comentários e mensagens e o que acontece com quem viola as regras.", "Regras da comunidade"),
+    ("/seguranca-infantil/", "Segurança infantil", "Padrões de segurança infantil | HypeApp",
+     "Os padrões do HypeApp contra abuso e exploração sexual infantil: o que é proibido, como denunciar, o que fazemos com o conteúdo denunciado e o contato responsável.", "Padrões de segurança infantil")]:
     add(url, nome, "Todos", "Confiança e privacidade", "P0", "G", JUR, IDX, "Sim", title, desc, h1,
         obs="Bloqueia o lançamento: o site não coleta dados nos formulários sem estas páginas no ar.")
 add("/legal/", "Documentos legais", "Todos", "Confiança e privacidade", "P0", "", "Sim", IDX, "Sim",
@@ -359,7 +361,7 @@ OG_POR_PAGINA = {
     "/perguntas-frequentes/": "og/ajuda.jpg", "/suporte/": "og/suporte.jpg", "/suporte/enviado/": "og/suporte.jpg",
     "/contato/": "og/contato.jpg", "/contato/marcas/": "og/para-marcas.jpg", "/contato/enviado/": "og/contato.jpg",
     "/legal/": "og/legal.jpg", "/privacidade/": "og/legal.jpg", "/termos/": "og/legal.jpg", "/cookies/": "og/legal.jpg",
-    "/exclusao-de-conta/": "og/legal.jpg", "/regras-da-comunidade/": "og/legal.jpg", "/direitos-sobre-dados/": "og/legal.jpg",
+    "/exclusao-de-conta/": "og/legal.jpg", "/regras-da-comunidade/": "og/legal.jpg", "/seguranca-infantil/": "og/legal.jpg", "/direitos-sobre-dados/": "og/legal.jpg",
     "/app": "og/baixar.jpg", "/entrar/": "og/padrao.jpg",
 }
 for _r in R:

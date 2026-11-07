@@ -264,7 +264,7 @@ def footer(L, A):
         ('Para marcas', [('Para marcas e agências', L('/marcas/')), ('Falar com nosso time', L('/contato/marcas/')), ('Entrar no painel', CFG['painel'] or L('/entrar/', '#marcas'))]),
         ('Ajuda', [('Perguntas frequentes', L('/perguntas-frequentes/')), ('Suporte', L('/suporte/'))]),
         ('Empresa', [('Sobre o HypeApp', L('/sobre/'))] + ([('Blog', L('/blog/'))] if BLOG_ON else []) + [('Contato', L('/contato/'))]),
-        ('Legal', [('Documentos legais', L('/legal/')), ('Privacidade', L('/privacidade/')), ('Encarregado de dados', L('/privacidade/', '#encarregado')), ('Termos de uso', L('/termos/')), ('Cookies', L('/cookies/')), ('Regras da comunidade', L('/regras-da-comunidade/')), ('Exclusão de conta', L('/exclusao-de-conta/'))] + ([('Preferências de cookies', '#preferencias-cookies')] if ANALYTICS else [])),
+        ('Legal', [('Documentos legais', L('/legal/')), ('Privacidade', L('/privacidade/')), ('Encarregado de dados', L('/privacidade/', '#encarregado')), ('Termos de uso', L('/termos/')), ('Cookies', L('/cookies/')), ('Regras da comunidade', L('/regras-da-comunidade/')), ('Segurança infantil', L('/seguranca-infantil/')), ('Exclusão de conta', L('/exclusao-de-conta/'))] + ([('Preferências de cookies', '#preferencias-cookies')] if ANALYTICS else [])),
     ]
     c = ''.join(f'<nav aria-label="{t}"><span class="ftr-h">{t}</span>' + ''.join(f'<a href="{h}"{_blog.SO_TESTE if n == "Blog" and "/blog/" in SO_TESTE else ""}>{n}</a>' for n, h in ls) + '</nav>' for t, ls in cols)
     return f'''<footer class="site-footer wrap">
@@ -1543,10 +1543,14 @@ def p_app(L, A):
   <div class="qr" style="width:220px;height:220px;flex:0 0 auto">{QR}</div>
 </section>'''
 
+VERSOES = {'/cookies/': 'Versão 2.0 · Última atualização: 6 de novembro de 2026.',
+           '/regras-da-comunidade/': 'Versão 2.0 · Última atualização: 6 de novembro de 2026.'}
+
 COOKIES_GA = [
     ('necessarios', 'Necessários', rev('Para funcionar, o site guarda no seu navegador a sua escolha sobre cookies (por até 12 meses) e, só enquanto a aba estiver aberta, '
-        'a página de entrada e os parâmetros da campanha que trouxe você (utm, gclid e fbclid), que seguem junto com o formulário de contato. '
-        'Isso não identifica você e não precisa de consentimento.')),
+        'a página de entrada e os parâmetros da campanha que trouxe você (utm, gclid e fbclid). Sozinhos, eles não identificam você. '
+        'Se você enviar um formulário de contato, eles seguem junto com a mensagem e passam a ficar ligados aos dados que você informou, '
+        'só para sabermos por qual campanha você chegou. Esse uso segue a <a href="{{PRIVACIDADE}}">Política de Privacidade</a>. Os cookies necessários não precisam de consentimento.')),
     ('medicao', 'Medição de visitas', rev('Se você aceitar os cookies de medição, '
         'usamos o Google Analytics 4, pela tag do Google, para saber quais páginas são vistas, de onde vêm as visitas, '
         'quais botões são clicados e quantos formulários são enviados, e o Microsoft Clarity, que registra cliques, rolagem e movimentos na página '
@@ -1556,7 +1560,10 @@ COOKIES_GA = [
         'No Google Analytics, os dados detalhados das visitas ficam guardados por 14 meses. '
         'Só são gravados depois do seu aceite. O Google atua como operador desses dados e pode tratá-los fora do Brasil, '
         'conforme a <a href="{{PRIVACIDADE}}">Política de Privacidade</a>.')),
-    ('microsoft-clarity', 'Cookies do Microsoft Clarity', rev('Os cookies _clck (até 1 ano) e _clsk (1 dia) ligam as páginas de uma mesma visita. '
+    ('microsoft-clarity', 'Cookies do Microsoft Clarity', rev('Os cookies _clck (até 1 ano) e _clsk (1 dia), gravados no domínio do site, ligam as páginas de uma mesma visita. '
+        'O Clarity também pode gravar cookies de terceiros nos domínios da Microsoft, como clarity.ms: CLID, que identifica o navegador entre sites que usam o Clarity; '
+        'MUID, identificador de navegador usado pelos serviços da Microsoft; ANONCHK, que indica se esse identificador foi enviado; e MR e SM, que controlam a renovação do MUID. '
+        'A duração desses cookies é definida pela Microsoft. '
         'As gravações ficam guardadas por 30 dias; os mapas de calor e os dados agregados, por até 9 meses. '
         'Só são gravados depois do seu aceite. A Microsoft atua como operadora desses dados e pode tratá-los fora do Brasil, '
         'conforme a <a href="{{PRIVACIDADE}}">Política de Privacidade</a>.')),
@@ -1618,6 +1625,7 @@ def p_legal(url):
         t, d, secs = LEGAL[url]
         toc = ''.join(f'<a href="#{sid}">{st}</a>' for sid, st, _ in secs)
         body = ''.join(f'<h2 id="{sid}">{st}</h2><p>{tx}</p>' for sid, st, tx in secs).replace('{{PRIVACIDADE}}', L('/privacidade/'))
+        if url in VERSOES and ANALYTICS: body = f'<p><strong>{VERSOES[url]}</strong></p>' + body
         extra = ''
         if url == '/exclusao-de-conta/':
             extra = f'<p><a class="btn btn-ink" href="{L("/suporte/")}">Abrir pedido de exclusão</a></p>'
@@ -1630,13 +1638,22 @@ def p_legal(url):
 def p_regras(L, A):
     nao = ['assédio, bullying, ameaças ou incitação ao ódio;', 'nudez, conteúdo sexual explícito ou exploração;', 'violência gráfica ou apologia a ela;',
            'spam, golpes ou desinformação;', 'conteúdo ilegal, discriminatório ou que viole direitos de terceiros.']
-    secs = [('tolerancia', 'Tolerância zero', '<p>A comunidade do HypeApp tem tolerância zero a conteúdo censurável e a comportamento abusivo. Isso vale para publicações, comentários, grupos, lives e mensagens.</p>'),
-            ('proibido', 'O que não é permitido', '<ul>' + ''.join(f'<li>{x}</li>' for x in nao) + '</ul>'),
-            ('denunciar', 'Como denunciar', '<p>Toque no menu "…" da publicação, ou segure sobre o comentário, o comentário da live ou a mensagem, e escolha "Denunciar". As denúncias são analisadas em até 24 horas.</p>'),
-            ('consequencias', 'O que acontece com quem viola as regras', '<p>Contas que violarem estas diretrizes podem ter o conteúdo removido e o acesso suspenso ou encerrado, conforme os <a href="' + L('/termos/') + '">Termos de Uso</a>.</p>'),
-            ('bloquear', 'Bloquear outro usuário', '<p>Você também pode bloquear outro usuário. Quem você bloqueia deixa de interagir com você na comunidade.</p>')]
+    sup = L('/suporte/')
+    secs = [('principio', 'O que não aceitamos', '<p>A comunidade do HypeApp não aceita conteúdo censurável nem comportamento abusivo. Isso vale para publicações, comentários, grupos, lives e mensagens. '
+             'Todo conteúdo que viola estas regras é removido assim que identificado, e quem o publicou pode ter a conta suspensa ou encerrada, conforme a gravidade e a repetição.</p>'),
+            ('proibido', 'O que não é permitido', '<ul>' + ''.join(f'<li>{x}</li>' for x in nao) + '</ul>'
+             '<p>Qualquer conteúdo que sexualize, explore ou coloque em risco crianças e adolescentes é removido e a conta é encerrada. Veja os nossos <a href="' + L('/seguranca-infantil/') + '">padrões de segurança infantil</a>.</p>'),
+            ('denunciar', 'Como denunciar', '<p>No app, toque no menu "…" da publicação, ou segure sobre o comentário, o comentário da live ou a mensagem, e escolha "Denunciar". '
+             'Você também pode denunciar pelo <a href="' + sup + '?assunto=denuncia">formulário de suporte</a>, com o link ou o @ do conteúdo. '
+             'As denúncias são analisadas em até 24 horas. Se o conteúdo violar estas regras, ele é removido e a conta responsável pode sofrer as medidas abaixo.</p>'),
+            ('bloquear', 'Bloquear outro usuário', '<p>Você também pode bloquear outro usuário pelo app. Quem você bloqueia deixa de interagir com você na comunidade. '
+             'Bloquear não substitui a denúncia: se alguém violou estas regras, denuncie também.</p>'),
+            ('consequencias', 'O que acontece com quem viola as regras', '<p>Conforme a gravidade e a repetição, aplicamos uma ou mais destas medidas: remoção do conteúdo, suspensão temporária do acesso à comunidade ou à conta, e encerramento da conta, '
+             'como previsto nos <a href="' + L('/termos/') + '">Termos de Uso</a>. Conteúdo ilegal pode ser comunicado às autoridades.</p>'),
+            ('contestar', 'Como contestar uma decisão', '<p>Se o seu conteúdo foi removido ou a sua conta foi suspensa e você discorda, peça uma revisão pelo <a href="' + sup + '?assunto=conta">formulário de suporte</a>, '
+             'com o e-mail da conta e o que foi removido. A equipe revisa a decisão, e você recebe a resposta pelo e-mail informado. O suporte responde em até 2 dias úteis.</p>')]
     toc = ''.join(f'<a href="#{i}">{t}</a>' for i, t, _ in secs)
-    body = ''.join(f'<h2 id="{i}">{t}</h2>{c}' for i, t, c in secs)
+    body = '<p><strong>' + VERSOES['/regras-da-comunidade/'] + '</strong></p>' + ''.join(f'<h2 id="{i}">{t}</h2>{c}' for i, t, c in secs)
     rv = ('' if WEB else '<aside class="legal-review" aria-label="Pontos para revisão"><b>Só na prévia · rascunho</b><ul><li>Texto da tela Diretrizes da comunidade do app. Precisa do ok do jurídico antes de publicar.</li>'
           '<li>Confirmar com o produto o que o bloqueio faz exatamente (ocultar conteúdo, impedir mensagens).</li></ul></aside>')
     return f'''
@@ -1650,6 +1667,7 @@ def p_legal_hub(L, A):
             ('Política de cookies', 'Quais tecnologias o site usa e como mudar suas preferências.', L('/cookies/')),
             ('Encarregado de dados', 'Quem responde por dados pessoais e como falar com ele.', L('/privacidade/', '#encarregado')),
             ('Regras da comunidade', 'O que não é permitido na comunidade, como denunciar e o que acontece com quem viola as regras.', L('/regras-da-comunidade/')),
+            ('Segurança infantil', 'Nossos padrões contra abuso e exploração sexual infantil e como denunciar.', L('/seguranca-infantil/')),
             ('Exclusão de conta', 'Como excluir sua conta e o que acontece com os seus dados.', L('/exclusao-de-conta/'))]
     cards = ''.join(f'<a class="help-card" href="{u}"><b>{t}</b><span class="small muted">{s}</span></a>' for t, s, u in docs)
     return f'''
@@ -1682,6 +1700,7 @@ LEGAL_FILES = {
          'Seção 6 atualizada com as respostas do Lucas (03/11): chave PIX do titular, sem taxa, sem valor máximo, mínimo de R$ 1,00, saque em até 2 horas úteis, liberação 30 dias após o encerramento. Falta o prazo máximo de análise de contestação (6.6).',
          'Hype Points (seção 8): aguarda a confirmação do Lucas.',
          'Foro: incluída a ressalva do foro do domicílio do consumidor. Confirmar com o jurídico.']),
+    '/seguranca-infantil/': ('seguranca-infantil.html', 'Padrões de segurança infantil', 'Como o HypeApp combate o abuso e a exploração sexual de crianças e adolescentes, e como denunciar.', []),
     '/exclusao-de-conta/': ('exclusao.html', 'Exclusão de conta e dados', 'Como excluir sua conta no HypeApp e o que acontece com os seus dados.',
         ['Texto da página oficial de exclusão (api-v2.hypeapp.com.br/api/legal/solicitar-exclusao-dados), sem a linha técnica sobre a chamada da API.',
          'Se as lojas apontam para o endereço antigo, mantenha os dois no ar ou redirecione o antigo para cá.']),
@@ -1691,7 +1710,7 @@ def p_legal_file(url):
     def f(L, A):
         fn, t, d, notes = LEGAL_FILES[url]
         body = open(os.path.join(HERE, 'content', fn), encoding='utf-8').read()
-        body = body.replace('{{PRIVACIDADE}}', L('/privacidade/')).replace('{{EXCLUSAO}}', L('/exclusao-de-conta/')).replace('{{COOKIES}}', L('/cookies/')).replace('{{REGRAS}}', L('/regras-da-comunidade/'))
+        body = body.replace('{{PRIVACIDADE}}', L('/privacidade/')).replace('{{EXCLUSAO}}', L('/exclusao-de-conta/')).replace('{{COOKIES}}', L('/cookies/')).replace('{{REGRAS}}', L('/regras-da-comunidade/')).replace('{{SUPORTE}}', L('/suporte/')).replace('{{TERMOS}}', L('/termos/'))
         toc = ''.join('<a href="#%s">%s</a>' % (i, re.sub('<[^>]+>', '', x)) for i, x in re.findall(r'<h2 id="([^"]+)">(.*?)</h2>', body))
         rev = ''
         if False and CFG['preview'] and notes:  # políticas aprovadas em 04/11: sem a lista de pontos para o jurídico
@@ -1718,7 +1737,7 @@ PAGES = [
     ('/app', p_app, 'mid'), ('/links/', p_links, 'links'), ('/perfil-antigo/', p_perfil_antigo, 'mid'),
     ('/privacidade/', p_legal_file('/privacidade/'), 'mid'), ('/termos/', p_legal_file('/termos/'), 'mid'),
     ('/cookies/', p_legal('/cookies/'), 'mid'), ('/exclusao-de-conta/', p_legal_file('/exclusao-de-conta/'), 'mid'),
-    ('/legal/', p_legal_hub, 'mid'), ('/regras-da-comunidade/', p_regras, 'mid'),
+    ('/legal/', p_legal_hub, 'mid'), ('/regras-da-comunidade/', p_regras, 'mid'), ('/seguranca-infantil/', p_legal_file('/seguranca-infantil/'), 'mid'),
     ('/404', p_404, 'mid'),
 ]
 
@@ -1951,6 +1970,8 @@ http://hypeapp.com.br/*         https://www.hypeapp.com.br/:splat   301!
 /politica-de-privacidade/*  /privacidade/      301
 /termos-de-uso/*    /termos/                   301
 /excluir-conta/*    /exclusao-de-conta/        301
+/exclusao/*         /exclusao-de-conta/        301
+/exclusao           /exclusao-de-conta/        301
 
 # Endereços do site antigo (omnes-tech/hype-site): política e termos acima; demais páginas
 /murais-campanhas/*  /criadores/              301
@@ -1966,6 +1987,9 @@ http://hypeapp.com.br/*         https://www.hypeapp.com.br/:splat   301!
 /termos.html         /termos/                 301
 /Termos              /termos/                 301
 /termos-de-uso.html  /termos/                 301
+/Uso.html            /termos/                 301
+/uso.html            /termos/                 301
+/Uso                 /termos/                 301
 /influenciadores/*   /criadores/              301
 '''
 
@@ -1986,6 +2010,7 @@ def csp_ga(h):
     return h
 
 HEADERS = '''/*
+  Cache-Control: public, max-age=0, must-revalidate
   Strict-Transport-Security: max-age=63072000
   X-Content-Type-Options: nosniff
   X-Frame-Options: DENY
@@ -2087,7 +2112,7 @@ def arquivos_tecnicos(OUT):
     # 1. Datas: grava o registro e acrescenta <lastmod> ao sitemap (só quando o conteúdo muda de verdade)
     json.dump(dict(sorted(DATAS.items())), open(DATAS_F, 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
     sm = os.path.join(OUT, 'sitemap.xml'); x = open(sm, encoding='utf-8').read()
-    for _u in ('/legal/', '/regras-da-comunidade/'):
+    for _u in ('/legal/', '/regras-da-comunidade/', '/seguranca-infantil/'):
         if f'<loc>{BASE}{_u}</loc>' not in x:
             x = x.replace('</urlset>', f'  <url><loc>{BASE}{_u}</loc></url>\n</urlset>')
     x = re.sub(r'\s*<lastmod>[^<]*</lastmod>', '', x)

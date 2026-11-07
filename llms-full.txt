@@ -507,7 +507,7 @@ Quais dados pessoais o HypeApp coleta, como usa, com quem compartilha e como voc
 
 Esta política explica quais dados pessoais o HypeApp coleta no app, no painel das marcas e no site, como os usamos, com quem os compartilhamos e como você exerce seus direitos, em conformidade com a Lei Geral de Proteção de Dados Pessoais (LGPD, Lei nº 13.709/2018) e com as regras das lojas de aplicativos e das plataformas conectadas.
 
-Versão 2.3 · Última atualização: 6 de novembro de 2026.
+Versão 2.4 · Última atualização: 6 de novembro de 2026.
 
 ## Resumo rápido
 
@@ -687,7 +687,7 @@ Exercício regular de direitos (inciso VI)
 
 ## 6. Hype Points
 
-Hype Points são pontos de participação na comunidade do HypeApp. Você ganha 200 pontos quando uma pessoa se cadastra com o seu convite e 500 pontos quando essa pessoa conclui a primeira campanha. Os pontos servem para entrar em grupos da comunidade que pedem pontos ou um nível mínimo.
+Hype Points são pontos de participação na comunidade do HypeApp. Você ganha pontos quando uma pessoa se cadastra com o seu convite e quando essa pessoa conclui a primeira campanha. As quantidades aparecem no app e podem mudar, conforme os Termos de Uso. Os pontos servem para entrar em grupos da comunidade que pedem pontos ou um nível mínimo.
 
 Hype Points não são dinheiro: não podem ser comprados, vendidos, transferidos nem trocados por dinheiro, e não se misturam com o saldo da carteira. Para creditar os pontos, registramos o convite usado no cadastro, quem convidou quem e o histórico de pontos de cada conta.
 
@@ -843,7 +843,7 @@ Termos e condições gerais de uso do HypeApp para creators, marcas e agências.
 
 Termos e condições gerais de uso do HypeApp
 
-Versão 2.1 · Última atualização: 6 de novembro de 2026.
+Versão 2.2 · Última atualização: 6 de novembro de 2026.
 
 Seja bem-vindo(a) ao HypeApp.
 
@@ -941,7 +941,7 @@ Toda pessoa que navega ou de qualquer forma usa a Plataforma, seja Creator, Marc
 
 4.4 O Usuário deve informar um e-mail válido, que será o canal das comunicações. As mensagens enviadas a esse endereço serão consideradas recebidas, e o Usuário se compromete a consultá-lo regularmente.
 
-4.5 O login e a senha são pessoais. A conta é pessoal e intransferível, sendo proibido vendê-la, cedê-la, alugá-la ou transferi-la. Nas contas de Marcas e Agências, cada integrante da equipe deve ter acesso próprio, com as permissões definidas pela empresa.
+4.5 O login e a senha são pessoais: o Usuário deve guardá-los com cuidado e não compartilhá-los com terceiros. A conta é pessoal e intransferível, sendo proibido vendê-la, cedê-la, alugá-la ou transferi-la. Nas contas de Marcas e Agências, cada integrante da equipe deve ter acesso próprio, com as permissões definidas pela empresa.
 
 4.6 O Usuário é responsável por fornecer informações exatas e verdadeiras e por mantê-las atualizadas.
 
@@ -1057,7 +1057,7 @@ g) manipular métricas, usar seguidores ou interações falsas ou enganar a Marc
 
 13.2 O Usuário é responsável por todos os atos ou omissões realizados a partir de seu acesso.
 
-13.3 É proibido usar crawlers, robôs ou outros programas e métodos automatizados para acessar, copiar, monitorar, navegar, preencher formulários ou publicar conteúdos na Plataforma.
+13.3 É proibido usar crawlers, robôs, spiders, ferramentas de mineração de dados ou outros programas e métodos automatizados para acessar, copiar, monitorar, navegar, preencher formulários ou publicar conteúdos na Plataforma.
 
 13.4 O Usuário é responsável por todo conteúdo que carregar ou enviar à Plataforma.
 
@@ -1066,10 +1066,6 @@ g) manipular métricas, usar seguidores ou interações falsas ou enganar a Marc
 13.6 É proibido reproduzir conteúdo da Plataforma sem autorização expressa, sob pena de responsabilidade civil e criminal.
 
 13.7 O Usuário não pode esconder sua identidade ou a origem da conexão, se passar por outra pessoa ou usar ferramentas para manipular o acesso à Plataforma.
-
-13.8 O Usuário deve zelar por suas credenciais (login e senha) e não compartilhá-las com terceiros.
-
-13.9 É proibido usar ferramentas de spider ou de mineração de dados de qualquer natureza.
 
 ## 14. Limitação de responsabilidade
 
@@ -1103,9 +1099,11 @@ g) manipular métricas, usar seguidores ou interações falsas ou enganar a Marc
 
 ## 17. Registros, informações e comunicações privadas
 
-17.1 Só disponibilizaremos registros de acesso, dados pessoais ou comunicações privadas armazenados na Plataforma mediante ordem judicial ou requisição de autoridade competente, nos termos da lei.
+17.1 Os dados pessoais são compartilhados apenas nos casos descritos na Política de Privacidade, como com as Marcas das campanhas de que o Creator participa e com os fornecedores que nos ajudam a operar a Plataforma.
 
-17.2 Sempre que a lei permitir, avisaremos o Usuário sobre o pedido recebido.
+17.2 Registros de acesso e o conteúdo de comunicações privadas só serão fornecidos a terceiros mediante ordem judicial. Dados cadastrais podem ser fornecidos a autoridades administrativas com competência legal para requisitá-los, nos termos do Marco Civil da Internet (Lei nº 12.965/2014).
+
+17.3 Sempre que a lei permitir, avisaremos o Usuário sobre o pedido recebido.
 
 ## 18. Links externos
 
@@ -1149,9 +1147,11 @@ Atualizado em: 2026-11-06
 
 Quais tecnologias o site usa, para quê e como mudar sua escolha.
 
+Versão 2.0 · Última atualização: 6 de novembro de 2026.
+
 ## Necessários
 
-Para funcionar, o site guarda no seu navegador a sua escolha sobre cookies (por até 12 meses) e, só enquanto a aba estiver aberta, a página de entrada e os parâmetros da campanha que trouxe você (utm, gclid e fbclid), que seguem junto com o formulário de contato. Isso não identifica você e não precisa de consentimento.
+Para funcionar, o site guarda no seu navegador a sua escolha sobre cookies (por até 12 meses) e, só enquanto a aba estiver aberta, a página de entrada e os parâmetros da campanha que trouxe você (utm, gclid e fbclid). Sozinhos, eles não identificam você. Se você enviar um formulário de contato, eles seguem junto com a mensagem e passam a ficar ligados aos dados que você informou, só para sabermos por qual campanha você chegou. Esse uso segue a Política de Privacidade. Os cookies necessários não precisam de consentimento.
 
 ## Medição de visitas
 
@@ -1163,7 +1163,7 @@ Os cookies _ga e _ga_ seguido do código da propriedade distinguem visitantes e 
 
 ## Cookies do Microsoft Clarity
 
-Os cookies _clck (até 1 ano) e _clsk (1 dia) ligam as páginas de uma mesma visita. As gravações ficam guardadas por 30 dias; os mapas de calor e os dados agregados, por até 9 meses. Só são gravados depois do seu aceite. A Microsoft atua como operadora desses dados e pode tratá-los fora do Brasil, conforme a Política de Privacidade.
+Os cookies _clck (até 1 ano) e _clsk (1 dia), gravados no domínio do site, ligam as páginas de uma mesma visita. O Clarity também pode gravar cookies de terceiros nos domínios da Microsoft, como clarity.ms: CLID, que identifica o navegador entre sites que usam o Clarity; MUID, identificador de navegador usado pelos serviços da Microsoft; ANONCHK, que indica se esse identificador foi enviado; e MR e SM, que controlam a renovação do MUID. A duração desses cookies é definida pela Microsoft. As gravações ficam guardadas por 30 dias; os mapas de calor e os dados agregados, por até 9 meses. Só são gravados depois do seu aceite. A Microsoft atua como operadora desses dados e pode tratá-los fora do Brasil, conforme a Política de Privacidade.
 
 ## Publicidade
 
@@ -1177,73 +1177,89 @@ Use o link Preferências de cookies, no rodapé de qualquer página. Se você re
 
 Fonte: https://www.hypeapp.com.br/exclusao-de-conta/
 Título: Como excluir sua conta | HypeApp
-Atualizado em: 2026-11-03
+Atualizado em: 2026-11-06
 
 # Exclusão de conta e dados
 
 Como excluir sua conta no HypeApp e o que acontece com os seus dados.
 
-Esta página explica como excluir sua conta no HypeApp e quais dados são removidos, anonimizados ou mantidos por obrigação legal, em conformidade com a LGPD (Lei nº 13.709/2018).
+Versão 2.0 · Última atualização: 6 de novembro de 2026.
 
-## 1. Excluir pelo aplicativo (recomendado)
+Esta página explica como excluir a sua conta no HypeApp e o que acontece com os seus dados: o que é apagado, o que fica guardado sem identificar você e o que precisa ser mantido por obrigação legal, conforme a LGPD (Lei nº 13.709/2018).
 
-É o método mais rápido — leva menos de um minuto:
+## 1. Excluir pelo aplicativo
 
-- Abra o app HypeApp no seu celular.
+É o caminho mais rápido:
 
-- Faça login com a sua conta.
+- Abra o HypeApp no celular e entre na sua conta.
 
 - Vá em Perfil › Configurações › Excluir conta.
 
-- Confirme a operação. Sua sessão será encerrada imediatamente.
+- Confirme. A sua sessão é encerrada na hora.
 
-## 2. Não consegue acessar o app? Solicite por e-mail
+## 2. Sem acesso ao app
 
-Se você não consegue mais entrar na sua conta (esqueceu a senha, perdeu o acesso ao número/e-mail, etc.), envie um e-mail para o nosso encarregado de dados:
+Se você não consegue mais entrar na conta, peça a exclusão pelo formulário de suporte, com o assunto “Excluir minha conta” e o e-mail cadastrado. Se preferir, escreva para o nosso encarregado de dados pelo e-mail contato@vocenohype.com.br.
 
-Enviar e-mail contato@vocenohype.com.br
+Para confirmarmos que o pedido é seu, informe o nome completo, o e-mail cadastrado e, se possível, o telefone cadastrado. Respondemos em até 15 dias corridos a partir do pedido.
 
-Para validarmos sua identidade, inclua no e-mail: nome completo, e-mail cadastrado e, se possível, o telefone cadastrado. Responderemos em até 15 dias úteis, conforme o art. 19 da LGPD.
+## 3. Antes de excluir
 
-## O que acontece com os seus dados
+- Saldo da carteira: saque por PIX o saldo disponível antes de excluir a conta. Se você tiver valores a liberar ou campanhas em andamento, fale com o suporte antes de pedir a exclusão, para combinarmos como fica o pagamento.
 
-Adotamos o modelo soft delete + anonimização: dados pessoais identificáveis (PII) são apagados ou substituídos por valores genéricos, e o registro técnico é mantido apenas para preservar integridade referencial de dados de terceiros (ex.: campanhas em que você participou).
+- Exclusão é definitiva: depois de concluída, a conta não pode ser recuperada nem reativada. Para voltar a usar o HypeApp, será preciso criar uma conta nova.
 
-### Excluído / anonimizado
+## 4. Equipe de uma marca no painel
 
-- Nome, e-mail, telefone, foto, banner
+Se você acessa o painel como parte da equipe de uma marca ou agência, peça ao administrador da conta da marca para remover o seu acesso, ou peça pelo formulário de suporte. A remoção apaga o seu login e os seus dados de contato do painel. A conta da marca, as campanhas e os registros feitos em nome da empresa continuam com a marca.
 
-- Documento (CPF/CNPJ), gênero, data de nascimento
+## 5. O que acontece com os seus dados
 
-- Endereço completo
+### Apagado
 
-- Sessões ativas e tokens de acesso
+- Nome, e-mail, telefone, foto e banner
 
-- Tokens de notificação push
+- CPF ou CNPJ, gênero e data de nascimento
 
-- Notificações recebidas
+- Endereço e localização
 
-- Integrações vinculadas (Google, Instagram, etc.)
+- Chave PIX
+
+- Redes sociais conectadas e as autorizações de acesso a elas
+
+- Posts, comentários e participação em grupos da comunidade
+
+- Hype Points, convites e histórico de pontos
+
+- Sessões, notificações e autorizações de notificação no celular
 
 - Nichos de interesse e listas em que você estava
 
-### Mantido (anonimizado)
+### Guardado sem identificar você
 
-- Identificador interno da conta (sem dados pessoais)
+- Histórico de participação em campanhas, sem o seu nome e sem os dados do seu perfil
 
-- Histórico de participação em campanhas, para preservar registros das marcas com quem você trabalhou
+- Conteúdos enviados, mensagens do chat e métricas das publicações de campanhas, por até 5 anos após o fim da campanha, como registro do que foi combinado e entregue à marca
 
-- Avaliações já emitidas, sem associação ao seu perfil pessoal
+- Avaliações já feitas, sem ligação com o seu perfil
 
-- Registros exigidos por obrigação legal/fiscal (art. 16, I e II da LGPD)
+### Mantido por obrigação legal
 
-Após a exclusão, sua conta não pode mais ser recuperada nem reativada. Caso queira voltar a usar o HypeApp, será necessário criar uma nova conta.
+- Registros de pagamentos, saques e dados fiscais: em geral por 5 anos, como exige a legislação tributária
 
-## Controlador dos dados
+- Registros de acesso ao app: por 6 meses, como exige o Marco Civil da Internet
 
-O HypeApp é o controlador dos seus dados pessoais. Para exercer outros direitos previstos pela LGPD — acesso, correção, portabilidade, anonimização ou revogação de consentimento — escreva para contato@vocenohype.com.br.
+- Chamados de suporte sobre pagamentos: pelo mesmo prazo dos dados fiscais
 
-Esta página é o ponto oficial de solicitação de exclusão referenciado na nossa Política de Privacidade e na Declaração de Segurança de Dados das lojas de aplicativos.
+Esses dados continuam ligados a você porque a lei exige (art. 16, inciso I, da LGPD). Eles não são usados para nenhuma outra finalidade e são apagados ao fim de cada prazo.
+
+Os prazos completos estão na Política de Privacidade.
+
+## 6. Quem é o responsável pelos seus dados
+
+O controlador dos seus dados é a Você no Hype Marketing e Entretenimento LTDA (CNPJ 43.442.408/0001-26), que desenvolve e opera o HypeApp. Para pedir acesso, correção, portabilidade ou exercer outros direitos, veja a seção Seus direitos da Política de Privacidade.
+
+Esta é a página oficial de exclusão de conta do HypeApp, citada na Política de Privacidade e nas informações de segurança de dados das lojas de aplicativos.
 
 ---
 
@@ -1641,7 +1657,7 @@ Depende do contrato entre creator e marca. Publicar uma publi não autoriza auto
 
 Fonte: https://www.hypeapp.com.br/legal/
 Título: Documentos legais | HypeApp
-Atualizado em: 2026-11-03
+Atualizado em: 2026-11-06
 
 # Documentos legais
 
@@ -1651,15 +1667,17 @@ Privacidade, termos e seus direitos sobre dados no HypeApp. Dúvidas: contato@vo
 
 Fonte: https://www.hypeapp.com.br/regras-da-comunidade/
 Título: Regras da comunidade | HypeApp
-Atualizado em: 2026-11-04
+Atualizado em: 2026-11-06
 
 # Regras da comunidade
 
 Como manter a comunidade do HypeApp segura para creators e marcas, e o que fazer quando algo passar do limite.
 
-## Tolerância zero
+Versão 2.0 · Última atualização: 6 de novembro de 2026.
 
-A comunidade do HypeApp tem tolerância zero a conteúdo censurável e a comportamento abusivo. Isso vale para publicações, comentários, grupos, lives e mensagens.
+## O que não aceitamos
+
+A comunidade do HypeApp não aceita conteúdo censurável nem comportamento abusivo. Isso vale para publicações, comentários, grupos, lives e mensagens. Todo conteúdo que viola estas regras é removido assim que identificado, e quem o publicou pode ter a conta suspensa ou encerrada, conforme a gravidade e a repetição.
 
 ## O que não é permitido
 
@@ -1673,14 +1691,76 @@ A comunidade do HypeApp tem tolerância zero a conteúdo censurável e a comport
 
 - conteúdo ilegal, discriminatório ou que viole direitos de terceiros.
 
+Qualquer conteúdo que sexualize, explore ou coloque em risco crianças e adolescentes é removido e a conta é encerrada. Veja os nossos padrões de segurança infantil.
+
 ## Como denunciar
 
-Toque no menu "…" da publicação, ou segure sobre o comentário, o comentário da live ou a mensagem, e escolha "Denunciar". As denúncias são analisadas em até 24 horas.
-
-## O que acontece com quem viola as regras
-
-Contas que violarem estas diretrizes podem ter o conteúdo removido e o acesso suspenso ou encerrado, conforme os Termos de Uso.
+No app, toque no menu "…" da publicação, ou segure sobre o comentário, o comentário da live ou a mensagem, e escolha "Denunciar". Você também pode denunciar pelo formulário de suporte, com o link ou o @ do conteúdo. As denúncias são analisadas em até 24 horas. Se o conteúdo violar estas regras, ele é removido e a conta responsável pode sofrer as medidas abaixo.
 
 ## Bloquear outro usuário
 
-Você também pode bloquear outro usuário. Quem você bloqueia deixa de interagir com você na comunidade.
+Você também pode bloquear outro usuário pelo app. Quem você bloqueia deixa de interagir com você na comunidade. Bloquear não substitui a denúncia: se alguém violou estas regras, denuncie também.
+
+## O que acontece com quem viola as regras
+
+Conforme a gravidade e a repetição, aplicamos uma ou mais destas medidas: remoção do conteúdo, suspensão temporária do acesso à comunidade ou à conta, e encerramento da conta, como previsto nos Termos de Uso. Conteúdo ilegal pode ser comunicado às autoridades.
+
+## Como contestar uma decisão
+
+Se o seu conteúdo foi removido ou a sua conta foi suspensa e você discorda, peça uma revisão pelo formulário de suporte, com o e-mail da conta e o que foi removido. A equipe revisa a decisão, e você recebe a resposta pelo e-mail informado. O suporte responde em até 2 dias úteis.
+
+---
+
+Fonte: https://www.hypeapp.com.br/seguranca-infantil/
+Título: Padrões de segurança infantil | HypeApp
+Atualizado em: 2026-11-06
+
+# Padrões de segurança infantil
+
+Como o HypeApp combate o abuso e a exploração sexual de crianças e adolescentes, e como denunciar.
+
+Versão 1.0 · Última atualização: 6 de novembro de 2026.
+
+O HypeApp tem tolerância zero ao abuso e à exploração sexual de crianças e adolescentes. Esta página reúne os nossos padrões, explica como denunciar e o que fazemos com o conteúdo denunciado. Ela vale para o app, o painel das marcas e todos os espaços da comunidade: publicações, comentários, grupos, lives, chats e mensagens.
+
+## 1. Quem pode usar o HypeApp
+
+O HypeApp é só para pessoas com 18 anos ou mais e para empresas. Menores de 18 anos não podem criar conta, mesmo emancipados. Se identificarmos uma conta de menor de idade, ela é removida e os dados são excluídos, conforme a Política de Privacidade.
+
+## 2. O que é proibido
+
+- Material de abuso sexual infantil, em qualquer formato: imagem, vídeo, áudio, texto, desenho ou conteúdo gerado ou alterado por inteligência artificial.
+
+- Qualquer conteúdo que sexualize crianças ou adolescentes, inclusive comentários, legendas e mensagens.
+
+- Aliciamento: tentar contato com menores de idade para fins sexuais ou para ganhar a confiança deles com esse objetivo.
+
+- Oferecer, pedir, compartilhar ou indicar onde encontrar esse tipo de material.
+
+- Exploração, tráfico ou qualquer forma de colocar crianças e adolescentes em risco.
+
+Essas condutas também são crimes pela lei brasileira, como prevê o Estatuto da Criança e do Adolescente (Lei nº 8.069/1990).
+
+## 3. Como denunciar
+
+- No app: toque no menu "…" da publicação, ou segure sobre o comentário, o comentário da live ou a mensagem, e escolha "Denunciar".
+
+- Pelo site: use o formulário de suporte, com o assunto “Denúncia” e o link ou o @ do conteúdo. Não é preciso ter conta.
+
+- Por e-mail: escreva para o nosso contato de segurança infantil, indicado abaixo.
+
+Não baixe, não guarde e não reenvie o conteúdo, nem para mostrar como prova: basta informar onde ele está. Você também pode denunciar diretamente à SaferNet Brasil ou pelo Disque 100. Se uma criança estiver em perigo imediato, ligue 190.
+
+## 4. O que fazemos com o conteúdo denunciado
+
+- Quando a violação é confirmada, o conteúdo é removido e a conta responsável é encerrada.
+
+- Preservamos as informações necessárias e comunicamos o caso às autoridades competentes, como prevê a lei.
+
+- Atendemos a pedidos de autoridades e da Justiça relacionados a esses casos.
+
+## 5. Contato de segurança infantil
+
+A Você no Hype Marketing e Entretenimento LTDA (CNPJ 43.442.408/0001-26), que opera o HypeApp, mantém um contato designado para questões de segurança infantil, que recebe denúncias e pedidos de autoridades: contato@vocenohype.com.br, com o assunto “Segurança infantil”.
+
+Veja também as Regras da comunidade e os Termos de uso.

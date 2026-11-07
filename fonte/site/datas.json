@@ -72,7 +72,7 @@
  "/cookies/": {
   "publicado": "2026-10-30",
   "alterado": "2026-11-06",
-  "hash": "7d4635f75061f2da05787f43d687489d"
+  "hash": "50a61f135ebd881833d6506c709851ca"
  },
  "/criadores/": {
   "publicado": "2026-10-30",
@@ -86,13 +86,13 @@
  },
  "/exclusao-de-conta/": {
   "publicado": "2026-10-30",
-  "alterado": "2026-11-03",
-  "hash": "ab8fa049abd6729c3827c87ac9f0ef8c"
+  "alterado": "2026-11-06",
+  "hash": "526a0a3ac684c1867b0c08bf3e2e3464"
  },
  "/legal/": {
   "publicado": "2026-10-30",
-  "alterado": "2026-11-03",
-  "hash": "4c960f40bc1c788c34998d0d801ef379"
+  "alterado": "2026-11-06",
+  "hash": "7ceb065a93a9c6e9f53924de90bdf16c"
  },
  "/links/": {
   "publicado": "2026-11-06",
@@ -132,12 +132,17 @@
  "/privacidade/": {
   "publicado": "2026-10-30",
   "alterado": "2026-11-06",
-  "hash": "63f6d888f2336bf480abbdb9a87001ce"
+  "hash": "4001ed88e7fa73d4d3f11d876b28c3b8"
  },
  "/regras-da-comunidade/": {
   "publicado": "2026-11-03",
-  "alterado": "2026-11-04",
-  "hash": "260edbed45153db9f692f8a1c7f1a738"
+  "alterado": "2026-11-06",
+  "hash": "f5e0397f9b14663a4a2c37d57a7a7ba6"
+ },
+ "/seguranca-infantil/": {
+  "publicado": "2026-11-06",
+  "alterado": "2026-11-06",
+  "hash": "27e85a039aa6919a33f0ae5d7ab0daf6"
  },
  "/sobre/": {
   "publicado": "2026-10-30",
@@ -157,6 +162,6 @@
  "/termos/": {
   "publicado": "2026-10-30",
   "alterado": "2026-11-06",
-  "hash": "7dd579d0b9c80a7b5ce0c8b3379e95ff"
+  "hash": "2873d4d23017636008cfd7431460979b"
  }
 }

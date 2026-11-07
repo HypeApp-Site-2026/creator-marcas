@@ -425,6 +425,9 @@
         box.hidden = vals.indexOf(val) === -1;
       });
     };
+    /* assunto vindo do link (ex.: /suporte/?assunto=exclusao) */
+    var pre = (location.search.match(/[?&]assunto=([a-z]+)/) || [])[1], sel = f.elements.assunto;
+    if (pre && sel && sel.tagName === 'SELECT' && sel.querySelector('option[value="' + pre + '"]')) sel.value = pre;
     f.addEventListener('change', sync); f.addEventListener('input', sync); sync();
     /* inicio do preenchimento (cadastro iniciado, para marcas): uma vez por formulario e por pagina */
     var fn = f.getAttribute('name') || '', iniciou = false;

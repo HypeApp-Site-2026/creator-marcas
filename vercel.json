@@ -262,6 +262,16 @@
       "permanent": true
     },
     {
+      "source": "/exclusao(/.*)?",
+      "destination": "/exclusao-de-conta/",
+      "permanent": true
+    },
+    {
+      "source": "/exclusao",
+      "destination": "/exclusao-de-conta/",
+      "permanent": true
+    },
+    {
       "source": "/murais-campanhas(/.*)?",
       "destination": "/criadores/",
       "permanent": true
@@ -322,6 +332,21 @@
       "permanent": true
     },
     {
+      "source": "/Uso.html",
+      "destination": "/termos/",
+      "permanent": true
+    },
+    {
+      "source": "/uso.html",
+      "destination": "/termos/",
+      "permanent": true
+    },
+    {
+      "source": "/Uso",
+      "destination": "/termos/",
+      "permanent": true
+    },
+    {
       "source": "/influenciadores(/.*)?",
       "destination": "/criadores/",
       "permanent": true
@@ -331,6 +356,10 @@
     {
       "source": "/((?!backoffice).*)",
       "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        },
         {
           "key": "Strict-Transport-Security",
           "value": "max-age=63072000"
