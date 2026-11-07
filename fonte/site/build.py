@@ -871,7 +871,7 @@ def p_criadores(L, A):
            ('Quem escolhe quem participa?', 'No self-service, a própria marca. Na campanha gerenciada, a curadoria da Você no Hype.'),
            ('Posso recusar uma campanha ou um convite?', 'Sim. Você só se inscreve nas campanhas que quiser e pode recusar convites; a marca é avisada.'),
            ('O cadastro garante campanhas?', 'Não. Cada campanha tem critérios próprios e a seleção é feita pela marca ou pela curadoria.'),
-           ('Preciso emitir nota fiscal?', 'Depende da campanha e do seu cadastro como pessoa física ou jurídica. O app informa o que é exigido antes do pagamento.'),
+           ('Preciso emitir nota fiscal?', 'Sim. Todo creator emite nota fiscal dos valores recebidos pelas campanhas. Para sacar, cadastre no app uma chave PIX em seu nome, com o mesmo CPF ou CNPJ do cadastro.'),
            ('A marca pode usar meu conteúdo depois?', 'Depende do contrato da campanha, firmado entre você e a marca. Confira as condições de uso de imagem antes de aceitar.'),
            ('Como funciona a comunidade?', COMUNIDADE_TXT)]
     return f'''
@@ -1203,7 +1203,7 @@ FAQ_GROUPS = [
         ('O cadastro garante participação em campanhas?', 'Não. Cada campanha tem critérios próprios e a marca ou a curadoria seleciona quem participa.'),
         ('Quanto custa para creators?', 'Nada. O HypeApp é gratuito para creators: não há mensalidade nem taxa sobre o valor que você recebe das campanhas.'),
         ('Como recebo o pagamento?', PIX_TXT),
-        ('Preciso emitir nota fiscal?', 'Depende da campanha e do seu cadastro como pessoa física ou jurídica. O app informa o que é exigido antes do pagamento.'),
+        ('Preciso emitir nota fiscal?', 'Sim. Todo creator emite nota fiscal dos valores recebidos pelas campanhas. Para sacar, cadastre no app uma chave PIX em seu nome, com o mesmo CPF ou CNPJ do cadastro.'),
         ('Recebidos e permuta: o produto fica comigo?', 'Depende da campanha. O mural de cada campanha informa se o produto é seu ou se precisa ser devolvido.'),
         ('A marca pode usar meu conteúdo depois?', 'Depende do contrato da campanha, firmado entre você e a marca. Confira as condições de uso de imagem antes de aceitar o convite.'),
         ('Como funciona a comunidade?', COMUNIDADE_TXT),
@@ -1544,7 +1544,7 @@ def p_app(L, A):
 </section>'''
 
 VERSOES = {'/cookies/': 'Versão 2.0 · Última atualização: 6 de novembro de 2026.',
-           '/regras-da-comunidade/': 'Versão 2.0 · Última atualização: 6 de novembro de 2026.'}
+           '/regras-da-comunidade/': 'Versão 2.1 · Última atualização: 6 de novembro de 2026.'}
 
 COOKIES_GA = [
     ('necessarios', 'Necessários', rev('Para funcionar, o site guarda no seu navegador a sua escolha sobre cookies (por até 12 meses) e, só enquanto a aba estiver aberta, '
@@ -1646,7 +1646,7 @@ def p_regras(L, A):
             ('denunciar', 'Como denunciar', '<p>No app, toque no menu "…" da publicação, ou segure sobre o comentário, o comentário da live ou a mensagem, e escolha "Denunciar". '
              'Você também pode denunciar pelo <a href="' + sup + '?assunto=denuncia">formulário de suporte</a>, com o link ou o @ do conteúdo. '
              'As denúncias são analisadas em até 24 horas. Se o conteúdo violar estas regras, ele é removido e a conta responsável pode sofrer as medidas abaixo.</p>'),
-            ('bloquear', 'Bloquear outro usuário', '<p>Você também pode bloquear outro usuário pelo app. Quem você bloqueia deixa de interagir com você na comunidade. '
+            ('bloquear', 'Bloquear outro usuário', '<p>Para bloquear outro usuário, ou desfazer um bloqueio, peça ao suporte do HypeApp pelo <a href="' + sup + '?assunto=conta">formulário de suporte</a>, com o @ da pessoa. Quem você bloqueia deixa de interagir com você na comunidade. '
              'Bloquear não substitui a denúncia: se alguém violou estas regras, denuncie também.</p>'),
             ('consequencias', 'O que acontece com quem viola as regras', '<p>Conforme a gravidade e a repetição, aplicamos uma ou mais destas medidas: remoção do conteúdo, suspensão temporária do acesso à comunidade ou à conta, e encerramento da conta, '
              'como previsto nos <a href="' + L('/termos/') + '">Termos de Uso</a>. Conteúdo ilegal pode ser comunicado às autoridades.</p>'),

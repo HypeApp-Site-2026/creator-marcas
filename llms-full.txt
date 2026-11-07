@@ -211,7 +211,7 @@ Não. Cada campanha tem critérios próprios e a seleção é feita pela marca o
 
 **P:** Preciso emitir nota fiscal?
 
-Depende da campanha e do seu cadastro como pessoa física ou jurídica. O app informa o que é exigido antes do pagamento.
+Sim. Todo creator emite nota fiscal dos valores recebidos pelas campanhas. Para sacar, cadastre no app uma chave PIX em seu nome, com o mesmo CPF ou CNPJ do cadastro.
 
 **P:** A marca pode usar meu conteúdo depois?
 
@@ -389,7 +389,7 @@ O valor entra como "A liberar" e fica disponível 30 dias depois do encerramento
 
 **P:** Preciso emitir nota fiscal?
 
-Depende da campanha e do seu cadastro como pessoa física ou jurídica. O app informa o que é exigido antes do pagamento.
+Sim. Todo creator emite nota fiscal dos valores recebidos pelas campanhas. Para sacar, cadastre no app uma chave PIX em seu nome, com o mesmo CPF ou CNPJ do cadastro.
 
 **P:** Recebidos e permuta: o produto fica comigo?
 
@@ -507,7 +507,7 @@ Quais dados pessoais o HypeApp coleta, como usa, com quem compartilha e como voc
 
 Esta política explica quais dados pessoais o HypeApp coleta no app, no painel das marcas e no site, como os usamos, com quem os compartilhamos e como você exerce seus direitos, em conformidade com a Lei Geral de Proteção de Dados Pessoais (LGPD, Lei nº 13.709/2018) e com as regras das lojas de aplicativos e das plataformas conectadas.
 
-Versão 2.4 · Última atualização: 6 de novembro de 2026.
+Versão 2.5 · Última atualização: 6 de novembro de 2026.
 
 ## Resumo rápido
 
@@ -605,12 +605,6 @@ Modelo do aparelho, sistema, identificadores de instalação, registros de uso, 
 
 Enviar notificações, garantir a segurança, corrigir falhas e melhorar o app
 
-Identificador de publicidade
-
-IDFA, apenas se você autorizar na solicitação do iOS (App Tracking Transparency)
-
-Atribuição de campanhas de parceiros. Veja Rastreamento e cookies.
-
 Painel das marcas
 
 Nome, e-mail, cargo e permissões de cada pessoa da equipe; dados da empresa, das campanhas, dos aportes e dos pagamentos
@@ -649,7 +643,7 @@ Usar as redes sociais exigidas por uma campanha em que você se inscreveu ou que
 
 Execução de contrato (inciso V), porque a rede é condição daquela campanha
 
-Conectar redes sociais por escolha própria, fora dessa exigência, usar localização e, no iOS, o identificador de publicidade
+Conectar redes sociais por escolha própria, fora dessa exigência, e usar localização
 
 Consentimento (inciso I), que você pode revogar a qualquer momento
 
@@ -693,17 +687,19 @@ Hype Points não são dinheiro: não podem ser comprados, vendidos, transferidos
 
 ## 7. Redes sociais conectadas
 
-Conectar redes sociais é opcional. Algumas campanhas exigem redes específicas: nesse caso, a rede é condição para participar daquela campanha, e o uso dos dados dela segue a execução do contrato (veja a seção 5). Em todas as conexões, o acesso é somente de leitura: o HypeApp não publica, não altera e não exclui nada nas suas redes, e não usa esses dados para publicidade personalizada. Você pode desconectar qualquer rede no app, em Perfil › Redes sociais conectadas › Desconectar.
+Conectar redes sociais é opcional. Algumas campanhas exigem redes específicas: nesse caso, a rede é condição para participar daquela campanha, e o uso dos dados dela segue a execução do contrato (veja a seção 5). Em todas as conexões, o acesso é somente de leitura: o HypeApp não publica, não altera e não exclui nada nas suas redes, e não usa esses dados para publicidade personalizada. Você pode desconectar o TikTok e o YouTube no app, em Perfil › Redes sociais conectadas › Desconectar. Os dados do Instagram são atualizados enquanto a conta existir (veja 7.1).
 
 ### 7.1 Instagram
 
 - Como conecta: a conexão não usa o login da Meta e não pede sua senha nem acesso à sua conta. Você informa o seu @ e comprova que o perfil é seu colando na bio um código temporário gerado pelo app (válido por 30 minutos). Depois da verificação, o código pode ser apagado da bio.
 
-- Dados usados: informações públicas do perfil (nome de usuário, nome, foto e número de seguidores) e as publicações públicas feitas para as campanhas, com as métricas públicas delas.
+- Dados usados: informações do perfil (nome de usuário, nome, foto e número de seguidores) e as publicações feitas para as campanhas, com as métricas delas, incluindo alcance e impressões.
+
+- Atualização: esses dados são atualizados automaticamente pelo sistema enquanto a sua conta existir. Eles só deixam de ser atualizados quando a conta é excluída.
 
 - Somente leitura: o HypeApp não tem nenhum acesso de escrita à sua conta do Instagram.
 
-- Como revogar: desconecte o Instagram no app. Os dados do perfil deixam de ser atualizados e são removidos, ressalvados os registros de campanhas concluídas que precisem ser mantidos por obrigação legal ou contratual.
+- Como encerrar: exclua a sua conta. Os dados do perfil deixam de ser atualizados e são removidos, ressalvados os registros de campanhas concluídas que precisem ser mantidos por obrigação legal ou contratual.
 
 ### 7.2 TikTok
 
@@ -745,6 +741,12 @@ Você pode revogar o acesso desconectando o YouTube no HypeApp, excluindo sua co
 
 Não vendemos, não alugamos e não cedemos seus dados pessoais para fins comerciais de terceiros.
 
+### 8.1 Quem responde pelos dados nas campanhas
+
+- Campanhas self-service: a marca ou agência cria e conduz a campanha pelo painel e decide como usar os dados dos creators que participam dela. Para esses dados, ela atua como controladora independente, com as próprias obrigações pela LGPD.
+
+- Campanhas gerenciadas: quando a marca escolhe que a campanha seja gerenciada, a Você no Hype conduz a campanha pelo HypeApp em nome da marca. Nesse trabalho, a Você no Hype trata os dados conforme as instruções da marca, como operadora, e continua sendo a controladora dos dados da sua conta no HypeApp.
+
 ## 9. Transferência internacional
 
 Alguns fornecedores de tecnologia, como provedores de nuvem e hospedagem, de notificações e de análise (entre eles Google, Firebase e Microsoft), armazenam ou processam dados fora do Brasil, principalmente nos Estados Unidos.
@@ -753,7 +755,7 @@ Essas transferências seguem o art. 33 da LGPD. Usamos as cláusulas-padrão con
 
 ## 10. Rastreamento e cookies
 
-No iOS, antes de qualquer rastreamento entre apps e sites de outras empresas, o app exibe a solicitação de permissão do sistema (App Tracking Transparency). O rastreamento é usado apenas para atribuição de campanhas de parceiros, como a integração com o TikTok. Se você não autorizar, o app continua funcionando normalmente; só não fazemos essa atribuição.
+O app não rastreia você em apps e sites de outras empresas e não lê o identificador de publicidade do aparelho: nem o IDFA, no iOS, nem o ID de publicidade, no Android. Por isso o app não exibe a solicitação de rastreamento do iOS (App Tracking Transparency).
 
 No site, usamos cookies necessários para funcionar e, só se você aceitar no aviso de cookies, cookies de medição do Google Analytics 4 (pela tag do Google) e do Microsoft Clarity, que registra cliques, rolagem e gravações da navegação com os campos de formulário ocultos. Você pode mudar a escolha a qualquer momento em Preferências de cookies, no rodapé. Os detalhes estão na Política de cookies.
 
@@ -769,7 +771,7 @@ No site, usamos cookies necessários para funcionar e, só se você aceitar no a
 
 - Registros de acesso: pelo prazo mínimo exigido pelo Marco Civil da Internet (6 meses) e no máximo 12 meses, salvo ordem judicial.
 
-- Dados das redes conectadas (perfil, seguidores e tokens de acesso): enquanto a rede estiver conectada. São removidos quando você desconecta a rede ou exclui a conta.
+- Dados das redes conectadas (perfil, seguidores, métricas e tokens de acesso): enquanto a rede estiver conectada; no Instagram, enquanto a conta existir. São removidos quando você desconecta a rede ou exclui a conta.
 
 - Métricas das publicações de campanhas: junto com o registro da campanha, por até 5 anos após o encerramento dela, para comprovar entregas e pagamentos.
 
@@ -843,7 +845,7 @@ Termos e condições gerais de uso do HypeApp para creators, marcas e agências.
 
 Termos e condições gerais de uso do HypeApp
 
-Versão 2.2 · Última atualização: 6 de novembro de 2026.
+Versão 2.3 · Última atualização: 6 de novembro de 2026.
 
 Seja bem-vindo(a) ao HypeApp.
 
@@ -985,9 +987,9 @@ c) descumprir qualquer disposição destes Termos.
 
 6.3 Se o Creator não fizer as entregas combinadas, o valor reservado para aquela participação volta ao saldo da Campanha.
 
-6.4 O Creator pode sacar o valor disponível por PIX, sem taxa e sem valor máximo, com valor mínimo de R$ 1,00 (um real). A chave PIX deve estar em nome do titular da conta, com o mesmo CPF do cadastro. O saque é processado em até 2 (duas) horas úteis.
+6.4 O Creator pode sacar o valor disponível por PIX, sem taxa e sem valor máximo, com valor mínimo de R$ 1,00 (um real). Para sacar, o Creator deve cadastrar no Aplicativo uma chave PIX em nome do titular da conta, com o mesmo CPF ou CNPJ do cadastro. O saque é processado em até 2 (duas) horas úteis.
 
-6.5 O Creator é responsável pelos tributos incidentes sobre os valores recebidos e, quando exigido, pela emissão de nota fiscal, conforme seu enquadramento como pessoa física ou jurídica. O Aplicativo informa o que é exigido antes do pagamento.
+6.5 Todo Creator deve emitir nota fiscal dos valores recebidos pelas Campanhas e é responsável pelos tributos incidentes sobre eles. O Aplicativo informa como enviar a nota antes do pagamento.
 
 6.6 O valor permanece "A liberar" enquanto houver contestação da Marca ou denúncia em análise. Também podemos reter valores em caso de suspeita de fraude, de descumprimento destes Termos ou de ordem judicial, até a conclusão da análise.
 
@@ -999,7 +1001,7 @@ c) descumprir qualquer disposição destes Termos.
 
 7.3 O HypeApp usa os Serviços de API do YouTube. Ao conectar o YouTube, o Creator concorda com os Termos de Serviço do YouTube, e os dados obtidos são tratados também conforme a Política de Privacidade do Google.
 
-7.4 O Creator pode desconectar qualquer rede a qualquer momento no Aplicativo. Os dados acessados, o modo de acesso e a forma de revogar cada conexão estão descritos na Política de Privacidade.
+7.4 O Creator pode desconectar o TikTok e o YouTube a qualquer momento no Aplicativo. Os dados do Instagram são atualizados automaticamente enquanto a conta existir. Os dados acessados, o modo de acesso e a forma de revogar cada conexão estão descritos na Política de Privacidade.
 
 ## 8. Hype Points
 
@@ -1183,7 +1185,7 @@ Atualizado em: 2026-11-06
 
 Como excluir sua conta no HypeApp e o que acontece com os seus dados.
 
-Versão 2.0 · Última atualização: 6 de novembro de 2026.
+Versão 2.1 · Última atualização: 6 de novembro de 2026.
 
 Esta página explica como excluir a sua conta no HypeApp e o que acontece com os seus dados: o que é apagado, o que fica guardado sem identificar você e o que precisa ser mantido por obrigação legal, conforme a LGPD (Lei nº 13.709/2018).
 
@@ -1205,13 +1207,13 @@ Para confirmarmos que o pedido é seu, informe o nome completo, o e-mail cadastr
 
 ## 3. Antes de excluir
 
-- Saldo da carteira: saque por PIX o saldo disponível antes de excluir a conta. Se você tiver valores a liberar ou campanhas em andamento, fale com o suporte antes de pedir a exclusão, para combinarmos como fica o pagamento.
+- Saldo da carteira: saque todo o saldo por PIX antes de excluir a conta. Se você tiver valores a liberar, espere a liberação e faça o saque antes de pedir a exclusão. Dúvidas sobre pagamentos: fale com o suporte.
 
 - Exclusão é definitiva: depois de concluída, a conta não pode ser recuperada nem reativada. Para voltar a usar o HypeApp, será preciso criar uma conta nova.
 
 ## 4. Equipe de uma marca no painel
 
-Se você acessa o painel como parte da equipe de uma marca ou agência, peça ao administrador da conta da marca para remover o seu acesso, ou peça pelo formulário de suporte. A remoção apaga o seu login e os seus dados de contato do painel. A conta da marca, as campanhas e os registros feitos em nome da empresa continuam com a marca.
+Se você acessa o painel como parte da equipe de uma marca ou agência, peça a remoção do seu acesso pelo formulário de suporte, com o e-mail que você usa no painel. A remoção apaga o seu login e os seus dados de contato do painel. A conta da marca, as campanhas e os registros feitos em nome da empresa continuam com a marca.
 
 ## 5. O que acontece com os seus dados
 
@@ -1673,7 +1675,7 @@ Atualizado em: 2026-11-06
 
 Como manter a comunidade do HypeApp segura para creators e marcas, e o que fazer quando algo passar do limite.
 
-Versão 2.0 · Última atualização: 6 de novembro de 2026.
+Versão 2.1 · Última atualização: 6 de novembro de 2026.
 
 ## O que não aceitamos
 
@@ -1699,7 +1701,7 @@ No app, toque no menu "…" da publicação, ou segure sobre o comentário, o co
 
 ## Bloquear outro usuário
 
-Você também pode bloquear outro usuário pelo app. Quem você bloqueia deixa de interagir com você na comunidade. Bloquear não substitui a denúncia: se alguém violou estas regras, denuncie também.
+Para bloquear outro usuário, ou desfazer um bloqueio, peça ao suporte do HypeApp pelo formulário de suporte, com o @ da pessoa. Quem você bloqueia deixa de interagir com você na comunidade. Bloquear não substitui a denúncia: se alguém violou estas regras, denuncie também.
 
 ## O que acontece com quem viola as regras
 

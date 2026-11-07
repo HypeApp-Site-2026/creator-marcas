@@ -204,7 +204,7 @@ HELP = [
   ("saque-pendente-ou-com-erro", "G", "Saque pendente ou com erro | Ajuda HypeApp",
    "Como acompanhar um saque que não caiu e quando acionar o suporte.", "Meu saque não caiu. O que fazer?"),
   ("documentos-fiscais-e-recebimentos", "G", "Documentos fiscais e recebimentos | Ajuda HypeApp",
-   "Quais documentos são pedidos antes do pagamento, conforme a campanha e seu cadastro como pessoa física ou jurídica.", "Preciso emitir nota fiscal?")]),
+   "Todo creator emite nota fiscal dos valores recebidos, e a chave PIX precisa estar em seu nome, com o mesmo CPF ou CNPJ do cadastro.", "Preciso emitir nota fiscal?")]),
  ("comunidade-e-pontos", "Comunidade e pontos", "Creators", "G", "Comunidade e pontos | Ajuda HypeApp",
   "Feed, grupos, lives, Hype Points e como denunciar ou bloquear.", [
   ("publicar-e-interagir", "G", "Como publicar na comunidade | Ajuda HypeApp",
