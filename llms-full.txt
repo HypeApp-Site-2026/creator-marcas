@@ -511,7 +511,7 @@ Quais dados pessoais o HypeApp coleta, como usa, com quem compartilha e como voc
 
 Esta política explica quais dados pessoais o HypeApp coleta no app, no painel das marcas e no site, como os usamos, com quem os compartilhamos e como você exerce seus direitos, em conformidade com a Lei Geral de Proteção de Dados Pessoais (LGPD, Lei nº 13.709/2018) e com as regras das lojas de aplicativos e das plataformas conectadas.
 
-Versão 2.5 · Última atualização: 6 de novembro de 2026.
+Versão 2.6 · Última atualização: 6 de novembro de 2026.
 
 ## Resumo rápido
 
@@ -749,7 +749,7 @@ Não vendemos, não alugamos e não cedemos seus dados pessoais para fins comerc
 
 - Campanhas self-service: a marca ou agência cria e conduz a campanha pelo painel e decide como usar os dados dos creators que participam dela. Para esses dados, ela atua como controladora independente, com as próprias obrigações pela LGPD.
 
-- Campanhas gerenciadas: quando a marca escolhe que a campanha seja gerenciada, a Você no Hype conduz a campanha pelo HypeApp em nome da marca. Nesse trabalho, a Você no Hype trata os dados conforme as instruções da marca, como operadora, e continua sendo a controladora dos dados da sua conta no HypeApp.
+- Campanhas gerenciadas: quando a marca contrata a Você no Hype para fazer a gestão da campanha, em um contrato de prestação de serviço à parte, a Você no Hype conduz a campanha pelo HypeApp em nome da marca. Nesse trabalho, a Você no Hype trata os dados conforme as instruções da marca, como operadora, e continua sendo a controladora dos dados da sua conta no HypeApp.
 
 ## 9. Transferência internacional
 
@@ -849,7 +849,7 @@ Termos e condições gerais de uso do HypeApp para creators, marcas e agências.
 
 Termos e condições gerais de uso do HypeApp
 
-Versão 2.4 · Última atualização: 6 de novembro de 2026.
+Versão 2.5 · Última atualização: 6 de novembro de 2026.
 
 Seja bem-vindo(a) ao HypeApp.
 
@@ -923,7 +923,9 @@ Toda pessoa que navega ou de qualquer forma usa a Plataforma, seja Creator, Marc
 
 2.1 O HypeApp foi criado para organizar, em um só lugar, todo o ciclo de uma campanha de marketing de influência: a Marca cria a Campanha no Painel; o Creator encontra a Campanha no Aplicativo e se inscreve; a Marca, ou a curadoria da Você no Hype, seleciona os participantes; o Creator envia roteiros e conteúdos para aprovação, publica nas suas redes sociais; e o pagamento é feito pela Carteira.
 
-2.2 As Marcas podem operar as campanhas por conta própria no Painel (self-service) ou contratar a operação da Você no Hype (campanha gerenciada), conforme proposta comercial.
+2.2 A relação de cada Campanha é entre a Marca ou Agência e o Creator. O HypeApp é a plataforma que intermedeia essa relação.
+
+2.2.1 As Marcas operam as campanhas no Painel. Se a Marca preferir que a Você no Hype faça a gestão da campanha (campanha gerenciada), essa gestão é uma prestação de serviço à parte, contratada diretamente com a Você no Hype e regida pelo contrato desse serviço, e não por estes Termos. O uso da Plataforma continua seguindo estes Termos.
 
 2.3 Ter conta no HypeApp não garante participação em campanhas. Cada Campanha tem critérios próprios, definidos pela Marca.
 
@@ -941,7 +943,7 @@ Toda pessoa que navega ou de qualquer forma usa a Plataforma, seja Creator, Marc
 
 4.1 O cadastro e o uso do Aplicativo são gratuitos para Creators: não há mensalidade nem taxa sobre o valor que o Creator recebe das campanhas.
 
-4.2 O acesso das Marcas e Agências ao Painel é liberado pelo nosso time comercial, conforme proposta e contrato. Os valores são sob consulta.
+4.2 O acesso das Marcas e Agências ao Painel é liberado pelo nosso time comercial. Os valores são sob consulta.
 
 4.3 O cadastro deve ser feito por pessoas com 18 (dezoito) anos ou mais. A emancipação não autoriza o cadastro de menores de 18 anos.
 
