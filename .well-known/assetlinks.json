@@ -1,0 +1,15 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "br.com.hypeapp.v2",
+      "sha256_cert_fingerprints": [
+        "6D:C6:88:35:60:F7:7C:E2:22:29:EA:A1:1E:23:C1:BD:1D:64:18:30:DE:17:86:5F:E1:A5:78:B5:ED:3E:27:E4",
+        "52:CE:FE:9F:67:C4:C3:9E:DD:42:99:73:17:88:E7:7A:2D:08:3F:0D:32:FB:01:F2:3A:D5:7C:CF:AE:8C:20:85"
+      ]
+    }
+  }
+]

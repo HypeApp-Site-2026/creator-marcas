@@ -2148,6 +2148,12 @@ def arquivos_tecnicos(OUT):
     sec = (f'Contact: mailto:{EMAIL}\nExpires: {exp}\nPreferred-Languages: pt, en\n'
            f'Canonical: {BASE}/.well-known/security.txt\n')
     open(os.path.join(OUT, '.well-known', 'security.txt'), 'w', encoding='utf-8').write(sec)
+    # App Links do Android (Lucas, 06/11): pacote e certificados do Play Console › Integridade do app
+    _al = [{'relation': ['delegate_permission/common.handle_all_urls'],
+            'target': {'namespace': 'android_app', 'package_name': 'br.com.hypeapp.v2',
+                       'sha256_cert_fingerprints': ['6D:C6:88:35:60:F7:7C:E2:22:29:EA:A1:1E:23:C1:BD:1D:64:18:30:DE:17:86:5F:E1:A5:78:B5:ED:3E:27:E4',
+                                                    '52:CE:FE:9F:67:C4:C3:9E:DD:42:99:73:17:88:E7:7A:2D:08:3F:0D:32:FB:01:F2:3A:D5:7C:CF:AE:8C:20:85']}}]
+    json.dump(_al, open(os.path.join(OUT, '.well-known', 'assetlinks.json'), 'w', encoding='utf-8'), indent=2)
 
     # 4. IndexNow: arquivo de chave na raiz (o envio é feito pelo GitHub Actions, ver README)
     chave = open(os.path.join(HERE, 'indexnow.key')).read().strip()
