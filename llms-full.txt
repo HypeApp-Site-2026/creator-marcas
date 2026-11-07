@@ -1,6 +1,6 @@
 # HypeApp
 
-> O HypeApp é a plataforma da Você no Hype que conecta creators e marcas em campanhas de marketing de influência, do convite ao pagamento. Creators usam o app no celular (iPhone e Android); marcas e agências usam o painel na web.
+> O HypeApp é a plataforma da Você no Hype que conecta creators e marcas em campanhas de marketing de influência, do convite ao pagamento. Creators usam o app no iPhone; marcas e agências usam o painel na web.
 
 Informações oficiais:
 
@@ -9,13 +9,12 @@ Informações oficiais:
 - A Você no Hype é agência parceira do TikTok Shop (TikTok Shop Partner).
 - Site oficial: https://www.hypeapp.com.br/
 - App para iPhone: https://apps.apple.com/br/app/hype-app-influenciadores/id6778357608
-- App para Android: https://play.google.com/store/apps/details?id=br.com.hypeapp.v2
 - Instagram: https://www.instagram.com/hypeappbrasil/
 - YouTube: https://www.youtube.com/@hypeappbrasil
 - LinkedIn: https://www.linkedin.com/company/hypeappbrasil/
 - Para marcas e agências, os valores são sob consulta com o comercial.
 - Creators baixam o app e criam a conta por ele. Ter conta não garante participação em campanhas.
-- Cada campanha tem critérios próprios; a seleção é feita pela marca ou pela curadoria.
+- Cada campanha tem critérios próprios; a seleção é feita pela marca (ou pela Você no Hype, quando a marca contrata a gestão da campanha à parte).
 
 ---
 
@@ -137,7 +136,7 @@ Campanhas com marcas, entregas, pagamento e uma comunidade de creators num app s
 
 - Comunidade de creators
 
-- iPhone e Android
+- Para iPhone
 
 ## Isso é pra mim?
 
@@ -195,7 +194,7 @@ Nenhum mínimo para criar a conta. Cada campanha tem critérios próprios, e o a
 
 **P:** Como e quando recebo?
 
-O valor entra como "A liberar" e fica disponível 30 dias depois do encerramento da campanha. A partir daí você saca via PIX, sem taxa e sem valor máximo; o mínimo é R$ 1,00. O saque é processado em até 2 horas úteis, e a chave PIX precisa estar no seu nome, com o mesmo CPF ou CNPJ da conta.
+Quando a sua publicação é confirmada, o valor é liberado automaticamente e aparece como "A liberar". Ele fica disponível 30 dias depois dessa liberação. A partir daí você saca via PIX, sem taxa e sem valor máximo; o mínimo é R$ 1,00. O saque é processado em até 2 horas úteis, e a chave PIX precisa estar no seu nome, com o mesmo CPF ou CNPJ da conta.
 
 **P:** Quem escolhe quem participa?
 
@@ -219,7 +218,7 @@ Depende do contrato da campanha, firmado entre você e a marca. Confira as condi
 
 **P:** Como funciona a comunidade?
 
-Feed, grupos e lives com outros creators dentro do app. Conteúdo censurável e comportamento abusivo não são aceitos: qualquer publicação, comentário ou mensagem pode ser denunciada pelo próprio app, e o que viola as regras é removido. Para bloquear outro usuário, fale com o suporte.
+Feed, grupos e lives com outros creators dentro do app. Conteúdo censurável e comportamento abusivo não são aceitos: qualquer publicação, comentário ou mensagem pode ser denunciada pelo próprio app, e o que viola as regras é removido. Você também pode bloquear outro usuário pelo app.
 
 ## Baixe e crie seu perfil hoje.
 
@@ -295,13 +294,13 @@ Sim. Cada marca tem configurações próprias (marca, empresa e equipe), e a pes
 
 Fonte: https://www.hypeapp.com.br/sobre/
 Título: Sobre o HypeApp, da Você no Hype | Parceira TikTok Shop
-Atualizado em: 2026-11-04
+Atualizado em: 2026-11-06
 
 # Sobre o HypeApp
 
 O HypeApp é a plataforma da Você no Hype que conecta creators e marcas em campanhas de marketing de influência, do convite ao pagamento.
 
-Um app para iPhone e Android com campanhas, convites, entregas, comunidade e carteira.
+Um app para iPhone com campanhas, convites, entregas, comunidade e carteira.
 
 Um painel na web para encontrar creators, aprovar conteúdos e acompanhar resultados.
 
@@ -318,10 +317,6 @@ www.hypeapp.com.br
 - App para iPhone
 
 App Store
-
-- App para Android
-
-Google Play
 
 - Redes sociais
 
@@ -373,7 +368,7 @@ Qualquer pessoa com 18 anos ou mais, sem mínimo de seguidores. Cada campanha te
 
 **P:** Como eu começo?
 
-Baixe o HypeApp na App Store ou no Google Play, crie sua conta e conecte suas redes. Não há mínimo de seguidores.
+Baixe o HypeApp na App Store, crie sua conta e conecte suas redes. Não há mínimo de seguidores.
 
 **P:** O cadastro garante participação em campanhas?
 
@@ -385,7 +380,7 @@ Nada. O HypeApp é gratuito para creators: não há mensalidade nem taxa sobre o
 
 **P:** Como recebo o pagamento?
 
-O valor entra como "A liberar" e fica disponível 30 dias depois do encerramento da campanha. A partir daí você saca via PIX, sem taxa e sem valor máximo; o mínimo é R$ 1,00. O saque é processado em até 2 horas úteis, e a chave PIX precisa estar no seu nome, com o mesmo CPF ou CNPJ da conta.
+Quando a sua publicação é confirmada, o valor é liberado automaticamente e aparece como "A liberar". Ele fica disponível 30 dias depois dessa liberação. A partir daí você saca via PIX, sem taxa e sem valor máximo; o mínimo é R$ 1,00. O saque é processado em até 2 horas úteis, e a chave PIX precisa estar no seu nome, com o mesmo CPF ou CNPJ da conta.
 
 **P:** Preciso emitir nota fiscal?
 
@@ -401,7 +396,7 @@ Depende do contrato da campanha, firmado entre você e a marca. Confira as condi
 
 **P:** Como funciona a comunidade?
 
-Feed, grupos e lives com outros creators dentro do app. Conteúdo censurável e comportamento abusivo não são aceitos: qualquer publicação, comentário ou mensagem pode ser denunciada pelo próprio app, e o que viola as regras é removido. Para bloquear outro usuário, fale com o suporte.
+Feed, grupos e lives com outros creators dentro do app. Conteúdo censurável e comportamento abusivo não são aceitos: qualquer publicação, comentário ou mensagem pode ser denunciada pelo próprio app, e o que viola as regras é removido. Você também pode bloquear outro usuário pelo app.
 
 ## Para marcas e agências
 
@@ -466,22 +461,18 @@ O suporte atende quem já usa o app. Marcas falam com o comercial.
 ---
 
 Fonte: https://www.hypeapp.com.br/baixar/
-Título: Baixar o HypeApp: app de campanhas para iPhone e Android
-Atualizado em: 2026-11-03
+Título: Baixar o HypeApp: app de campanhas para iPhone
+Atualizado em: 2026-11-06
 
 # Baixe o HypeApp
 
-Campanhas, entregas e carteira no seu celular. Grátis para iPhone e Android.
+Campanhas, entregas e carteira no seu celular. Grátis para iPhone.
 
 Crie sua conta pelo app. Para maiores de 18 anos, sem mínimo de seguidores.
 
 - iPhone
 
 iOS 15.1 ou superior
-
-- Android
-
-Veja a compatibilidade na Google Play
 
 ## Já tem conta no HypeApp?
 
@@ -511,7 +502,7 @@ Quais dados pessoais o HypeApp coleta, como usa, com quem compartilha e como voc
 
 Esta política explica quais dados pessoais o HypeApp coleta no app, no painel das marcas e no site, como os usamos, com quem os compartilhamos e como você exerce seus direitos, em conformidade com a Lei Geral de Proteção de Dados Pessoais (LGPD, Lei nº 13.709/2018) e com as regras das lojas de aplicativos e das plataformas conectadas.
 
-Versão 2.7 · Última atualização: 6 de novembro de 2026.
+Versão 2.8 · Última atualização: 6 de novembro de 2026.
 
 ## Resumo rápido
 
@@ -613,7 +604,7 @@ Painel das marcas
 
 Nome, e-mail, cargo e permissões de cada pessoa da equipe; dados da empresa, das campanhas, dos aportes e dos pagamentos
 
-Dar acesso ao painel, operar as campanhas, controlar permissões e cumprir o contrato
+Dar acesso ao painel, operar as campanhas, controlar permissões e cumprir os Termos de Uso
 
 Formulário "Fale com nosso time"
 
@@ -653,7 +644,7 @@ Consentimento (inciso I), que você pode revogar a qualquer momento
 
 Dar acesso ao painel às pessoas da equipe de uma marca ou agência cliente
 
-Legítimo interesse (inciso IX) da marca ou agência e da Você no Hype em operar o contrato com o cliente, já que essas pessoas não são parte dele
+Legítimo interesse (inciso IX) da marca ou agência e da Você no Hype em permitir o uso do painel pela empresa, já que essas pessoas não usam o painel em nome próprio
 
 Responder ao formulário "Fale com nosso time" e preparar uma proposta
 
@@ -671,9 +662,9 @@ Medir o uso do site com o Google Analytics e o Microsoft Clarity
 
 Consentimento (inciso I), dado no aviso de cookies e revogável a qualquer momento em Preferências de cookies
 
-Medir o uso do app e corrigir falhas com o Firebase (análise e relatórios de falhas), com dados de uso e do aparelho
+Identificar e corrigir falhas do app com o Sentry (relatórios de erro), com dados técnicos do aparelho e do uso no momento da falha
 
-Legítimo interesse (inciso IX) em manter o app funcionando e melhorá-lo. É diferente do site porque não usa cookies de terceiros no navegador. Você pode se opor escrevendo para contato@vocenohype.com.br.
+Legítimo interesse (inciso IX) em manter o app funcionando. O app não usa ferramenta de análise de uso como o Google Analytics. Você pode se opor escrevendo para contato@vocenohype.com.br.
 
 Cumprir obrigações legais, fiscais e regulatórias e atender ordens de autoridades
 
@@ -739,7 +730,7 @@ Você pode revogar o acesso desconectando o YouTube no HypeApp, excluindo sua co
 
 - Creators: quando uma marca publica uma campanha, os creators veem as informações da campanha e da marca exibidas no mural.
 
-- Fornecedores de tecnologia: hospedagem e infraestrutura em nuvem, rede de distribuição e segurança do site, Firebase/Google (notificações, análise e relatórios de falhas), HikerAPI (leitura dos dados públicos do Instagram), Google e Apple (login e lojas), Google (Google Analytics e Google Tag Manager) e Microsoft (Clarity) para a medição do site, só com o seu aceite, e instituições de pagamento que processam os PIX. Todos com obrigações contratuais de proteção de dados.
+- Fornecedores de tecnologia: hospedagem e infraestrutura em nuvem, rede de distribuição e segurança do site, Expo (envio de notificações push), Sentry (relatórios de erro do app), HikerAPI (leitura dos dados públicos do Instagram), Google e Apple (login e lojas), Google (Google Analytics e Google Tag Manager) e Microsoft (Clarity) para a medição do site, só com o seu aceite, e instituições de pagamento que processam os PIX. Todos com obrigações contratuais de proteção de dados.
 
 - Plataformas conectadas por você: Instagram, TikTok e YouTube, conforme as conexões que você ativar.
 
@@ -757,7 +748,7 @@ Não vendemos, não alugamos e não cedemos seus dados pessoais para fins comerc
 
 ## 9. Transferência internacional
 
-Alguns fornecedores de tecnologia, como provedores de nuvem e hospedagem, de notificações e de análise (entre eles Google, Firebase e Microsoft), armazenam ou processam dados fora do Brasil, principalmente nos Estados Unidos.
+Alguns fornecedores de tecnologia, como provedores de nuvem e hospedagem, de notificações e de análise (entre eles Google, Microsoft, Expo e Sentry), armazenam ou processam dados fora do Brasil, principalmente nos Estados Unidos.
 
 Essas transferências seguem o art. 33 da LGPD. Usamos as cláusulas-padrão contratuais aprovadas pela ANPD (Resolução CD/ANPD nº 19/2024) nos contratos com esses fornecedores ou, quando houver, a decisão da ANPD que reconheça o nível de proteção adequado do país de destino.
 
@@ -775,7 +766,7 @@ No site, usamos cookies necessários para funcionar e, só se você aceitar no a
 
 - Contatos do formulário comercial que não viraram clientes: até 24 meses após o último contato.
 
-- Clientes (marcas e agências): durante o contrato e por até 5 anos após o encerramento, conforme obrigações legais.
+- Marcas e agências: enquanto a conta no painel estiver ativa e por até 5 anos depois do encerramento dela, conforme obrigações legais.
 
 - Registros de acesso: pelo prazo mínimo exigido pelo Marco Civil da Internet (6 meses) e no máximo 12 meses, salvo ordem judicial.
 
@@ -853,7 +844,7 @@ Termos e condições gerais de uso do HypeApp para creators, marcas e agências.
 
 Termos e condições gerais de uso do HypeApp
 
-Versão 2.6 · Última atualização: 6 de novembro de 2026.
+Versão 2.7 · Última atualização: 6 de novembro de 2026.
 
 Seja bem-vindo(a) ao HypeApp.
 
@@ -925,7 +916,7 @@ Toda pessoa que navega ou de qualquer forma usa a Plataforma, seja Creator, Marc
 
 ## 2. Finalidade da plataforma
 
-2.1 O HypeApp foi criado para organizar, em um só lugar, todo o ciclo de uma campanha de marketing de influência: a Marca cria a Campanha no Painel; o Creator encontra a Campanha no Aplicativo e se inscreve; a Marca, ou a curadoria da Você no Hype, seleciona os participantes; o Creator envia roteiros e conteúdos para aprovação, publica nas suas redes sociais; e o pagamento é feito pela Carteira.
+2.1 O HypeApp foi criado para organizar, em um só lugar, todo o ciclo de uma campanha de marketing de influência: a Marca cria a Campanha no Painel; o Creator encontra a Campanha no Aplicativo e se inscreve; a Marca seleciona os participantes; o Creator envia roteiros e conteúdos para aprovação, publica nas suas redes sociais; e o pagamento é feito pela Carteira.
 
 2.2 A relação de cada Campanha é entre a Marca ou Agência e o Creator. O HypeApp é a plataforma que intermedeia essa relação.
 
@@ -993,7 +984,7 @@ c) descumprir qualquer disposição destes Termos.
 
 6.1 Os valores das campanhas são movimentados pela Plataforma. A Marca aporta o saldo da Campanha e, quando o Creator confirma a participação, o valor correspondente fica reservado para ele.
 
-6.2 Concluídas as entregas, o valor aparece na Carteira do Creator como "A liberar" e fica disponível para saque 30 (trinta) dias depois do encerramento da Campanha, após a autorização do pagamento pela Marca.
+6.2 Quando a Plataforma confirma a publicação do Creator, o valor daquela participação é liberado automaticamente e aparece na Carteira como "A liberar". A confirmação é feita pelo acompanhamento automático das publicações ou pela verificação diária da Plataforma. O valor fica disponível para saque 30 (trinta) dias depois da liberação de cada participação.
 
 6.3 Se o Creator não fizer as entregas combinadas, o valor reservado para aquela participação volta ao saldo da Campanha.
 
@@ -1001,13 +992,7 @@ c) descumprir qualquer disposição destes Termos.
 
 6.5 Todo Creator deve emitir nota fiscal dos valores recebidos pelas Campanhas e é responsável pelos tributos incidentes sobre eles. O Aplicativo informa como enviar a nota antes do pagamento.
 
-6.6 O valor permanece "A liberar" enquanto houver contestação da Marca ou denúncia em análise. Também podemos reter valores em caso de suspeita de fraude, de descumprimento destes Termos ou de ordem judicial, até a conclusão da análise.
-
-6.7 Não há prazo nem aprovação automática para a Marca autorizar um pagamento. Se a Marca não autorizar, o suporte da Você no Hype analisa o caso.
-
-6.8 A Marca pode contestar um pagamento em até 15 (quinze) dias corridos após a data de conclusão da Campanha. A contestação é analisada pelo suporte da Você no Hype. Depois desse prazo, o pagamento não pode mais ser contestado.
-
-6.9 O saldo aportado pela Marca e não usado não é devolvido e não expira: fica disponível para Campanhas futuras enquanto a conta da Marca estiver ativa.
+6.6 O saldo aportado pela Marca e não usado não é devolvido e não expira: fica disponível para Campanhas futuras enquanto a conta da Marca estiver ativa.
 
 ## 7. Redes sociais conectadas
 
@@ -1165,7 +1150,7 @@ Atualizado em: 2026-11-06
 
 Quais tecnologias o site usa, para quê e como mudar sua escolha.
 
-Versão 2.0 · Última atualização: 6 de novembro de 2026.
+Versão 2.1 · Última atualização: 6 de novembro de 2026.
 
 ## Necessários
 
@@ -1185,11 +1170,11 @@ Os cookies _clck (até 1 ano) e _clsk (1 dia), gravados no domínio do site, lig
 
 ## Publicidade
 
-O site não usa cookies de publicidade. Se isso mudar, esta política será atualizada e o site vai pedir a sua escolha antes de ativá-los.
+O site não usa cookies de publicidade próprios. Alguns cookies de terceiros gravados pelo Clarity, como o MUID, também são usados pela Microsoft nos serviços dela, inclusive de publicidade, conforme a política da Microsoft. Se o site passar a usar publicidade, esta política será atualizada e o site vai pedir a sua escolha antes de ativá-los.
 
 ## Como mudar a sua escolha
 
-Use o link Preferências de cookies, no rodapé de qualquer página. Se você recusar depois de ter aceitado, o site apaga os cookies do Google Analytics e do Clarity. Você também pode apagar cookies nas configurações do navegador.
+Use o link Preferências de cookies, no rodapé de qualquer página. Se você recusar depois de ter aceitado, o site apaga os cookies do Google Analytics e do Clarity gravados no domínio do site (_ga, _ga_, _clck e _clsk). Os cookies de terceiros da Microsoft, como MUID e ANONCHK, ficam nos domínios da Microsoft e o site não consegue apagá-los: para removê-los, use as configurações do seu navegador.
 
 ---
 
@@ -1511,7 +1496,7 @@ Valores disponíveis e a liberar
 
 Carteira
 
-Olhar a carteira também ajuda a separar uma entrega concluída de um valor já disponível para saque. No HypeApp, o valor a liberar fica disponível 30 dias depois do encerramento da campanha. A partir daí, você saca por PIX.
+Olhar a carteira também ajuda a separar uma entrega concluída de um valor já disponível para saque. No HypeApp, o valor é liberado quando a sua publicação é confirmada e fica disponível 30 dias depois. A partir daí, você saca por PIX.
 
 A carteira mostra os trabalhos feitos pelo app. Outras receitas e despesas da sua atividade precisam de um controle à parte.
 
@@ -1541,7 +1526,7 @@ No chat da própria campanha. Cada campanha tem a sua conversa, o que mantém as
 
 ### O pagamento fica disponível assim que publico o conteúdo?
 
-Não. No HypeApp, o valor a liberar fica disponível 30 dias depois do encerramento da campanha. Você acompanha os saldos e o histórico na carteira e saca por PIX, a partir de R$ 1,00, sem taxa.
+Não. No HypeApp, o valor é liberado quando a sua publicação é confirmada e fica disponível para saque 30 dias depois. Você acompanha os saldos e o histórico na carteira e saca por PIX, a partir de R$ 1,00, sem taxa.
 
 ---
 
@@ -1691,7 +1676,7 @@ Atualizado em: 2026-11-06
 
 Como manter a comunidade do HypeApp segura para creators e marcas, e o que fazer quando algo passar do limite.
 
-Versão 2.1 · Última atualização: 6 de novembro de 2026.
+Versão 2.2 · Última atualização: 6 de novembro de 2026.
 
 ## O que não aceitamos
 
@@ -1717,7 +1702,7 @@ No app, toque no menu "…" da publicação, ou segure sobre o comentário, o co
 
 ## Bloquear outro usuário
 
-Para bloquear outro usuário, ou desfazer um bloqueio, peça ao suporte do HypeApp pelo formulário de suporte, com o @ da pessoa. Quem você bloqueia deixa de interagir com você na comunidade. Bloquear não substitui a denúncia: se alguém violou estas regras, denuncie também.
+Você pode bloquear outro usuário direto pelo app. Quem você bloqueia deixa de interagir com você na comunidade. Se precisar de ajuda com um bloqueio, fale com o suporte. Bloquear não substitui a denúncia: se alguém violou estas regras, denuncie também.
 
 ## O que acontece com quem viola as regras
 

@@ -1,6 +1,6 @@
 # HypeApp
 
-> O HypeApp é a plataforma da Você no Hype que conecta creators e marcas em campanhas de marketing de influência, do convite ao pagamento. Creators usam o app no celular (iPhone e Android); marcas e agências usam o painel na web.
+> O HypeApp é a plataforma da Você no Hype que conecta creators e marcas em campanhas de marketing de influência, do convite ao pagamento. Creators usam o app no iPhone; marcas e agências usam o painel na web.
 
 Informações oficiais:
 
@@ -9,13 +9,12 @@ Informações oficiais:
 - A Você no Hype é agência parceira do TikTok Shop (TikTok Shop Partner).
 - Site oficial: https://www.hypeapp.com.br/
 - App para iPhone: https://apps.apple.com/br/app/hype-app-influenciadores/id6778357608
-- App para Android: https://play.google.com/store/apps/details?id=br.com.hypeapp.v2
 - Instagram: https://www.instagram.com/hypeappbrasil/
 - YouTube: https://www.youtube.com/@hypeappbrasil
 - LinkedIn: https://www.linkedin.com/company/hypeappbrasil/
 - Para marcas e agências, os valores são sob consulta com o comercial.
 - Creators baixam o app e criam a conta por ele. Ter conta não garante participação em campanhas.
-- Cada campanha tem critérios próprios; a seleção é feita pela marca ou pela curadoria.
+- Cada campanha tem critérios próprios; a seleção é feita pela marca (ou pela Você no Hype, quando a marca contrata a gestão da campanha à parte).
 
 ## Sobre o HypeApp
 
@@ -26,7 +25,7 @@ Informações oficiais:
 ## Para creators
 
 - [Para criadores](https://www.hypeapp.com.br/criadores/): como criadores e influenciadores participam de campanhas com marcas pelo app.
-- [Baixar o app](https://www.hypeapp.com.br/baixar/): links oficiais da App Store e do Google Play e orientação para quem já tem conta.
+- [Baixar o app](https://www.hypeapp.com.br/baixar/): link oficial da App Store e orientação para quem já tem conta.
 
 ## Para marcas e agências
 

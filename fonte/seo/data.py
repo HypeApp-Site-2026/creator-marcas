@@ -97,12 +97,12 @@ add("/preferencias-de-comunicacao/", "Preferências de comunicação", "Todos", 
 
 # ---------- App e acesso ----------
 add("/baixar/", "Baixar o app", "Creators", "App e acesso", "P0", "G", "Sim", IDX, "Sim",
-    "Baixar o HypeApp: app de campanhas para iPhone e Android",
-    "Baixe grátis o HypeApp na App Store ou no Google Play e participe de campanhas com marcas. No computador, use o QR code para abrir a loja no celular.",
-    "Baixe o HypeApp", "Como baixar o HypeApp?", "og/baixar.jpg", "MobileApplication, só com dados confirmados",
+    "Baixar o HypeApp: app de campanhas para iPhone",  # Google Play ainda não publicado (06/11)
+    "Baixe grátis o HypeApp na App Store e participe de campanhas com marcas. No computador, use o QR code para abrir a loja no celular.",
+    "Baixe o HypeApp", "Como baixar o HypeApp?", "og/padrao.jpg", "MobileApplication, só com dados confirmados",
     "Caminho principal de creators (ordem de 26/10): os dois botões levam direto às lojas. Pedir a troca do nome da ficha no Google Play, que ainda diz \"V2 - Beta\".")
 add("/app", "Link curto para as lojas", "Creators", "App e acesso", "P0", "G", "Sim", NOI, "Não",
-    "Baixar o HypeApp", "Leva à loja certa para o seu celular: App Store no iPhone e Google Play no Android.", "Baixe o HypeApp",
+    "Baixar o HypeApp", "Leva à App Store no iPhone.", "Baixe o HypeApp",
     obs="Página de passagem (noindex). iPhone → App Store; Android → Google Play; outros → /baixar/.")
 add("/entrar/", "Entrar", "Todos", "App e acesso", "P0", "", SIM_LANC, NOI, "Não",
     "Entrar no HypeApp",
@@ -362,7 +362,7 @@ OG_POR_PAGINA = {
     "/contato/": "og/contato.jpg", "/contato/marcas/": "og/para-marcas.jpg", "/contato/enviado/": "og/contato.jpg",
     "/legal/": "og/legal.jpg", "/privacidade/": "og/legal.jpg", "/termos/": "og/legal.jpg", "/cookies/": "og/legal.jpg",
     "/exclusao-de-conta/": "og/legal.jpg", "/regras-da-comunidade/": "og/legal.jpg", "/seguranca-infantil/": "og/legal.jpg", "/direitos-sobre-dados/": "og/legal.jpg",
-    "/app": "og/baixar.jpg", "/entrar/": "og/padrao.jpg",
+    "/app": "og/padrao.jpg", "/entrar/": "og/padrao.jpg",
 }
 for _r in R:
     if _r["url"] in OG_POR_PAGINA:

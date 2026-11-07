@@ -66,7 +66,7 @@ Reserve um momento da semana para olhar seus compromissos e decidir o que vem pr
 | Dúvidas de execução | Chat da campanha |
 | Valores disponíveis e a liberar | Carteira |
 
-Olhar a carteira também ajuda a separar uma entrega concluída de um valor já disponível para saque. No HypeApp, o valor a liberar fica disponível 30 dias depois do encerramento da campanha. A partir daí, você saca por PIX.
+Olhar a carteira também ajuda a separar uma entrega concluída de um valor já disponível para saque. No HypeApp, o valor é liberado quando a sua publicação é confirmada e fica disponível 30 dias depois. A partir daí, você saca por PIX.
 
 A carteira mostra os trabalhos feitos pelo app. Outras receitas e despesas da sua atividade precisam de um controle à parte.
 
@@ -96,4 +96,4 @@ No chat da própria campanha. Cada campanha tem a sua conversa, o que mantém as
 
 ### O pagamento fica disponível assim que publico o conteúdo?
 
-Não. No HypeApp, o valor a liberar fica disponível 30 dias depois do encerramento da campanha. Você acompanha os saldos e o histórico na carteira e saca por PIX, a partir de R$ 1,00, sem taxa.
+Não. No HypeApp, o valor é liberado quando a sua publicação é confirmada e fica disponível para saque 30 dias depois. Você acompanha os saldos e o histórico na carteira e saca por PIX, a partir de R$ 1,00, sem taxa.

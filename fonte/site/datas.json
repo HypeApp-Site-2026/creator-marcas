@@ -11,13 +11,13 @@
  },
  "/app": {
   "publicado": "2026-10-30",
-  "alterado": "2026-11-03",
-  "hash": "cd536d741ce01204eb51c07164fa5bcd"
+  "alterado": "2026-11-06",
+  "hash": "4d936322cb010581e364148fc249572f"
  },
  "/baixar/": {
   "publicado": "2026-10-30",
-  "alterado": "2026-11-03",
-  "hash": "9ad33c951271ca7ba7e25742e02dfe75"
+  "alterado": "2026-11-06",
+  "hash": "136cb48d63bd7b31250062f97040cf5e"
  },
  "/blog/": {
   "publicado": "2026-11-04",
@@ -32,7 +32,7 @@
  "/blog/como-organizar-rotina-criador-de-conteudo/": {
   "publicado": "2026-11-06",
   "alterado": "2026-11-06",
-  "hash": "d4be83ee4222a5fa6e09ac29b7cf1194"
+  "hash": "02b09d13c1b5f9dff88679adac5679d2"
  },
  "/blog/media-kit-link-ou-pdf/": {
   "publicado": "2026-11-04",
@@ -72,17 +72,17 @@
  "/cookies/": {
   "publicado": "2026-10-30",
   "alterado": "2026-11-06",
-  "hash": "50a61f135ebd881833d6506c709851ca"
+  "hash": "72fecef022f5ac8f0afe7a435d238893"
  },
  "/criadores/": {
   "publicado": "2026-10-30",
   "alterado": "2026-11-06",
-  "hash": "a94a89aaa8529e297b09f4bd7c657f05"
+  "hash": "4ff000d9337f25f9b491a26d99bbb835"
  },
  "/entrar/": {
   "publicado": "2026-10-30",
   "alterado": "2026-11-06",
-  "hash": "f7b6560747d1bca625d0c2728b2b1a44"
+  "hash": "52228746af45956d9c18dd8410afc9f6"
  },
  "/exclusao-de-conta/": {
   "publicado": "2026-10-30",
@@ -97,7 +97,7 @@
  "/links/": {
   "publicado": "2026-11-06",
   "alterado": "2026-11-06",
-  "hash": "b84d75dfb3d2b8dc372163fbacf70737"
+  "hash": "89c5bb486f24ef07eaadf76c90464634"
  },
  "/marcas/": {
   "publicado": "2026-10-30",
@@ -122,22 +122,22 @@
  "/perfil-antigo/": {
   "publicado": "2026-11-06",
   "alterado": "2026-11-06",
-  "hash": "1b48634974f6772d0974844e4f7275be"
+  "hash": "d5d86b0f94c1340a4d59bc1db8cfe6de"
  },
  "/perguntas-frequentes/": {
   "publicado": "2026-10-30",
   "alterado": "2026-11-06",
-  "hash": "668632947ba263c37cd78f636b657c19"
+  "hash": "0b34126a5f9865a10a7bf7732874ec39"
  },
  "/privacidade/": {
   "publicado": "2026-10-30",
   "alterado": "2026-11-06",
-  "hash": "b03f49d9d8162c4506bf96090b3b31ee"
+  "hash": "1c64b58fa333d0cfe25b2bad62061960"
  },
  "/regras-da-comunidade/": {
   "publicado": "2026-11-03",
   "alterado": "2026-11-06",
-  "hash": "bfd68ad00b1f3d58e5315dee35ab5825"
+  "hash": "264a9717eff0b560a392e7cf105dffc3"
  },
  "/seguranca-infantil/": {
   "publicado": "2026-11-06",
@@ -146,8 +146,8 @@
  },
  "/sobre/": {
   "publicado": "2026-10-30",
-  "alterado": "2026-11-04",
-  "hash": "9830014aececb0a03ee3915cf96d2943"
+  "alterado": "2026-11-06",
+  "hash": "685c18f1de6bc9d4902b93a2f1e66844"
  },
  "/suporte/": {
   "publicado": "2026-10-30",
@@ -162,6 +162,6 @@
  "/termos/": {
   "publicado": "2026-10-30",
   "alterado": "2026-11-06",
-  "hash": "1bd5713214a153e9eba4268e69dcf566"
+  "hash": "cf169dcf93caf2df25f5c978bfcc32de"
  }
 }

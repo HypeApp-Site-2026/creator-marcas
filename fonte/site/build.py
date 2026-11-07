@@ -18,6 +18,8 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 CFG = {
     'ios': 'https://apps.apple.com/br/app/hype-app-influenciadores/id6778357608',
     'android': 'https://play.google.com/store/apps/details?id=br.com.hypeapp.v2',
+    # Google Play: o app ainda não está publicado (revisão de 06/11). Mudar para True quando a ficha estiver no ar.
+    'android_on': False,
     'painel': 'https://www.hypeapp.com.br/backoffice/',   # painel das marcas (Lucas, 06/11): endereço oficial no www, que redireciona para o backoffice-v2
     'preview': not WEB,      # faixa "Prévia" + noindex
     # Google Tag Manager: ID do contêiner (GTM-XXXXXXX). Vazio = nenhum script de análise e nenhum aviso de cookies.
@@ -91,7 +93,7 @@ def social_links(cls='social'):
 
 def stores(L, small=False):
     return (f'<a class="store" href="{CFG["ios"]}" target="_blank" rel="noopener">{I_APPLE}<span><small>Baixar na</small>App Store</span></a>'
-            f'<a class="store" href="{CFG["android"]}" target="_blank" rel="noopener">{I_GPLAY}<span><small>Disponível no</small>Google Play</span></a>')
+            + (f'<a class="store" href="{CFG["android"]}" target="_blank" rel="noopener">{I_GPLAY}<span><small>Disponível no</small>Google Play</span></a>' if CFG['android_on'] else ''))
 
 def qr_svg():
     import qrcode, qrcode.image.svg
@@ -112,7 +114,7 @@ def rascunho(s):
     """Texto em rascunho (aguarda o ok de quem cuida do tema): marcado em amarelo só na prévia."""
     return s if WEB else f'<span class="rv" title="Rascunho: aguarda revisão">{s}</span>'
 
-PIX_TXT = ('O valor entra como "A liberar" e fica disponível 30 dias depois do encerramento da campanha. A partir daí você saca via PIX, '
+PIX_TXT = ('Quando a sua publicação é confirmada, o valor é liberado automaticamente e aparece como "A liberar". Ele fica disponível 30 dias depois dessa liberação. A partir daí você saca via PIX, '
            'sem taxa e sem valor máximo; o mínimo é R$ 1,00. O saque é processado em até 2 horas úteis, e a chave PIX precisa estar no seu nome, com o mesmo CPF ou CNPJ da conta.')
 CURADORIA_TXT = rev('Os creators se inscrevem pelo mural da campanha. No self-service, a marca escolhe quem participa e pode filtrar por rede, nicho, estado, '
                     'gênero, seguidores, engajamento e proximidade. Na campanha gerenciada, quem seleciona e indica os nomes é a curadoria da Você no Hype.')
@@ -121,7 +123,7 @@ METRICAS_TXT = rev('Por campanha: alcance, visualizações, engajamento médio, 
                    'no Instagram, o painel usa só dados públicos (curtidas, comentários e engajamento estimado), sem alcance nem impressões.')
 AGENCIAS_TXT = rev('Sim. Cada marca tem configurações próprias (marca, empresa e equipe), e a pessoa alterna entre as marcas pelo seletor no topo do menu. A equipe é convidada por marca.')
 COMUNIDADE_TXT = rev('Feed, grupos e lives com outros creators dentro do app. Conteúdo censurável e comportamento abusivo não são aceitos: '
-                     'qualquer publicação, comentário ou mensagem pode ser denunciada pelo próprio app, e o que viola as regras é removido. Para bloquear outro usuário, fale com o suporte.')
+                     'qualquer publicação, comentário ou mensagem pode ser denunciada pelo próprio app, e o que viola as regras é removido. Você também pode bloquear outro usuário pelo app.')
 
 def faq_html(items):
     out = []
@@ -182,7 +184,7 @@ def header(cur, L, A):
         '/criadores/': ('Para creators', 'app-D1', [
             ('Como funciona', 'Do convite ao pagamento, passo a passo', L('/criadores/', '#como-funciona')),
             ('Comunidade', 'Grupos, feed e lives com outros creators', L('/criadores/', '#comunidade')),
-            ('Baixar o app', 'App Store e Google Play', L('/baixar/')),
+            ('Baixar o app', 'App Store e Google Play' if CFG['android_on'] else 'App Store', L('/baixar/')),
             ('Dúvidas de creators', 'Pagamento, nota fiscal e regras', L('/perguntas-frequentes/', '#creators'))]),
         '/marcas/': ('Para marcas e agências', 'monitor', [
             ('Funcionalidades do painel', 'Criar, acompanhar e pagar campanhas', L('/marcas/', '#funcionalidades')),
@@ -751,7 +753,7 @@ JORNADA = [
     ('app-D3', 'Acompanhe a análise', 'Em Minhas inscrições: inscrição enviada, análise da marca e resultado. A seleção é da marca ou da curadoria da Você no Hype.'),
     ('app-E3', 'Aceite e comece', 'Selecionado ou convidado, você vê as condições e o prazo e aceita pelo app. O contrato chega por e-mail.'),
     ('app-E8', 'Envie roteiro e conteúdo', 'Cada entrega passa pela aprovação da marca. O próximo passo e o prazo ficam sempre à vista.'),
-    ('app-G2', 'Receba na carteira', 'Depois da publicação, o valor entra como "A liberar" e fica disponível 30 dias após o encerramento, para saque via PIX.'),
+    ('app-G2', 'Receba na carteira', 'Quando a publicação é confirmada, o valor entra como "A liberar" e fica disponível 30 dias depois, para saque via PIX.'),
 ]
 JORNADA_ANTES = 5   # passos 1 a 5: antes do sim; 6 a 8: depois
 
@@ -887,7 +889,7 @@ def p_criadores(L, A):
   </div>
   <div class="bt bt-hv bt-hfoto"><img class="bt-img" src="{A('assets/ilustracoes/hero-creator.webp')}" alt="Ilustração: creator sorrindo com o celular na mão e cartões de perfil e aprovação ao lado" width="934" height="1685" fetchpriority="high" decoding="async"></div>
   <div class="bt bt-hs bt-hfoto"><img class="bt-img" src="{A('assets/ilustracoes/hero-celular.webp')}" alt="Celular com a tela Campanhas do HypeApp aberta em Descobrir" width="1000" height="1000" decoding="async"></div>
-  <ul class="bt bt-preto bt-selos" aria-label="Em resumo"><li>{ck}Grátis para creators</li><li>{ck}Sem mínimo de seguidores</li><li>{ck}Saque via PIX</li><li>{ck}Comunidade de creators</li><li class="bt-sub">iPhone e Android</li></ul>
+  <ul class="bt bt-preto bt-selos" aria-label="Em resumo"><li>{ck}Grátis para creators</li><li>{ck}Sem mínimo de seguidores</li><li>{ck}Saque via PIX</li><li>{ck}Comunidade de creators</li><li class="bt-sub">{"iPhone e Android" if CFG["android_on"] else "Para iPhone"}</li></ul>
 </section>
 
 <section id="para-quem" aria-labelledby="pq-h">
@@ -1173,10 +1175,10 @@ def p_baixar(L, A):
 <section class="band-white split" aria-labelledby="baixar-t" style="padding:clamp(28px,5vw,64px)">
   <div class="stack" style="gap:24px;flex-basis:480px">
     <h1 id="baixar-t" class="display" style="font-size:clamp(40px,5.8vw,64px)">Baixe o HypeApp</h1>
-    <p class="lead">Campanhas, entregas e carteira no seu celular. Grátis para iPhone e Android.</p>
+    <p class="lead">Campanhas, entregas e carteira no seu celular. Grátis para {'iPhone e Android' if CFG['android_on'] else 'iPhone'}.</p>
     <div class="row">{stores(L)}</div>
     <p class="small">Crie sua conta pelo app. Para maiores de 18 anos, sem mínimo de seguidores.</p>
-    <dl class="req"><div><dt>iPhone</dt><dd>iOS 15.1 ou superior</dd></div><div><dt>Android</dt><dd>Veja a compatibilidade na Google Play</dd></div></dl>
+    <dl class="req"><div><dt>iPhone</dt><dd>iOS 15.1 ou superior</dd></div>{'<div><dt>Android</dt><dd>Veja a compatibilidade na Google Play</dd></div>' if CFG['android_on'] else ''}</dl>
   </div>
   <div class="stack" style="flex:0 1 360px;align-items:center;gap:16px;background:var(--ground);border-radius:32px;padding:32px;text-align:center">
     <div class="qr" style="width:220px;height:220px">{QR}</div>
@@ -1200,7 +1202,7 @@ def p_baixar(L, A):
 FAQ_GROUPS = [
     ('creators', 'Para creators', [
         ('Quem pode participar?', 'Qualquer pessoa com 18 anos ou mais, sem mínimo de seguidores. Cada campanha tem critérios próprios.'),
-        ('Como eu começo?', 'Baixe o HypeApp na App Store ou no Google Play, crie sua conta e conecte suas redes. Não há mínimo de seguidores.'),
+        ('Como eu começo?', 'Baixe o HypeApp na App Store' + (' ou no Google Play' if CFG['android_on'] else '') + ', crie sua conta e conecte suas redes. Não há mínimo de seguidores.'),
         ('O cadastro garante participação em campanhas?', 'Não. Cada campanha tem critérios próprios e a marca ou a curadoria seleciona quem participa.'),
         ('Quanto custa para creators?', 'Nada. O HypeApp é gratuito para creators: não há mensalidade nem taxa sobre o valor que você recebe das campanhas.'),
         ('Como recebo o pagamento?', PIX_TXT),
@@ -1259,7 +1261,7 @@ def p_sobre(L, A):
   <p class="lead">O HypeApp é a plataforma da Você no Hype que conecta creators e marcas em campanhas de marketing de influência, do convite ao pagamento.</p>
 </section>
 <section class="grid-300" aria-label="O que é o HypeApp">
-  <div class="card stack"><span class="h4">Para creators</span><p class="small" style="font-size:15px">Um app para iPhone e Android com campanhas, convites, entregas, comunidade e carteira.</p><a class="link-strong" href="{L('/criadores/')}">Para creators</a></div>
+  <div class="card stack"><span class="h4">Para creators</span><p class="small" style="font-size:15px">Um app para {'iPhone e Android' if CFG['android_on'] else 'iPhone'} com campanhas, convites, entregas, comunidade e carteira.</p><a class="link-strong" href="{L('/criadores/')}">Para creators</a></div>
   <div class="card stack"><span class="h4">Para marcas e agências</span><p class="small" style="font-size:15px">Um painel na web para encontrar creators, aprovar conteúdos e acompanhar resultados.</p><a class="link-strong" href="{L('/marcas/')}">Para marcas</a></div>
   <div class="card stack" style="background:var(--ink);color:var(--purple-ink)"><span class="h4">Quem opera</span><p class="small" style="font-size:15px">Desenvolvido e operado pela Você no Hype Marketing e Entretenimento LTDA, CNPJ 43.442.408/0001-26. R. Joaquim Floriano, 243, cj. 71, Itaim Bibi, São Paulo/SP, CEP 04534-010.</p></div>
 </section>
@@ -1268,7 +1270,7 @@ def p_sobre(L, A):
   <dl class="req" style="grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr))">
     <div><dt>Site</dt><dd>www.hypeapp.com.br</dd></div>
     <div><dt>App para iPhone</dt><dd><a href="{CFG['ios']}" target="_blank" rel="noopener">App Store</a></dd></div>
-    <div><dt>App para Android</dt><dd><a href="{CFG['android']}" target="_blank" rel="noopener">Google Play</a></dd></div>
+    {('<div><dt>App para Android</dt><dd><a href="' + CFG['android'] + '" target="_blank" rel="noopener">Google Play</a></dd></div>') if CFG['android_on'] else ''}
     <div><dt>Redes sociais</dt><dd>{social_links("social social-inline")}</dd></div>
     <div><dt>Suporte</dt><dd><a href="{L('/suporte/')}">Formulário de suporte</a></dd></div>
     <div><dt>Comercial</dt><dd><a href="{L('/contato/marcas/')}">Falar com nosso time</a></dd></div>
@@ -1492,7 +1494,7 @@ def p_links(L, A):
   </div>
   <section class="lk2-panel" id="lk2-c" role="tabpanel" aria-labelledby="lk2-tab-c">
     <div class="lk2-hero">
-      <span class="lk2-pill">Grátis para iPhone e Android</span>
+      <span class="lk2-pill">Grátis para {'iPhone e Android' if CFG['android_on'] else 'iPhone'}</span>
       <h2 class="lk2-hh">Baixe e crie seu perfil hoje.</h2>
       <img class="lk2-img" src="{A('assets/ilustracoes/baixe-perfil.webp')}" alt="Ilustração: mãos segurando o celular com a tela Crie seu perfil" width="1100" height="786">
       <div class="lk2-stores">{stores(L)}</div>
@@ -1539,14 +1541,14 @@ def p_perfil_antigo(L, A):
 
 def p_app(L, A):
     return f'''
-<section class="band-white split" data-app-redirect data-ios="{CFG['ios']}" data-android="{CFG['android']}" aria-labelledby="app-h">
+<section class="band-white split" data-app-redirect data-ios="{CFG['ios']}" data-android="{CFG['android'] if CFG['android_on'] else ''}" aria-labelledby="app-h">
   <div class="stack" style="gap:20px"><h1 id="app-h" class="display" style="font-size:clamp(36px,5vw,56px)">Baixe o HypeApp</h1>
     <p class="lead" id="app-msg" aria-live="polite">Escolha a loja do seu aparelho.</p><div class="row">{stores(L)}</div></div>
   <div class="qr" style="width:220px;height:220px;flex:0 0 auto">{QR}</div>
 </section>'''
 
-VERSOES = {'/cookies/': 'Versão 2.0 · Última atualização: 6 de novembro de 2026.',
-           '/regras-da-comunidade/': 'Versão 2.1 · Última atualização: 6 de novembro de 2026.'}
+VERSOES = {'/cookies/': 'Versão 2.1 · Última atualização: 6 de novembro de 2026.',
+           '/regras-da-comunidade/': 'Versão 2.2 · Última atualização: 6 de novembro de 2026.'}
 
 COOKIES_GA = [
     ('necessarios', 'Necessários', rev('Para funcionar, o site guarda no seu navegador a sua escolha sobre cookies (por até 12 meses) e, só enquanto a aba estiver aberta, '
@@ -1569,9 +1571,10 @@ COOKIES_GA = [
         'As gravações ficam guardadas por 30 dias; os mapas de calor e os dados agregados, por até 9 meses. '
         'Só são gravados depois do seu aceite. A Microsoft atua como operadora desses dados e pode tratá-los fora do Brasil, '
         'conforme a <a href="{{PRIVACIDADE}}">Política de Privacidade</a>.')),
-    ('publicidade', 'Publicidade', rev('O site não usa cookies de publicidade. Se isso mudar, esta política será atualizada e o site vai pedir a sua escolha antes de ativá-los.')),
+    ('publicidade', 'Publicidade', rev('O site não usa cookies de publicidade próprios. Alguns cookies de terceiros gravados pelo Clarity, como o MUID, também são usados pela Microsoft nos serviços dela, inclusive de publicidade, conforme a política da Microsoft. Se o site passar a usar publicidade, esta política será atualizada e o site vai pedir a sua escolha antes de ativá-los.')),
     ('escolha', 'Como mudar a sua escolha', rev('Use o link <a href="#preferencias-cookies">Preferências de cookies</a>, no rodapé de qualquer página. '
-        'Se você recusar depois de ter aceitado, o site apaga os cookies do Google Analytics e do Clarity. Você também pode apagar cookies nas configurações do navegador.')),
+        'Se você recusar depois de ter aceitado, o site apaga os cookies do Google Analytics e do Clarity gravados no domínio do site (_ga, _ga_, _clck e _clsk). '
+        'Os cookies de terceiros da Microsoft, como MUID e ANONCHK, ficam nos domínios da Microsoft e o site não consegue apagá-los: para removê-los, use as configurações do seu navegador.')),
 ]
 
 LEGAL = {
@@ -1648,7 +1651,7 @@ def p_regras(L, A):
             ('denunciar', 'Como denunciar', '<p>No app, toque no menu "…" da publicação, ou segure sobre o comentário, o comentário da live ou a mensagem, e escolha "Denunciar". '
              'Você também pode denunciar pelo <a href="' + sup + '?assunto=denuncia">formulário de suporte</a>, com o link ou o @ do conteúdo. '
              'As denúncias são analisadas em até 24 horas. Se o conteúdo violar estas regras, ele é removido e a conta responsável pode sofrer as medidas abaixo.</p>'),
-            ('bloquear', 'Bloquear outro usuário', '<p>Para bloquear outro usuário, ou desfazer um bloqueio, peça ao suporte do HypeApp pelo <a href="' + sup + '?assunto=conta">formulário de suporte</a>, com o @ da pessoa. Quem você bloqueia deixa de interagir com você na comunidade. '
+            ('bloquear', 'Bloquear outro usuário', '<p>Você pode bloquear outro usuário direto pelo app. Quem você bloqueia deixa de interagir com você na comunidade. Se precisar de ajuda com um bloqueio, fale com o <a href="' + sup + '?assunto=conta">suporte</a>. '
              'Bloquear não substitui a denúncia: se alguém violou estas regras, denuncie também.</p>'),
             ('consequencias', 'O que acontece com quem viola as regras', '<p>Conforme a gravidade e a repetição, aplicamos uma ou mais destas medidas: remoção do conteúdo, suspensão temporária do acesso à comunidade ou à conta, e encerramento da conta, '
              'como previsto nos <a href="' + L('/termos/') + '">Termos de Uso</a>. Conteúdo ilegal pode ser comunicado às autoridades.</p>'),
@@ -1792,9 +1795,10 @@ WEBSITE = {'@context': 'https://schema.org', '@type': 'WebSite', '@id': SITE_ID,
            'inLanguage': 'pt-BR', 'publisher': {'@id': ORG_ID}}
 APP = {'@context': 'https://schema.org', '@type': 'MobileApplication', '@id': APP_ID, 'name': 'HypeApp',
        'description': 'App para creators participarem de campanhas com marcas: inscrição, entregas, chat com a marca e pagamentos na carteira.',
-       'operatingSystem': 'iOS 15.1 ou superior, Android', 'applicationCategory': 'BusinessApplication', 'inLanguage': 'pt-BR',
+       'operatingSystem': 'iOS 15.1 ou superior' + (', Android' if CFG['android_on'] else ''), 'applicationCategory': 'BusinessApplication', 'inLanguage': 'pt-BR',
        'offers': {'@type': 'Offer', 'price': '0', 'priceCurrency': 'BRL'},
-       'downloadUrl': [CFG['ios'], CFG['android']], 'installUrl': CFG['android'], 'sameAs': [CFG['ios'], CFG['android']],
+       'downloadUrl': [CFG['ios']] + ([CFG['android']] if CFG['android_on'] else []), 'installUrl': CFG['android'] if CFG['android_on'] else CFG['ios'],
+       'sameAs': [CFG['ios']] + ([CFG['android']] if CFG['android_on'] else []),
        'publisher': {'@id': ORG_ID}}
 SERVICOS = [{'@context': 'https://schema.org', '@type': 'Service', 'name': nome, 'serviceType': 'Campanhas de marketing de influência com creators',
              'description': desc, 'provider': {'@id': ORG_ID}, 'areaServed': {'@type': 'Country', 'name': 'Brasil'},

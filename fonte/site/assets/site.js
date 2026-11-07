@@ -794,7 +794,7 @@
       evento({ event: 'app_store_click', store: ios ? 'app_store' : 'google_play', link_local: 'redirecionamento_app' });
       setTimeout(function () { location.href = typeof comOrigem === 'function' ? comOrigem(dest, 'qr-code') : dest; }, 600);
     } else {
-      msg.textContent = 'Voc\u00ea est\u00e1 no computador. Escolha a loja ou aponte a c\u00e2mera do celular para o QR code.';
+      msg.textContent = android ? 'O HypeApp ainda n\u00e3o est\u00e1 dispon\u00edvel no Google Play. Por enquanto, o app \u00e9 para iPhone.' : 'Voc\u00ea est\u00e1 no computador. Escolha a loja ou aponte a c\u00e2mera do celular para o QR code.';
     }
   }
 
