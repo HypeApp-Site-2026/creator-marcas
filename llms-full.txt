@@ -844,7 +844,7 @@ Termos e condições gerais de uso do HypeApp para creators, marcas e agências.
 
 Termos e condições gerais de uso do HypeApp
 
-Versão 2.7 · Última atualização: 6 de novembro de 2026.
+Versão 2.8 · Última atualização: 6 de novembro de 2026.
 
 Seja bem-vindo(a) ao HypeApp.
 
@@ -964,7 +964,7 @@ b) causar dano ou prejuízo a terceiros no uso da Plataforma;
 
 c) descumprir qualquer disposição destes Termos.
 
-4.10 O Usuário pode, a qualquer tempo e sem justificativa, excluir sua conta pelo Aplicativo ou pela página Exclusão de conta. Antes de excluir, o Creator deve sacar todo o saldo disponível na Carteira. A exclusão segue o disposto na Política de Privacidade, incluindo os registros que precisam ser mantidos por obrigação legal.
+4.10 O Usuário pode, a qualquer tempo e sem justificativa, excluir sua conta pelo Aplicativo ou pela página Exclusão de conta. A exclusão não é possível enquanto houver saldo em aberto ou saque pendente na Carteira, ou atividade em andamento em uma conta de Marca: nesses casos, o Usuário deve sacar o saldo ou falar com o suporte. A exclusão segue o disposto na Política de Privacidade, incluindo os registros que precisam ser mantidos por obrigação legal.
 
 ## 5. Campanhas, entregas e aprovação
 
@@ -1186,7 +1186,7 @@ Atualizado em: 2026-11-06
 
 Como excluir sua conta no HypeApp e o que acontece com os seus dados.
 
-Versão 2.1 · Última atualização: 6 de novembro de 2026.
+Versão 2.2 · Última atualização: 6 de novembro de 2026.
 
 Esta página explica como excluir a sua conta no HypeApp e o que acontece com os seus dados: o que é apagado, o que fica guardado sem identificar você e o que precisa ser mantido por obrigação legal, conforme a LGPD (Lei nº 13.709/2018).
 
@@ -1208,7 +1208,9 @@ Para confirmarmos que o pedido é seu, informe o nome completo, o e-mail cadastr
 
 ## 3. Antes de excluir
 
-- Saldo da carteira: saque todo o saldo por PIX antes de excluir a conta. Se você tiver valores a liberar, espere a liberação e faça o saque antes de pedir a exclusão. Dúvidas sobre pagamentos: fale com o suporte.
+- Saldo da carteira: o app não deixa excluir a conta enquanto houver saldo em aberto ou saque pendente. Saque todo o saldo por PIX antes. Se você tiver valores a liberar, espere a liberação e faça o saque. Dúvidas sobre pagamentos: fale com o suporte.
+
+- Contas de marca: uma conta de marca com atividade no painel também não pode ser excluída pelo app. Nesse caso, fale com o suporte.
 
 - Exclusão é definitiva: depois de concluída, a conta não pode ser recuperada nem reativada. Para voltar a usar o HypeApp, será preciso criar uma conta nova.
 
@@ -1220,17 +1222,17 @@ Se você acessa o painel como parte da equipe de uma marca ou agência, peça a 
 
 ### Apagado
 
-- Nome, e-mail, telefone, foto e banner
+- Nome, @ de usuário, bio, e-mail, telefone, foto e banner
 
 - CPF ou CNPJ, gênero e data de nascimento
 
 - Endereço e localização
 
-- Chave PIX
+- Chave PIX e endereço da carteira
 
 - Redes sociais conectadas e as autorizações de acesso a elas
 
-- Posts, comentários e participação em grupos da comunidade
+- Texto e mídia dos seus posts e comentários na comunidade, e a sua participação em grupos
 
 - Hype Points, convites e histórico de pontos
 

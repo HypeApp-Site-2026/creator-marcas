@@ -87,7 +87,7 @@
  "/exclusao-de-conta/": {
   "publicado": "2026-10-30",
   "alterado": "2026-11-06",
-  "hash": "3ca5d5a54448799fa905b3f4587d2a76"
+  "hash": "a3c6ce20399d148078ad7e540ddc46c1"
  },
  "/legal/": {
   "publicado": "2026-10-30",
@@ -162,6 +162,6 @@
  "/termos/": {
   "publicado": "2026-10-30",
   "alterado": "2026-11-06",
-  "hash": "cf169dcf93caf2df25f5c978bfcc32de"
+  "hash": "1d00274351ce9391874815b9d96404d3"
  }
 }
