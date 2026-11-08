@@ -20,7 +20,7 @@ Informações oficiais:
 
 Fonte: https://www.hypeapp.com.br/
 Título: HypeApp: app para influenciadores e plataforma de campanhas
-Atualizado em: 2026-11-06
+Atualizado em: 2026-11-08
 
 # O app de quem cria conteúdo. O painel de quem contrata.
 
@@ -226,7 +226,7 @@ Feed, grupos e lives com outros creators dentro do app. Conteúdo censurável e 
 
 Fonte: https://www.hypeapp.com.br/marcas/
 Título: Plataforma de marketing de influência para marcas | HypeApp
-Atualizado em: 2026-11-06
+Atualizado em: 2026-11-08
 
 # Campanhas com creators, do seu jeito.
 
@@ -494,7 +494,7 @@ Pedidos sobre seus dados pessoais seguem pela política de privacidade. Marcas n
 
 Fonte: https://www.hypeapp.com.br/privacidade/
 Título: Política de privacidade (LGPD) | HypeApp
-Atualizado em: 2026-11-06
+Atualizado em: 2026-11-08
 
 # Política de Privacidade
 
@@ -502,7 +502,7 @@ Quais dados pessoais o HypeApp coleta, como usa, com quem compartilha e como voc
 
 Esta política explica quais dados pessoais o HypeApp coleta no app, no painel das marcas e no site, como os usamos, com quem os compartilhamos e como você exerce seus direitos, em conformidade com a Lei Geral de Proteção de Dados Pessoais (LGPD, Lei nº 13.709/2018) e com as regras das lojas de aplicativos e das plataformas conectadas.
 
-Versão 3.1 · Última atualização: 6 de novembro de 2026.
+Versão 3.2 · Última atualização: 8 de novembro de 2026.
 
 ## Resumo rápido
 
@@ -700,7 +700,7 @@ Conectar redes sociais é opcional. Algumas campanhas exigem redes específicas:
 
 - O que não coletamos: alcance, impressões, dados demográficos do público e outras estatísticas internas da conta, que o Instagram só mostra ao dono do perfil.
 
-- Fornecedor: a leitura dos dados públicos é feita pela HikerAPI, empresa sediada no Cazaquistão, que atua como operadora (veja a seção 9). O app envia a ela só o @ que você informou e recebe de volta os dados públicos do perfil, inclusive a bio, usada para conferir o código. Não enviamos senha, token de acesso, e-mail nem CPF.
+- Fornecedor: a leitura dos dados públicos é feita pela ScrapeCreators (Web Scraping Guy LLC), empresa dos Estados Unidos, que atua como operadora (veja a seção 9). O app envia a ela só o @ que você informou e recebe de volta os dados públicos do perfil, inclusive a bio, usada para conferir o código. Não enviamos senha, token de acesso, e-mail nem CPF.
 
 - Atualização: esses dados são atualizados automaticamente pelo sistema enquanto a sua conta existir. Eles só deixam de ser atualizados quando a conta é excluída.
 
@@ -738,7 +738,7 @@ Você pode revogar o acesso desconectando o YouTube no HypeApp, excluindo sua co
 
 - Creators: quando uma marca publica uma campanha, os creators veem as informações da campanha e da marca exibidas no mural.
 
-- Fornecedores de tecnologia: hospedagem e infraestrutura em nuvem, rede de distribuição e segurança do site, Expo (envio de notificações push), Sentry (relatórios de erro do app), HikerAPI (leitura dos dados públicos do Instagram), Google e Apple (login e lojas), Google (Google Analytics e Google Tag Manager) e Microsoft (Clarity) para a medição do site, só com o seu aceite, e instituições de pagamento que processam os PIX. Todos com obrigações contratuais de proteção de dados.
+- Fornecedores de tecnologia: hospedagem e infraestrutura em nuvem, rede de distribuição e segurança do site, Expo (envio de notificações push), Sentry (relatórios de erro do app), ScrapeCreators (leitura dos dados públicos do Instagram), Google e Apple (login e lojas), Google (Google Analytics e Google Tag Manager) e Microsoft (Clarity) para a medição do site, só com o seu aceite, e instituições de pagamento que processam os PIX. Todos com obrigações contratuais de proteção de dados.
 
 - Plataformas conectadas por você: Instagram, TikTok e YouTube, conforme as conexões que você ativar.
 
@@ -756,7 +756,7 @@ Não vendemos, não alugamos e não cedemos seus dados pessoais para fins comerc
 
 ## 9. Transferência internacional
 
-Alguns fornecedores de tecnologia, como provedores de nuvem e hospedagem, de notificações e de análise (entre eles Google, Microsoft, Expo e Sentry), armazenam ou processam dados fora do Brasil, principalmente nos Estados Unidos. A HikerAPI, que faz a leitura dos dados públicos do Instagram (seção 7.1), tem sede no Cazaquistão e informa que os dados podem ser armazenados ou acessados em outros países, inclusive nos Estados Unidos.
+Alguns fornecedores de tecnologia, como provedores de nuvem e hospedagem, de notificações e de análise (entre eles Google, Microsoft, Expo, Sentry e ScrapeCreators, que faz a leitura dos dados públicos do Instagram, seção 7.1), armazenam ou processam dados fora do Brasil, principalmente nos Estados Unidos.
 
 Essas transferências seguem o art. 33 da LGPD. Usamos as cláusulas-padrão contratuais aprovadas pela ANPD (Resolução CD/ANPD nº 19/2024) nos contratos com esses fornecedores ou, quando houver, a decisão da ANPD que reconheça o nível de proteção adequado do país de destino.
 
