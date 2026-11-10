@@ -23,7 +23,7 @@ CFG = {
     'painel': 'https://www.hypeapp.com.br/backoffice/',   # painel das marcas (Lucas, 06/11): endereço oficial no www, que redireciona para o backoffice-v2
     # Cloudflare Turnstile (anti-robô dos formulários, 10/11): chave do site, pública. Vazio = sem verificação.
     # A chave secreta fica só no Vercel (TURNSTILE_SECRET_KEY), nunca aqui.
-    'turnstile': os.environ.get('HH_TURNSTILE', ''),
+    'turnstile': os.environ.get('HH_TURNSTILE', '0x4AAAAAAF7iNNUVui1_CAqu'),
     'preview': not WEB,      # faixa "Prévia" + noindex
     # Google Tag Manager: ID do contêiner (GTM-XXXXXXX). Vazio = nenhum script de análise e nenhum aviso de cookies.
     # O GTM só é carregado depois que a pessoa aceita os cookies de medição (Consent Mode v2, modo básico).
