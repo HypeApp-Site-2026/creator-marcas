@@ -158,7 +158,7 @@
         u.searchParams.set('referrer', r);
       } else if (u.host === 'apps.apple.com' && IOS_PT) {
         u.searchParams.set('pt', IOS_PT);
-        u.searchParams.set('ct', (o.utm_source + '_' + o.utm_campaign).slice(0, 40));
+        u.searchParams.set('ct', (o.utm_source + '_' + o.utm_campaign).replace(/[^A-Za-z0-9_-]+/g, '-').slice(0, 30)); /* Apple: até 30 caracteres */
         u.searchParams.set('mt', '8');
       }
       return u.toString();
