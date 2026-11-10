@@ -2011,7 +2011,7 @@ http://hypeapp.com.br/*         https://www.hypeapp.com.br/:splat   301!
 def csp_ga(h):
     """Domínios do Google Tag Manager, do GA4 e do modo de visualização do GTM (Tag Assistant), conforme o guia de CSP do Google."""
     add = {
-        "script-src 'self'": "script-src 'self' https://*.googletagmanager.com https://tagmanager.google.com",
+        "script-src 'self'": "script-src 'self' https://www.googletagmanager.com https://tagmanager.google.com",
         "img-src 'self' data:": "img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com https://ssl.gstatic.com https://www.gstatic.com",
         "style-src 'self' 'unsafe-inline'": "style-src 'self' 'unsafe-inline' https://*.googletagmanager.com https://tagmanager.google.com https://fonts.googleapis.com",
         "font-src 'self'": "font-src 'self' data: https://fonts.gstatic.com",
@@ -2031,7 +2031,7 @@ HEADERS = '''/*
   X-Frame-Options: DENY
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=(), interest-cohort=()
-  Content-Security-Policy: default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' https://challenges.cloudflare.com; frame-src https://challenges.cloudflare.com; font-src 'self'; connect-src 'self' https://challenges.cloudflare.com; form-action 'self'; frame-ancestors 'none'; base-uri 'self'; object-src 'none'
+  Content-Security-Policy: default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' https://challenges.cloudflare.com; frame-src https://challenges.cloudflare.com; font-src 'self'; connect-src 'self' https://challenges.cloudflare.com; form-action 'self'; frame-ancestors 'none'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests
 
 /assets/fonts/*
   Cache-Control: public, max-age=31536000, immutable

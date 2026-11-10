@@ -99,9 +99,12 @@ function lerCorpo(req) {
 }
 
 // Normaliza: texto simples, sem espaços nas pontas; listas viram arrays de texto
+const MULTI = new Set(['redes', 'interesses']); // únicos campos que podem vir repetidos
+const PROIBIDAS = new Set(['__proto__', 'constructor', 'prototype']);
 function normaliza(bruto) {
-  const d = {};
+  const d = Object.create(null);
   for (const [k, v] of Object.entries(bruto)) {
+    if (PROIBIDAS.has(k)) continue;
     d[k] = Array.isArray(v) ? v.map((x) => String(x).trim()).filter(Boolean) : String(v ?? '').trim();
   }
   return d;
@@ -292,7 +295,12 @@ async function enviaChamado(corpo, req) {
 // Confere o token do Cloudflare Turnstile no servidor. Sem TURNSTILE_SECRET_KEY, não confere (e avisa no log).
 async function verificaHumano(d, req) {
   const segredo = process.env.TURNSTILE_SECRET_KEY;
-  if (!segredo) { console.error('[antirobo] TURNSTILE_SECRET_KEY não configurada: envio aceito sem verificação.'); return true; }
+  if (!segredo) {
+    // Em produção e no teste, sem a chave nada passa (falha fechada). Só aceita fora do Vercel (testes locais).
+    const noVercel = process.env.VERCEL_ENV === 'production' || process.env.VERCEL_ENV === 'preview';
+    console.error('[antirobo] TURNSTILE_SECRET_KEY não configurada:', noVercel ? 'envio recusado.' : 'aceito (fora do Vercel).');
+    return !noVercel;
+  }
   const token = typeof d['cf-turnstile-response'] === 'string' ? d['cf-turnstile-response'] : '';
   if (!token) return false;
   const ip = String(req.headers['x-forwarded-for'] || '').split(',')[0].trim();
@@ -307,7 +315,8 @@ async function verificaHumano(d, req) {
     });
     const j = await r.json().catch(() => ({}));
     if (!j.success) { console.error('[antirobo] verificação recusada:', (j['error-codes'] || []).join(', ') || r.status); return false; }
-    if (j.hostname && !HOSTS.test(j.hostname)) { console.error('[antirobo] token de outro domínio:', j.hostname); return false; }
+    if (!HOSTS.test(j.hostname || '') && !(process.env.VERCEL_ENV !== 'production' && process.env.VERCEL_ENV !== 'preview')) { console.error('[antirobo] token de outro domínio:', String(j.hostname || '').slice(0, 80)); return false; }
+    if (j.action && j.action !== 'form') { console.error('[antirobo] ação inesperada no token.'); return false; }
     return true;
   } catch (e) {
     console.error('[antirobo] falha ao verificar:', e && e.name === 'AbortError' ? 'timeout' : (e && e.message) || 'erro de rede');
@@ -319,6 +328,10 @@ async function verificaHumano(d, req) {
 
 async function handler(req, res) {
   if (req.method !== 'POST') { res.setHeader('Allow', 'POST'); return res.status(405).end(); }
+  // Corpo grande ou de tipo inesperado: recusa antes de qualquer processamento
+  const tipoCorpo = String(req.headers['content-type'] || '').toLowerCase();
+  if (Buffer.isBuffer(req.body) || (+req.headers['content-length'] || 0) > 32768
+      || !/^(application\/x-www-form-urlencoded|application\/json)/.test(tipoCorpo)) return res.status(413).end();
 
   const d = normaliza(lerCorpo(req));
   const tipo = d['form-name'] === 'suporte' ? 'suporte' : 'comercial';
@@ -327,7 +340,7 @@ async function handler(req, res) {
   if (d['bot-field']) return resp(200, true); // robô: finge que deu certo, não chama o webhook
   // Só aceita envios vindos das páginas do próprio site
   const origem = String(req.headers.origin || '');
-  if (origem) { let ok = false; try { const h = new URL(origem).hostname; ok = HOSTS.test(h) || (process.env.VERCEL_ENV !== 'production' && /^(localhost|127\.0\.0\.1)$/.test(h)); } catch (e) {} if (!ok) { console.error('[lead] origem recusada:', origem.slice(0, 100)); return resp(403, false, MSG.invalido); } }
+  { let ok = false; try { const h = new URL(origem).hostname; ok = HOSTS.test(h) || (process.env.VERCEL_ENV !== 'production' && /^(localhost|127\.0\.0\.1)$/.test(h)); } catch (e) {} if (!ok) { console.error('[lead] origem recusada:', origem.replace(/[\r\n]/g, ' ').slice(0, 100) || '(sem Origin)'); return resp(403, false, MSG.invalido); } }
 
   // Validação no servidor (espelha a do formulário) e limite de tamanho por campo.
   // Devolve só os nomes dos campos do próprio formulário, nunca detalhes do webhook.
@@ -347,13 +360,28 @@ async function handler(req, res) {
     const partes = Array.isArray(v) ? v : [v];
     if (partes.length > 20 || partes.some((x) => x.length > lim)) ruins.add(k);
   }
+  for (const [k, v] of Object.entries(d)) if (Array.isArray(v) && !MULTI.has(k)) ruins.add(k);
+  if (Object.keys(d).length > 80) ruins.add('form-name');
   for (const k of CAMPOS_LIMPOS) if (typeof d[k] === 'string' && SUSPEITO.test(d[k])) ruins.add(k);
+  // Nome: só letras, espaços, ponto, hífen e apóstrofo (vai na saudação do e-mail; nada de links ou domínios)
+  if (typeof d.nome === 'string' && d.nome && !/^[\p{L}\p{M}' .-]{2,100}$/u.test(d.nome)) ruins.add('nome');
+  if (typeof d.nome === 'string' && /\.[\p{L}]{2,}/u.test(d.nome)) ruins.add('nome');
+  // Endereços e marcadores de origem: só do próprio site; o resto vira texto curto e simples
+  for (const k of ['pagina', 'landing']) {
+    if (!d[k]) continue;
+    let ok = false; try { const u = new URL(d[k]); ok = u.protocol === 'https:' && HOSTS.test(u.hostname); } catch (e) {}
+    if (!ok) d[k] = '';
+  }
+  if (d.referrer) { try { d.referrer = new URL(d.referrer).origin; } catch (e) { d.referrer = ''; } }
+  for (const k of ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'gclid', 'fbclid']) {
+    if (d[k] && !/^[\w.\-+%]{0,200}$/.test(d[k])) d[k] = '';
+  }
   for (const [k, v] of Object.entries(d)) {
     if ((Array.isArray(v) ? v : [v]).some((x) => /[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/.test(x))) ruins.add(k);
   }
   for (const campo of Object.keys(form.opcoes)) {
     const partes = Array.isArray(d[campo]) ? d[campo] : d[campo] ? [d[campo]] : [];
-    if (partes.some((x) => !(x in form.opcoes[campo]))) ruins.add(campo);
+    if (partes.some((x) => !Object.prototype.hasOwnProperty.call(form.opcoes[campo], x))) ruins.add(campo);
   }
   if (ruins.size) {
     console.error(`[lead] formulário ${tipo} recusado na validação do site, campos:`, [...ruins].join(', '));

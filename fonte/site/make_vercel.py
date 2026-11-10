@@ -77,8 +77,8 @@ def headers():
         if not line.startswith(' '):
             src = line.strip()
             src = src[:-1] + '(.*)' if src.endswith('*') else src
-            if src == '/(.*)':
-                src = '/((?!backoffice).*)'   # o painel tem os próprios cabeçalhos
+            if src == '/(.*)' and os.path.exists(os.path.join(ROOT, 'vercel', 'backoffice_origem.txt')):
+                src = '/((?!backoffice).*)'   # só quando o painel é servido pelo www (rewrite): ele tem os próprios cabeçalhos
             cur = {'source': src, 'headers': []}
             out.append(cur)
         else:
