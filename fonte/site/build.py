@@ -21,6 +21,9 @@ CFG = {
     # Google Play: o app ainda não está publicado (revisão de 06/11). Mudar para True quando a ficha estiver no ar.
     'android_on': True,
     'painel': 'https://www.hypeapp.com.br/backoffice/',   # painel das marcas (Lucas, 06/11): endereço oficial no www, que redireciona para o backoffice-v2
+    # Cloudflare Turnstile (anti-robô dos formulários, 10/11): chave do site, pública. Vazio = sem verificação.
+    # A chave secreta fica só no Vercel (TURNSTILE_SECRET_KEY), nunca aqui.
+    'turnstile': os.environ.get('HH_TURNSTILE', ''),
     'preview': not WEB,      # faixa "Prévia" + noindex
     # Google Tag Manager: ID do contêiner (GTM-XXXXXXX). Vazio = nenhum script de análise e nenhum aviso de cookies.
     # O GTM só é carregado depois que a pessoa aceita os cookies de medição (Consent Mode v2, modo básico).
@@ -1313,6 +1316,10 @@ def privacy_check(L, id_):
     return f'<div class="field"><label class="check"><input type="checkbox" id="{id_}" name="{id_}" required><span>Li a <a href="{L("/privacidade/")}">política de privacidade</a> e concordo com o uso destes dados para responder ao meu contato.</span></label><p class="err" hidden></p></div>'
 
 FORM_LIVE = ' data-live' if WEB else ''
+# Verificação anti-robô (Cloudflare Turnstile) logo antes do botão de enviar; o script só carrega nas páginas com formulário.
+TURNSTILE = (f'<div class="cf-turnstile" data-sitekey="{CFG["turnstile"]}" data-language="pt-br" data-theme="light" data-size="flexible" data-action="form"></div>'
+             if CFG['turnstile'] and WEB else '')
+TURNSTILE_JS = '<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>' if TURNSTILE else ''
 HONEYPOT = '<p class="hp" hidden><label>Não preencha este campo <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>'
 
 def preview_note():
@@ -1378,8 +1385,9 @@ def p_contato_marcas(L, A):
     {consent}
     <p class="err form-erros" role="alert" hidden></p>
     {preview_note()}
+    {TURNSTILE}
     <button class="btn btn-cta btn-lg" type="submit" style="align-self:flex-start">Enviar para nosso time</button>
-  </form>
+  </form>{TURNSTILE_JS}
 </section>'''
 
 def p_enviado(L, A):
@@ -1427,6 +1435,7 @@ def p_suporte(L, A):
     {privacy_check(L, 'aceite')}
     <p class="err form-erros" role="alert" hidden></p>
     {preview_note()}
+    {TURNSTILE}{TURNSTILE_JS}
     <button class="btn btn-ink btn-lg" type="submit" style="align-self:flex-start">Abrir chamado</button>
   </form>
 </section>'''
@@ -2022,7 +2031,7 @@ HEADERS = '''/*
   X-Frame-Options: DENY
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=(), interest-cohort=()
-  Content-Security-Policy: default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self'; font-src 'self'; connect-src 'self'; form-action 'self'; frame-ancestors 'none'; base-uri 'self'; object-src 'none'
+  Content-Security-Policy: default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' https://challenges.cloudflare.com; frame-src https://challenges.cloudflare.com; font-src 'self'; connect-src 'self' https://challenges.cloudflare.com; form-action 'self'; frame-ancestors 'none'; base-uri 'self'; object-src 'none'
 
 /assets/fonts/*
   Cache-Control: public, max-age=31536000, immutable

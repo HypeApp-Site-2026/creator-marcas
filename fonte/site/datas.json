@@ -1,8 +1,8 @@
 {
  "/": {
   "publicado": "2026-10-30",
-  "alterado": "2026-11-09",
-  "hash": "17c313a5c2882f082dfc275723727d77"
+  "alterado": "2026-11-10",
+  "hash": "335ee4567453110d36e20af303f4cc1b"
  },
  "/404": {
   "publicado": "2026-10-30",
@@ -66,8 +66,8 @@
  },
  "/contato/marcas/": {
   "publicado": "2026-10-30",
-  "alterado": "2026-11-04",
-  "hash": "129d36bffe89d29def661792c9ecda0b"
+  "alterado": "2026-11-10",
+  "hash": "e0c0cd4456a28fff71a229afe812d209"
  },
  "/cookies/": {
   "publicado": "2026-10-30",
@@ -101,8 +101,8 @@
  },
  "/marcas/": {
   "publicado": "2026-10-30",
-  "alterado": "2026-11-09",
-  "hash": "b2bbbc5794e402e3bf7b3ce4d290b0c7"
+  "alterado": "2026-11-10",
+  "hash": "633362e45118d6530bd487a4221d56f4"
  },
  "/marcas/versao-a/": {
   "publicado": "2026-11-04",
@@ -151,8 +151,8 @@
  },
  "/suporte/": {
   "publicado": "2026-10-30",
-  "alterado": "2026-11-06",
-  "hash": "e537b00facfe5c0d87a58e313179e56a"
+  "alterado": "2026-11-10",
+  "hash": "00f13cd2421fe1e5fff4555ebeddca69"
  },
  "/suporte/enviado/": {
   "publicado": "2026-10-30",

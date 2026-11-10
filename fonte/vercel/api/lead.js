@@ -8,6 +8,11 @@
 //
 // Variável de ambiente obrigatória (somente servidor, nunca exposta ao navegador):
 //   PLATAFORMA_WEBHOOK_SECRET   segredo enviado no cabeçalho X-Webhook-Secret
+// Anti-robô (10/11, depois do ataque de robôs pelo formulário de suporte):
+//   TURNSTILE_SECRET_KEY        chave secreta do Cloudflare Turnstile. Com ela configurada, todo envio sem
+//                               verificação válida é recusado antes de chegar à API de chamados ou ao CRM.
+//   SUPPORT_TICKETS_SECRET      (opcional) enviado no cabeçalho X-Site-Secret à API de chamados, para a API
+//                               aceitar só chamados vindos do site. Combinar o valor com o Vini.
 //
 // Regras:
 // - o segredo nunca vai para o navegador, para respostas ou para logs;
@@ -25,6 +30,11 @@ const CATEGORIA = { conta: 'account', exclusao: 'account', redes: 'account', cam
 const CAMPO_API = { name: 'nome', email: 'email', subject: 'assunto', message: 'descricao' };
 const TIMEOUT_MS = 10000;
 const MAX_BODY = 16 * 1024;
+const TURNSTILE_URL = 'https://challenges.cloudflare.com/turnstile/v0/siteverify';
+const HOSTS = /^(www|teste)\.hypeapp\.com\.br$/;
+// Campos de identificação que vão para o e-mail de confirmação: sem links nem marcas de template/HTML
+const SUSPEITO = /<|>|\{\{|\}\}|\$\{|<%|%>|https?:|:\/\/|www\./i;
+const CAMPOS_LIMPOS = ['nome', 'empresa', 'cargo', 'cidade', 'campanha_nome', 'arroba', 'aparelho', 'versao', 'email_conta', 'valor', 'data_saque'];
 
 // Rótulos legíveis das opções (mesmos textos das páginas /contato/marcas/ e /suporte/)
 const OPCOES_COMERCIAL = {
@@ -53,7 +63,7 @@ const LIMITES = {
   nome: 200, email: 200, whatsapp: 60, empresa: 200, cargo: 120, site: 300, cidade: 120, mensagem: 3000,
   descricao: 3000, passos: 3000, erro_rede: 500, email_conta: 200, campanha_nome: 200, alvo: 500, aparelho: 120, versao: 40,
   pagina: 500, referrer: 500, landing: 500, utm_source: 120, utm_medium: 120, utm_campaign: 200, utm_content: 200, utm_term: 200,
-  gclid: 300, fbclid: 300,
+  gclid: 300, fbclid: 300, 'cf-turnstile-response': 4096,
 };
 const LIMITE_PADRAO = 300;
 
@@ -73,6 +83,7 @@ const MSG = {
   invalido: 'Revise os campos do formulário e tente de novo.',
   temporario: 'Não foi possível enviar agora, tente novamente em instantes.',
   limite: 'Muitos envios em pouco tempo. Tente de novo em instantes.',
+  robo: 'Não foi possível confirmar que você não é um robô. Recarregue a página e envie de novo.',
 };
 
 const emailOk = (s) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s || '');
@@ -229,8 +240,10 @@ function montaChamado(d, base, teste) {
     message: corta(blocos.join('\n\n'), 5000),
     category: CATEGORIA[d.assunto] || 'other',
   };
-  const pag = String(d.pagina || '');
-  corpo.page_url = /^https:\/\//.test(pag) ? corta(pag, 500) : `${base}/suporte/`;
+  // Só aceita a página de origem se for do próprio site (evita que a API receba um endereço qualquer)
+  let pagOk = false;
+  try { const u = new URL(String(d.pagina || '')); pagOk = u.protocol === 'https:' && HOSTS.test(u.hostname); } catch (e) {}
+  corpo.page_url = pagOk ? corta(String(d.pagina), 500) : `${base}/suporte/`;
   return corpo;
 }
 
@@ -249,7 +262,8 @@ async function enviaChamado(corpo, req) {
   try {
     r = await fetch(TICKETS_URL, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json', Accept: 'application/json', ...(ip ? { 'X-Forwarded-For': ip } : {}) },
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json', ...(ip ? { 'X-Forwarded-For': ip } : {}),
+        ...(process.env.SUPPORT_TICKETS_SECRET ? { 'X-Site-Secret': process.env.SUPPORT_TICKETS_SECRET } : {}) },
       body: JSON.stringify(corpo),
       signal: ctrl.signal,
     });
@@ -275,6 +289,34 @@ async function enviaChamado(corpo, req) {
   return { falha: true };
 }
 
+// Confere o token do Cloudflare Turnstile no servidor. Sem TURNSTILE_SECRET_KEY, não confere (e avisa no log).
+async function verificaHumano(d, req) {
+  const segredo = process.env.TURNSTILE_SECRET_KEY;
+  if (!segredo) { console.error('[antirobo] TURNSTILE_SECRET_KEY não configurada: envio aceito sem verificação.'); return true; }
+  const token = typeof d['cf-turnstile-response'] === 'string' ? d['cf-turnstile-response'] : '';
+  if (!token) return false;
+  const ip = String(req.headers['x-forwarded-for'] || '').split(',')[0].trim();
+  const ctrl = new AbortController();
+  const timer = setTimeout(() => ctrl.abort(), 8000);
+  try {
+    const r = await fetch(TURNSTILE_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams({ secret: segredo, response: token, ...(ip ? { remoteip: ip } : {}) }).toString(),
+      signal: ctrl.signal,
+    });
+    const j = await r.json().catch(() => ({}));
+    if (!j.success) { console.error('[antirobo] verificação recusada:', (j['error-codes'] || []).join(', ') || r.status); return false; }
+    if (j.hostname && !HOSTS.test(j.hostname)) { console.error('[antirobo] token de outro domínio:', j.hostname); return false; }
+    return true;
+  } catch (e) {
+    console.error('[antirobo] falha ao verificar:', e && e.name === 'AbortError' ? 'timeout' : (e && e.message) || 'erro de rede');
+    return false;
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
 async function handler(req, res) {
   if (req.method !== 'POST') { res.setHeader('Allow', 'POST'); return res.status(405).end(); }
 
@@ -283,6 +325,9 @@ async function handler(req, res) {
   const form = FORMS[tipo];
   const resp = (status, ok, erro, campos, numero) => responder(req, res, status, ok, erro, campos, form.proxima, numero);
   if (d['bot-field']) return resp(200, true); // robô: finge que deu certo, não chama o webhook
+  // Só aceita envios vindos das páginas do próprio site
+  const origem = String(req.headers.origin || '');
+  if (origem) { let ok = false; try { const h = new URL(origem).hostname; ok = HOSTS.test(h) || (process.env.VERCEL_ENV !== 'production' && /^(localhost|127\.0\.0\.1)$/.test(h)); } catch (e) {} if (!ok) { console.error('[lead] origem recusada:', origem.slice(0, 100)); return resp(403, false, MSG.invalido); } }
 
   // Validação no servidor (espelha a do formulário) e limite de tamanho por campo.
   // Devolve só os nomes dos campos do próprio formulário, nunca detalhes do webhook.
@@ -302,6 +347,10 @@ async function handler(req, res) {
     const partes = Array.isArray(v) ? v : [v];
     if (partes.length > 20 || partes.some((x) => x.length > lim)) ruins.add(k);
   }
+  for (const k of CAMPOS_LIMPOS) if (typeof d[k] === 'string' && SUSPEITO.test(d[k])) ruins.add(k);
+  for (const [k, v] of Object.entries(d)) {
+    if ((Array.isArray(v) ? v : [v]).some((x) => /[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/.test(x))) ruins.add(k);
+  }
   for (const campo of Object.keys(form.opcoes)) {
     const partes = Array.isArray(d[campo]) ? d[campo] : d[campo] ? [d[campo]] : [];
     if (partes.some((x) => !(x in form.opcoes[campo]))) ruins.add(campo);
@@ -310,6 +359,7 @@ async function handler(req, res) {
     console.error(`[lead] formulário ${tipo} recusado na validação do site, campos:`, [...ruins].join(', '));
     return resp(400, false, MSG.invalido, [...ruins]);
   }
+  if (!(await verificaHumano(d, req))) return resp(400, false, MSG.robo);
 
   const host = String(req.headers['x-forwarded-host'] || req.headers.host || '');
   const teste = /^teste\./.test(host);

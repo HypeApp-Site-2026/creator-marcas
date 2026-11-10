@@ -469,6 +469,13 @@
       }
       if (summary) summary.hidden = true;
       if (f.getAttribute('data-sending')) return;
+      // Verifica\u00e7\u00e3o anti-rob\u00f4 (Cloudflare Turnstile): sem o token, n\u00e3o envia.
+      var ts = $('.cf-turnstile', f), tok = f.elements['cf-turnstile-response'];
+      if (ts && f.hasAttribute('data-live') && !(tok && tok.value)) {
+        if (summary) { summary.hidden = false; summary.textContent = 'Aguarde a verifica\u00e7\u00e3o anti-rob\u00f4 terminar e envie de novo.'; }
+        try { if (window.turnstile) window.turnstile.reset(ts); } catch (e) {}
+        return;
+      }
       var btn = $('button[type="submit"]', f);
       if (btn) { btn.setAttribute('data-label', btn.textContent); btn.disabled = true; btn.textContent = 'Enviando\u2026'; }
       var next = f.getAttribute('data-next');
@@ -505,6 +512,7 @@
         .catch(function (e) {
           evento({ event: 'form_error', form_name: fn, error_tipo: 'envio' });
           f.removeAttribute('data-sending');
+          try { var w = $('.cf-turnstile', f); if (w && window.turnstile) window.turnstile.reset(w); } catch (e2) {}
           if (btn) { btn.disabled = false; btn.textContent = btn.getAttribute('data-label') || 'Enviar'; }
           if (summary) {
             summary.hidden = false;

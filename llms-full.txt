@@ -20,7 +20,7 @@ Informações oficiais:
 
 Fonte: https://www.hypeapp.com.br/
 Título: HypeApp: app para influenciadores e plataforma de campanhas
-Atualizado em: 2026-11-09
+Atualizado em: 2026-11-10
 
 # O app de quem cria conteúdo. O painel de quem contrata.
 
@@ -226,7 +226,7 @@ Feed, grupos e lives com outros creators dentro do app. Conteúdo censurável e 
 
 Fonte: https://www.hypeapp.com.br/marcas/
 Título: Plataforma de marketing de influência para marcas | HypeApp
-Atualizado em: 2026-11-09
+Atualizado em: 2026-11-10
 
 # Campanhas com creators, do seu jeito.
 
@@ -490,7 +490,7 @@ Atualize o app pela loja e entre com o mesmo e-mail e a mesma senha.
 
 Fonte: https://www.hypeapp.com.br/suporte/
 Título: Suporte: abra um chamado | HypeApp
-Atualizado em: 2026-11-06
+Atualizado em: 2026-11-10
 
 # Como podemos ajudar?
 
