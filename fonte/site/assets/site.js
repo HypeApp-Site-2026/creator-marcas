@@ -102,8 +102,17 @@
       var a = ev.target.closest && ev.target.closest('a[href$="#preferencias-cookies"]');
       if (a) { ev.preventDefault(); abre(true, true); }
     });
+    /* Caixa opcional de cookies de medição nos formulários: só para quem ainda não escolheu no aviso */
+    var ckForms = document.querySelectorAll('.ck-form');
+    var someCkForm = function () { for (var i = 0; i < ckForms.length; i++) ckForms[i].hidden = true; };
+    for (var i = 0; i < ckForms.length; i++) {
+      var cx = $('[data-ck-form]', ckForms[i]);
+      if (cx) cx.addEventListener('change', function (ev) { aplica({ medicao: ev.target.checked }, true); if (ev.target.checked) fecha(); });
+    }
+    if (ck) ck.addEventListener('click', function (ev) { var b = ev.target.closest('[data-ck]'); if (b && b.getAttribute('data-ck') !== 'personalizar') someCkForm(); });
     var escolha = lerEscolha();
     if (escolha) aplica(escolha, false); else abre(false, false);
+    if (!escolha) for (var j = 0; j < ckForms.length; j++) ckForms[j].hidden = false;
     if (location.hash === '#preferencias-cookies') abre(true, true);
   }
   /* eventos: no dataLayer (GTM) e, com o GA4 direto, tambem como evento do gtag (sem dados pessoais) */

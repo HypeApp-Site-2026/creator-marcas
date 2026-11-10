@@ -1320,6 +1320,11 @@ FORM_LIVE = ' data-live' if WEB else ''
 TURNSTILE = (f'<div class="cf-turnstile" data-sitekey="{CFG["turnstile"]}" data-language="pt-br" data-theme="light" data-size="flexible" data-action="form"></div>'
              if CFG['turnstile'] and WEB else '')
 TURNSTILE_JS = '<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>' if TURNSTILE else ''
+# Cookies de medição pelo formulário (10/11): opcional e desmarcado, separado do aceite dos dados (LGPD: não pode ser
+# condição para enviar). Só aparece para quem ainda não escolheu no aviso de cookies; sem name, não vai no envio.
+CK_FORM = ('<div class="field ck-form" hidden><label class="check"><input type="checkbox" data-ck-form>'
+           '<span>Aceito também os cookies de medição (Google Analytics e Microsoft Clarity), que ajudam a melhorar o site. '
+           'Opcional. <a href="#preferencias-cookies">Ver detalhes</a></span></label></div>') if (CFG['gtm'] or CFG['ga4']) else ''
 HONEYPOT = '<p class="hp" hidden><label>Não preencha este campo <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>'
 
 def preview_note():
@@ -1383,6 +1388,7 @@ def p_contato_marcas(L, A):
     {etapa(4, 'O que a empresa quer do painel', s4)}
     {etapa(5, 'Operacional', s5)}
     {consent}
+    {CK_FORM}
     <p class="err form-erros" role="alert" hidden></p>
     {preview_note()}
     {TURNSTILE}
@@ -1433,6 +1439,7 @@ def p_suporte(L, A):
     <div class="cols-2">{field('nome', 'Nome', extra=' autocomplete="name" data-min="2" maxlength="100"')}{field('email', 'E-mail para resposta', 'email', extra=' autocomplete="email"', ph='nome@email.com')}</div>
     {field('descricao', 'Descreva o que aconteceu', 'textarea', extra=' data-min="10" maxlength="3000"')}
     {privacy_check(L, 'aceite')}
+    {CK_FORM}
     <p class="err form-erros" role="alert" hidden></p>
     {preview_note()}
     {TURNSTILE}{TURNSTILE_JS}
