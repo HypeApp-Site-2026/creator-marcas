@@ -99,6 +99,12 @@ function lerCorpo(req) {
 }
 
 // Normaliza: texto simples, sem espaços nas pontas; listas viram arrays de texto
+// IPs bloqueados (10/11): 195.63.133.197 = servidor alugado (VDSINA, Holanda) do atacante, mesmo endereço do teste de SSRF
+// e dos cadastros falsos; 192.42.116.15 = nó de saída do Tor usado no ataque. Para acrescentar sem mexer no código,
+// use a variável BLOCKED_IPS no Vercel (IPs separados por vírgula).
+const IPS_BLOQUEADOS = new Set(['195.63.133.197', '192.42.116.15',
+  ...String(process.env.BLOCKED_IPS || '').split(',').map((x) => x.trim()).filter(Boolean)]);
+const ipDoCliente = (req) => String(req.headers['x-real-ip'] || String(req.headers['x-forwarded-for'] || '').split(',')[0]).trim();
 const MULTI = new Set(['redes', 'interesses']); // únicos campos que podem vir repetidos
 const PROIBIDAS = new Set(['__proto__', 'constructor', 'prototype']);
 function normaliza(bruto) {
@@ -327,6 +333,7 @@ async function verificaHumano(d, req) {
 }
 
 async function handler(req, res) {
+  if (IPS_BLOQUEADOS.has(ipDoCliente(req))) { console.error('[bloqueio] tentativa de IP bloqueado:', ipDoCliente(req)); return res.status(403).end(); }
   if (req.method !== 'POST') { res.setHeader('Allow', 'POST'); return res.status(405).end(); }
   // Corpo grande ou de tipo inesperado: recusa antes de qualquer processamento
   const tipoCorpo = String(req.headers['content-type'] || '').toLowerCase();
