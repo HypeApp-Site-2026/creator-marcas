@@ -1,8 +1,8 @@
 {
  "/": {
   "publicado": "2026-10-30",
-  "alterado": "2026-11-08",
-  "hash": "5fcc4c347d61d1657d188974ea67e5ce"
+  "alterado": "2026-11-09",
+  "hash": "17c313a5c2882f082dfc275723727d77"
  },
  "/404": {
   "publicado": "2026-10-30",
@@ -11,13 +11,13 @@
  },
  "/app": {
   "publicado": "2026-10-30",
-  "alterado": "2026-11-06",
-  "hash": "4d936322cb010581e364148fc249572f"
+  "alterado": "2026-11-09",
+  "hash": "7ecee57066656704bdaa69cd2b1a5f5b"
  },
  "/baixar/": {
   "publicado": "2026-10-30",
-  "alterado": "2026-11-06",
-  "hash": "136cb48d63bd7b31250062f97040cf5e"
+  "alterado": "2026-11-09",
+  "hash": "fa20d83dfb15a4ca7b7e1607c5d47b1f"
  },
  "/blog/": {
   "publicado": "2026-11-04",
@@ -76,13 +76,13 @@
  },
  "/criadores/": {
   "publicado": "2026-10-30",
-  "alterado": "2026-11-06",
-  "hash": "4ff000d9337f25f9b491a26d99bbb835"
+  "alterado": "2026-11-09",
+  "hash": "dcdbf688daa1c826147f990b2465ab96"
  },
  "/entrar/": {
   "publicado": "2026-10-30",
-  "alterado": "2026-11-06",
-  "hash": "52228746af45956d9c18dd8410afc9f6"
+  "alterado": "2026-11-09",
+  "hash": "f7b6560747d1bca625d0c2728b2b1a44"
  },
  "/exclusao-de-conta/": {
   "publicado": "2026-10-30",
@@ -96,13 +96,13 @@
  },
  "/links/": {
   "publicado": "2026-11-06",
-  "alterado": "2026-11-06",
-  "hash": "89c5bb486f24ef07eaadf76c90464634"
+  "alterado": "2026-11-09",
+  "hash": "b84d75dfb3d2b8dc372163fbacf70737"
  },
  "/marcas/": {
   "publicado": "2026-10-30",
-  "alterado": "2026-11-08",
-  "hash": "39a2a1c06e9502ee4f1637f2b4b66386"
+  "alterado": "2026-11-09",
+  "hash": "b2bbbc5794e402e3bf7b3ce4d290b0c7"
  },
  "/marcas/versao-a/": {
   "publicado": "2026-11-04",
@@ -121,13 +121,13 @@
  },
  "/perfil-antigo/": {
   "publicado": "2026-11-06",
-  "alterado": "2026-11-06",
-  "hash": "d5d86b0f94c1340a4d59bc1db8cfe6de"
+  "alterado": "2026-11-09",
+  "hash": "1b48634974f6772d0974844e4f7275be"
  },
  "/perguntas-frequentes/": {
   "publicado": "2026-10-30",
-  "alterado": "2026-11-06",
-  "hash": "0b34126a5f9865a10a7bf7732874ec39"
+  "alterado": "2026-11-09",
+  "hash": "560d15d0841122640fb887ea30d1964c"
  },
  "/privacidade/": {
   "publicado": "2026-10-30",
@@ -146,8 +146,8 @@
  },
  "/sobre/": {
   "publicado": "2026-10-30",
-  "alterado": "2026-11-06",
-  "hash": "685c18f1de6bc9d4902b93a2f1e66844"
+  "alterado": "2026-11-09",
+  "hash": "9830014aececb0a03ee3915cf96d2943"
  },
  "/suporte/": {
   "publicado": "2026-10-30",

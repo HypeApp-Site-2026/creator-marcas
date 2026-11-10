@@ -19,7 +19,7 @@ CFG = {
     'ios': 'https://apps.apple.com/br/app/hype-app-influenciadores/id6778357608',
     'android': 'https://play.google.com/store/apps/details?id=br.com.hypeapp.v2',
     # Google Play: o app ainda não está publicado (revisão de 06/11). Mudar para True quando a ficha estiver no ar.
-    'android_on': False,
+    'android_on': True,
     'painel': 'https://www.hypeapp.com.br/backoffice/',   # painel das marcas (Lucas, 06/11): endereço oficial no www, que redireciona para o backoffice-v2
     'preview': not WEB,      # faixa "Prévia" + noindex
     # Google Tag Manager: ID do contêiner (GTM-XXXXXXX). Vazio = nenhum script de análise e nenhum aviso de cookies.

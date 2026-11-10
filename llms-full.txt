@@ -20,7 +20,7 @@ Informações oficiais:
 
 Fonte: https://www.hypeapp.com.br/
 Título: HypeApp: app para influenciadores e plataforma de campanhas
-Atualizado em: 2026-11-08
+Atualizado em: 2026-11-09
 
 # O app de quem cria conteúdo. O painel de quem contrata.
 
@@ -122,7 +122,7 @@ Busque nas perguntas frequentes ou fale com o suporte.
 
 Fonte: https://www.hypeapp.com.br/criadores/
 Título: App para influenciadores: campanhas com marcas | HypeApp
-Atualizado em: 2026-11-06
+Atualizado em: 2026-11-09
 
 # Sua carreira de creator, mais organizada.
 
@@ -136,7 +136,7 @@ Campanhas com marcas, entregas, pagamento e uma comunidade de creators num app s
 
 - Comunidade de creators
 
-- Para iPhone
+- iPhone e Android
 
 ## Isso é pra mim?
 
@@ -226,7 +226,7 @@ Feed, grupos e lives com outros creators dentro do app. Conteúdo censurável e 
 
 Fonte: https://www.hypeapp.com.br/marcas/
 Título: Plataforma de marketing de influência para marcas | HypeApp
-Atualizado em: 2026-11-08
+Atualizado em: 2026-11-09
 
 # Campanhas com creators, do seu jeito.
 
@@ -294,13 +294,13 @@ Sim. Cada marca tem configurações próprias (marca, empresa e equipe), e a pes
 
 Fonte: https://www.hypeapp.com.br/sobre/
 Título: Sobre o HypeApp, da Você no Hype | Parceira TikTok Shop
-Atualizado em: 2026-11-06
+Atualizado em: 2026-11-09
 
 # Sobre o HypeApp
 
 O HypeApp é a plataforma da Você no Hype que conecta creators e marcas em campanhas de marketing de influência, do convite ao pagamento.
 
-Um app para iPhone com campanhas, convites, entregas, comunidade e carteira.
+Um app para iPhone e Android com campanhas, convites, entregas, comunidade e carteira.
 
 Um painel na web para encontrar creators, aprovar conteúdos e acompanhar resultados.
 
@@ -317,6 +317,10 @@ www.hypeapp.com.br
 - App para iPhone
 
 App Store
+
+- App para Android
+
+Google Play
 
 - Redes sociais
 
@@ -354,7 +358,7 @@ Escreva para contato@vocenohype.com.br com o assunto e o prazo do pedido.
 
 Fonte: https://www.hypeapp.com.br/perguntas-frequentes/
 Título: Perguntas frequentes: campanhas, pagamento e conta | HypeApp
-Atualizado em: 2026-11-06
+Atualizado em: 2026-11-09
 
 # Perguntas frequentes
 
@@ -368,7 +372,7 @@ Qualquer pessoa com 18 anos ou mais, sem mínimo de seguidores. Cada campanha te
 
 **P:** Como eu começo?
 
-Baixe o HypeApp na App Store, crie sua conta e conecte suas redes. Não há mínimo de seguidores.
+Baixe o HypeApp na App Store ou no Google Play, crie sua conta e conecte suas redes. Não há mínimo de seguidores.
 
 **P:** O cadastro garante participação em campanhas?
 
@@ -462,17 +466,21 @@ O suporte atende quem já usa o app. Marcas falam com o comercial.
 
 Fonte: https://www.hypeapp.com.br/baixar/
 Título: Baixar o HypeApp: app de campanhas para iPhone
-Atualizado em: 2026-11-06
+Atualizado em: 2026-11-09
 
 # Baixe o HypeApp
 
-Campanhas, entregas e carteira no seu celular. Grátis para iPhone.
+Campanhas, entregas e carteira no seu celular. Grátis para iPhone e Android.
 
 Crie sua conta pelo app. Para maiores de 18 anos, sem mínimo de seguidores.
 
 - iPhone
 
 iOS 15.1 ou superior
+
+- Android
+
+Veja a compatibilidade na Google Play
 
 ## Já tem conta no HypeApp?
 
