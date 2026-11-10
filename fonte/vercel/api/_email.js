@@ -24,7 +24,7 @@ const FONE = '(11) 3834-5221';
 const C = { roxo: '#9E2CFA', roxoTx: '#7A12D6', lilas: '#F1EAFB', preto: '#050505', cinza: '#555555', fundo: '#EFEFEF', lima: '#D2F51A' };
 
 const limpa = (s, max = 120) => String(s || '').replace(/[\r\n\t]+/g, ' ').replace(/[<>]/g, '').trim().slice(0, max);
-const esc = (s) => String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+const esc = (s) => String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
 const emailValido = (e) => /^[^\s@<>"',;:]+@[^\s@<>"',;:]+\.[^\s@<>"',;:]+$/.test(e) && e.length <= 200;
 const b64 = (s) => Buffer.from(s, 'utf8').toString('base64');
 const enc = (s) => `=?UTF-8?B?${b64(s)}?=`;

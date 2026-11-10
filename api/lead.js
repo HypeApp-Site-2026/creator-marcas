@@ -28,7 +28,7 @@ const CATEGORIA = { conta: 'account', exclusao: 'account', redes: 'account', cam
   erro: 'bug', denuncia: 'other', outro: 'other' };
 // Campo da API → campo do formulário (para marcar o campo certo quando a API recusar)
 const CAMPO_API = { name: 'nome', email: 'email', subject: 'assunto', message: 'descricao' };
-const TIMEOUT_MS = 10000;
+const TIMEOUT_MS = 8000; // 8 s Turnstile + 8 s chamados + 8 s CRM + 6 s SMTP = 30 s (maxDuration)
 const MAX_BODY = 16 * 1024;
 const TURNSTILE_URL = 'https://challenges.cloudflare.com/turnstile/v0/siteverify';
 const HOSTS = /^(www|teste)\.hypeapp\.com\.br$/;
@@ -86,7 +86,8 @@ const MSG = {
   robo: 'Não foi possível confirmar que você não é um robô. Recarregue a página e envie de novo.',
 };
 
-const emailOk = (s) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s || '');
+// Tamanho conferido antes da regex; domínio sem ambiguidade (auditoria 10/11: a regex antiga era quadrática)
+const emailOk = (s) => typeof s === 'string' && s.length <= 200 && /^[^\s@]+@[^\s@.]+(\.[^\s@.]+)+$/.test(s);
 const corta = (s, n) => (s.length > n ? s.slice(0, n - 1) + '…' : s);
 const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 
@@ -105,6 +106,7 @@ function lerCorpo(req) {
 const IPS_BLOQUEADOS = new Set(['195.63.133.197', '192.42.116.15',
   ...String(process.env.BLOCKED_IPS || '').split(',').map((x) => x.trim()).filter(Boolean)]);
 const ipDoCliente = (req) => String(req.headers['x-real-ip'] || String(req.headers['x-forwarded-for'] || '').split(',')[0]).trim();
+const MULTILINHA = new Set(['mensagem', 'descricao', 'passos']); // únicos campos com várias linhas
 const MULTI = new Set(['redes', 'interesses']); // únicos campos que podem vir repetidos
 const PROIBIDAS = new Set(['__proto__', 'constructor', 'prototype']);
 function normaliza(bruto) {
@@ -137,7 +139,7 @@ function montaLead(d, agora, tipo = 'comercial') {
   const temGclid = !!d.gclid, temFbclid = !!d.fbclid;
   const source = temGclid ? 'google-ads' : temFbclid ? 'meta-ads' : (d.utm_source || 'site');
   const linha = (p, r) => (r ? `${p}: ${r}` : null);
-  const umaLinha = (t) => t && t.replace(/\s*\n\s*/g, ' / ');
+  const umaLinha = (t) => t && t.split(/\r?\n/).map((x) => x.trim()).filter(Boolean).join(' / ');
 
   const motivos = [];
   if (d.agencia === 'sim') motivos.push('agência');
@@ -174,7 +176,7 @@ function montaLead(d, agora, tipo = 'comercial') {
     linha('Quantas pessoas da equipe usariam o painel', rotulo('usuarios', d.usuarios)),
     linha('É uma agência que atende várias marcas', rotulo('agencia', d.agencia)),
     linha('Consentimento LGPD', d.aceite ? 'Sim' : ''),
-    linha('Quer contar algo mais', d.mensagem && d.mensagem.replace(/\s*\n\s*/g, ' / ')),
+    linha('Quer contar algo mais', umaLinha(d.mensagem)),
   ];
   const origem = [
     linha('Página de origem', d.pagina),
@@ -250,9 +252,8 @@ function montaChamado(d, base, teste) {
     category: CATEGORIA[d.assunto] || 'other',
   };
   // Só aceita a página de origem se for do próprio site (evita que a API receba um endereço qualquer)
-  let pagOk = false;
-  try { const u = new URL(String(d.pagina || '')); pagOk = u.protocol === 'https:' && HOSTS.test(u.hostname); } catch (e) {}
-  corpo.page_url = pagOk ? corta(String(d.pagina), 500) : `${base}/suporte/`;
+  // d.pagina já chega canônica (u.href) ou vazia, conferida no handler
+  corpo.page_url = d.pagina ? corta(d.pagina, 500) : `${base}/suporte/`;
   return corpo;
 }
 
@@ -266,7 +267,7 @@ function camposRecusados(j) {
 async function enviaChamado(corpo, req) {
   const ctrl = new AbortController();
   const timer = setTimeout(() => ctrl.abort(), TIMEOUT_MS);
-  const ip = String(req.headers['x-forwarded-for'] || '').split(',')[0].trim();
+  const ip = ipDoCliente(req);
   let r;
   try {
     r = await fetch(TICKETS_URL, {
@@ -278,7 +279,7 @@ async function enviaChamado(corpo, req) {
     });
   } catch (e) {
     const timeout = e && e.name === 'AbortError';
-    console.error('[chamado] falha ao chamar a API de chamados:', timeout ? 'timeout de 10 s' : (e && e.message) || 'erro de rede');
+    console.error('[chamado] falha ao chamar a API de chamados:', timeout ? 'timeout de 8 s' : (e && e.message) || 'erro de rede');
     return { falha: true, timeout };
   } finally {
     clearTimeout(timer);
@@ -309,7 +310,7 @@ async function verificaHumano(d, req) {
   }
   const token = typeof d['cf-turnstile-response'] === 'string' ? d['cf-turnstile-response'] : '';
   if (!token) return false;
-  const ip = String(req.headers['x-forwarded-for'] || '').split(',')[0].trim();
+  const ip = ipDoCliente(req);
   const ctrl = new AbortController();
   const timer = setTimeout(() => ctrl.abort(), 8000);
   try {
@@ -337,17 +338,21 @@ async function handler(req, res) {
   if (req.method !== 'POST') { res.setHeader('Allow', 'POST'); return res.status(405).end(); }
   // Corpo grande ou de tipo inesperado: recusa antes de qualquer processamento
   const tipoCorpo = String(req.headers['content-type'] || '').toLowerCase();
-  if (Buffer.isBuffer(req.body) || (+req.headers['content-length'] || 0) > 32768
+  const tamanho = Number(req.headers['content-length']);
+  if (!Number.isFinite(tamanho) || String(req.headers['content-length'] || '') === '') return res.status(411).end();
+  if (Buffer.isBuffer(req.body) || tamanho > 32768
       || !/^(application\/x-www-form-urlencoded|application\/json)/.test(tipoCorpo)) return res.status(413).end();
 
   const d = normaliza(lerCorpo(req));
+  // Soma dos valores também limitada (não depende só do cabeçalho)
+  if (Object.values(d).reduce((t, v) => t + (Array.isArray(v) ? v.join('').length : String(v).length), 0) > 32768) return res.status(413).end();
   const tipo = d['form-name'] === 'suporte' ? 'suporte' : 'comercial';
   const form = FORMS[tipo];
   const resp = (status, ok, erro, campos, numero) => responder(req, res, status, ok, erro, campos, form.proxima, numero);
   if (d['bot-field']) return resp(200, true); // robô: finge que deu certo, não chama o webhook
   // Só aceita envios vindos das páginas do próprio site
   const origem = String(req.headers.origin || '');
-  { let ok = false; try { const h = new URL(origem).hostname; ok = HOSTS.test(h) || (process.env.VERCEL_ENV !== 'production' && /^(localhost|127\.0\.0\.1)$/.test(h)); } catch (e) {} if (!ok) { console.error('[lead] origem recusada:', origem.replace(/[\r\n]/g, ' ').slice(0, 100) || '(sem Origin)'); return resp(403, false, MSG.invalido); } }
+  { let ok = false; try { const h = new URL(origem).hostname; ok = HOSTS.test(h) || (!process.env.VERCEL_ENV && /^(localhost|127\.0\.0\.1)$/.test(h)); } catch (e) {} if (!ok) { console.error('[lead] origem recusada:', origem.replace(/[\r\n]/g, ' ').slice(0, 100) || '(sem Origin)'); return resp(403, false, MSG.invalido); } }
 
   // Validação no servidor (espelha a do formulário) e limite de tamanho por campo.
   // Devolve só os nomes dos campos do próprio formulário, nunca detalhes do webhook.
@@ -372,12 +377,16 @@ async function handler(req, res) {
   for (const k of CAMPOS_LIMPOS) if (typeof d[k] === 'string' && SUSPEITO.test(d[k])) ruins.add(k);
   // Nome: só letras, espaços, ponto, hífen e apóstrofo (vai na saudação do e-mail; nada de links ou domínios)
   if (typeof d.nome === 'string' && d.nome && !/^[\p{L}\p{M}' .-]{2,100}$/u.test(d.nome)) ruins.add('nome');
-  if (typeof d.nome === 'string' && /\.[\p{L}]{2,}/u.test(d.nome)) ruins.add('nome');
+  if (typeof d.nome === 'string' && /\.[\p{L}\p{M}]/u.test(d.nome.normalize('NFKC'))) ruins.add('nome');
   // Endereços e marcadores de origem: só do próprio site; o resto vira texto curto e simples
   for (const k of ['pagina', 'landing']) {
     if (!d[k]) continue;
-    let ok = false; try { const u = new URL(d[k]); ok = u.protocol === 'https:' && HOSTS.test(u.hostname); } catch (e) {}
-    if (!ok) d[k] = '';
+    // Valida e guarda a forma canônica (u.href); recusa espaço, controle e barra invertida, que o parser apagaria
+    let canon = '';
+    if (!/[\s\\\u0000-\u001F\u007F]/.test(d[k])) {
+      try { const u = new URL(d[k]); if (u.protocol === 'https:' && HOSTS.test(u.hostname) && !u.username && !u.password) canon = u.href; } catch (e) {}
+    }
+    d[k] = canon;
   }
   if (d.referrer) { try { d.referrer = new URL(d.referrer).origin; } catch (e) { d.referrer = ''; } }
   for (const k of ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'gclid', 'fbclid']) {
@@ -385,13 +394,15 @@ async function handler(req, res) {
   }
   for (const [k, v] of Object.entries(d)) {
     if ((Array.isArray(v) ? v : [v]).some((x) => /[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/.test(x))) ruins.add(k);
+    // Quebra de linha e TAB só nos campos de texto livre (evita forjar linhas nas notas do CRM)
+    if (!MULTILINHA.has(k) && (Array.isArray(v) ? v : [v]).some((x) => /[\t\r\n\u0085\u2028\u2029]/.test(x))) ruins.add(k);
   }
   for (const campo of Object.keys(form.opcoes)) {
     const partes = Array.isArray(d[campo]) ? d[campo] : d[campo] ? [d[campo]] : [];
     if (partes.some((x) => !Object.prototype.hasOwnProperty.call(form.opcoes[campo], x))) ruins.add(campo);
   }
   if (ruins.size) {
-    console.error(`[lead] formulário ${tipo} recusado na validação do site, campos:`, [...ruins].join(', '));
+    console.error(`[lead] formulário ${tipo} recusado na validação do site, campos:`, [...ruins].map((k) => String(k).replace(/[^\w-]/g, '_').slice(0, 40)).join(', '));
     return resp(400, false, MSG.invalido, [...ruins]);
   }
   if (!(await verificaHumano(d, req))) return resp(400, false, MSG.robo);
@@ -446,7 +457,7 @@ async function handler(req, res) {
       signal: ctrl.signal,
     });
   } catch (e) {
-    console.error('[lead] falha ao chamar o webhook:', e && e.name === 'AbortError' ? 'timeout de 10 s' : (e && e.message) || 'erro de rede');
+    console.error('[lead] falha ao chamar o webhook:', e && e.name === 'AbortError' ? 'timeout de 8 s' : (e && e.message) || 'erro de rede');
     return resp(502, false, MSG.temporario);
   } finally {
     clearTimeout(timer);

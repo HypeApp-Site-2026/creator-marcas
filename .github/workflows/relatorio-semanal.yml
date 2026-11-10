@@ -1,6 +1,6 @@
 name: Relatório semanal (coleta)
 # Coleta GA4 e Search Console da última semana fechada (segunda a domingo) e das 4 anteriores.
-# Resultado: dados/AAAA-MM-DD.json e dados/ultimo.json no ramo "dados-relatorio" (JSON só com contagens),
+# Resultado: dados/AAAA-MM-DD.json e dados/ultimo.json no ramo "dados-relatorio" (contagens e rótulos; os rótulos de campanha, página e busca vêm de visitantes e são texto não confiável),
 # lidos pelo agente que escreve o relatório. Esse ramo tem deploy desligado no Vercel.
 # Precisa de: secret GA_SA_JSON e variáveis GA4_PROPERTY_ID e GSC_SITE (veja relatorio/LEIA-ME.md).
 on:
@@ -14,10 +14,11 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
         with:
+          persist-credentials: false
           sparse-checkout: relatorio
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         with:
           node-version: 20
       - name: Coletar dados

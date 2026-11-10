@@ -157,8 +157,8 @@
       "permanent": true
     },
     {
-      "source": "/:path*/index.html",
-      "destination": "/:path*/",
+      "source": "/:path([A-Za-z0-9._~-]+(?:/[A-Za-z0-9._~-]+)*)/index.html",
+      "destination": "/:path/",
       "permanent": true
     },
     {

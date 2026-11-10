@@ -67,7 +67,7 @@ def so_teste():
 def sem_index_html():
     # /marcas/index.html e /index.html abrem a mesma página: leva ao endereço limpo
     return [{'source': '/index.html', 'destination': '/', 'permanent': True},
-            {'source': '/:path*/index.html', 'destination': '/:path*/', 'permanent': True}]
+            {'source': '/:path([A-Za-z0-9._~-]+(?:/[A-Za-z0-9._~-]+)*)/index.html', 'destination': '/:path/', 'permanent': True}]   # só caracteres de caminho comuns (auditoria 10/11: com \\ virava redirecionamento para fora)
 
 def headers():
     out, cur = [], None
@@ -102,12 +102,13 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
         with:
+          persist-credentials: false
           sparse-checkout: |
             relatorio
             api
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         with:
           node-version: 20
       - name: Enviar
@@ -121,7 +122,7 @@ jobs:
 
 RELATORIO_YML = """name: Relatório semanal (coleta)
 # Coleta GA4 e Search Console da última semana fechada (segunda a domingo) e das 4 anteriores.
-# Resultado: dados/AAAA-MM-DD.json e dados/ultimo.json no ramo "dados-relatorio" (JSON só com contagens),
+# Resultado: dados/AAAA-MM-DD.json e dados/ultimo.json no ramo "dados-relatorio" (contagens e rótulos; os rótulos de campanha, página e busca vêm de visitantes e são texto não confiável),
 # lidos pelo agente que escreve o relatório. Esse ramo tem deploy desligado no Vercel.
 # Precisa de: secret GA_SA_JSON e variáveis GA4_PROPERTY_ID e GSC_SITE (veja relatorio/LEIA-ME.md).
 on:
@@ -135,10 +136,11 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
         with:
+          persist-credentials: false
           sparse-checkout: relatorio
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         with:
           node-version: 20
       - name: Coletar dados
@@ -173,11 +175,15 @@ INDEXNOW_YML = r"""name: Avisar buscadores (IndexNow)
 # Rode manualmente depois de publicar mudanças: Actions > Avisar buscadores (IndexNow) > Run workflow.
 on:
   workflow_dispatch:
+permissions:
+  contents: read
 jobs:
   indexnow:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          persist-credentials: false
       - name: Enviar URLs do sitemap
         run: |
           KEY=$(ls | grep -E '^[0-9a-f]{32}\.txt$' | head -1 | sed 's/\.txt$//')
@@ -255,10 +261,10 @@ def main():
     shutil.copytree(os.path.join(ROOT, 'relatorio'), os.path.join(OUT, 'relatorio'))
     open(os.path.join(wf, 'relatorio-semanal.yml'), 'w', encoding='utf-8').write(RELATORIO_YML)
     open(os.path.join(wf, 'relatorio-email.yml'), 'w', encoding='utf-8').write(RELATORIO_EMAIL_YML)
-    open(os.path.join(OUT, '.gitignore'), 'w').write('.vercel\n.env\n.env.*\nfonte/site/dist/\nfonte/site/dist-web/\n__pycache__/\n.DS_Store\n')
+    open(os.path.join(OUT, '.gitignore'), 'w').write('.vercel\n.env\n.env.*\nfonte/site/dist/\nfonte/site/dist-web/\n__pycache__/\n.DS_Store\n*.log\nfonte/site/ck-*.png\n')
     # código-fonte
     fonte = os.path.join(OUT, 'fonte')
-    ign = shutil.ignore_patterns('dist', 'dist-web', '__pycache__', '*.pyc')
+    ign = shutil.ignore_patterns('dist', 'dist-web', '__pycache__', '*.pyc', '*.log', 'ck-*.png')
     shutil.copytree(os.path.join(ROOT, 'seo'), os.path.join(fonte, 'seo'), ignore=ign)
     shutil.copytree(HERE, os.path.join(fonte, 'site'), ignore=ign)
     shutil.copytree(os.path.join(ROOT, 'vercel'), os.path.join(fonte, 'vercel'))
