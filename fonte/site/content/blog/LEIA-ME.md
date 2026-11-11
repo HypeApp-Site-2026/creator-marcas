@@ -36,3 +36,15 @@ Texto da participação, em Markdown.
 :::
 ```
 - A página /blog/ mostra a capa (o artigo com `destaque: sim`, ou o primeiro), os tópicos no menu lateral (vêm do campo `categoria`), os destaques e todos os artigos.
+
+## Imagens dentro do artigo (11/11)
+
+Coloque o arquivo em `site/assets/blog/` e use uma figura em HTML no meio do texto, com `src="@blog/arquivo"`:
+
+```
+<figure class="post-fig">
+<img src="@blog/minha-imagem.webp" width="1200" height="600" alt="Descrição da imagem" loading="lazy" decoding="async">
+<figcaption>Legenda opcional.</figcaption>
+</figure>
+```
+Para imagens em pé (prints de celular, animações), use `class="post-fig post-fig-estreita"`. O build confere se o arquivo existe e copia para o site.

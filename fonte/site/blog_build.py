@@ -195,7 +195,7 @@ def p_post(p):
                 f'<p class="lead">{html.escape(p["resumo"])}</p>{aviso}'
                 f'{"" if ex else autor_linha(A, p["autor"], q, 44, "post-au")}</header>'
                 f'<figure class="post-cover"><img src="{A("assets/blog/" + p["capa"])}" alt="{html.escape(p["alt"])}" width="960" height="600" decoding="async"></figure>'
-                f'<div class="prose card post-body">{p["html"]}</div>'
+                f'<div class="prose card post-body">{p["html"].replace('src="@blog/', 'src="' + A('assets/blog/'))}</div>'
                 f'{coms_html}'
                 f'<div class="post-foot"><a class="btn btn-grey" href="{L("/blog/")}">Ver todos os artigos</a><a class="btn btn-cta" href="{L("/baixar/")}">Baixar o app</a></div>'
                 f'</article>')

@@ -1,8 +1,8 @@
 {
  "/": {
   "publicado": "2026-10-30",
-  "alterado": "2026-11-10",
-  "hash": "335ee4567453110d36e20af303f4cc1b"
+  "alterado": "2026-11-11",
+  "hash": "016dc0250fa52a0179ed41997a0f7678"
  },
  "/404": {
   "publicado": "2026-10-30",
@@ -21,8 +21,13 @@
  },
  "/blog/": {
   "publicado": "2026-11-04",
-  "alterado": "2026-11-06",
-  "hash": "ac024c8065b3e3abc4f7033215fe6b34"
+  "alterado": "2026-11-11",
+  "hash": "809e8bd02ad16edff8651ee9d99f631c"
+ },
+ "/blog/canais-oficiais-hypeapp-seguranca/": {
+  "publicado": "2026-11-11",
+  "alterado": "2026-11-11",
+  "hash": "541d39335f6de1cdae38c0f3177c4174"
  },
  "/blog/como-conseguir-parcerias-com-marcas/": {
   "publicado": "2026-11-06",
@@ -101,8 +106,8 @@
  },
  "/marcas/": {
   "publicado": "2026-10-30",
-  "alterado": "2026-11-10",
-  "hash": "633362e45118d6530bd487a4221d56f4"
+  "alterado": "2026-11-11",
+  "hash": "c214f4c740b06403e0566137d6f19ea7"
  },
  "/marcas/versao-a/": {
   "publicado": "2026-11-04",

@@ -2204,3 +2204,8 @@ body:has(.lk-main) { background: var(--ground); }
 .post-body thead th { background: #F4F0FA; font-weight: 700; text-align: left; }
 .post-body th, .post-body td { padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top; min-width: 140px; }
 .post-body tr:last-child td { border-bottom: 0; }
+/* Figuras dentro do artigo (imagem com legenda opcional) */
+.post-body .post-fig { margin: 24px 0; }
+.post-body .post-fig img { display: block; width: 100%; height: auto; border-radius: 16px; }
+.post-body .post-fig-estreita { max-width: 420px; margin-left: auto; margin-right: auto; }
+.post-body .post-fig figcaption { margin-top: 10px; font-size: 14px; line-height: 1.5; color: var(--muted, #5E5A66); text-align: center; }

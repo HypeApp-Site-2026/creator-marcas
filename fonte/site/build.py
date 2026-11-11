@@ -2224,6 +2224,10 @@ def main():
     for _p in POSTS:
         shutil.copy(os.path.join(HERE, 'assets', 'blog', _p['capa']), os.path.join(OUT, 'assets', 'blog', _p['capa']))
     shutil.copytree(os.path.join(HERE, 'assets', 'blog', 'autores'), os.path.join(OUT, 'assets', 'blog', 'autores'))  # fotos da equipe do blog
+    for _p in POSTS:  # imagens dentro do texto dos artigos (src="@blog/arquivo")
+        for _f in re.findall(r'src="@blog/([\w.-]+)"', _p['html']):
+            assert os.path.exists(os.path.join(HERE, 'assets', 'blog', _f)), f'{_p["slug"]}: imagem {_f} não encontrada em assets/blog/'
+            shutil.copy(os.path.join(HERE, 'assets', 'blog', _f), os.path.join(OUT, 'assets', 'blog', _f))
     # Ícones, manifest e imagens sociais ficam na raiz do site (gerados por make_media.py)
     for f in os.listdir(os.path.join(HERE, 'static')):
         src = os.path.join(HERE, 'static', f)
