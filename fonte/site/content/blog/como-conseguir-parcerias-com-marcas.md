@@ -7,89 +7,167 @@ status: publicado
 destaque: sim
 capa: como-conseguir-parcerias-com-marcas.webp
 capa_alt: Creator sorrindo diante do celular no tripé, mostrando um frasco de produto em um estúdio colorido
-resumo: Saiba como preparar seu perfil, encontrar campanhas e buscar parcerias com marcas usando o HypeApp, mesmo no início da carreira.
+resumo: Veja como organizar o perfil, montar um mídia kit simples e chegar até as marcas com uma ideia, mesmo no começo como creator.
+autor: lucas-ragnoni
 ---
 
-Para conseguir parcerias com marcas, comece organizando seu perfil, mostrando o tipo de conteúdo que você produz e procurando campanhas que combinem com o seu público. Uma apresentação clara e a leitura atenta de cada oportunidade ajudam a fazer propostas mais coerentes.
+Tenho certeza que você começa a criar conteúdo, passa um tempo pensando no roteiro, grava, edita, publica… e chega uma hora em que quer transformar toda essa dedicação em seu trabalho. Só que as marcas ainda não aparecem, as mensagens ficam sem resposta e vem aquela dúvida: será que preciso ter mais seguidores? O que eu estou fazendo de errado? Por que todo mundo consegue, menos eu?
 
-O HypeApp reúne essas etapas: você conecta suas redes, informa os formatos com que trabalha e encontra campanhas para se inscrever pelo app. Não existe um mínimo de seguidores para usar a plataforma. A entrada em cada campanha depende dos requisitos da oportunidade e da seleção.
+Eu começaria olhando para uma coisa que você consegue resolver agora: como seu trabalho está sendo apresentado.
 
-## Preciso ter muitos seguidores para conseguir uma parceria?
+Quem acompanha você há meses já conhece sua rotina e entende seu conteúdo. Uma marca que acabou de chegar ao seu perfil precisa bater o olho e descobrir tudo isso. E, se as informações estiverem espalhadas, fica mais difícil entender onde uma parceria se encaixaria. E aí que está o pulo do gato…
 
-O número de seguidores diz algo sobre o seu perfil, mas não descreve sozinho o trabalho que você oferece. Antes de se candidatar, veja se o assunto da campanha combina com o seu conteúdo, se você consegue produzir os formatos pedidos e se atende às condições apresentadas.
+Por isso, antes de sair mandando mensagem, vale preparar a casa. Organizar o perfil, deixar seu conteúdo mais claro e reunir um material simples para apresentar o que você faz. Vou te mostrar por onde eu começaria.
 
-Um creator que fala de corrida, por exemplo, tende a ter mais afinidade com uma ação ligada à rotina esportiva do que com um produto que nunca aparece no seu conteúdo. Afinidade ajuda, mas não garante a seleção.
+## 1. Primeiro, entenda pelo que você quer ser lembrado
 
-No HypeApp, você cria o perfil mesmo no começo da trajetória, porque não há número mínimo de seguidores. Isso não quer dizer que toda campanha aceite qualquer perfil: confira os requisitos de cada uma.
+Quando falo em nicho, penso no assunto que faz alguém lembrar de você e querer acompanhar suas próximas publicações.
 
-## Organize seu perfil para apresentar seu trabalho
+Você pode gostar de treino, viagem, comida e tecnologia. Tudo isso faz parte da sua vida. Mas qual desses assuntos você quer desenvolver como creator? E qual é o seu jeito de falar sobre ele?
 
-A marca precisa entender quem você é e o que pode produzir. Comece por uma descrição objetiva: os assuntos que você aborda, os conteúdos que costuma criar e os formatos que oferece.
+“Faço conteúdo fitness” ainda deixa muita coisa em aberto. Já “mostro como encaixar o treino na rotina de quem trabalha o dia inteiro” dá uma direção. A partir daí, você consegue falar da bolsa de academia, dos horários, dos dias em que bate preguiça e dos produtos que facilitam essa rotina.
 
-No HypeApp, o cadastro tem cinco etapas. Nelas você:
+Na minha visão, esse recorte ajuda muito mais do que tentar falar com todo mundo. Você começa a entender o que produzir e quais marcas combinam com o que já está construindo.
 
-- confirma o telefone pelo WhatsApp (dá para deixar para depois, mas é obrigatório antes do primeiro saque);
-- conecta Instagram, TikTok ou YouTube (pelo menos uma rede);
-- cadastra seus valores por formato e diz se faz UGC;
-- preenche foto, nome, descrição e dados pessoais;
-- informa o endereço, usado em campanhas locais e no envio de produtos.
+Se ainda estiver buscando essa direção, volte aos seus próprios conteúdos. Sobre o que você gosta de conversar? O que as pessoas perguntam? Que assunto rende uma troca de verdade nos comentários? Tem bastante pista aí.
 
-Mantenha essas informações fiéis ao seu momento. Se você ainda não faz um tipo de entrega, não inclua só para deixar o perfil mais completo. Uma apresentação precisa evita desencontro de expectativas.
+## 2. Olhe para o perfil como alguém que acabou de chegar
 
-## Onde encontrar marcas e campanhas para se candidatar
+Abra suas redes e tente fazer esse exercício: uma pessoa que nunca viu seu conteúdo consegue entender quem você é, o que produz e como entrar em contato?
 
-No HypeApp, a aba Descobrir, em Campanhas, mostra as oportunidades e permite buscar e filtrar. Ao abrir uma campanha, você vê o ganho, a duração, as entregas e os benefícios.
+Comece pelo básico. Veja se a foto permite reconhecer você, se o nome é fácil de encontrar, se os links abrem e se tem um contato profissional acessível. Também confira se a marca consegue visualizar os conteúdos que você está enviando na proposta.
 
-Antes de se inscrever, confira:
+Pode parecer detalhe, mas pense na situação: você manda uma mensagem, a pessoa se interessa, abre seu perfil e encontra um link quebrado ou precisa procurar seu e-mail em várias publicações. Dá para facilitar esse caminho.
 
-- se o produto ou serviço faz sentido para o seu conteúdo;
-- quais redes e formatos serão usados;
-- o que precisa ser entregue e em qual período;
-- se você consegue cumprir o trabalho na sua rotina;
-- quais são os benefícios e as condições da parceria.
+Se você produz em mais de uma rede, tente manter uma apresentação que permita reconhecer seu trabalho entre elas. Não precisa publicar exatamente a mesma coisa em todos os lugares. Cada plataforma pode ter seu papel, desde que fique claro que é você ali.
 
-Essa leitura ajuda a decidir se vale seguir com a inscrição e evita assumir compromissos que não cabem na sua agenda.
+E eu escolheria as redes de acordo com o que consigo manter. Ter três perfis abandonados só aumenta o trabalho de organizar tudo depois.
 
-## Como fazer uma inscrição alinhada à campanha
+## 3. Sua bio precisa ajudar a entender seu conteúdo
 
-Depois de entender a oportunidade, avalie o trabalho e o valor da sua proposta. No HypeApp, a inscrição permite propor um valor por rede. Depois do envio, ela fica em análise. Se tiver dúvida sobre preço, veja o nosso guia sobre [quanto cobrar por uma publi](/blog/quanto-cobrar-por-uma-publi/).
+Eu usaria a bio para responder três coisas: sobre o que você fala, qual é o seu recorte e como conversar com você sobre trabalho.
 
-A seleção não é automática. Nas campanhas self-service, quem escolhe é a marca. Nas gerenciadas, é a curadoria da Você no Hype.
+“Criador de conteúdo | parcerias no direct” ocupa esse espaço, mas ainda não conta quase nada sobre a sua produção. Dá para ser mais específico sem escrever um currículo.
 
-Você também pode receber convites de pré-seleção, na aba Convites. Leia as condições antes de aceitar e fique de olho no prazo de resposta: o convite expira.
+Seguindo o exemplo de treino, uma possibilidade seria:
 
-## A parceria começa antes da publicação
+> Treino e hábitos para quem vive na correria<br>
+> Minha rotina entre trabalho e academia<br>
+> 📍 Rio de Janeiro<br>
+> Contato e mídia kit ↓
 
-Se você entrar em uma campanha, o próximo passo é ler o briefing: os produtos, as fases e os prazos. Depois, prepare o roteiro de cada entrega.
+É um exemplo para você adaptar ao seu jeito. Se você quer trabalhar com negócios da sua região, a localização ajuda a dar contexto. Se prefere receber propostas por e-mail, deixe isso fácil de encontrar.
 
-No HypeApp, você envia o roteiro por entrega, com anexo ou como rascunho, e conversa com a marca no chat da campanha. A marca aprova o roteiro antes de você produzir o conteúdo.
+E faça o link cumprir o que promete. Se escreveu “contato e mídia kit”, os dois precisam estar lá, acessíveis pelo celular.
 
-Se uma entrega pede, por exemplo, uma demonstração de uso, confirme pelo chat o que precisa aparecer antes de gravar. Isso reduz retrabalho. Para manter tudo no prazo, veja como [organizar a rotina de criador de conteúdo](/blog/como-organizar-rotina-criador-de-conteudo/).
+## 4. Organize o feed para mostrar o trabalho que você quer fazer
 
-## Dê o primeiro passo com um perfil preparado
+Quando uma marca lê sua bio e vai para as publicações, ela precisa conseguir enxergar aquela proposta acontecendo.
 
-Buscar parcerias fica mais simples quando você sabe o que oferece, lê as condições com calma e acompanha suas inscrições.
+Eu começaria separando alguns assuntos que podem aparecer com frequência. Para um creator que fala de treino e rotina corrida, por exemplo:
 
-O HypeApp é grátis para creators, sem mensalidade e sem taxa sobre o valor recebido. [Baixe o app](/baixar/), monte seu perfil com seus formatos e valores e veja as campanhas disponíveis. Para entender todo o caminho, do convite ao pagamento, conheça a [página para creators](/criadores/).
+- **O dia a dia:** como encaixa a academia, o que dá certo e onde costuma se enrolar.
+- **O que ajuda na rotina:** organização da bolsa, preparação da semana e hábitos que está testando.
+- **Produtos em uso:** o que leva para treinar, como usa e qual é sua opinião de verdade.
 
-## Perguntas frequentes sobre parcerias com marcas
+Agora pense em duas ideias para cada assunto. Você já tem seis conteúdos para desenvolver, sem precisar inventar um tema do zero toda vez que for publicar.
 
-### Posso usar o HypeApp mesmo tendo poucos seguidores?
+Para mim, organizar o feed começa por essa clareza. A parte visual ajuda, claro, mas eu daria prioridade a uma boa ideia, áudio compreensível e uma demonstração que faça sentido para quem assiste.
 
-Sim. O HypeApp não exige um número mínimo de seguidores. Para concluir o cadastro, você precisa ter 18 anos ou mais e conectar pelo menos uma rede social. Cada campanha tem seus próprios requisitos, e a seleção depende da marca ou da curadoria responsável.
+Também vale facilitar o acesso ao que representa melhor sua produção. Se a rede permitir fixar publicações, escolha uma apresentação, um conteúdo útil e um exemplo que mostre bem seu estilo. Nos destaques do Instagram, você pode reunir informações sobre você, conteúdos e contato.
 
-### Preciso pagar para me candidatar às campanhas?
+Não sairia apagando toda a vida pessoal do perfil. Tem muita coisa da sua rotina que ajuda as pessoas a se conectarem com você. Faça uma revisão com intenção e destaque o trabalho que quer desenvolver daqui para frente.
 
-Não. O HypeApp é grátis para creators, sem mensalidade e sem taxa sobre o valor recebido. Você pode ver as oportunidades disponíveis e se inscrever nas que combinam com o seu perfil.
+## 5. Ainda não fez publi? Comece mostrando como você produz
 
-### Qual é a diferença entre me inscrever e receber um convite?
+Essa dúvida trava muita gente: “Como vou apresentar um trabalho se nenhuma marca me contratou ainda?”.
 
-Na inscrição, você encontra uma campanha e envia sua candidatura, que fica em análise. No convite, a marca já pré-selecionou o seu perfil, e você aceita ou recusa. O convite tem prazo de resposta, então confira as condições e a validade antes de decidir.
+Minha sugestão é começar com o que você já tem e usa. Escolha um produto e pense em uma ideia que faria sentido no seu conteúdo mesmo sem uma campanha.
 
-### Me cadastrar ou me inscrever garante uma parceria?
+Pode ser um vídeo sobre o que você leva na bolsa para sair do trabalho e ir direto à academia. Você consegue mostrar os itens, explicar por que usa cada um e construir uma história em torno de uma situação real.
 
-Não. O cadastro serve para apresentar o seu perfil e buscar oportunidades, mas não garante contratação. Nas campanhas self-service, a marca escolhe os creators. Nas gerenciadas, a seleção é da curadoria da Você no Hype.
+Aproveite para cuidar do roteiro, do áudio, da iluminação e da edição. Esse material já ajuda a mostrar como você desenvolve uma ideia e apresenta um produto.
 
-### Quais redes sociais posso conectar ao meu perfil?
+Só deixe claro que é um conteúdo autoral ou um exercício de portfólio. Usar um produto em um vídeo não transforma aquela marca em sua cliente.
 
-Instagram, TikTok e YouTube. Conecte as redes em que você realmente produz conteúdo e mantenha a descrição, os formatos e os valores atualizados.
+Eu começaria escolhendo três conteúdos que representam bem o que sei fazer. Colocaria os links em um material simples e explicaria minha participação: roteiro, gravação, edição. É uma forma prática de ter o que apresentar enquanto busca os primeiros trabalhos.
+
+## 6. Tenha um mídia kit que ajude a conhecer você
+
+Penso no mídia kit como uma apresentação que a marca consegue consultar e compartilhar com quem participa da decisão.
+
+Ele pode começar pequeno. Um PDF curto ou uma página bem organizada já permite reunir o essencial:
+
+- Quem você é e sobre o que cria conteúdo.
+- Os links das suas redes.
+- As informações disponíveis sobre seu público, como localização e faixa etária.
+- Seus números, com período e data de atualização.
+- Alguns exemplos de conteúdo.
+- Os formatos que você oferece.
+- Seu contato profissional.
+
+Eu daria atenção especial à escolha dos exemplos. São eles que ajudam a entender seu jeito de falar, como você grava e que tipo de conteúdo consegue entregar.
+
+Nos números, seja claro. Se um vídeo teve um resultado muito acima dos outros, vale mostrar como destaque e explicar que foi aquele conteúdo. Isso evita criar uma expectativa que não representa sua produção como um todo.
+
+Se você ainda tem poucos dados, trabalhe com os que estão disponíveis. Mostre seu recorte, suas ideias e seu portfólio. O material vai ganhar novas informações conforme sua trajetória avançar.
+
+Sobre valores, eu prefiro entender o pedido antes de fechar um orçamento. Você pode ter referências por formato, mas quantidade de entregas, produção e uso do conteúdo precisam entrar na conversa.
+
+## 7. Chegue até a marca com uma ideia
+
+Depois de organizar tudo isso, fica mais fácil procurar uma parceria. Você sabe o que apresenta e tem exemplos para sustentar a conversa.
+
+Eu começaria pelas marcas que já fazem sentido na minha rotina e no conteúdo que produzo. Pensaria em uma ideia e procuraria o contato responsável por creators ou as campanhas abertas daquela empresa.
+
+Uma mensagem poderia seguir esta linha:
+
+> Olá! Crio conteúdo sobre como conciliar treino e trabalho. Já uso _(nome do produto)_ e pensei em um vídeo mostrando _(sua ideia)_, porque esse assunto aparece bastante nas conversas com meu público. Aqui estão meu perfil e mídia kit: _(seus links)_. Com quem posso conversar sobre essa possibilidade?
+
+Adapte a abordagem ao que é verdadeiro para você. Se ainda não conhece o produto, apresente o motivo do interesse sem dizer que já usa.
+
+O que eu gosto nesse caminho é que a conversa já começa com uma possibilidade concreta. A marca consegue olhar a ideia, conhecer sua produção e avaliar se existe espaço para desenvolver aquilo.
+
+Anote para quem mandou mensagem e quando entrou em contato. Se fizer sentido retomar depois, seja objetivo. Enquanto isso, continue produzindo e buscando outras oportunidades, sem deixar toda a expectativa em uma resposta.
+
+## 8. Quando a proposta chegar, entenda o trabalho completo
+
+A primeira resposta positiva anima. Mesmo assim, reserve um tempo para entender o que está sendo combinado.
+
+Quantos conteúdos são? Quais os prazos? Como funciona a aprovação? Qual é o pagamento? A marca quer usar o vídeo em anúncios? Existe exclusividade?
+
+Essas respostas ajudam você a calcular o trabalho e decidir se consegue assumir a entrega. Se algum ponto estiver aberto, pergunte antes de confirmar e deixe as condições registradas.
+
+Também olharia com cuidado as propostas por produto. O item pode ser interessante, mas a produção continua exigindo seu tempo e pode ter custos. Avalie a troca considerando o pedido completo e o que faz sentido para o seu momento.
+
+## Perguntas que costumam aparecer no começo
+
+### Quantos seguidores preciso ter para conseguir uma parceria?
+
+Cada campanha tem seus critérios. Algumas pedem determinado tamanho de audiência; outras procuram um público local, um assunto específico ou um tipo de produção. Eu começaria preparando o que você já consegue apresentar e buscando oportunidades compatíveis com isso, sem colocar toda a expectativa em chegar a um número.
+
+### Preciso criar outro perfil para trabalhar como creator?
+
+Eu olharia primeiro para o perfil que você já tem. Se ele combina com o conteúdo que quer desenvolver, dá para reorganizar a apresentação e seguir construindo ali. Um perfil separado pode fazer sentido quando você quer preservar sua vida pessoal ou trabalhar uma proposta muito diferente.
+
+### Como faço um mídia kit sem ter nenhuma publi?
+
+Apresente quem você é, o público que está construindo, seus dados disponíveis e exemplos autorais. Você pode mostrar sua produção antes da primeira contratação. Identifique o que é exercício de portfólio e atualize o material quando tiver novos trabalhos.
+
+### Tenho que apagar os posts que fogem do meu nicho?
+
+Eu revisaria antes de sair apagando. Sua vida pessoal também faz parte da relação com quem acompanha você. Veja se o conjunto deixa clara sua proposta e facilite o acesso aos conteúdos que melhor representam seu trabalho hoje.
+
+### Vale aceitar uma parceria só por produto?
+
+Pode fazer sentido em algumas situações, dependendo do produto, das entregas e dos seus objetivos. Coloque o tempo e os custos na conta. Você pode avaliar cada proposta e buscar trabalhos remunerados desde o início; receber produto não precisa ser uma etapa obrigatória.
+
+## Onde o HypeApp entra nessa história
+
+Com o perfil organizado, uma apresentação clara e exemplos do que você produz, o próximo passo é buscar oportunidades que combinem com esse trabalho.
+
+É aqui que o HypeApp pode ajudar. Você cria seu perfil, conecta as redes em que produz e consulta as campanhas disponíveis. Minha sugestão é levar para o app a mesma atenção que deu às suas redes: explicar o que faz, manter as informações atualizadas e ler as condições de cada oportunidade antes de se candidatar.
+
+Olhe as entregas, os prazos e a relação da campanha com seu conteúdo. Assim, você consegue avaliar onde vale apresentar uma proposta. A seleção depende dos critérios de cada campanha, então siga cuidando da sua produção e desenvolvendo novas possibilidades também.
+
+[[lojas]]

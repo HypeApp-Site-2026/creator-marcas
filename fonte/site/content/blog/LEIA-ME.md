@@ -48,3 +48,7 @@ Coloque o arquivo em `site/assets/blog/` e use uma figura em HTML no meio do tex
 </figure>
 ```
 Para imagens em pé (prints de celular, animações), use `class="post-fig post-fig-estreita"`. O build confere se o arquivo existe e copia para o site.
+
+## Botões das lojas no artigo (17/11)
+
+Uma linha sozinha com `[[lojas]]` vira os botões da App Store e do Google Play (os mesmos do site, com a origem do clique).

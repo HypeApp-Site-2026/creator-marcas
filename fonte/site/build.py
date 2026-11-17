@@ -1743,6 +1743,7 @@ def p_legal_file(url):
 
 # ---------- Blog (content/blog/*.md, ver blog_build.py) ----------
 import blog_build as _blog
+_blog.LOJAS = stores(None)  # botões das lojas que um artigo pode usar com [[lojas]]
 POSTS = _blog.load_posts(HERE, WEB)
 BLOG_ON = bool(POSTS)   # sem artigo, /blog/ não existe e os links para ele somem
 PUBLICADOS = [_p for _p in POSTS if _p['status'] == 'publicado']

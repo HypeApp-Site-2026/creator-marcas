@@ -9,6 +9,7 @@ MESES = ['janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 'julho', 'a
 EQUIPE = {}   # content/blog/equipe.json: quem escreve e participa no blog (foto em assets/blog/autores/)
 SO_TESTE = ' data-so-teste hidden'   # some no domínio oficial; o site.js mostra só em teste.hypeapp.com.br
 WEB = False
+LOJAS = ''   # botões App Store / Google Play, preenchido pelo build.py; no artigo, uma linha só com [[lojas]]
 
 def load_posts(here, web):
     global WEB, EQUIPE
@@ -195,7 +196,7 @@ def p_post(p):
                 f'<p class="lead">{html.escape(p["resumo"])}</p>{aviso}'
                 f'{"" if ex else autor_linha(A, p["autor"], q, 44, "post-au")}</header>'
                 f'<figure class="post-cover"><img src="{A("assets/blog/" + p["capa"])}" alt="{html.escape(p["alt"])}" width="960" height="600" decoding="async"></figure>'
-                f'<div class="prose card post-body">{p["html"].replace('src="@blog/', 'src="' + A('assets/blog/'))}</div>'
+                f'<div class="prose card post-body">{p["html"].replace('src="@blog/', 'src="' + A('assets/blog/')).replace('<p>[[lojas]]</p>', '<div class="row post-lojas">' + LOJAS + '</div>')}</div>'
                 f'{coms_html}'
                 f'<div class="post-foot"><a class="btn btn-grey" href="{L("/blog/")}">Ver todos os artigos</a><a class="btn btn-cta" href="{L("/baixar/")}">Baixar o app</a></div>'
                 f'</article>')
