@@ -1563,12 +1563,12 @@ def p_app(L, A):
   <div class="qr" style="width:220px;height:220px;flex:0 0 auto">{QR}</div>
 </section>'''
 
-VERSOES = {'/cookies/': 'Versão 2.1 · Última atualização: 6 de novembro de 2026.',
+VERSOES = {'/cookies/': 'Versão 2.2 · Última atualização: 17 de novembro de 2026.',
            '/regras-da-comunidade/': 'Versão 2.2 · Última atualização: 6 de novembro de 2026.'}
 
 COOKIES_GA = [
     ('necessarios', 'Necessários', rev('Para funcionar, o site guarda no seu navegador a sua escolha sobre cookies (por até 12 meses) e, só enquanto a aba estiver aberta, '
-        'a página de entrada e os parâmetros da campanha que trouxe você (utm, gclid e fbclid). Sozinhos, eles não identificam você. '
+        'a página de entrada e os parâmetros da campanha que trouxe você (utm, gclid e fbclid). Se você reagir a um artigo do blog, o navegador também guarda qual reação escolheu em cada artigo, até você limpar os dados do site. Sozinhos, eles não identificam você. '
         'Se você enviar um formulário de contato, eles seguem junto com a mensagem e passam a ficar ligados aos dados que você informou, '
         'só para sabermos por qual campanha você chegou. Esse uso segue a <a href="{{PRIVACIDADE}}">Política de Privacidade</a>. Os cookies necessários não precisam de consentimento.')),
     ('medicao', 'Medição de visitas', rev('Se você aceitar os cookies de medição, '

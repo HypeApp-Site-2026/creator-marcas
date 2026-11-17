@@ -506,7 +506,7 @@ Pedidos sobre seus dados pessoais seguem pela política de privacidade. Marcas n
 
 Fonte: https://www.hypeapp.com.br/privacidade/
 Título: Política de privacidade (LGPD) | HypeApp
-Atualizado em: 2026-11-08
+Atualizado em: 2026-11-17
 
 # Política de Privacidade
 
@@ -514,7 +514,7 @@ Quais dados pessoais o HypeApp coleta, como usa, com quem compartilha e como voc
 
 Esta política explica quais dados pessoais o HypeApp coleta no app, no painel das marcas e no site, como os usamos, com quem os compartilhamos e como você exerce seus direitos, em conformidade com a Lei Geral de Proteção de Dados Pessoais (LGPD, Lei nº 13.709/2018) e com as regras das lojas de aplicativos e das plataformas conectadas.
 
-Versão 3.2 · Última atualização: 8 de novembro de 2026.
+Versão 3.3 · Última atualização: 17 de novembro de 2026.
 
 ## Resumo rápido
 
@@ -636,6 +636,12 @@ Nome, e-mail, assunto, descrição do problema e as informações que você esco
 
 Atender o chamado
 
+Reações no blog
+
+A reação escolhida em um artigo (Like, Amei, Uau ou Genial). Guardamos só o total de cada reação por artigo, sem ligar a você; a sua escolha fica no seu navegador. O endereço IP é usado só para limitar cliques repetidos: vira um código irreconhecível e é apagado em 60 segundos.
+
+Mostrar quantas pessoas reagiram a cada artigo e evitar abuso
+
 Navegação no site
 
 Endereço IP e dados técnicos da conexão nos registros do servidor. Se você aceitar os cookies de medição: páginas vistas, origem da visita, botões clicados, formulários enviados, cliques, rolagem e gravações da navegação, coletados pelo Google Analytics 4 (pela tag do Google) e pelo Microsoft Clarity, com os campos de formulário ocultos nas gravações
@@ -750,7 +756,7 @@ Você pode revogar o acesso desconectando o YouTube no HypeApp, excluindo sua co
 
 - Creators: quando uma marca publica uma campanha, os creators veem as informações da campanha e da marca exibidas no mural.
 
-- Fornecedores de tecnologia: hospedagem e infraestrutura em nuvem, rede de distribuição e segurança do site, Expo (envio de notificações push), Sentry (relatórios de erro do app), ScrapeCreators (leitura dos dados públicos do Instagram), Google e Apple (login e lojas), Google (Google Analytics e Google Tag Manager) e Microsoft (Clarity) para a medição do site, só com o seu aceite, e instituições de pagamento que processam os PIX. Todos com obrigações contratuais de proteção de dados.
+- Fornecedores de tecnologia: hospedagem e infraestrutura em nuvem, rede de distribuição e segurança do site, Expo (envio de notificações push), Sentry (relatórios de erro do app), ScrapeCreators (leitura dos dados públicos do Instagram), Upstash (contagem das reações do blog), Google e Apple (login e lojas), Google (Google Analytics e Google Tag Manager) e Microsoft (Clarity) para a medição do site, só com o seu aceite, e instituições de pagamento que processam os PIX. Todos com obrigações contratuais de proteção de dados.
 
 - Plataformas conectadas por você: Instagram, TikTok e YouTube, conforme as conexões que você ativar.
 
@@ -768,7 +774,7 @@ Não vendemos, não alugamos e não cedemos seus dados pessoais para fins comerc
 
 ## 9. Transferência internacional
 
-Alguns fornecedores de tecnologia, como provedores de nuvem e hospedagem, de notificações e de análise (entre eles Google, Microsoft, Expo, Sentry e ScrapeCreators, que faz a leitura dos dados públicos do Instagram, seção 7.1), armazenam ou processam dados fora do Brasil, principalmente nos Estados Unidos.
+Alguns fornecedores de tecnologia, como provedores de nuvem e hospedagem, de notificações e de análise (entre eles Google, Microsoft, Expo, Sentry, Upstash e ScrapeCreators, que faz a leitura dos dados públicos do Instagram, seção 7.1), armazenam ou processam dados fora do Brasil, principalmente nos Estados Unidos.
 
 Essas transferências seguem o art. 33 da LGPD. Usamos as cláusulas-padrão contratuais aprovadas pela ANPD (Resolução CD/ANPD nº 19/2024) nos contratos com esses fornecedores ou, quando houver, a decisão da ANPD que reconheça o nível de proteção adequado do país de destino.
 
@@ -805,6 +811,8 @@ No site, usamos cookies necessários para funcionar e, só se você aceitar no a
 - Carteira de Hype Points (endereço, rede, operações e chave criptografada): hoje não é apagada automaticamente na exclusão da conta. Você pode pedir a exclusão ao suporte.
 
 - Chamados de suporte: por 2 anos após o fechamento do chamado. Chamados sobre pagamentos seguem o prazo dos dados fiscais (5 anos).
+
+- Reações do blog: os totais por artigo ficam enquanto o artigo estiver no site. O código feito a partir do IP é apagado em 60 segundos.
 
 - Medição do site: no Google Analytics, os dados detalhados de eventos e de usuários ficam guardados por 14 meses. No Microsoft Clarity, as gravações da navegação ficam por 30 dias, e os mapas de calor e dados agregados, por até 9 meses, conforme a política da Microsoft.
 
@@ -1166,17 +1174,17 @@ Estes Termos são regidos pela legislação brasileira. Sempre que possível, as
 
 Fonte: https://www.hypeapp.com.br/cookies/
 Título: Política de cookies | HypeApp
-Atualizado em: 2026-11-06
+Atualizado em: 2026-11-17
 
 # Política de cookies
 
 Quais tecnologias o site usa, para quê e como mudar sua escolha.
 
-Versão 2.1 · Última atualização: 6 de novembro de 2026.
+Versão 2.2 · Última atualização: 17 de novembro de 2026.
 
 ## Necessários
 
-Para funcionar, o site guarda no seu navegador a sua escolha sobre cookies (por até 12 meses) e, só enquanto a aba estiver aberta, a página de entrada e os parâmetros da campanha que trouxe você (utm, gclid e fbclid). Sozinhos, eles não identificam você. Se você enviar um formulário de contato, eles seguem junto com a mensagem e passam a ficar ligados aos dados que você informou, só para sabermos por qual campanha você chegou. Esse uso segue a Política de Privacidade. Os cookies necessários não precisam de consentimento.
+Para funcionar, o site guarda no seu navegador a sua escolha sobre cookies (por até 12 meses) e, só enquanto a aba estiver aberta, a página de entrada e os parâmetros da campanha que trouxe você (utm, gclid e fbclid). Se você reagir a um artigo do blog, o navegador também guarda qual reação escolheu em cada artigo, até você limpar os dados do site. Sozinhos, eles não identificam você. Se você enviar um formulário de contato, eles seguem junto com a mensagem e passam a ficar ligados aos dados que você informou, só para sabermos por qual campanha você chegou. Esse uso segue a Política de Privacidade. Os cookies necessários não precisam de consentimento.
 
 ## Medição de visitas
 
