@@ -1745,6 +1745,9 @@ def p_legal_file(url):
 import blog_build as _blog
 _blog.LOJAS = stores(None)  # botões das lojas que um artigo pode usar com [[lojas]]
 POSTS = _blog.load_posts(HERE, WEB)
+if WEB:  # artigos que aceitam reações (api/reacoes.js recusa qualquer outro endereço)
+    json.dump(sorted(_p['slug'] for _p in POSTS if _p['status'] in ('publicado', 'revisao')),
+              open(os.path.join(HERE, '..', 'vercel', 'api', '_slugs.json'), 'w', encoding='utf-8'))
 BLOG_ON = bool(POSTS)   # sem artigo, /blog/ não existe e os links para ele somem
 PUBLICADOS = [_p for _p in POSTS if _p['status'] == 'publicado']
 # Só no ambiente de teste (artigos em revisão): no www esses endereços redirecionam para a Início (make_vercel.py)

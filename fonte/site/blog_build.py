@@ -180,6 +180,16 @@ def p_blog(posts):
 </div>'''
     return f
 
+REACOES = [('like', '👍', 'Like'), ('amei', '❤️', 'Amei'), ('uau', '😮', 'Uau'), ('genial', '💡', 'Genial')]
+
+def reacoes(slug):
+    """Barra de reações do artigo. Fica escondida até o site.js conseguir ler as contagens em /api/reacoes."""
+    bts = ''.join(f'<button type="button" class="rc-bt" data-reacao="{k}" aria-pressed="false">'
+                  f'<span class="rc-em" aria-hidden="true">{e}</span><span class="rc-tx">{t}</span><span class="rc-n" aria-label="pessoas">0</span></button>'
+                  for k, e, t in REACOES)
+    return (f'<section class="reacoes card" data-reacoes="{html.escape(slug)}" hidden aria-labelledby="rc-h">'
+            f'<h2 id="rc-h" class="rc-h">O que achou deste artigo?</h2><div class="rc-bts">{bts}</div></section>')
+
 def p_post(p):
     def f(L, A):
         ex, rv = p['status'] == 'exemplo', p['status'] == 'revisao'
@@ -197,6 +207,7 @@ def p_post(p):
                 f'{"" if ex else autor_linha(A, p["autor"], q, 44, "post-au")}</header>'
                 f'<figure class="post-cover"><img src="{A("assets/blog/" + p["capa"])}" alt="{html.escape(p["alt"])}" width="960" height="600" decoding="async"></figure>'
                 f'<div class="prose card post-body">{p["html"].replace('src="@blog/', 'src="' + A('assets/blog/')).replace('<p>[[lojas]]</p>', '<div class="row post-lojas">' + LOJAS + '</div>')}</div>'
+                f'{"" if ex else reacoes(p["slug"])}'
                 f'{coms_html}'
                 f'<div class="post-foot"><a class="btn btn-grey" href="{L("/blog/")}">Ver todos os artigos</a><a class="btn btn-cta" href="{L("/baixar/")}">Baixar o app</a></div>'
                 f'</article>')

@@ -7,6 +7,7 @@ Uso (da pasta site/):
 Resultado em ../repo:
   index.html, criadores/, ...   site estático (o Vercel serve a raiz do repositório)
   api/lead.js                   envia os formulários de marcas e de suporte ao CRM Comercial (webhook)
+  api/reacoes.js                 reações dos artigos do blog (contagens no Upstash Redis do Vercel; sem banco, a barra some)
   vercel.json                   redirecionamentos e cabeçalhos (convertidos de _redirects/_headers)
   fonte/                        código-fonte para gerar o site de novo (não vai ao ar: .vercelignore)
 """

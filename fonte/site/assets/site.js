@@ -1649,3 +1649,48 @@
     }, 50);
   }
 })();
+
+/* Reações dos artigos do blog (17/11): Like, Amei, Uau, Genial. Uma reação por pessoa e artigo;
+   o navegador lembra a escolhida (localStorage hh_reacoes). Sem banco configurado, a barra continua escondida. */
+(function () {
+  var box = document.querySelector('[data-reacoes]');
+  if (!box || !window.fetch) return;
+  var slug = box.getAttribute('data-reacoes');
+  var bts = box.querySelectorAll('[data-reacao]');
+  var ler = function () { try { return JSON.parse(localStorage.getItem('hh_reacoes') || '{}') || {}; } catch (e) { return {}; } };
+  var gravar = function (m) { try { localStorage.setItem('hh_reacoes', JSON.stringify(m)); } catch (e) {} };
+  var minha = ler()[slug] || '';
+  var ocupado = false;
+  var mostra = function (c) {
+    for (var i = 0; i < bts.length; i++) {
+      var k = bts[i].getAttribute('data-reacao');
+      var n = Math.max(0, (c && c[k]) || 0);
+      bts[i].querySelector('.rc-n').textContent = n > 999 ? (Math.round(n / 100) / 10).toString().replace('.', ',') + ' mil' : String(n);
+      bts[i].setAttribute('aria-pressed', k === minha ? 'true' : 'false');
+    }
+  };
+  fetch('/api/reacoes?slug=' + encodeURIComponent(slug), { headers: { Accept: 'application/json' } })
+    .then(function (r) { return r.ok ? r.json() : null; })
+    .then(function (j) { if (j && j.ok) { mostra(j.contagem); box.hidden = false; } })
+    .catch(function () {});
+  box.addEventListener('click', function (ev) {
+    var b = ev.target.closest('[data-reacao]');
+    if (!b || ocupado) return;
+    var tipo = b.getAttribute('data-reacao');
+    var nova = tipo === minha ? '' : tipo;   /* clicar de novo tira a reação */
+    var anterior = minha;
+    ocupado = true;
+    fetch('/api/reacoes', { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify({ slug: slug, tipo: nova, anterior: anterior }) })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (j) {
+        if (!j || !j.ok) return;
+        minha = nova;
+        var m = ler(); if (nova) m[slug] = nova; else delete m[slug]; gravar(m);
+        mostra(j.contagem);
+        if (nova && window.dataLayer) window.dataLayer.push({ event: 'reacao_blog', reacao: nova, pagina: slug });
+      })
+      .catch(function () {})
+      .then(function () { ocupado = false; });
+  });
+})();

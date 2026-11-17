@@ -52,3 +52,7 @@ Para imagens em pé (prints de celular, animações), use `class="post-fig post-
 ## Botões das lojas no artigo (17/11)
 
 Uma linha sozinha com `[[lojas]]` vira os botões da App Store e do Google Play (os mesmos do site, com a origem do clique).
+
+## Reações (17/11)
+
+Todo artigo publicado mostra, no fim, os botões Like, Amei, Uau e Genial, com a contagem. Uma reação por pessoa e artigo (o navegador lembra; clicar de novo tira). As contagens ficam no Upstash Redis ligado ao projeto no Vercel (api/reacoes.js). Sem o banco, a barra não aparece.
