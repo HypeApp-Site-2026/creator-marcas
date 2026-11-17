@@ -49,17 +49,17 @@ const ipDoCliente = (req) => String(req.headers['x-real-ip'] || String(req.heade
 module.exports = async function handler(req, res) {
   res.setHeader('Cache-Control', 'no-store');
   res.setHeader('X-Robots-Tag', 'noindex');
-  if (!URL_DB || !TOKEN_DB) return res.status(503).json({ ok: false });
+  if (!URL_DB || !TOKEN_DB) return res.status(503).json({ ok: false, erro: 'sem-banco' });
 
   if (req.method === 'GET') {
     const slug = String((req.query && req.query.slug) || '');
-    if (!SLUGS.has(slug)) return res.status(404).json({ ok: false });
+    if (!SLUGS.has(slug)) return res.status(404).json({ ok: false, erro: 'artigo' });
     try {
       const [h] = await redis([['HGETALL', 'reacoes:' + slug]]);
       return res.status(200).json({ ok: true, contagem: contagem(h) });
     } catch (e) {
       console.error('[reacoes] leitura falhou:', e && e.name === 'AbortError' ? 'timeout' : (e && e.message) || 'erro');
-      return res.status(503).json({ ok: false });
+      return res.status(503).json({ ok: false, erro: 'banco' });
     }
   }
 
