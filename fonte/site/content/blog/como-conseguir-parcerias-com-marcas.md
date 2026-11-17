@@ -2,7 +2,7 @@
 titulo: Como conseguir parcerias com marcas sendo um influenciador iniciante
 titulo_seo: Como conseguir parcerias com marcas sendo iniciante
 categoria: Parcerias
-data: 2026-11-06
+data: 2026-11-17
 status: publicado
 destaque: sim
 capa: como-conseguir-parcerias-com-marcas.webp
