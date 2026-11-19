@@ -1,8 +1,8 @@
 {
  "/": {
   "publicado": "2026-10-30",
-  "alterado": "2026-11-17",
-  "hash": "2e0a2f94b16c76e55a46cd4a4c5bb169"
+  "alterado": "2026-11-19",
+  "hash": "c0fda4dca91ff2eac86514e42aa4239c"
  },
  "/404": {
   "publicado": "2026-10-30",
@@ -91,8 +91,8 @@
  },
  "/exclusao-de-conta/": {
   "publicado": "2026-10-30",
-  "alterado": "2026-11-06",
-  "hash": "b569f8fa8d4cc99e9624c4b40a7e16c3"
+  "alterado": "2026-11-19",
+  "hash": "ed62dbf1f9d73f2dd2accbcb56584ee5"
  },
  "/legal/": {
   "publicado": "2026-10-30",
@@ -106,8 +106,8 @@
  },
  "/marcas/": {
   "publicado": "2026-10-30",
-  "alterado": "2026-11-17",
-  "hash": "6c9df2e5a7e894772a446191ce0f5236"
+  "alterado": "2026-11-19",
+  "hash": "493024d6066e2a8f5b642d91d2f11c0b"
  },
  "/marcas/versao-a/": {
   "publicado": "2026-11-04",
@@ -136,8 +136,8 @@
  },
  "/privacidade/": {
   "publicado": "2026-10-30",
-  "alterado": "2026-11-17",
-  "hash": "4212f744edde9294f1b57f9e282327b9"
+  "alterado": "2026-11-19",
+  "hash": "ea6ff65759b72b976746db1497c32ee6"
  },
  "/regras-da-comunidade/": {
   "publicado": "2026-11-03",
@@ -166,7 +166,7 @@
  },
  "/termos/": {
   "publicado": "2026-10-30",
-  "alterado": "2026-11-06",
-  "hash": "1d00274351ce9391874815b9d96404d3"
+  "alterado": "2026-11-19",
+  "hash": "c097255d8f43e417b1a68e23d1c69d5d"
  }
 }

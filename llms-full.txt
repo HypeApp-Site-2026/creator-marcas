@@ -20,7 +20,7 @@ Informações oficiais:
 
 Fonte: https://www.hypeapp.com.br/
 Título: HypeApp: app para influenciadores e plataforma de campanhas
-Atualizado em: 2026-11-17
+Atualizado em: 2026-11-19
 
 # O app de quem cria conteúdo. O painel de quem contrata.
 
@@ -230,7 +230,7 @@ Feed, grupos e lives com outros creators dentro do app. Conteúdo censurável e 
 
 Fonte: https://www.hypeapp.com.br/marcas/
 Título: Plataforma de marketing de influência para marcas | HypeApp
-Atualizado em: 2026-11-17
+Atualizado em: 2026-11-19
 
 # Campanhas com creators, do seu jeito.
 
@@ -506,7 +506,7 @@ Pedidos sobre seus dados pessoais seguem pela política de privacidade. Marcas n
 
 Fonte: https://www.hypeapp.com.br/privacidade/
 Título: Política de privacidade (LGPD) | HypeApp
-Atualizado em: 2026-11-17
+Atualizado em: 2026-11-19
 
 # Política de Privacidade
 
@@ -514,7 +514,7 @@ Quais dados pessoais o HypeApp coleta, como usa, com quem compartilha e como voc
 
 Esta política explica quais dados pessoais o HypeApp coleta no app, no painel das marcas e no site, como os usamos, com quem os compartilhamos e como você exerce seus direitos, em conformidade com a Lei Geral de Proteção de Dados Pessoais (LGPD, Lei nº 13.709/2018) e com as regras das lojas de aplicativos e das plataformas conectadas.
 
-Versão 3.3 · Última atualização: 17 de novembro de 2026.
+Versão 3.4 · Última atualização: 19 de novembro de 2026.
 
 ## Resumo rápido
 
@@ -560,9 +560,9 @@ Finalidade
 
 Cadastro do creator
 
-Nome, e-mail, telefone, foto, banner, gênero, data de nascimento, documento (CPF ou CNPJ), endereço, nicho e valores por tipo de conteúdo
+Nome, e-mail, telefone, foto, banner, gênero, data de nascimento, documento (CPF ou CNPJ), endereço, nicho e valores por tipo de conteúdo. O CPF é obrigatório para criar a conta de creator.
 
-Criar e administrar sua conta, verificar identidade, indicar campanhas compatíveis e cumprir obrigações fiscais dos pagamentos
+Criar e administrar sua conta, identificar o titular, conferir que a chave PIX de saque está no mesmo CPF, indicar campanhas compatíveis, cumprir obrigações fiscais dos pagamentos e prevenir fraude
 
 Login com Google ou Apple
 
@@ -582,6 +582,12 @@ Inscrições, roteiros, fotos, vídeos e legendas enviados para aprovação, lin
 
 Operar a campanha, permitir a aprovação pela marca e medir os resultados
 
+Anexos de roteiro
+
+Arquivos PDF anexados ao roteiro e links do YouTube ou do Google Drive que você informar
+
+Permitir que a marca da campanha veja o material junto com o roteiro. Os anexos são visíveis à marca da campanha.
+
 Carteira e pagamentos
 
 Saldo, reservas de pagamento por participação, histórico de liberações e saques, chave PIX e dados fiscais informados por você
@@ -599,6 +605,30 @@ Indicações e Hype Points
 Convite usado no cadastro, quem indicou quem, saldo e histórico de Hype Points e nível
 
 Creditar pontos por indicação e controlar a entrada em grupos. Veja Hype Points.
+
+Aulas
+
+Quais aulas pagas em Hype Points você desbloqueou
+
+Manter o seu acesso às aulas desbloqueadas
+
+Avisos do app (pop-ups)
+
+Quando um aviso é exibido, clicado ou dispensado, ligado à sua conta e ao dia
+
+Exibir no máximo um aviso por dia e conceder o prêmio em Hype Points uma única vez
+
+Disponibilidade para agências
+
+Se você se colocar à disposição das agências parceiras: data do pedido, data de validade (90 dias), data da retirada e quantidade de pedidos feitos
+
+Permitir que agências conheçam e convidem creators. Com base nisso, agências com acesso ao catálogo veem seu nome, @, foto, nichos, número total de seguidores, redes conectadas (tipo, @ e seguidores) e a data desde quando você está disponível. Não mostramos e-mail, telefone, documento nem valores.
+
+Convites, elenco e conversa com a agência
+
+Convites recebidos, percentual de comissão proposto, contrapropostas, respostas (aceite, recusa ou contraproposta) com a data da resposta, pedido de saída do elenco e as mensagens e arquivos da conversa com a agência
+
+Registrar os convites e as respostas, permitir a gestão do elenco e a conversa com a agência. Veja Com quem compartilhamos.
 
 Comunidade e lives
 
@@ -678,6 +708,26 @@ Enviar a quem já usa o HypeApp comunicações sobre campanhas, novidades e serv
 
 Legítimo interesse (inciso IX), por haver relação prévia com você. Você pode cancelar o recebimento quando quiser. Para quem ainda não é usuário, como no formulário comercial, pedimos consentimento.
 
+Colocar você à disposição das agências parceiras (catálogo de creators)
+
+Consentimento (inciso I). Você pode revogar a qualquer momento retirando a disponibilidade no app, o que deixa você invisível às agências.
+
+Registrar convites, elenco, propostas de comissão e a conversa com a agência
+
+Execução de contrato (inciso V) e, quanto à sua escolha de aceitar um convite, consentimento (inciso I)
+
+Controlar a frequência dos avisos do app e conceder o prêmio em Hype Points
+
+Legítimo interesse (inciso IX) para controlar a frequência e execução de contrato (inciso V) para conceder o prêmio
+
+Guardar os anexos de roteiro e mostrá-los à marca da campanha
+
+Execução de contrato (inciso V)
+
+Usar o CPF para identificar o titular, conferir a chave PIX e cumprir obrigações fiscais
+
+Execução de contrato e cumprimento de obrigação legal (incisos V e II) e, para prevenção a fraude, legítimo interesse (inciso IX)
+
 Segurança, prevenção a fraudes, moderação e melhoria do serviço com dados agregados
 
 Legítimo interesse (inciso IX)
@@ -700,9 +750,9 @@ Exercício regular de direitos (inciso VI)
 
 ## 6. Hype Points
 
-Hype Points são pontos de participação na comunidade do HypeApp. Você ganha pontos quando uma pessoa se cadastra com o seu convite e quando essa pessoa conclui a primeira campanha. As quantidades aparecem no app e podem mudar, conforme os Termos de Uso. Os pontos servem para entrar em grupos da comunidade que pedem pontos ou um nível mínimo.
+Os Hype Points são pontos de participação na comunidade, sem valor monetário. Podem ser ganhos por atividades no app, como check-in diário, publicações, comentários, curtidas, indicações e prêmios exibidos em avisos do app, e usados para entrar em grupos que exigem pontos e para desbloquear aulas. Não podem ser comprados, vendidos, transferidos ou trocados por dinheiro, e não se misturam com o saldo da carteira. As regras estão nos Termos de Uso.
 
-Hype Points não são dinheiro: não podem ser comprados, vendidos, transferidos nem trocados por dinheiro, e não se misturam com o saldo da carteira. Para creditar os pontos, registramos o convite usado no cadastro, quem convidou quem e o histórico de pontos de cada conta.
+Guardamos o seu saldo e o histórico de pontos (extrato) para mostrar a origem de cada ponto. Nas indicações, registramos também o convite usado no cadastro e quem convidou quem.
 
 O app pode criar uma carteira custodial para guardar e movimentar seus Hype Points. Ela só é criada quando você a solicita ou quando recebe uma transferência. A chave privada é gerada e guardada por nós, criptografada (AES-256-GCM), e guardamos também o endereço da carteira, a rede, as operações e a data do último uso. Hoje, a carteira não é apagada automaticamente quando você exclui a conta: para pedir a exclusão dela, fale com o suporte.
 
@@ -753,6 +803,8 @@ Você pode revogar o acesso desconectando o YouTube no HypeApp, excluindo sua co
 ## 8. Com quem compartilhamos
 
 - Marcas e agências: quando você se inscreve em uma campanha, a marca vê os dados do seu perfil, das suas redes e o conteúdo enviado, na medida necessária para aquela campanha.
+
+- Agências parceiras: quando você se coloca à disposição, as agências (contas de agência com permissão de catálogo) veem os dados descritos em Dados que coletamos. Marcas não veem essa lista, e você deixa de aparecer para as agências quando retira a disponibilidade, quando ela vence ou quando você entra no elenco de uma agência. Depois que você aceita um convite, a agência acessa os dados necessários à gestão do elenco e à conversa, conforme os Termos de Uso. A comissão acordada é um acordo entre você e a agência e não passa pelo HypeApp. Os Termos de Uso proíbem as agências de usar esses dados para outra finalidade, repassá-los a terceiros ou montar lista própria.
 
 - Creators: quando uma marca publica uma campanha, os creators veem as informações da campanha e da marca exibidas no mural.
 
@@ -806,7 +858,15 @@ No site, usamos cookies necessários para funcionar e, só se você aceitar no a
 
 - Denúncias e decisões de moderação: por 12 meses após a decisão.
 
-- Hype Points (convites e histórico de pontos): enquanto a conta existir. São apagados com a conta.
+- Hype Points (saldo, extrato e convites) e aulas desbloqueadas: enquanto a conta existir. Na exclusão, o saldo é zerado e os convites são apagados. Hoje, o extrato e as aulas desbloqueadas ainda não são apagados automaticamente com a conta; você pode pedir a remoção ao suporte.
+
+- Disponibilidade para agências: enquanto a conta existir. Hoje, o registro ainda não é apagado automaticamente na exclusão da conta; você pode pedir a remoção ao suporte.
+
+- Convites, elenco, propostas de comissão e conversa com a agência: apagados na exclusão da conta. Os arquivos enviados nessas conversas ainda não são apagados automaticamente; você pode pedir a remoção ao suporte.
+
+- Registros dos avisos do app: hoje não há prazo de exclusão automática, nem na exclusão da conta. Você pode pedir a remoção ao suporte.
+
+- Anexos de roteiro: como os demais conteúdos de campanha, por até 5 anos após o encerramento da campanha.
 
 - Carteira de Hype Points (endereço, rede, operações e chave criptografada): hoje não é apagada automaticamente na exclusão da conta. Você pode pedir a exclusão ao suporte.
 
@@ -846,7 +906,15 @@ Pela LGPD, você pode pedir:
 
 - revisão de decisões tomadas apenas com base em tratamento automatizado.
 
-A exclusão da conta pode ser feita no app (Perfil › Configurações › Excluir conta) ou pela página dedicada:
+Você pode excluir sua conta no app (Perfil › Configurações › Excluir conta) ou pela página de Exclusão de conta. A exclusão não é possível com saldo em aberto ou saque pendente. Ao excluir, apagamos ou anonimizamos os dados do perfil, sessões, notificações, integrações, localização, endereços, curtidas e participação em grupos, posts e comentários, convites, elenco, propostas de comissão e conversas com agências, e zeramos o saldo de Hype Points.
+
+O que ainda mantemos (a descrição completa está na página de Exclusão de conta):
+
+- por obrigação legal ou para a execução das campanhas: registros de pagamentos, saques, fiscais e de acesso, participação em campanhas, roteiros e anexos, e o chat das campanhas, sem identificar você quando possível;
+
+- até a correção dos nossos sistemas: o registro de disponibilidade para agências, os registros dos avisos do app, o extrato de Hype Points e as aulas desbloqueadas, as mensagens enviadas em grupos da comunidade, os arquivos de conversas e de roteiros, a carteira de Hype Points, se você tiver uma, e os dados públicos de redes sociais conectadas em espaços de trabalho que continuam ativos. Você pode pedir a remoção desses itens pelo formulário de suporte ou pelo e-mail do encarregado, e respondemos em até 15 dias corridos.
+
+Para excluir:
 
 Excluir conta e dados
 
@@ -858,7 +926,7 @@ O HypeApp é destinado a pessoas com 18 anos ou mais e a pessoas jurídicas. A e
 
 ## 15. Alterações nesta política
 
-Podemos atualizar esta política para refletir mudanças no HypeApp, nas nossas práticas ou na legislação. A versão e a data da última atualização aparecem no topo da página. Mudanças relevantes serão avisadas no app ou por e-mail.
+Podemos atualizar esta Política para refletir mudanças no HypeApp, nas nossas práticas ou na legislação. Mudanças relevantes serão avisadas no app e por e-mail com pelo menos 7 dias de antecedência. A data e a versão aparecem no topo.
 
 © 2026 Você no Hype Marketing e Entretenimento LTDA · CNPJ 43.442.408/0001-26. Esta é a Política de Privacidade oficial do HypeApp referenciada nas lojas de aplicativos. Dúvidas: contato@vocenohype.com.br.
 
@@ -866,7 +934,7 @@ Podemos atualizar esta política para refletir mudanças no HypeApp, nas nossas 
 
 Fonte: https://www.hypeapp.com.br/termos/
 Título: Termos de uso | HypeApp
-Atualizado em: 2026-11-06
+Atualizado em: 2026-11-19
 
 # Termos de Uso
 
@@ -874,7 +942,7 @@ Termos e condições gerais de uso do HypeApp para creators, marcas e agências.
 
 Termos e condições gerais de uso do HypeApp
 
-Versão 2.8 · Última atualização: 6 de novembro de 2026.
+Versão 2.9 · Última atualização: 19 de novembro de 2026.
 
 Seja bem-vindo(a) ao HypeApp.
 
@@ -907,6 +975,14 @@ A pessoa física, ou a pessoa jurídica que a representa, que cria conteúdo nas
 - "Marca" ou "Agência":
 
 A empresa que contrata campanhas no HypeApp, diretamente ou por meio de uma agência que gerencia uma ou mais marcas.
+
+- "Agência parceira":
+
+A Agência com acesso ao catálogo de Creators no Painel, que pode convidar Creators para o seu elenco, nos termos da seção 10.
+
+- "Elenco":
+
+O grupo de Creators que aceitaram o convite de uma Agência parceira.
 
 - "Campanha":
 
@@ -994,7 +1070,7 @@ b) causar dano ou prejuízo a terceiros no uso da Plataforma;
 
 c) descumprir qualquer disposição destes Termos.
 
-4.10 O Usuário pode, a qualquer tempo e sem justificativa, excluir sua conta pelo Aplicativo ou pela página Exclusão de conta. A exclusão não é possível enquanto houver saldo em aberto ou saque pendente na Carteira, ou atividade em andamento em uma conta de Marca: nesses casos, o Usuário deve sacar o saldo ou falar com o suporte. A exclusão segue o disposto na Política de Privacidade, incluindo os registros que precisam ser mantidos por obrigação legal.
+4.10 O Usuário pode excluir a conta a qualquer momento, sem justificativa, pelo Aplicativo (Perfil › Configurações › Excluir conta) ou conforme a página Exclusão de conta. A exclusão não é possível enquanto houver saldo em aberto ou saque pendente na Carteira, ou atividade em andamento em uma conta de Marca: nesses casos, o Usuário deve sacar o saldo ou falar com o suporte. A exclusão é permanente. Os dados que apagamos, anonimizamos ou mantemos por obrigação legal estão descritos na Política de Privacidade e na página de Exclusão de conta. Ao excluir a conta, a disponibilidade para agências, os convites, o elenco e as conversas com agências são removidos, e o saldo de Hype Points é zerado.
 
 ## 5. Campanhas, entregas e aprovação
 
@@ -1010,6 +1086,8 @@ c) descumprir qualquer disposição destes Termos.
 
 5.6 Recebidos e permutas seguem as condições informadas no mural de cada Campanha, inclusive quanto à eventual devolução do produto.
 
+5.7 Ao enviar um roteiro para aprovação, o Creator pode anexar arquivos em PDF (até 10 MB cada, até 3 arquivos por envio) e links do YouTube ou do Google Drive. O Creator declara que tem os direitos necessários sobre tudo o que anexa e é responsável por esse conteúdo. A Marca da campanha pode visualizar os anexos enviados. Não envie documentos pessoais, dados bancários, senhas ou dados de terceiros nos anexos.
+
 ## 6. Carteira, reservas e pagamentos via PIX
 
 6.1 Os valores das campanhas são movimentados pela Plataforma. A Marca aporta o saldo da Campanha e, quando o Creator confirma a participação, o valor correspondente fica reservado para ele.
@@ -1024,6 +1102,8 @@ c) descumprir qualquer disposição destes Termos.
 
 6.6 O saldo aportado pela Marca e não usado não é devolvido e não expira: fica disponível para Campanhas futuras enquanto a conta da Marca estiver ativa.
 
+6.7 O que consta nestes Termos sobre a ausência de taxa sobre o valor recebido pelo Creator refere-se à Plataforma. Se o Creator integrar o elenco de uma Agência parceira, eventual comissão é um acordo entre o Creator e a Agência, nos termos da seção 10. O HypeApp não cobra, não retém nem repassa essa comissão, e o acerto é feito diretamente entre as partes.
+
 ## 7. Redes sociais conectadas
 
 7.1 O Creator pode conectar suas contas de Instagram, TikTok e YouTube para exibir métricas e participar de campanhas. A conexão é somente de leitura: o HypeApp não publica, altera ou exclui conteúdo nas redes do Creator.
@@ -1036,11 +1116,17 @@ c) descumprir qualquer disposição destes Termos.
 
 ## 8. Hype Points
 
-8.1 O Creator ganha Hype Points quando uma pessoa se cadastra com o seu convite e quando essa pessoa conclui a primeira campanha, nas quantidades informadas no Aplicativo.
+8.1 Hype Points são pontos de participação na comunidade do HypeApp.
 
-8.2 Hype Points servem para entrar em grupos da comunidade que exigem pontos ou nível mínimo. Eles não têm valor em dinheiro, não podem ser comprados, vendidos, transferidos ou resgatados em dinheiro e não se confundem com o saldo da Carteira.
+8.2 O Creator pode ganhar Hype Points por atividades no Aplicativo, como: check-in diário; publicações, comentários e curtidas na comunidade, dentro de limites diários; indicação de novos Creators que se cadastrem com o convite e cumpram os critérios da indicação; e prêmios exibidos em avisos do Aplicativo (pop-ups), que valem uma vez por pessoa e só são concedidos quando o Creator toca no botão do aviso. Os valores, os limites e as atividades que geram pontos podem mudar, com aviso no Aplicativo.
 
-8.3 Podemos alterar as regras de ganho e de uso dos Hype Points, com aviso no Aplicativo, e cancelar pontos obtidos por fraude, contas duplicadas ou convites falsos.
+8.3 Os Hype Points podem ser usados para entrar em grupos da comunidade que exigem pontos e para desbloquear aulas em vídeo cujo acesso seja pago em pontos.
+
+8.4 Hype Points não têm valor em dinheiro e não podem ser comprados, vendidos, transferidos ou resgatados em dinheiro, bens, serviços ou cartões-presente. Não se confundem com o saldo em reais da Carteira (seção 6).
+
+8.5 Pontos obtidos por fraude, uso de contas falsas, automação ou qualquer meio que viole estes Termos podem ser cancelados, e os pontos correspondentes podem ser estornados.
+
+8.6 Ao excluir a conta, o saldo de Hype Points é zerado e os pontos não podem ser recuperados.
 
 ## 9. Comunidade, grupos, lives e chat
 
@@ -1048,17 +1134,39 @@ c) descumprir qualquer disposição destes Termos.
 
 9.2 Removemos publicações, comentários, mensagens e transmissões que violem estes Termos, as Regras da comunidade ou a lei. Conforme a gravidade e a repetição, também podemos suspender ou encerrar a conta dos responsáveis. Quem discordar de uma decisão pode pedir a revisão ao suporte, como explicado nas Regras da comunidade.
 
-## 10. Disponibilidade da plataforma
+9.3 A aba de Conteúdos pode oferecer aulas em vídeo. Algumas aulas podem ser liberadas gratuitamente e outras mediante Hype Points, conforme informado na própria aula. O desbloqueio de uma aula por pontos é permanente para a conta.
 
-10.1 A Plataforma funciona normalmente 24 (vinte e quatro) horas por dia, mas pode ter interrupções temporárias para ajustes, manutenção, mudança de servidores, falhas técnicas ou por motivo de força maior.
+9.4 A conversa entre o Creator e uma Agência parceira dentro do Aplicativo segue estes Termos e as Regras da comunidade, pode ser denunciada pelo Creator e pode ser revisada por Nós em caso de denúncia.
 
-10.2 Não nos responsabilizamos por perda de oportunidades ou prejuízos decorrentes de indisponibilidade temporária.
+## 10. Agências e Creators
 
-10.3 Se uma manutenção exigir mais tempo, avisaremos os Usuários com antecedência, junto com a previsão de retorno.
+10.1 O Creator pode, se quiser, colocar-se à disposição das Agências parceiras no Aplicativo (Perfil › "Quer ter uma agência parceira?"). Para isso, deve confirmar o aviso de consentimento exibido na tela. Enquanto estiver disponível, as Agências com acesso ao catálogo de Creators no Painel poderão ver seu nome, @, foto, nichos, número total de seguidores, redes sociais conectadas (tipo, @ e seguidores) e a data desde quando está disponível. As Agências não veem seu e-mail, telefone, documento ou valores. Marcas não têm acesso a essa lista.
 
-## 11. Administração da plataforma
+10.2 A disponibilidade vale por 90 (noventa) dias. O Creator pode renová-la ou retirá-la a qualquer momento pelo Aplicativo, sem justificativa e sem abrir chamado. Ao vencer, a disponibilidade deixa de aparecer para as Agências. Quando o Creator aceitar o convite de uma Agência e entrar no elenco, a disponibilidade é encerrada automaticamente. Colocar-se à disposição não garante convite.
 
-11.1 Administramos a Plataforma com base na boa-fé e poderemos, a qualquer momento:
+10.3 A Agência pode enviar ao Creator um convite que informa, antes da resposta, o percentual de comissão proposto. O Creator pode aceitar, recusar ou fazer uma contraproposta. A resposta é registrada com data e hora. O Creator não é obrigado a aceitar convites.
+
+10.4 A comissão é um acordo entre o Creator e a Agência, nos termos aceitos pelo Creator. O HypeApp não é parte desse acordo, não cobra taxa sobre a comissão, não a desconta do saldo do Creator e não a repassa à Agência. O acerto é feito diretamente entre o Creator e a Agência.
+
+10.5 O Creator pode solicitar a saída do elenco pelo Aplicativo.
+
+10.6 A Agência pode usar os dados do Creator disponibilizados pelo HypeApp somente para avaliar o Creator e enviar convites por meio da Plataforma. É proibido à Agência montar lista própria com esses dados, repassá-los a terceiros, usá-los para outra finalidade ou contatar o Creator fora do HypeApp com base neles, salvo depois de o convite ser aceito. O descumprimento pode levar à suspensão do acesso da Agência.
+
+## 11. Avisos e promoções
+
+11.1 Podemos exibir avisos, novidades e promoções ao abrir o Aplicativo, no máximo uma vez por dia por pessoa, inclusive avisos que concedem prêmio em Hype Points nos termos da seção 8. O Aplicativo registra se o aviso foi visto, clicado ou dispensado, para controlar a frequência e conceder o prêmio uma única vez.
+
+## 12. Disponibilidade da plataforma
+
+12.1 A Plataforma funciona normalmente 24 (vinte e quatro) horas por dia, mas pode ter interrupções temporárias para ajustes, manutenção, mudança de servidores, falhas técnicas ou por motivo de força maior.
+
+12.2 Não nos responsabilizamos por perda de oportunidades ou prejuízos decorrentes de indisponibilidade temporária.
+
+12.3 Se uma manutenção exigir mais tempo, avisaremos os Usuários com antecedência, junto com a previsão de retorno.
+
+## 13. Administração da plataforma
+
+13.1 Administramos a Plataforma com base na boa-fé e poderemos, a qualquer momento:
 
 a) suspender, interromper ou limitar o acesso, no todo ou em parte, a uma categoria específica ou a todos os Usuários;
 
@@ -1066,9 +1174,9 @@ b) suspender a Plataforma para atualizações e modificações;
 
 c) remover informações que prejudiquem o funcionamento da Plataforma ou que estejam em conflito com a legislação brasileira ou internacional.
 
-## 12. Violações
+## 14. Violações
 
-12.1 O Usuário não pode, por meio da Plataforma:
+14.1 O Usuário não pode, por meio da Plataforma:
 
 a) praticar atos ilícitos ou que violem a legislação vigente;
 
@@ -1084,89 +1192,93 @@ f) violar o sigilo e a privacidade alheios;
 
 g) manipular métricas, usar seguidores ou interações falsas ou enganar a Marca sobre resultados.
 
-## 13. Uso da plataforma
+## 15. Uso da plataforma
 
-13.1 O Usuário deve usar a Plataforma apenas para a finalidade descrita nestes Termos, de maneira ética e conforme as leis brasileiras.
+15.1 O Usuário deve usar a Plataforma apenas para a finalidade descrita nestes Termos, de maneira ética e conforme as leis brasileiras.
 
-13.2 O Usuário é responsável por todos os atos ou omissões realizados a partir de seu acesso.
+15.2 O Usuário é responsável por todos os atos ou omissões realizados a partir de seu acesso.
 
-13.3 É proibido usar crawlers, robôs, spiders, ferramentas de mineração de dados ou outros programas e métodos automatizados para acessar, copiar, monitorar, navegar, preencher formulários ou publicar conteúdos na Plataforma.
+15.3 É proibido usar crawlers, robôs, spiders, ferramentas de mineração de dados ou outros programas e métodos automatizados para acessar, copiar, monitorar, navegar, preencher formulários ou publicar conteúdos na Plataforma.
 
-13.4 O Usuário é responsável por todo conteúdo que carregar ou enviar à Plataforma.
+15.4 O Usuário é responsável por todo conteúdo que carregar ou enviar à Plataforma.
 
-13.5 É proibido testar, sobrecarregar ou explorar vulnerabilidades da Plataforma ou da infraestrutura que usamos. Falhas de segurança podem ser comunicadas pelo e-mail contato@vocenohype.com.br.
+15.5 É proibido testar, sobrecarregar ou explorar vulnerabilidades da Plataforma ou da infraestrutura que usamos. Falhas de segurança podem ser comunicadas pelo e-mail contato@vocenohype.com.br.
 
-13.6 É proibido reproduzir conteúdo da Plataforma sem autorização expressa, sob pena de responsabilidade civil e criminal.
+15.6 É proibido reproduzir conteúdo da Plataforma sem autorização expressa, sob pena de responsabilidade civil e criminal.
 
-13.7 O Usuário não pode esconder sua identidade ou a origem da conexão, se passar por outra pessoa ou usar ferramentas para manipular o acesso à Plataforma.
+15.7 O Usuário não pode esconder sua identidade ou a origem da conexão, se passar por outra pessoa ou usar ferramentas para manipular o acesso à Plataforma.
 
-## 14. Limitação de responsabilidade
+## 16. Limitação de responsabilidade
 
-14.1 Não temos obrigação de controlar todas as ações dos Usuários na Plataforma e não respondemos pelos atos deles, que respondem pessoal e exclusivamente por suas condutas.
+16.1 Não temos obrigação de controlar todas as ações dos Usuários na Plataforma e não respondemos pelos atos deles, que respondem pessoal e exclusivamente por suas condutas.
 
-14.2 Respondemos, nos limites da lei, pelo funcionamento da Plataforma, inclusive pela correta movimentação dos valores reservados, liberados e sacados pela Carteira, conforme a seção 6.
+16.2 Respondemos, nos limites da lei, pelo funcionamento da Plataforma, inclusive pela correta movimentação dos valores reservados, liberados e sacados pela Carteira, conforme a seção 6.
 
-14.3 Não respondemos pelo cumprimento das obrigações que Marcas e Creators assumem entre si, como a qualidade e a veracidade do conteúdo, a entrega de produtos e o uso do conteúdo fora das condições da Campanha, nem por negociações e pagamentos feitos fora da Plataforma.
+16.3 Não respondemos pelo cumprimento das obrigações que Marcas e Creators assumem entre si, como a qualidade e a veracidade do conteúdo, a entrega de produtos e o uso do conteúdo fora das condições da Campanha, nem por negociações e pagamentos feitos fora da Plataforma.
 
-14.4 A Você no Hype, os Creators e as Marcas são independentes entre si. A participação em campanhas não cria vínculo empregatício, societário ou de representação entre eles, salvo o que for expressamente contratado.
+16.4 A Você no Hype, os Creators e as Marcas são independentes entre si. A participação em campanhas não cria vínculo empregatício, societário ou de representação entre eles, salvo o que for expressamente contratado.
 
-14.5 Respondemos, nos termos da lei, pelo Nosso conteúdo, mas não pelo Conteúdo de terceiros.
+16.5 Respondemos, nos termos da lei, pelo Nosso conteúdo, mas não pelo Conteúdo de terceiros.
 
-14.6 Nos responsabilizamos por defeitos ou vícios do software da Plataforma quando causados por Nós e comprovado o dano.
+16.6 Nos responsabilizamos por defeitos ou vícios do software da Plataforma quando causados por Nós e comprovado o dano.
 
-14.7 Não respondemos por danos decorrentes de caso fortuito ou força maior.
+16.7 Não respondemos por danos decorrentes de caso fortuito ou força maior.
 
-## 15. Propriedade intelectual
+## 17. Propriedade intelectual
 
-15.1 Estes Termos não transferem ao Usuário nenhum direito de propriedade intelectual sobre a Plataforma, incluindo desenhos, marcas, direitos autorais, modelo de negócio, informações confidenciais, segredos de negócio e bases de dados, que são de Nossa titularidade.
+17.1 Estes Termos não transferem ao Usuário nenhum direito de propriedade intelectual sobre a Plataforma, incluindo desenhos, marcas, direitos autorais, modelo de negócio, informações confidenciais, segredos de negócio e bases de dados, que são de Nossa titularidade.
 
-15.2 O uso comercial da marca "HypeApp" ou de suas derivações, em nome empresarial, nome de domínio ou de outra forma, bem como de seus conteúdos, recursos tecnológicos e bancos de dados, depende de Nossa autorização prévia e por escrito. Esses elementos são protegidos pelas leis e tratados de direito autoral e de propriedade industrial.
+17.2 O uso comercial da marca "HypeApp" ou de suas derivações, em nome empresarial, nome de domínio ou de outra forma, bem como de seus conteúdos, recursos tecnológicos e bancos de dados, depende de Nossa autorização prévia e por escrito. Esses elementos são protegidos pelas leis e tratados de direito autoral e de propriedade industrial.
 
-15.3 O conteúdo criado pelo Creator continua sendo dele, respeitados os direitos de uso concedidos à Marca nas condições da Campanha e a autorização prevista no item 5.5.
+17.3 O conteúdo criado pelo Creator continua sendo dele, respeitados os direitos de uso concedidos à Marca nas condições da Campanha e a autorização prevista no item 5.5.
 
-## 16. Proteção de dados pessoais
+## 18. Proteção de dados pessoais
 
-16.1 O tratamento de dados pessoais segue a Lei nº 13.709/2018 (LGPD) e está descrito na Política de Privacidade, que é parte integrante destes Termos.
+18.1 O tratamento de dados pessoais segue a Lei nº 13.709/2018 (LGPD) e está descrito na Política de Privacidade, que é parte integrante destes Termos.
 
-16.2 Se houver conflito entre a Política de Privacidade e estes Termos em matéria de dados pessoais, prevalece a Política de Privacidade.
+18.2 Se houver conflito entre a Política de Privacidade e estes Termos em matéria de dados pessoais, prevalece a Política de Privacidade.
 
-## 17. Registros, informações e comunicações privadas
+## 19. Registros, informações e comunicações privadas
 
-17.1 Os dados pessoais são compartilhados apenas nos casos descritos na Política de Privacidade, como com as Marcas das campanhas de que o Creator participa e com os fornecedores que nos ajudam a operar a Plataforma.
+19.1 Os dados pessoais são compartilhados apenas nos casos descritos na Política de Privacidade, como com as Marcas das campanhas de que o Creator participa e com os fornecedores que nos ajudam a operar a Plataforma.
 
-17.2 Registros de acesso e o conteúdo de comunicações privadas só serão fornecidos a terceiros mediante ordem judicial. Dados cadastrais podem ser fornecidos a autoridades administrativas com competência legal para requisitá-los, nos termos do Marco Civil da Internet (Lei nº 12.965/2014).
+19.2 Registros de acesso e o conteúdo de comunicações privadas só serão fornecidos a terceiros mediante ordem judicial. Dados cadastrais podem ser fornecidos a autoridades administrativas com competência legal para requisitá-los, nos termos do Marco Civil da Internet (Lei nº 12.965/2014).
 
-17.3 Sempre que a lei permitir, avisaremos o Usuário sobre o pedido recebido.
+19.3 Sempre que a lei permitir, avisaremos o Usuário sobre o pedido recebido.
 
-## 18. Links externos
+## 20. Links externos
 
-18.1 A Plataforma pode conter links para páginas de terceiros, sobre as quais não temos controle. Não respondemos pelo conteúdo dessas páginas.
+20.1 A Plataforma pode conter links para páginas de terceiros, sobre as quais não temos controle. Não respondemos pelo conteúdo dessas páginas.
 
-## 19. Alterações
+## 21. Alterações
 
-19.1 Podemos modificar a Plataforma, seus serviços, recursos e regras para melhorias, novas funcionalidades ou para suprimir ou alterar as existentes.
+21.1 Podemos modificar a Plataforma, seus serviços, recursos e regras para melhorias, novas funcionalidades ou para suprimir ou alterar as existentes.
 
-19.2 Podemos atualizar estes Termos. A versão e a data da última atualização aparecem no topo desta página, e mudanças relevantes serão avisadas no Aplicativo, no Painel ou por e-mail.
+21.2 Podemos atualizar estes Termos. A versão e a data da última atualização aparecem no topo desta página. Mudanças relevantes serão avisadas no Aplicativo e por e-mail com pelo menos 7 (sete) dias de antecedência.
 
-## 20. Atendimento
+21.3 Se o Usuário não concordar com a nova versão, pode excluir a conta antes da vigência. O uso da Plataforma depois da vigência indica concordância com a versão atualizada.
 
-20.1 Dúvidas, sugestões e problemas podem ser enviados pelo e-mail contato@vocenohype.com.br, pelo telefone +55 11 3834-5221 ou pela página de suporte, de segunda a sexta, das 10h às 18h.
+21.4 Mudanças que criem novas obrigações ou direitos específicos, como as regras da seção 10, serão destacadas no aviso.
 
-20.2 O Usuário também pode enviar correspondência ao endereço indicado no início destes Termos.
+## 22. Atendimento
 
-## 21. Disposições gerais
+22.1 Dúvidas, sugestões e problemas podem ser enviados pelo e-mail contato@vocenohype.com.br, pelo telefone +55 11 3834-5221 ou pela página de suporte, de segunda a sexta, das 10h às 18h.
 
-21.1 Não nos responsabilizamos por mensagens ou conteúdos publicitários que não tenham sido enviados pela Plataforma. Desconfie de pedidos de senha, código ou pagamento por mensagem.
+22.2 O Usuário também pode enviar correspondência ao endereço indicado no início destes Termos.
 
-21.2 Ao usar a Plataforma, o Usuário aceita estes Termos e as demais políticas vigentes na data do acesso.
+## 23. Disposições gerais
 
-21.3 A tolerância com qualquer violação destes Termos é mera liberalidade e não implica renúncia de direitos, novação ou alteração dos Termos.
+23.1 Não nos responsabilizamos por mensagens ou conteúdos publicitários que não tenham sido enviados pela Plataforma. Desconfie de pedidos de senha, código ou pagamento por mensagem.
 
-21.4 Se alguma disposição destes Termos for considerada inválida, as demais continuam em vigor.
+23.2 Ao usar a Plataforma, o Usuário aceita estes Termos e as demais políticas vigentes na data do acesso.
 
-21.5 O Usuário declara ter lido, compreendido e aceito estes Termos.
+23.3 A tolerância com qualquer violação destes Termos é mera liberalidade e não implica renúncia de direitos, novação ou alteração dos Termos.
 
-## 22. Legislação e foro
+23.4 Se alguma disposição destes Termos for considerada inválida, as demais continuam em vigor.
+
+23.5 O Usuário declara ter lido, compreendido e aceito estes Termos.
+
+## 24. Legislação e foro
 
 Estes Termos são regidos pela legislação brasileira. Sempre que possível, as divergências serão resolvidas de forma amigável. Esgotada essa via, fica eleito o foro da Comarca da Capital do Estado de São Paulo, ressalvado o direito do consumidor de propor ação no foro do seu domicílio.
 
@@ -1210,13 +1322,13 @@ Use o link Preferências de cookies, no rodapé de qualquer página. Se você re
 
 Fonte: https://www.hypeapp.com.br/exclusao-de-conta/
 Título: Como excluir sua conta | HypeApp
-Atualizado em: 2026-11-06
+Atualizado em: 2026-11-19
 
 # Exclusão de conta e dados
 
 Como excluir sua conta no HypeApp e o que acontece com os seus dados.
 
-Versão 2.3 · Última atualização: 6 de novembro de 2026.
+Versão 2.4 · Última atualização: 19 de novembro de 2026.
 
 Esta página explica como excluir a sua conta no HypeApp e o que acontece com os seus dados: o que é apagado, o que fica guardado sem identificar você e o que precisa ser mantido por obrigação legal, conforme a LGPD (Lei nº 13.709/2018).
 
@@ -1262,9 +1374,11 @@ Se você acessa o painel como parte da equipe de uma marca ou agência, peça a 
 
 - Autorizações de acesso às redes sociais conectadas (tokens)
 
-- Texto e mídia dos seus posts e comentários na comunidade, e a sua participação em grupos
+- Texto e mídia dos seus posts e comentários na comunidade, suas curtidas e a sua participação em grupos
 
-- Hype Points, convites e histórico de pontos
+- Saldo de Hype Points (zerado) e convites
+
+- Convites de agências, elenco, propostas de comissão e conversas com agências
 
 - Sessões, notificações e autorizações de notificação no celular
 
@@ -1274,7 +1388,7 @@ Se você acessa o painel como parte da equipe de uma marca ou agência, peça a 
 
 - Histórico de participação em campanhas, sem o seu nome e sem os dados do seu perfil
 
-- Conteúdos enviados, mensagens do chat e métricas das publicações de campanhas, por até 5 anos após o fim da campanha, como registro do que foi combinado e entregue à marca
+- Conteúdos enviados, roteiros e anexos, mensagens do chat e métricas das publicações de campanhas, por até 5 anos após o fim da campanha, como registro do que foi combinado e entregue à marca
 
 - Avaliações já feitas, sem ligação com o seu perfil
 
@@ -1294,7 +1408,17 @@ Esses dados continuam ligados a você porque a lei exige (art. 16, inciso I, da 
 
 - Carteira de Hype Points, se você tiver uma: endereço, rede, operações e chave criptografada.
 
-Estamos ajustando o sistema para apagar esses dados junto com a conta. Enquanto isso, você pode pedir a exclusão deles pelo formulário de suporte.
+- Extrato de Hype Points e aulas desbloqueadas.
+
+- Registro de disponibilidade para agências, se você se colocou à disposição.
+
+- Registros dos avisos do app (quando cada aviso foi exibido, clicado ou dispensado).
+
+- Mensagens enviadas em grupos da comunidade.
+
+- Arquivos enviados em conversas e em roteiros.
+
+Estamos ajustando o sistema para apagar esses dados junto com a conta. Enquanto isso, você pode pedir a exclusão deles pelo formulário de suporte ou pelo e-mail do encarregado, contato@vocenohype.com.br. Respondemos em até 15 dias corridos.
 
 Os prazos completos estão na Política de Privacidade.
 
